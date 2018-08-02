@@ -345,6 +345,7 @@
   freeboard.addStyle('.gauge-widget', "width:200px;height:160px;display:inline-block;");
 
   var gaugeWidget = function (settings) {
+    console.log(' === Gauge === : ', settings);
     var self = this;
 
     var thisGaugeID = "gauge-" + gaugeID++;
@@ -1051,4 +1052,205 @@
     }
   });
 
+  // 自定义组件 Line
+  freeboard.addStyle('.custom-widget', "background-color:#ffffff;");
+  freeboard.addStyle('.custom-wrapper', "height:500px;");
+  var eChartsLineWidget = function (settings) {
+    var thisGaugeID = "gauge-" + gaugeID++;
+    var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
+    var currentSettings = settings;
+    var option = {
+      xAxis: {
+        type: 'category',
+        boundaryGap: false
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: []
+    };
+
+    this.render = function (element) {
+      $(element).append(htmlElement);
+      setTimeout(function () {
+        var dom = document.getElementById(thisGaugeID);
+        var myChart = echarts.init(dom);
+        myChart.setOption(option, true);
+      }, 100);
+    };
+
+    this.onCalculatedValueChanged = function (settingName, newValue) {
+      var value = newValue;
+      if (value && value.length > 0) {
+        value = eval(value)
+        var xAxisData = [];
+        var seriesData = [];
+        $.each(value, function (i, item) {
+          xAxisData.push(item.name)
+          seriesData.push(item.value)
+        });
+        option.xAxis.data = xAxisData
+        option.series.push({
+          data: seriesData,
+          type: 'line',
+          smooth: true
+        })
+      }
+    }
+
+    this.onSettingsChanged = function (newSettings) {
+      currentSettings = newSettings;
+    }
+
+    this.getHeight = function () {
+      return Number(8)
+    }
+
+    this.onSettingsChanged(settings);
+  };
+  freeboard.loadWidgetPlugin({
+    "type_name": "e_charts_line",
+    "display_name": "EChartsLine",
+    "fill_size": true,
+    "settings": [
+      {
+        "name": "value",
+        "display_name": "value",
+        "type": "calculated",
+        "description": "可以是文本HTML，也可以是输出HTML的javascript。"
+      }
+    ],
+    newInstance: function (settings, newInstanceCallback) {
+      newInstanceCallback(new eChartsLineWidget(settings));
+    }
+  });
+
+  // 自定义组件 Bar
+  var eChartsBarWidget = function (settings) {
+    var thisGaugeID = "gauge-" + gaugeID++;
+    var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
+    var currentSettings = settings;
+    var option = {
+      xAxis: {
+        silent: false,
+        splitLine: {
+          show: false
+        }
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: []
+    };
+
+    this.render = function (element) {
+      $(element).append(htmlElement);
+      setTimeout(function () {
+        var dom = document.getElementById(thisGaugeID);
+        var myChart = echarts.init(dom);
+        myChart.setOption(option, true);
+      }, 100);
+    };
+
+    this.onCalculatedValueChanged = function (settingName, newValue) {
+      var value = newValue;
+      if (value && value.length > 0) {
+        value = eval(value)
+        var xAxisData = [];
+        var seriesData = [];
+        $.each(value, function (i, item) {
+          xAxisData.push(item.name)
+          seriesData.push(item.value)
+        });
+        option.xAxis.data = xAxisData
+        option.series.push({
+          name: 'bar',
+          type: 'bar',
+          data: seriesData,
+          animationDelay: function (idx) {
+            return idx * 10;
+          }
+        })
+      }
+    }
+
+    this.onSettingsChanged = function (newSettings) {
+      currentSettings = newSettings;
+    }
+
+    this.getHeight = function () {
+      return Number(8)
+    }
+
+    this.onSettingsChanged(settings);
+
+  }
+  freeboard.loadWidgetPlugin({
+    "type_name": "e_charts_bar",
+    "display_name": "EChartsBar",
+    "fill_size": true,
+    "settings": [
+      {
+        "name": "value",
+        "display_name": "value",
+        "type": "calculated",
+        "description": "可以是文本HTML，也可以是输出HTML的javascript。"
+      }
+    ],
+    newInstance: function (settings, newInstanceCallback) {
+      newInstanceCallback(new eChartsBarWidget(settings));
+    }
+  });
+
+  // 自定义组件 Pie
+  var eChartsPieWidget = function (settings) {
+    var thisGaugeID = "gauge-" + gaugeID++;
+    var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
+    var currentSettings = settings;
+    var option = {
+      series: []
+    };
+    this.render = function (element) {
+      $(element).append(htmlElement);
+      setTimeout(function () {
+        var dom = document.getElementById(thisGaugeID);
+        var myChart = echarts.init(dom);
+        myChart.setOption(option, true);
+      }, 100);
+    };
+
+    this.onCalculatedValueChanged = function (settingName, newValue) {
+      var value = newValue;
+      option.series.push({
+        type: 'pie',
+        data: value
+      })
+    }
+
+    this.onSettingsChanged = function (newSettings) {
+      currentSettings = newSettings;
+    }
+
+    this.getHeight = function () {
+      return Number(8)
+    }
+
+    this.onSettingsChanged(settings);
+  };
+  freeboard.loadWidgetPlugin({
+    "type_name": "e_charts_pie",
+    "display_name": "EChartsPie",
+    "fill_size": true,
+    "settings": [
+      {
+        "name": "value",
+        "display_name": "value",
+        "type": "calculated",
+        "description": "可以是文本HTML，也可以是输出HTML的javascript。"
+      }
+    ],
+    newInstance: function (settings, newInstanceCallback) {
+      newInstanceCallback(new eChartsPieWidget(settings));
+    }
+  });
 }());
