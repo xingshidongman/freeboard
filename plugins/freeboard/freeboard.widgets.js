@@ -1052,9 +1052,11 @@
     }
   });
 
-  // 自定义组件 Line
+  // 自定义组件
   freeboard.addStyle('.custom-widget', "background-color:#ffffff;");
   freeboard.addStyle('.custom-wrapper', "height:500px;");
+
+  // 自定义组件 Line
   var eChartsLineWidget = function (settings) {
     var thisGaugeID = "gauge-" + gaugeID++;
     var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
@@ -1076,7 +1078,7 @@
         var dom = document.getElementById(thisGaugeID);
         var myChart = echarts.init(dom);
         myChart.setOption(option, true);
-      }, 100);
+      }, 1000);
     };
 
     this.onCalculatedValueChanged = function (settingName, newValue) {
@@ -1149,7 +1151,7 @@
         var dom = document.getElementById(thisGaugeID);
         var myChart = echarts.init(dom);
         myChart.setOption(option, true);
-      }, 100);
+      }, 1000);
     };
 
     this.onCalculatedValueChanged = function (settingName, newValue) {
@@ -1216,7 +1218,7 @@
         var dom = document.getElementById(thisGaugeID);
         var myChart = echarts.init(dom);
         myChart.setOption(option, true);
-      }, 100);
+      }, 1000);
     };
 
     this.onCalculatedValueChanged = function (settingName, newValue) {
