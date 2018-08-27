@@ -226,7 +226,7 @@
             }
             var requestURL2 = currentSettings.url2;
             if (errorStage == 2 && currentSettings.use_thingproxy) {
-                requestURL2 = (location.protocol == "https:" ? "https:" : "http:") + "//thingproxy.freeboard.io/fetch/" + encodeURI(currentSettings.url);
+                requestURL2 = (location.protocol == "https:" ? "https:" : "http:") + "//thingproxy.freeboard.io/fetch/" + encodeURI(currentSettings.url2);
             }
             var body = currentSettings.body;
             // Can the body be converted to JSON?
