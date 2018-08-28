@@ -193,8 +193,7 @@
       newInstanceCallback(new jsonDatasource(settings, updateCallback));
     }
   });
-
-    //json格式的数据源 （自定的）
+    //json格式的数据源 （自定的  用于发送两次ajax请求  请求数据和返回数据都为json格式）
     var json1Datasource = function (settings, updateCallback) {
         var self = this;
         var updateTimer = null;
@@ -211,26 +210,24 @@
                 self.updateNow();
             }, refreshTime);
         }
-
         updateRefresh(currentSettings.refresh * 1000);
-
         this.updateNow = function () {
             if ((errorStage > 1 && !currentSettings.use_thingproxy) || errorStage > 2) // We've tried everything, let's quit
             {
                 return; // TODO: Report an error
             }
-
             var requestURL = currentSettings.url;
             if (errorStage == 2 && currentSettings.use_thingproxy) {
                 requestURL = (location.protocol == "https:" ? "https:" : "http:") + "//thingproxy.freeboard.io/fetch/" + encodeURI(currentSettings.url);
             }
             var requestURL2 = currentSettings.url2;
             if (errorStage == 2 && currentSettings.use_thingproxy) {
+                requestURL2 = (location.protocol == "https:" ? "https:" : "http:") + "//thingproxy.freeboard.io/fetch/" + encodeURI(currentSettings.url);
                 requestURL2 = (location.protocol == "https:" ? "https:" : "http:") + "//thingproxy.freeboard.io/fetch/" + encodeURI(currentSettings.url2);
             }
             var body = currentSettings.body;
             // Can the body be converted to JSON?
-            // 身体可以转换为JSON吗？  将请求body转换为json格式
+            // 将请求body转换为json格式
             if (body) {
                 try {
                     body = JSON.parse(body);
@@ -238,7 +235,7 @@
                 catch (e) {
                 }
             }
-            var data;
+            var resdata;
             $.ajax({
                 async:false,
                 url: requestURL,
@@ -261,7 +258,8 @@
                 },
                 success: function (data1) {
                     lockErrorStage = true;
-                    data=data1;
+                    resdata=data1;
+                    //updateCallback(data);
                     req();
                 },
                 error: function (xhr, status, error) {
@@ -272,6 +270,7 @@
                     }
                 }
             });
+            //定义第二次发送的ajax请求
             function req(){
             $.ajax({
                 url: requestURL2,
@@ -294,9 +293,10 @@
                 },
                 success: function (data2) {
                     lockErrorStage = true;
-                    updateCallback(data);//
-                    data=data2
-                    //updateCallback(data);//
+                    //在此处应该对两次请求返回的数据进行处理 因还不清楚返回的数据都有什么 所以还未做处理
+                    //updateCallback(resdata);
+                    //resdata=data2;
+                    updateCallback(resdata);
                 },
                 error: function (xhr, status, error) {
                     if (!lockErrorStage) {
@@ -308,12 +308,10 @@
             });
             }
         }
-
         this.onDispose = function () {
             clearInterval(updateTimer);
             updateTimer = null;
         }
-
         this.onSettingsChanged = function (newSettings) {
             lockErrorStage = false;
             errorStage = 0;
@@ -418,7 +416,6 @@
             newInstanceCallback(new json1Datasource(settings, updateCallback));
         }
     });
-
 
   // Open Weather Map Api格式的数据源
   var openWeatherMapDatasource = function (settings, updateCallback) {
