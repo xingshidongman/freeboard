@@ -1131,11 +1131,25 @@
         var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
         var currentSettings = settings;
         var option = {
+            title : {
+                text: '专线流量、带宽占用比TOP',
+                left: 'center',
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                left: 'center',
+                y: 40 //距离Y轴的距离
+            },
             xAxis: {
+                name:'流量 ',
                 type: 'category',
                 boundaryGap: false
             },
             yAxis: {
+                name:'占用比',
+                nameLocation :'start',
                 type: 'value'
             },
             series: []
@@ -1154,14 +1168,14 @@
             var value = newValue;
             if (value && value.length > 0) {
                 value = eval(value);
-                var xAxisData = [];
-                $.each(value, function (i, item) {  //遍历value
-                    xAxisData.push(item.name);
+                option.legend.data =value[0].lValue,
+                    option.xAxis.data=value[1].xValue;
+                $.each(value, function (i, item) {
                     option.series.push(
                         item.value
                     );
                 });
-                option.xAxis.data = xAxisData;
+                // option.xAxis.data = xAxisData;
             }
         }
 
@@ -1270,19 +1284,32 @@
     // 自定义组件 BarTwo（双柱图自己写的）
     var eChartsBarTwoWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
-        var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
         var currentSettings = settings;
+        var htmlElement =
+            $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
         var option = {
+            title : {
+                text: '骨干线路流量、带宽占用比TOP',
+                left: 'center',
+            },
             tooltip: {
                 trigger: 'axis'
             },
+            legend: {
+                orient: 'vertical',
+                left: 'right',
+            },
+            calculable : true,
             xAxis:
                 {
+                    name:'流量',
                     type: 'category',
                 }
             ,
             yAxis: [
                 {
+                    name:'占用比',
+                    nameLocation :'start',
                     type: 'value'
                 }
             ],
@@ -1302,7 +1329,8 @@
             var value = newValue;
             if (value && value.length > 0) {
                 value = eval(value)
-                option.xAxis.data = value[0].xValue;
+                option.legend.data =value[0].lValue;
+                option.xAxis.data = value[1].xValue;
                 $.each(value, function (i, item) {
                     option.series.push(
                         item.value
@@ -1388,9 +1416,13 @@
     // 自定义组件 annulus（圆环图自己写的）
     var eChartsAnnulusWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
-        var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
+        var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div><div style="position:absolute;left:260px;top:220px"><p>总管理对象209</p></div></div>');
         var currentSettings = settings;
         var option = {
+            title : {
+                text: '智能统计图',
+                left: 'center'
+            },
             series: []
         };
         this.render = function (element) {
@@ -1406,28 +1438,8 @@
             var value = newValue;
             option.series.push({
                 data: value,
-                name: '访问来源',
                 type: 'pie',
                 radius: ['50%', '70%'],
-                avoidLabelOverlap: false,
-                label: {
-                    normal: {
-                        show: false,
-                        position: 'center'
-                    },
-                    emphasis: {
-                        show: true,
-                        textStyle: {
-                            fontSize: '30',
-                            fontWeight: 'bold'
-                        }
-                    }
-                },
-                labelLine: {
-                    normal: {
-                        show: false
-                    }
-                }
             })
         }
 
@@ -1457,12 +1469,172 @@
             newInstanceCallback(new eChartsAnnulusWidget(settings));
         }
     });
+    //  自定义组件AnnulusRing1（嵌套环形图自己写的）
+    var eChartsAnnulusRing1Widget = function (settings) {
+        var thisGaugeID = "gauge-" + gaugeID++;
+        var thisGaugeID1 = "circle";
+        var htmlElement = $('<div class="custom-widget">' +
+            '<div class="custom-wrapper" id="' + thisGaugeID + '"></div>' +
+            '<div  id="' + thisGaugeID1 + '" style="position:absolute;left:100px;top:200px"></div>' +
+            '<div style="position:absolute;left:260px;top:220px"><p>被管理对象类型</p></div>' +
+            '</div>');
+        var currentSettings = settings;
+        var option = {
+            title : {
+                text: '警告信息',
+                left: 'center',
+            },
+            series: []
+        };
+        var option1 = {
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: ['巴西','印尼','美国']
+            },
+            series: []
+        };
+        this.render = function (element) {
+            $(element).append(htmlElement);
+            setTimeout(function () {
+                var dom = document.getElementById(thisGaugeID);
+                var myChart = echarts.init(dom);
+                myChart.setOption(option, true);
+
+                var dom1 = document.getElementById(thisGaugeID1);
+                var myChart1 = echarts.init(dom1);
+                myChart1.setOption(option1, true);
+            }, 1000);
+        };
+
+        this.onCalculatedValueChanged = function (settingName, newValue) {
+            var value = newValue;
+            if (value && value.length > 0) {
+                value = eval(value);
+                var sCircle = value[0].smallCircle;
+                var bCircle = value[1].bigCircle;
+                option.series.push({
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: ['25%', '30%'],
+                    label: {
+                        normal: {
+                            formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                            backgroundColor: '#eee',
+                            borderColor: '#aaa',
+                            borderWidth: 1,
+                            borderRadius: 5,
+                            rich: {
+                                a: {
+                                    color: '#999',
+                                    lineHeight: 22,
+                                    align: 'center'
+                                },
+                                hr: {
+                                    borderColor: '#aaa',
+                                    width: '100%',
+                                    borderWidth: 0.5,
+                                    height: 0
+                                },
+                                b: {
+                                    fontSize: 16,
+                                    lineHeight: 33
+                                },
+                                per: {
+                                    color: '#eee',
+                                    backgroundColor: '#334455',
+                                    padding: [2, 4],
+                                    borderRadius: 2
+                                }
+                            }
+                        }
+                    },
+                    data: sCircle
+                });
+                option.series.push({
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: ['50%', '55%'],
+                    label: {
+                        normal: {
+                            formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                            backgroundColor: '#eee',
+                            borderColor: '#aaa',
+                            borderWidth: 1,
+                            borderRadius: 5,
+                            rich: {
+                                a: {
+                                    color: '#999',
+                                    lineHeight: 22,
+                                    align: 'center'
+                                },
+                                hr: {
+                                    borderColor: '#aaa',
+                                    width: '100%',
+                                    borderWidth: 0.5,
+                                    height: 0
+                                },
+                                b: {
+                                    fontSize: 16,
+                                    lineHeight: 33
+                                },
+                                per: {
+                                    color: '#eee',
+                                    backgroundColor: '#334455',
+                                    padding: [2, 4],
+                                    borderRadius: 2
+                                }
+                            }
+                        }
+                    },
+                    data: bCircle
+                });
+                option1.series.push({
+                    name: '2011年',
+                    type: 'bar',
+                    data: [18203, 23489, 29034]
+                });
+            }
+        }
+        this.onSettingsChanged = function (newSettings) {
+            currentSettings = newSettings;
+        }
+
+        this.getHeight = function () {
+            return Number(8)
+        }
+
+        this.onSettingsChanged(settings);
+    };
+    freeboard.loadWidgetPlugin({
+        "type_name": "e_charts_annulusRing1",
+        "display_name": "EChartsAnnulusRing1",
+        "fill_size": true,
+        "settings": [
+            {
+                "name": "value",
+                "display_name": "value",
+                "type": "calculated",
+                "description": "可以是文本HTML，也可以是输出HTML的javascript。"
+            }
+        ],
+        newInstance: function (settings, newInstanceCallback) {
+            newInstanceCallback(new eChartsAnnulusRing1Widget(settings));
+        }
+    });
     //  自定义组件AnnulusRing（嵌套环形图自己写的）
     var eChartsAnnulusRingWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
-        var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
+        var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div><div style="position:absolute;left:260px;top:220px"><p>被管理对象类型</p></div></div>');
         var currentSettings = settings;
         var option = {
+            title : {
+                text: '警告信息',
+                left: 'center',
+            },
             series: []
         };
         this.render = function (element) {
@@ -1478,37 +1650,51 @@
             var value = newValue;
             if (value && value.length > 0) {
                 value = eval(value);
-                var processingData = [];
-                var seriesData = [];
-                for(var i=0;i<value[0].processing.length;i++){
-                    processingData.push(value[0].processing[i]);
-                };
-                for(var i=0;i<value[1].value.length;i++){
-                    seriesData.push(value[1].value[i]);
-                }
+                var sCircle = value[0].smallCircle;
+                var bCircle = value[1].bigCircle;
+                //for(var i=0;i<value[0].smallCircle.length;i++){
+                //    sCircle.push(value[0].smallCircle[i]);
+                //};
+                //for(var i=0;i<value[1].value.length;i++){
+                //    seriesData.push(value[1].value[i]);
+                //}
                 option.series.push({
                         name: '访问来源',
                         type: 'pie',
-                        radius: ['20%', '30%'],
+                        radius: ['25%', '30%'],
                         label: {
                             normal: {
-                                show: true,
-                                position: 'center'
-                            },
-                            emphasis: {
-                                show: true,
-                                textStyle: {
-                                    fontSize: '60',
-                                    fontWeight: 'bold'
+                                formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                                backgroundColor: '#eee',
+                                borderColor: '#aaa',
+                                borderWidth: 1,
+                                borderRadius: 5,
+                                rich: {
+                                    a: {
+                                        color: '#999',
+                                        lineHeight: 22,
+                                        align: 'center'
+                                    },
+                                    hr: {
+                                        borderColor: '#aaa',
+                                        width: '100%',
+                                        borderWidth: 0.5,
+                                        height: 0
+                                    },
+                                    b: {
+                                        fontSize: 16,
+                                        lineHeight: 33
+                                    },
+                                    per: {
+                                        color: '#eee',
+                                        backgroundColor: '#334455',
+                                        padding: [2, 4],
+                                        borderRadius: 2
+                                    }
                                 }
                             }
                         },
-                        labelLine: {
-                            normal: {
-                                show: false,
-                            }
-                        },
-                        data: processingData
+                        data: sCircle
                     },
                     {
                         name: '访问来源',
@@ -1546,7 +1732,7 @@
                                 }
                             }
                         },
-                        data: seriesData
+                        data: bCircle
                     })
             }
         }

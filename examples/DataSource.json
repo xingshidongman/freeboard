@@ -79,33 +79,26 @@
       "value": 5
     }
   ],
-  "NightingaleRoseDiagram": [
-    {
-      "name": "rose1",
-      "value": 4
-    },
-    {
-      "name": "rose2",
-      "value": 8
-    },
-    {
-      "name": "rose3",
-      "value": 15
-    },
-    {
-      "name": "rose4",
-      "value": 20
-    }
-  ],
-  "AnnulusRing": [
+  "AnnulusRing":
+  [
     {
       "processing": [
         {
           "value": 69,
-          "name": "报警率23%"
+          "name": "已处理数"
         },
         {
           "value": 288,
+          "label": {
+            "normal": {
+              "show": false
+            }
+          },
+          "labelLine": {
+            "normal": {
+              "show": false
+            }
+          },
           "itemStyle": {
             "normal": {
               "color": "rgba(0,0,0,0)"
@@ -115,14 +108,14 @@
       ]
     },
     {
-      "value": [
+      "bigCircle": [
         {
           "value": 80,
           "name": "警报"
         },
         {
           "value": 234,
-          "name": "邮件营销"
+          "name": "设备数"
         }
       ]
     }
@@ -138,23 +131,36 @@
   ],
   "lineMore": [
     {
-      "name": "1M",
+      "lValue": ["专线1","专线2","专线3","专线4","专线5","专线6","专线7"]
+    },
+    {
+      "xValue": [
+        "1M",
+        "2M",
+        "3M",
+        "4M",
+        "5M",
+        "6M"
+      ]
+    },
+    {
       "value": {
+        "name": "专线1",
         "type": "line",
         "data": [
           20,
           32,
-          80,
+          40,
           34,
-          90,
-          30,
-          21
+          50,
+          70,
+          81
         ]
       }
     },
     {
-      "name": "2M",
       "value": {
+        "name": "专线2",
         "type": "line",
         "data": [
           20,
@@ -168,8 +174,8 @@
       }
     },
     {
-      "name": "3M",
       "value": {
+        "name": "专线3",
         "type": "line",
         "data": [
           10,
@@ -183,8 +189,8 @@
       }
     },
     {
-      "name": "4M",
       "value": {
+        "name": "专线4",
         "type": "line",
         "data": [
           10,
@@ -198,8 +204,8 @@
       }
     },
     {
-      "name": "5M",
       "value": {
+        "name": "专线5",
         "type": "line",
         "data": [
           20,
@@ -213,8 +219,8 @@
       }
     },
     {
-      "name": "6M",
       "value": {
+        "name": "专线6",
         "type": "line",
         "data": [
           10,
@@ -226,9 +232,27 @@
           10
         ]
       }
+    },
+    {
+      "value": {
+        "name": "专线7",
+        "type": "line",
+        "data": [
+          50,
+          40,
+          41,
+          23,
+          70,
+          80,
+          40
+        ]
+      }
     }
   ],
   "barTwo": [
+    {
+      "lValue": ["线路一","线路二"]
+    },
     {
       "xValue": [
         "1M",
