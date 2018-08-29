@@ -1475,7 +1475,7 @@
         var thisGaugeID1 = "circle";
         var htmlElement = $('<div class="custom-widget">' +
             '<div class="custom-wrapper" id="' + thisGaugeID + '"></div>' +
-            '<div  id="' + thisGaugeID1 + '" style="position:absolute;left:100px;top:200px"></div>' +
+            '<div  id="' + thisGaugeID1 + '" style="position:absolute;left:100px;top:200px;width:100px;height: 100px"></div>' +
             '<div style="position:absolute;left:260px;top:220px"><p>被管理对象类型</p></div>' +
             '</div>');
         var currentSettings = settings;
