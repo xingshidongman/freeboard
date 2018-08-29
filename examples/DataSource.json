@@ -79,10 +79,9 @@
       "value": 5
     }
   ],
-  "AnnulusRing":
-  [
+  "AnnulusRing": [
     {
-      "smallCircle": [
+      "processing": [
         {
           "value": 69,
           "name": "已处理数"
@@ -290,6 +289,24 @@
           70.7
         ]
       }
+    }
+  ],
+  "NightingaleRoseDiagram": [
+    {
+      "name": "rose1",
+      "value": 4
+    },
+    {
+      "name": "rose2",
+      "value": 8
+    },
+    {
+      "name": "rose3",
+      "value": 15
+    },
+    {
+      "name": "rose4",
+      "value": 20
     }
   ]
 }

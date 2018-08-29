@@ -1896,26 +1896,14 @@
             newInstanceCallback(new eChartsGaugeWidget(settings));
         }
     });
-    //测试
-    /**
-     * 原来的位置错了
-     * @param settings
-     */
-    var eChartsCineWidget = function (settings) {
+    //自定义组件 NightingaleRoseDiagram
+    var eChartsNightingaleRoseDiagramWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
         var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
         var currentSettings = settings;
         var option = {
-            xAxis: {
-                type: 'category',
-                boundaryGap: false
-            },
-            yAxis: {
-                type: 'value'
-            },
             series: []
         };
-
         this.render = function (element) {
             $(element).append(htmlElement);
             setTimeout(function () {
@@ -1927,21 +1915,13 @@
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var value = newValue;
-            if (value && value.length > 0) {
-                value = eval(value)
-                var xAxisData = [];
-                var seriesData = [];
-                $.each(value, function (i, item) {
-                    xAxisData.push(item.name)
-                    seriesData.push(item.value)
-                });
-                option.xAxis.data = xAxisData
-                option.series.push({
-                    data: seriesData,
-                    type: 'line',
-                    smooth: true
-                })
-            }
+            option.series.push({
+                data: value,
+                name:'面积模式',
+                type:'pie',
+                radius : [50, 100],
+                roseType : 'area'
+            })
         }
 
         this.onSettingsChanged = function (newSettings) {
@@ -1955,8 +1935,8 @@
         this.onSettingsChanged(settings);
     };
     freeboard.loadWidgetPlugin({
-        "type_name": "e_charts_Cine",
-        "display_name": "EChartsCine",
+        "type_name": "e_charts_NightingaleRoseDiagram",
+        "display_name": "EChartsNightingaleRoseDiagram",
         "fill_size": true,
         "settings": [
             {
@@ -1967,7 +1947,7 @@
             }
         ],
         newInstance: function (settings, newInstanceCallback) {
-            newInstanceCallback(new eChartsCineWidget(settings));
+            newInstanceCallback(new eChartsNightingaleRoseDiagramWidget(settings));
         }
     });
 }());
