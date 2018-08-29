@@ -79,6 +79,24 @@
       "value": 5
     }
   ],
+  "NightingaleRoseDiagram": [
+    {
+      "name": "rose1",
+      "value": 4
+    },
+    {
+      "name": "rose2",
+      "value": 8
+    },
+    {
+      "name": "rose3",
+      "value": 15
+    },
+    {
+      "name": "rose4",
+      "value": 20
+    }
+  ],
   "AnnulusRing": [
     {
       "processing": [
