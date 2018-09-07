@@ -451,7 +451,6 @@
         }
     });
 
-
     freeboard.addStyle('.sparkline', "width:100%;height: 75px;");
     var sparklineWidget = function (settings) {
         var self = this;
@@ -1131,7 +1130,7 @@
         var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
         var currentSettings = settings;
         var option = {
-            title : {
+            title: {
                 text: '专线流量、带宽占用比TOP',
                 left: 'center',
             },
@@ -1143,13 +1142,13 @@
                 y: 40 //距离Y轴的距离
             },
             xAxis: {
-                name:'流量 ',
+                name: '流量 ',
                 type: 'category',
                 boundaryGap: false
             },
             yAxis: {
-                name:'占用比',
-                nameLocation :'start',
+                name: '占用比',
+                nameLocation: 'start',
                 type: 'value'
             },
             series: []
@@ -1168,8 +1167,8 @@
             var value = newValue;
             if (value && value.length > 0) {
                 value = eval(value);
-                option.legend.data =value[0].lValue,
-                    option.xAxis.data=value[1].xValue;
+                option.legend.data = value[0].lValue,
+                    option.xAxis.data = value[1].xValue;
                 $.each(value, function (i, item) {
                     option.series.push(
                         item.value
@@ -1222,22 +1221,26 @@
             },
             series: []
         };
-
+        var dom = null;
+        var myChart = null;
         this.render = function (element) {
             $(element).append(htmlElement);
+            console.log('myChart htmlElement === ')
             setTimeout(function () {
-                var dom = document.getElementById(thisGaugeID);
-                var myChart = echarts.init(dom);
+                dom = document.getElementById(thisGaugeID);
+                myChart = echarts.init(dom);
                 myChart.setOption(option, true);
             }, 1000);
         };
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var value = newValue;
+            console.log('value:', value)
             if (value && value.length > 0) {
                 value = eval(value);
                 var xAxisData = [];
                 var seriesData = [];
+                option.series = [];
                 $.each(value, function (i, item) {
                     xAxisData.push(item.name)
                     seriesData.push(item.value)
@@ -1250,7 +1253,9 @@
                     animationDelay: function (idx) {
                         return idx * 10;
                     }
-                })
+                });
+
+                myChart.setOption(option, true);
             }
         };
 
@@ -1288,7 +1293,7 @@
         var htmlElement =
             $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
         var option = {
-            title : {
+            title: {
                 text: '骨干线路流量、带宽占用比TOP',
                 left: 'center',
             },
@@ -1299,17 +1304,17 @@
                 orient: 'vertical',
                 left: 'right',
             },
-            calculable : true,
+            calculable: true,
             xAxis:
                 {
-                    name:'流量',
+                    name: '流量',
                     type: 'category',
                 }
             ,
             yAxis: [
                 {
-                    name:'占用比',
-                    nameLocation :'start',
+                    name: '占用比',
+                    nameLocation: 'start',
                     type: 'value'
                 }
             ],
@@ -1329,7 +1334,7 @@
             var value = newValue;
             if (value && value.length > 0) {
                 value = eval(value)
-                option.legend.data =value[0].lValue;
+                option.legend.data = value[0].lValue;
                 option.xAxis.data = value[1].xValue;
                 $.each(value, function (i, item) {
                     option.series.push(
@@ -1419,7 +1424,7 @@
         var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div><div style="position:absolute;left:260px;top:220px"><p>总管理对象209</p></div></div>');
         var currentSettings = settings;
         var option = {
-            title : {
+            title: {
                 text: '智能统计图',
                 left: 'center'
             },
@@ -1474,26 +1479,33 @@
         var thisGaugeID = "gauge-" + gaugeID++;
         var thisGaugeID1 = "circle";
         var htmlElement = $('<div class="custom-widget">' +
-            '<div class="custom-wrapper" id="' + thisGaugeID + '"></div>' +
-            '<div  id="' + thisGaugeID1 + '" style="position:absolute;left:100px;top:200px"></div>' +
-            '<div style="position:absolute;left:260px;top:220px"><p>被管理对象类型</p></div>' +
+            '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:500px ;top:20px;"></div>' +
+            '<div  id="' + thisGaugeID1 + '" style="position:absolute;left:100px;top:45%;width:500px;height:300px"></div>' +
+            '<div style="position:absolute;left:42%;top:25%"><p>被管理对象类型</p></div>' +
             '</div>');
         var currentSettings = settings;
         var option = {
-            title : {
+            title: {
                 text: '警告信息',
                 left: 'center',
             },
             series: []
         };
+
         var option1 = {
+            grid: {
+                width: '70%',
+                top: '30%',
+                left: 20,
+                containLabel: true
+            },
             xAxis: {
                 type: 'value',
                 boundaryGap: [0, 0.01]
             },
             yAxis: {
                 type: 'category',
-                data: ['巴西','印尼','美国']
+
             },
             series: []
         };
@@ -1516,6 +1528,8 @@
                 value = eval(value);
                 var sCircle = value[0].smallCircle;
                 var bCircle = value[1].bigCircle;
+                option1.yAxis.data = value[2].barName;
+                var bValue = value[3].barValue;
                 option.series.push({
                     name: '访问来源',
                     type: 'pie',
@@ -1552,12 +1566,14 @@
                             }
                         }
                     },
+
+                    center: ['50%', '30%'],
                     data: sCircle
                 });
                 option.series.push({
                     name: '访问来源',
                     type: 'pie',
-                    radius: ['50%', '55%'],
+                    radius: ['35%', '45%'],
                     label: {
                         normal: {
                             formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
@@ -1590,12 +1606,13 @@
                             }
                         }
                     },
+                    center: ['50%', '30%'],
                     data: bCircle
                 });
                 option1.series.push({
                     name: '2011年',
                     type: 'bar',
-                    data: [18203, 23489, 29034]
+                    data: bValue
                 });
             }
         }
@@ -1631,7 +1648,7 @@
         var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div><div style="position:absolute;left:260px;top:220px"><p>被管理对象类型</p></div></div>');
         var currentSettings = settings;
         var option = {
-            title : {
+            title: {
                 text: '警告信息',
                 left: 'center',
             },
@@ -1762,15 +1779,12 @@
             newInstanceCallback(new eChartsAnnulusRingWidget(settings));
         }
     });
-    // 自定义组件 Radar1（雷达图自己写的）
-    var eChartsRadar1Widget = function (settings) {
+    // 自定义组件 Radar（单个雷达图）
+    var eChartsRadarWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
         var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
         var currentSettings = settings;
         var option = {
-            title: {
-                text: '多雷达图'
-            },
             tooltip: {
                 trigger: 'axis'
             },
@@ -1781,11 +1795,10 @@
                         {text: '内存使用率', max: 100},
                         {text: '连续运营时间', max: 10}
                     ],
-                    center: ['25%', '40%'],
+                    center: ['50%', '40%'],
                     radius: 80,
                     shape: 'circle',
-                }
-
+                },
             ],
             series: []
         };
@@ -1814,6 +1827,151 @@
                         }
                     },
                     data: value
+                },
+            )
+        }
+
+        this.onSettingsChanged = function (newSettings) {
+            currentSettings = newSettings;
+        }
+
+        this.getHeight = function () {
+            return Number(8)
+        }
+
+        this.onSettingsChanged(settings);
+    };
+    freeboard.loadWidgetPlugin({
+        "type_name": "e_charts_radar",
+        "display_name": "EChartsRadar",
+        "fill_size": true,
+        "settings": [
+            {
+                "name": "value",
+                "display_name": "value",
+                "type": "calculated",
+                "description": "可以是文本HTML，也可以是输出HTML的javascript。"
+            }
+        ],
+        newInstance: function (settings, newInstanceCallback) {
+            newInstanceCallback(new eChartsRadarWidget(settings));
+        }
+    });
+    // 自定义组件 Radar1（四个雷达图）
+    var eChartsRadar1Widget = function (settings) {
+        var thisGaugeID = "gauge-" + gaugeID++;
+        var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div>' +
+            '<div style="position:absolute;left:360px;top:10px"><p>cpu使用率：95</p><p>内存使用率：95</p><p>持续运营时间：8小时20分</p></div>' +
+            '<div style="position:absolute;left:130px;top:110px"><p>设备名</p></div>' +
+            '<div style="position:absolute;left:360px;top:130px"><p>cpu使用率：95</p><p>内存使用率：95</p><p>持续运营时间：8小时20分</p></div>' +
+            '<div style="position:absolute;left:130px;top:230px"><p>设备名</p></div>' +
+            '<div style="position:absolute;left:360px;top:250px"><p>cpu使用率：95</p><p>内存使用率：95</p><p>持续运营时间：8小时20分</p></div>' +
+            '<div style="position:absolute;left:130px;top:360px"><p>设备名</p></div>' +
+            '<div style="position:absolute;left:360px;top:370px"><p>cpu使用率：95</p><p>内存使用率：95</p><p>持续运营时间：8小时20分</p></div>' +
+            '<div style="position:absolute;left:130px;top:410px"><p>设备名</p></div>' +
+            '</div>');
+        var currentSettings = settings;
+        var option = {
+            tooltip: {
+                trigger: 'axis'
+            },
+            radar: [
+                {
+                    indicator: [
+                        {max: 100},
+                        {max: 100},
+                        {max: 10}
+                    ],
+                    shape: 'circle',
+                    center: ['25%', '15%'],
+                    radius: 40,
+                },
+                {
+                    indicator: [
+                        {max: 100},
+                        {max: 100},
+                        {max: 10}
+                    ],
+
+                    shape: 'circle',
+                    center: ['25%', '40%'],
+                    radius: 40,
+                },
+                {
+                    indicator: [
+                        {max: 100},
+                        {max: 100},
+                        {max: 10}
+                    ],
+                    shape: 'circle',
+                    center: ['25%', '65%'],
+                    radius: 40,
+                },
+                {
+                    indicator: [
+                        {max: 100},
+                        {max: 100},
+                        {max: 10}
+                    ],
+                    shape: 'circle',
+                    center: ['25%', '90%'],
+                    radius: 40,
+                }
+            ],
+            series: []
+        };
+        this.render = function (element) {
+            $(element).append(htmlElement);
+            setTimeout(function () {
+                var dom = document.getElementById(thisGaugeID);
+                var myChart = echarts.init(dom);
+                myChart.setOption(option, true);
+            }, 1000);
+        };
+
+        this.onCalculatedValueChanged = function (settingName, newValue) {
+            var value = newValue;
+            var value1 = value[0];
+            var value2 = value[1];
+            var value3 = value[2];
+            var value4 = value[3];
+            option.series.push(
+                {
+                    type: 'radar',
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    data: [value1]
+                },
+                {
+                    type: 'radar',
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    radarIndex: 1,
+                    data: [value2]
+                },
+                {
+                    type: 'radar',
+                    radarIndex: 2,
+                    tooltip: {
+                        trigger: 'item'
+                    },
+
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    data: [value3]
+                },
+                {
+                    type: 'radar',
+                    radarIndex: 3,
+                    tooltip: {
+                        trigger: 'item'
+                    },
+
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    data: [value4]
                 }
             )
         }
@@ -1894,6 +2052,66 @@
         ],
         newInstance: function (settings, newInstanceCallback) {
             newInstanceCallback(new eChartsGaugeWidget(settings));
+        }
+    });
+    //自定义组件 NightingaleRoseDiagram
+    var eChartsNightingaleRoseDiagramWidget = function (settings) {
+        var thisGaugeID = "gauge-" + gaugeID++;
+        var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
+        var currentSettings = settings;
+        var option = {
+            series: []
+        };
+        this.render = function (element) {
+            $(element).append(htmlElement);
+            setTimeout(function () {
+                var dom = document.getElementById(thisGaugeID);
+                var myChart = echarts.init(dom);
+                myChart.setOption(option, true);
+            }, 1000);
+        };
+
+        this.onCalculatedValueChanged = function (settingName, newValue) {
+            var value = newValue;
+            option.series.push({
+                data: value,
+                name: '半径模式',
+                type: 'pie',
+                label: {
+                    normal: {
+                        formatter: '{abg|}\n{hr|}\n  {b|{b}：}{c} ',
+                        rich: {}
+                    }
+                },
+                radius: [50, 100],
+                roseType: 'radius'
+            })
+        }
+
+        this.onSettingsChanged = function (newSettings) {
+            currentSettings = newSettings;
+        }
+
+        this.getHeight = function () {
+            return Number(8)
+        }
+
+        this.onSettingsChanged(settings);
+    };
+    freeboard.loadWidgetPlugin({
+        "type_name": "e_charts_NightingaleRoseDiagram",
+        "display_name": "EChartsNightingaleRoseDiagram",
+        "fill_size": true,
+        "settings": [
+            {
+                "name": "value",
+                "display_name": "value",
+                "type": "calculated",
+                "description": "可以是文本HTML，也可以是输出HTML的javascript。"
+            }
+        ],
+        newInstance: function (settings, newInstanceCallback) {
+            newInstanceCallback(new eChartsNightingaleRoseDiagramWidget(settings));
         }
     });
     //测试

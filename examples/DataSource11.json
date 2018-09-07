@@ -1,0 +1,45 @@
+[
+  {"sd": "38"},
+  {"gldx": [
+    {
+      "name": "主机1",
+      "localName": "192.168.1.1",
+      "qualifiers": [],
+      "properties": [],
+      "children": [],
+      "className": "Oracle",
+      "alias": "",
+      "cimid": ""
+    },
+    {
+      "name": "主机2",
+      "localName": "192.168.1.2",
+      "qualifiers": [],
+      "properties": [],
+      "children": [],
+      "className": "mysql",
+      "alias": "",
+      "cimid": ""
+    },
+    {
+      "name": "主机3",
+      "localName": "192.168.1.1",
+      "qualifiers": [],
+      "properties": [],
+      "children": [],
+      "className": "Oracle",
+      "alias": "",
+      "cimid": ""
+    }
+  ]},
+  {"zb": [
+    {
+      "value": {
+        "value": 3
+      },
+      "timestamp": 1460476018900,
+      "metrics": "Metrics.moPath=\"LinuxServer.uuid=\\\"00700009\\\",domain=\\\"defaultEngine\\\"\",name=\"OSCPU_CPU_Load\"",
+      "error": null
+    }
+  ]}
+]

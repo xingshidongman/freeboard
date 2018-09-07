@@ -1,0 +1,11 @@
+[
+  {
+    "value":
+    {
+      "value":0.88
+    },
+    "timestamp":1536225581669,
+    "metrics":"Metrics.moPath=\"Line.domain=\\\"defaultEngine\\\",uuid=\\\"00200295\\\"\",name=\"ifPercent\"",
+    "error":null
+  }
+]

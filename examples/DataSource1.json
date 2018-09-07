@@ -1,0 +1,24 @@
+[
+    {
+      "snmp": 48,
+      "vm": 44,
+      "vtlStorage": 2,
+      "host": 32,
+      "VMHost": 5,
+      "middleware": 14,
+      "StorageLine": 2,
+      "cabinet": 2,
+      "daStorage": 26,
+      "line": 27,
+      "citrix": 11,
+      "VMVirtaulMachine": 19,
+      "bsmBusiness": 3,
+      "machineroom": 5,
+      "network": 40,
+      "database": 20,
+      "service": 14,
+      "fcsStorage": 2,
+      "ping": 1,
+      "rac": 1
+    }
+  ]

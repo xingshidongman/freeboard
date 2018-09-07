@@ -1,6 +1,6 @@
 {
-  "wd": "27",
-  "high": "32",
+  "wd": "57",
+  "high": "182",
   "low": "21",
   "fx": "南风",
   "fl": "微风",
@@ -16,15 +16,15 @@
   "wl": [
     {
       "name": "星期一",
-      "value": 32
+      "value": 56
     },
     {
       "name": "星期二",
-      "value": 35
+      "value": 66
     },
     {
       "name": "星期三",
-      "value": 33
+      "value": 58
     },
     {
       "name": "星期四",
@@ -32,15 +32,15 @@
     },
     {
       "name": "星期五",
-      "value": 27
+      "value": 47
     },
     {
       "name": "星期六",
-      "value": 28
+      "value": 48
     },
     {
       "name": "星期日",
-      "value": 1
+      "value": 10
     }
   ],
   "gauge": [
@@ -79,8 +79,7 @@
       "value": 5
     }
   ],
-  "AnnulusRing":
-  [
+  "AnnulusRing": [
     {
       "smallCircle": [
         {
@@ -118,6 +117,29 @@
           "name": "设备数"
         }
       ]
+    },
+    {
+      "barName": [
+        "未处理数",
+        "已处理数",
+        "设备警报占比"
+      ]
+    },
+    {
+      "barValue": [
+        23,
+        69,
+        4
+      ]
+    }
+  ],
+  "reder": [
+    {
+      "value": [
+        97,
+        52,
+        3.25
+      ]
     }
   ],
   "reder1": [
@@ -127,11 +149,40 @@
         52,
         3.25
       ]
+    },
+    {
+      "value": [
+        97,
+        52,
+        8
+      ]
+    },
+    {
+      "value": [
+        97,
+        52,
+        1
+      ]
+    },
+    {
+      "value": [
+        97,
+        52,
+        6
+      ]
     }
   ],
   "lineMore": [
     {
-      "lValue": ["专线1","专线2","专线3","专线4","专线5","专线6","专线7"]
+      "lValue": [
+        "专线1",
+        "专线2",
+        "专线3",
+        "专线4",
+        "专线5",
+        "专线6",
+        "专线7"
+      ]
     },
     {
       "xValue": [
@@ -251,7 +302,10 @@
   ],
   "barTwo": [
     {
-      "lValue": ["线路一","线路二"]
+      "lValue": [
+        "线路一",
+        "线路二"
+      ]
     },
     {
       "xValue": [
@@ -290,6 +344,30 @@
           70.7
         ]
       }
+    }
+  ],
+  "gCount": [
+    {
+      "snmp": 48,
+      "vm": 44,
+      "vtlStorage": 2,
+      "host": 72,
+      "VMHost": 5,
+      "middleware": 14,
+      "StorageLine": 2,
+      "cabinet": 2,
+      "daStorage": 26,
+      "line": 27,
+      "citrix": 11,
+      "VMVirtaulMachine": 19,
+      "bsmBusiness": 3,
+      "machineroom": 5,
+      "network": 236,
+      "database": 20,
+      "service": 14,
+      "fcsStorage": 2,
+      "ping": 1,
+      "rac": 1
     }
   ]
 }

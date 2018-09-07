@@ -1,0 +1,157 @@
+{
+	"version": 1,
+	"allow_edit": true,
+	"plugins": [],
+	"panes": [
+		{
+			"width": 1,
+			"row": {
+				"3": 1,
+				"5": 37,
+				"6": 19
+			},
+			"col": {
+				"3": 3,
+				"5": 4,
+				"6": 4
+			},
+			"col_width": 2,
+			"widgets": [
+				{
+					"type": "e_charts_lineMore",
+					"settings": {
+						"value": "datasources[\"db\"][\"lineMore\"]"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"4": 1,
+				"5": 1,
+				"7": 1
+			},
+			"col": {
+				"4": 4,
+				"5": 2,
+				"7": 4
+			},
+			"col_width": 2,
+			"widgets": [
+				{
+					"type": "e_charts_barTwo",
+					"settings": {
+						"value": "datasources[\"db\"][\"barTwo\"]"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"5": 19,
+				"6": 1
+			},
+			"col": {
+				"5": 4,
+				"6": 4
+			},
+			"col_width": 2,
+			"widgets": [
+				{
+					"type": "e_charts_annulusRing1",
+					"settings": {
+						"value": "datasources[\"db\"][\"AnnulusRing\"]"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"5": 19,
+				"6": 19,
+				"7": 19
+			},
+			"col": {
+				"5": 2,
+				"6": 2,
+				"7": 2
+			},
+			"col_width": 2,
+			"widgets": [
+				{
+					"type": "e_charts_annulus",
+					"settings": {
+						"value": "datasources[\"db\"][\"annulus\"]"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"5": 37,
+				"7": 37,
+				"8": 37
+			},
+			"col": {
+				"5": 2,
+				"7": -17,
+				"8": -17
+			},
+			"col_width": 2,
+			"widgets": [
+				{
+					"type": "e_charts_radar1",
+					"settings": {
+						"value": "datasources[\"db\"][\"reder1\"]"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"5": 1
+			},
+			"col": {
+				"5": 4
+			},
+			"col_width": 2,
+			"widgets": [
+				{
+					"type": "e_charts_NightingaleRoseDiagram",
+					"settings": {
+						"value": "datasources[\"test1\"]"
+					}
+				}
+			]
+		}
+	],
+	"datasources": [
+		{
+			"name": "db",
+			"type": "JSON",
+			"settings": {
+				"url": "http://localhost:3100/DataSource.json",
+				"use_thingproxy": true,
+				"refresh": 5,
+				"method": "GET",
+				"name": "db"
+			}
+		},
+		{
+			"name": "test1",
+			"type": "JSON11",
+			"settings": {
+				"url": "http://localhost:3100/DataSource1.json",
+				"use_thingproxy": true,
+				"refresh": 5,
+				"method": "GET"
+			}
+		}
+	],
+	"columns": 5
+}
