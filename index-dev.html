@@ -2,169 +2,210 @@
 <!-- Dev Version links to full versions (non-minified) of javascript and css files -->
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>freeboard</title>
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
-	<meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="viewport" content = "width = device-width, initial-scale = 1, user-scalable = no" />
-    <link href="lib/css/thirdparty/jquery.gridster.min.css" rel="stylesheet" />
-	<link href="lib/css/thirdparty/codemirror.css" rel="stylesheet" />
-	<link href="lib/css/thirdparty/codemirror-ambiance.css" rel="stylesheet" />
-    <link href="lib/css/freeboard/styles.css" rel="stylesheet" />
-    <script src="./js/echarts.min.js"></script>
-    <script src="lib/js/thirdparty/head.js"></script>
-    <script type="text/javascript">
-        head.js("lib/js/thirdparty/knockout.js",
-                "lib/js/thirdparty/jquery.js",
-                "lib/js/thirdparty/jquery-ui.js",
-                "lib/js/thirdparty/underscore.js",
-                "lib/js/thirdparty/jquery.gridster.js",
-                "lib/js/thirdparty/jquery.caret.js",
-				        "lib/js/thirdparty/codemirror.js",
-				        "lib/js/thirdparty/jquery.xdomainrequest.js",
-                "lib/js/freeboard/FreeboardModel.js",
-                "lib/js/freeboard/DatasourceModel.js",
-                "lib/js/freeboard/PaneModel.js",
-                "lib/js/freeboard/WidgetModel.js",
-                "lib/js/freeboard/FreeboardUI.js",
-                "lib/js/freeboard/DialogBox.js",
-                "lib/js/freeboard/PluginEditor.js",
-                "lib/js/freeboard/ValueEditor.js",
-                "lib/js/freeboard/JSEditor.js",
-                "lib/js/freeboard/DeveloperConsole.js",
-                "lib/js/freeboard/freeboard.js",
-                "plugins/freeboard/freeboard.datasources.js",
-                "plugins/freeboard/freeboard.widgets.js",
-                "examples/plugin_example.js",
-                // *** Load more plugins here ***
-                function(){
-                    $(function()
-                    { //DOM Ready
-						freeboard.setAssetRoot("/freeboard-ui/");
-                        freeboard.initialize(true);
-                    });
-                });
-    </script>
+  <meta charset="UTF-8">
+  <title>freeboard</title>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+  <meta name="viewport" content="width = device-width, initial-scale = 1, user-scalable = no"/>
+  <link href="lib/css/thirdparty/jquery.gridster.min.css" rel="stylesheet"/>
+  <link href="lib/css/thirdparty/codemirror.css" rel="stylesheet"/>
+  <link href="lib/css/thirdparty/codemirror-ambiance.css" rel="stylesheet"/>
+  <link href="lib/css/freeboard/styles.css" rel="stylesheet"/>
+  <script src="./js/echarts.min.js"></script>
+  <script src="lib/js/thirdparty/head.js"></script>
+  <script type="text/javascript">
+    head.js("lib/js/thirdparty/knockout.js",
+      "lib/js/thirdparty/jquery.js",
+      "lib/js/thirdparty/jquery-ui.js",
+      "lib/js/thirdparty/underscore.js",
+      "lib/js/thirdparty/jquery.gridster.js",
+      "lib/js/thirdparty/jquery.caret.js",
+      "lib/js/thirdparty/codemirror.js",
+      "lib/js/thirdparty/jquery.xdomainrequest.js",
+      "lib/js/freeboard/FreeboardModel.js",
+      "lib/js/freeboard/DatasourceModel.js",
+      "lib/js/freeboard/PaneModel.js",
+      "lib/js/freeboard/WidgetModel.js",
+      "lib/js/freeboard/FreeboardUI.js",
+      "lib/js/freeboard/DialogBox.js",
+      "lib/js/freeboard/PluginEditor.js",
+      "lib/js/freeboard/ValueEditor.js",
+      "lib/js/freeboard/JSEditor.js",
+      "lib/js/freeboard/DeveloperConsole.js",
+      "lib/js/freeboard/freeboard.js",
+      "plugins/freeboard/freeboard.datasources.js",
+      "plugins/freeboard/freeboard.widgets.js",
+      "examples/plugin_example.js",
+      "lib/js/util.js",
+      // *** Load more plugins here ***
+      function () {
+        $(function () { //DOM Ready
+          freeboard.setAssetRoot("/freeboard-ui/");
+          freeboard.initialize(true);
+
+          var today = formatDate((new Date()), 'yyyy年MM月dd日，星期ww|hh点mm分ss秒');
+          $('#jsToday').text(today.split('|')[0]);
+          $('#jsTime').text(today.split('|')[1]);
+
+          setInterval(function () {
+            $('#jsTime').text(formatDate((new Date()), 'hh点mm分ss秒'));
+          }, 1000)
+
+        });
+      });
+  </script>
 </head>
 <body>
 <div id="board-content">
-    <img id="dash-logo" data-bind="attr:{src: header_image}, visible:header_image()">
-    <div class="gridster responsive-column-width">
-        <ul data-bind="grid: true">
-        </ul>
+  <div class="gs_title">
+    <div class="gs_title-area">
+      <div class="gs_title-aside fl" id="jsToday"></div>
+      <div class="gs_title-mn">
+        <div>吉林省财经大学</div>
+        <div>智慧化大数据监控平台</div>
+      </div>
+      <div class="gs_title-aside fr" id="jsTime"></div>
     </div>
+  </div>
+  <div class="gridster responsive-column-width">
+    <ul data-bind="grid: true">
+    </ul>
+  </div>
 </div>
 <header id="main-header" data-bind="if:allow_edit">
-    <div id="admin-bar">
-        <div id="admin-menu">
-            <div id="board-tools">
-                <h1 id="board-logo" class="title bordered">
-                    <div class="logo-wrapper">
-                        <div class="logo"></div>
-                    </div>行氏动漫可视化平台
-                </h1>
-                <div id="board-actions">
-                    <ul class="board-toolbar vertical">
-                        <li data-bind="click: loadDashboardFromLocalFile"><i id="full-screen-icon" class="icon-folder-open icon-white"></i><label id="full-screen">加载</label></li>
-                        <li><i class="icon-download-alt icon-white"></i>
-                            <label data-bind="click: saveDashboardClicked">保存</label>
-                            <label style="display: none;" data-bind="click: saveDashboard" data-pretty="true">[非格式压缩]</label>
-                            <label style="display: none;" data-bind="click: saveDashboard" data-pretty="false">[格式压缩]</label>
-                        </li>
-                        <li id="add-pane" data-bind="click: createPane"><i class="icon-plus icon-white"></i><label>添加面板</label></li>
-                    </ul>
-                </div>
-            </div>
-            <div id="datasources">
-                <h2 class="title">数据源</h2>
-
-                <div class="datasource-list-container">
-                    <table class="table table-condensed sub-table" id="datasources-list" data-bind="if: datasources().length">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Last Updated</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                        </thead>
-                        <tbody data-bind="foreach: datasources">
-                        <tr>
-                            <td>
-                                <span class="text-button datasource-name" data-bind="text: name, pluginEditor: {operation: 'edit', type: 'datasource'}"></span>
-                            </td>
-                            <td data-bind="text: last_updated"></td>
-                            <td>
-                                <ul class="board-toolbar">
-                                    <li data-bind="click: updateNow"><i class="icon-refresh icon-white"></i></li>
-                                    <li data-bind="pluginEditor: {operation: 'delete', type: 'datasource'}">
-                                        <i class="icon-trash icon-white"></i></li>
-                                </ul>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <span class="text-button table-operation" data-bind="pluginEditor: {operation: 'add', type: 'datasource'}">新建</span>
-            </div>
+  <div id="admin-bar">
+    <div id="admin-menu">
+      <div id="board-tools">
+        <h1 id="board-logo" class="title bordered">
+          <div class="logo-wrapper">
+            <div class="logo"></div>
+          </div>
+          行氏动漫可视化平台
+        </h1>
+        <div id="board-actions">
+          <ul class="board-toolbar vertical">
+            <li data-bind="click: loadDashboardFromLocalFile"><i id="full-screen-icon"
+                                                                 class="icon-folder-open icon-white"></i><label
+                id="full-screen">加载</label></li>
+            <li><i class="icon-download-alt icon-white"></i>
+              <label data-bind="click: saveDashboardClicked">保存</label>
+              <label style="display: none;" data-bind="click: saveDashboard" data-pretty="true">[非格式压缩]</label>
+              <label style="display: none;" data-bind="click: saveDashboard" data-pretty="false">[格式压缩]</label>
+            </li>
+            <li id="add-pane" data-bind="click: createPane"><i class="icon-plus icon-white"></i><label>添加面板</label></li>
+          </ul>
         </div>
+      </div>
+      <div id="datasources">
+        <h2 class="title">数据源</h2>
+
+        <div class="datasource-list-container">
+          <table class="table table-condensed sub-table" id="datasources-list" data-bind="if: datasources().length">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Last Updated</th>
+              <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody data-bind="foreach: datasources">
+            <tr>
+              <td>
+                <span class="text-button datasource-name"
+                      data-bind="text: name, pluginEditor: {operation: 'edit', type: 'datasource'}"></span>
+              </td>
+              <td data-bind="text: last_updated"></td>
+              <td>
+                <ul class="board-toolbar">
+                  <li data-bind="click: updateNow"><i class="icon-refresh icon-white"></i></li>
+                  <li data-bind="pluginEditor: {operation: 'delete', type: 'datasource'}">
+                    <i class="icon-trash icon-white"></i></li>
+                </ul>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <span class="text-button table-operation"
+              data-bind="pluginEditor: {operation: 'add', type: 'datasource'}">新建</span>
+      </div>
     </div>
-	<div id="column-tools" class="responsive-column-width">
-		<ul class="board-toolbar left-columns">
-			<li class="column-tool add" data-bind="click: addGridColumnLeft"><span class="column-icon right"></span><i class="icon-arrow-left icon-white"></i></li>
-			<li class="column-tool sub" data-bind="click: subGridColumnLeft"><span class="column-icon left"></span><i class="icon-arrow-right icon-white"></i></li>
-		</ul>
-		<ul class="board-toolbar right-columns">
-			<li class="column-tool sub" data-bind="click: subGridColumnRight"><span class="column-icon right"></span><i class="icon-arrow-left icon-white"></i></li>
-			<li class="column-tool add" data-bind="click: addGridColumnRight"><span class="column-icon left"></span><i class="icon-arrow-right icon-white"></i></li>
-		</ul>
-	</div>
-    <div id="toggle-header" data-bind="click: toggleEditing">
-        <i id="toggle-header-icon" class="icon-wrench icon-white"></i>
-	</div>
+  </div>
+  <div id="column-tools" class="responsive-column-width">
+    <ul class="board-toolbar left-columns">
+      <li class="column-tool add" data-bind="click: addGridColumnLeft"><span class="column-icon right"></span><i
+          class="icon-arrow-left icon-white"></i></li>
+      <li class="column-tool sub" data-bind="click: subGridColumnLeft"><span class="column-icon left"></span><i
+          class="icon-arrow-right icon-white"></i></li>
+    </ul>
+    <ul class="board-toolbar right-columns">
+      <li class="column-tool sub" data-bind="click: subGridColumnRight"><span class="column-icon right"></span><i
+          class="icon-arrow-left icon-white"></i></li>
+      <li class="column-tool add" data-bind="click: addGridColumnRight"><span class="column-icon left"></span><i
+          class="icon-arrow-right icon-white"></i></li>
+    </ul>
+  </div>
+  <div id="toggle-header" data-bind="click: toggleEditing">
+    <i id="toggle-header-icon" class="icon-wrench icon-white"></i>
+  </div>
 </header>
 
-<div style="display:hidden">
-    <ul data-bind="template: { name: 'pane-template', foreach: panes}">
-    </ul>
+<div style="display:hidden;">
+  <ul data-bind="template: { name: 'pane-template', foreach: panes}">
+  </ul>
 </div>
 
 <script type="text/html" id="pane-template">
-    <li data-bind="pane: true">
-        <header>
-            <h1 data-bind="text: title"></h1>
-            <ul class="board-toolbar pane-tools">
-                <li data-bind="pluginEditor: {operation: 'add', type: 'widget'}">
-                    <i class="icon-plus icon-white"></i>
-                </li>
-                <li data-bind="pluginEditor: {operation: 'edit', type: 'pane'}">
-                    <i class="icon-wrench icon-white"></i>
-                </li>
-                <li data-bind="pluginEditor: {operation: 'delete', type: 'pane'}">
-                    <i class="icon-trash icon-white"></i>
-                </li>
-            </ul>
-        </header>
-        <section data-bind="foreach: widgets">
-            <div class="sub-section" data-bind="css: 'sub-section-height-' + height()">
-                <div class="widget" data-bind="widget: true, css:{fillsize:fillSize}"></div>
-                <div class="sub-section-tools">
-                    <ul class="board-toolbar">
-                        <!-- ko if:$parent.widgetCanMoveUp($data) -->
-                        <li data-bind="click:$parent.moveWidgetUp"><i class="icon-chevron-up icon-white"></i></li>
-                        <!-- /ko -->
-                        <!-- ko if:$parent.widgetCanMoveDown($data) -->
-                        <li data-bind="click:$parent.moveWidgetDown"><i class="icon-chevron-down icon-white"></i></li>
-                        <!-- /ko -->
-                        <li data-bind="pluginEditor: {operation: 'edit', type: 'widget'}"><i class="icon-wrench icon-white"></i></li>
-                        <li data-bind="pluginEditor: {operation: 'delete', type: 'widget'}"><i class="icon-trash icon-white"></i></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    </li>
+  <li data-bind="pane: true">
+    <header>
+      <div class="background">
+        <div class="c1"></div>
+        <div class="c2"></div>
+        <div class="c3"></div>
+      </div>
+      <h1 data-bind="text: title"></h1>
+      <ul class="board-toolbar pane-tools">
+        <li data-bind="pluginEditor: {operation: 'add', type: 'widget'}">
+          <i class="icon-plus icon-white"></i>
+        </li>
+        <li data-bind="pluginEditor: {operation: 'edit', type: 'pane'}">
+          <i class="icon-wrench icon-white"></i>
+        </li>
+        <li data-bind="pluginEditor: {operation: 'delete', type: 'pane'}">
+          <i class="icon-trash icon-white"></i>
+        </li>
+      </ul>
+    </header>
+    <section data-bind="foreach: widgets">
+      <div class="gs_w-section_border gs_w-section_border-l"></div>
+      <div class="gs_w-section_border gs_w-section_border-r"></div>
+      <div class="sub-section" data-bind="css: 'sub-section-height-' + height()">
+        <div class="widget" data-bind="widget: true, css:{fillsize:fillSize}"></div>
+        <div class="sub-section-tools">
+          <ul class="board-toolbar">
+            <!-- ko if:$parent.widgetCanMoveUp($data) -->
+            <li data-bind="click:$parent.moveWidgetUp"><i class="icon-chevron-up icon-white"></i></li>
+            <!-- /ko -->
+            <!-- ko if:$parent.widgetCanMoveDown($data) -->
+            <li data-bind="click:$parent.moveWidgetDown"><i class="icon-chevron-down icon-white"></i></li>
+            <!-- /ko -->
+            <li data-bind="pluginEditor: {operation: 'edit', type: 'widget'}"><i class="icon-wrench icon-white"></i>
+            </li>
+            <li data-bind="pluginEditor: {operation: 'delete', type: 'widget'}"><i class="icon-trash icon-white"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <div class="gs_w-footer">
+      <div class="c1"></div>
+      <div class="c2"></div>
+      <div class="c3"></div>
+    </div>
+  </li>
 </script>
-
+<script>
+</script>
 </body>
 </html>
