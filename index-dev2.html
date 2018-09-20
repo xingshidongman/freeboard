@@ -23,7 +23,7 @@
             "lib/js/thirdparty/jquery.caret.js",
             "lib/js/thirdparty/codemirror.js",
             "lib/js/thirdparty/jquery.xdomainrequest.js",
-            "lib/js/freeboard/FreeboardModel.js",
+            "lib/js/freeboard/FreeboardModel2.js",
             "lib/js/freeboard/DatasourceModel.js",
             "lib/js/freeboard/PaneModel.js",
             "lib/js/freeboard/WidgetModel.js",
@@ -89,14 +89,14 @@
                             <label id="full-screen">加载</label>
                         </li>
                         <li><i class="icon-download-alt icon-white"></i>
-                            <label data-bind="click: saveDashboardClicked">保存</label>
+                            <label data-bind="click: saveDashboard">保存</label>
+                            <!--
                             <label style="display: none;" data-bind="click: saveDashboard" data-pretty="true">[非格式压缩]</label>
                             <label style="display: none;" data-bind="click: saveDashboard" data-pretty="false">[格式压缩]</label>
+                            -->
                         </li>
-                        <li id="add-pane" data-bind="click: createPane">
-                            <i class="icon-plus icon-white"></i>
-                            <label>添加面板</label>
-                        </li>
+                        <li id="add-pane" data-bind="click: createPane"><i
+                                class="icon-plus icon-white"></i><label>添加面板</label></li>
                     </ul>
                 </div>
             </div>
@@ -191,7 +191,7 @@
         </header>
         <div class="gs_w-section_border gs_w-section_border-l"></div>
         <div class="gs_w-section_border gs_w-section_border-r"></div>
-        <section data-bind="foreach: widgets" style="margin : 0 1px 0 1px; height:100%;">
+        <section data-bind="foreach: widgets" style="margin : 0 1px 0 1px">
             <div class="sub-section" data-bind="css: 'sub-section-height-' + height()">
                 <div class="widget" data-bind="widget: true, css:{fillsize:fillSize}"></div>
                 <div class="sub-section-tools">

@@ -2410,8 +2410,8 @@ input:-moz-placeholder, textarea:-moz-placeholder {
 .gridster .gs_w-footer .c2 {flex:1;background: url("../../../img/header-2.png") 0 100% repeat-x;}
 .gridster .gs_w-footer .c3 {width: 23px;background: url("../../../img/footer-3.png") 0 0 no-repeat;}
 .gridster .gs_w-section_border{width: 1px;position: absolute;top: 20px;bottom: 18px;pointer-events: none;background: url("../../../img/section-border.png") 0 0 repeat-y;}
-.gridster .gs_w-section_border-l{left: 0;}
-.gridster .gs_w-section_border-r{right: 0;}
+.gridster .gs_w-section_border-l{left: 0px;}
+.gridster .gs_w-section_border-r{right:0px;}
 
 .gs_title{display: flex;justify-content: center;}
 .gs_title .gs_title-area{display: flex;}

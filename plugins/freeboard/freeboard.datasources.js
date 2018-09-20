@@ -11,7 +11,7 @@
 // -------------------
 //这里我们实现了实际的数据源插件。我们传入设置和updateCallback。
 (function () {
-    //json格式的数据源
+    //json格式的数据源(原始的)
     var jsonDatasource = function (settings, updateCallback) {
         var self = this;
         var updateTimer = null;
@@ -396,7 +396,7 @@
         }
     });
     //json格式的数据源 （自定的  用于发送两次ajax请求  请求数据和返回数据都为json格式）
-    var json1Datasource = function (settings, updateCallback) {
+    var json2Datasource = function (settings, updateCallback) {
         var self = this;
         var updateTimer = null;
         var currentSettings = settings;
@@ -617,11 +617,11 @@
         // * ** newInstanceCallback **：当插件的新实例准备就绪时您将调用的回调函数。此函数需要一个参数，它是插件对象的新实例。
         // * ** updateCallback **：一个回调函数，如果您的数据源具有重新计算的干舷更新，您将调用该函数。此函数需要单个参数，该参数是具有新的更新数据的javascript对象。你应该坚持这个参考，并在需要时调用它。
         newInstance: function (settings, newInstanceCallback, updateCallback) {
-            newInstanceCallback(new json1Datasource(settings, updateCallback));
+            newInstanceCallback(new json2Datasource(settings, updateCallback));
         }
     });
-    //json连接服务器测试(场景二测试)
-    var json2Datasource = function (settings, updateCallback) {
+    //json格式的数据源 （测试2 第一张图 左下 基于场景三的测试 两次ajax请求）
+    var json21Datasource = function (settings, updateCallback) {
         var self = this;
         var updateTimer = null;
         var currentSettings = settings;
@@ -633,91 +633,303 @@
             if (updateTimer) {
                 clearInterval(updateTimer);
             }
-
             updateTimer = setInterval(function () {
                 self.updateNow();
             }, refreshTime);
         }
-
         updateRefresh(currentSettings.refresh * 1000);
-
         this.updateNow = function () {
             if ((errorStage > 1 && !currentSettings.use_thingproxy) || errorStage > 2) // We've tried everything, let's quit
             {
                 return; // TODO: Report an error
             }
+            var requestURL = currentSettings.url;
+            if (errorStage == 2 && currentSettings.use_thingproxy) {
+                requestURL = (location.protocol == "https:" ? "https:" : "http:") + "//thingproxy.freeboard.io/fetch/" + encodeURI(currentSettings.url);
+            }
+            var requestURL2 = currentSettings.url2;
+            if (errorStage == 2 && currentSettings.use_thingproxy) {
+                requestURL2 = (location.protocol == "https:" ? "https:" : "http:") + "//thingproxy.freeboard.io/fetch/" + encodeURI(currentSettings.url);
+                requestURL2 = (location.protocol == "https:" ? "https:" : "http:") + "//thingproxy.freeboard.io/fetch/" + encodeURI(currentSettings.url2);
+            }
+            // Can the body be converted to JSON?
+            // 将请求body转换为json格式
+            $.ajax({
+                async: false,
+                url: "http://localhost:3100/DataSource2.json",
+                //http://121.43.229.26:8082/query/mo/WinDisk?where=uuid='00300024'
+                dataType: "JSON",
+                type:"GET",
+                success: function (data) {
+                    lockErrorStage = true;
+                    //在此处对第一次请求到的数据做处理 （问题1：指标的参数在哪里接收 在这里是定死的 指标为cpu使用率 问题2：需要指定具体的uuid 在哪里接收 在这里是定死的 uuid为0030008c）
+                    var jsonArry=data;
+                    var  propertie;
+                    var resultOne=[];
+                    for(var i=0;i<jsonArry.length;i++){
+                        propertie=jsonArry[i].properties;
+                        var jsonStr='{';
+                        $.each(propertie, function (i, item) {
+                            if(item.name=="id"){
+                                jsonStr=jsonStr+'\"id\":'+'\"'+item.value.value+'\"';
+                            }
+                            else if(item.name=="name"){
+                                jsonStr=jsonStr+","+'\"name\":'+'\"'+item.value.value+'\"';
+                            }
+                            else if(item.name=="uuid"){
+                                jsonStr=jsonStr+","+'\"uuid\":'+'\"'+item.value.value+'\"';
+                            }
+                        });
+                        jsonStr=jsonStr+"}";
+                        jsonStr=JSON.parse(jsonStr);
+                        resultOne.push(jsonStr);
+                    }
+                    //console.log(resultOne);
+                    //updateCallback(data);
+                    req(resultOne);
+                },
+                error: function (xhr, status, error) {
+                    if (!lockErrorStage) {
+                        // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
+                        errorStage++;
+                        self.updateNow();
+                    }
+                }
+            });
+            //定义第二次发送的ajax请求
+            function req(resultOne) {
+                var objectType="WinDisk";
+                var indexType="UsedPer";
+                var body = [];
+                var result1=resultOne;
+                for(var i=0;i<result1.length;i++){
+                    var jsonStr= {
+                        "name": "Metrics",
+                        "localName": "",
+                        "properties": [
+                            {
+                                "name": "moPath",
+                                "localName": "moPath",
+                                "originClass": "Metrics",
+                                "overridingProperty": null,
+                                "key": true,
+                                "propagated": true,
+                                "type": {
+                                    "type": 8,
+                                    "refClassName": null
+                                },
+                                "value": {
+                                    "value":"WinDisk.id=\""+result1[i].id+"\",name=\""+result1[i].name+"\",uuid=\""+result1[i].uuid+"\""
+                                }
+                            },
+                            {
+                                "name": "name",
+                                "localName": "name",
+                                "originClass": "Metrics",
+                                "overridingProperty": null,
+                                "key": true,
+                                "propagated": true,
+                                "type": {
+                                    "type": 8,
+                                    "refClassName": null
+                                },
+                                "value": {
+                                    "value":""+indexType+""
+                                }
+                            },
+                            {
+                                "name": "definition",
+                                "localName": "definition",
+                                "originClass": "Metrics",
+                                "overridingProperty": null,
+                                "key": false,
+                                "propagated": true,
+                                "type": {
+                                    "type": 8,
+                                    "refClassName": null
+                                },
+                                "value": {
+                                    "value": "MetricsDefinition.mo=\""+objectType+"\",name=\""+indexType+"\""
+                                }
+                            }
+                        ],
+                        "children": [],
+                        "className": "Metrics",
+                        "alias": "",
+                        "cimid": null
+                    }
 
+                    body.push(jsonStr);
+                }
+               // console.log(body);
+                $.ajax({
+                    url:"http://localhost:3100/DataSource3.json",
+                    //http://121.43.229.26:8082/batch/metrics?fresh=1860
+                    dataType:  "JSON",
+                    type:"get",
+                    data: body,
+                    success: function (data) {
+                        lockErrorStage = true;
+                        console.log(data);
+                        //此处对第二次请求的结果进行处理
+
+                        //resdata=data2;
+                        updateCallback(resdata);
+                    },
+                    error: function (xhr, status, error) {
+                        if (!lockErrorStage) {
+                            // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
+                            errorStage++;
+                            self.updateNow();
+                        }
+                    }
+                });
+            }
+        }
+        this.onDispose = function () {
+            clearInterval(updateTimer);
+            updateTimer = null;
+        }
+        this.onSettingsChanged = function (newSettings) {
+            lockErrorStage = false;
+            errorStage = 0;
+
+            currentSettings = newSettings;
+            updateRefresh(currentSettings.refresh * 1000);
+            self.updateNow();
+        }
+    };
+    //加载数据源插件
+    freeboard.loadDatasourcePlugin({
+        // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
+        type_name: "JSON21",
+        display_name: "JSON21",
+        settings: [
+            {
+                name: "url",
+                display_name: "URL",
+                // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
+                type: "text"
+            },
+            {
+                name: "url2",
+                display_name: "URL2",
+                // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
+                type: "text"
+            },
+            {
+                // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
+                name: "use_thingproxy",
+                // ** display_name **：调整此设置时将向用户显示的漂亮名称。
+                display_name: "Try thingproxy",
+                // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
+                description: 'A direct JSON connection will be tried first, if that fails, a JSONP connection will be tried. If that fails, you can use thingproxy, which can solve many connection problems to APIs. <a href="https://github.com/Freeboard/thingproxy" target="_blank">More information</a>.',
+                // ** type **（必需）：此设置的预期输入类型
+                type: "boolean",
+                // ** default_value **：此设置的默认值。
+                default_value: true
+            },
+            {
+                name: "refresh",
+                display_name: "Refresh Every",
+                type: "number",
+                // ** suffix **：后缀。
+                suffix: "seconds",
+                default_value: 5
+            },
+            {
+                name: "method",
+                display_name: "Method",
+                // ** type **（必需）：option代表这是一个下拉选
+                type: "option",
+                options: [
+                    {
+                        name: "GET",
+                        value: "GET"
+                    },
+                    {
+                        name: "POST",
+                        value: "POST"
+                    },
+                    {
+                        name: "PUT",
+                        value: "PUT"
+                    },
+                    {
+                        name: "DELETE",
+                        value: "DELETE"
+                    }
+                ]
+            },
+            {
+                name: "body",
+                display_name: "Body",
+                type: "text",
+                description: "The body of the request. Normally only used if method is POST"
+            },
+            {
+                name: "headers",
+                display_name: "Headers",
+                // ** type **（必需）：array代表这是一个数组
+                type: "array",
+                settings: [
+                    {
+                        name: "name",
+                        display_name: "Name",
+                        type: "text"
+                    },
+                    {
+                        name: "value",
+                        display_name: "Value",
+                        type: "text"
+                    }
+                ]
+            }
+        ],
+        // ** newInstance（settings，newInstanceCallback，updateCallback）**（必需）：在请求此插件的新实例时将调用的函数。
+        // * ** settings **：具有用户设置的初始设置的javascript对象。对象中属性的名称将对应于上面定义的设置名称。
+        // * ** newInstanceCallback **：当插件的新实例准备就绪时您将调用的回调函数。此函数需要一个参数，它是插件对象的新实例。
+        // * ** updateCallback **：一个回调函数，如果您的数据源具有重新计算的干舷更新，您将调用该函数。此函数需要单个参数，该参数是具有新的更新数据的javascript对象。你应该坚持这个参考，并在需要时调用它。
+        newInstance: function (settings, newInstanceCallback, updateCallback) {
+            newInstanceCallback(new json21Datasource(settings, updateCallback));
+        }
+    });
+    //json连接自己后台的测试
+    var json3Datasource = function (settings, updateCallback) {
+        var self = this;
+        var updateTimer = null;
+        var currentSettings = settings;
+        var errorStage = 0; 	// 0 =尝试标准请求
+        // 1 =尝试JSONP
+        // 2 =尝试thingproxy.freeboard.io
+        var lockErrorStage = false;
+        function updateRefresh(refreshTime) {
+            if (updateTimer) {
+                clearInterval(updateTimer);
+            }
+            updateTimer = setInterval(function () {
+                self.updateNow();
+            }, refreshTime);
+        }
+        updateRefresh(currentSettings.refresh * 1000);
+        this.updateNow = function () {
+            if ((errorStage > 1 && !currentSettings.use_thingproxy) || errorStage > 2) // We've tried everything, let's quit
+            {
+                return; // TODO: Report an error
+            }
             var requestURL = currentSettings.url;
 
             if (errorStage == 2 && currentSettings.use_thingproxy) {
                 requestURL = (location.protocol == "https:" ? "https:" : "http:") + "//thingproxy.freeboard.io/fetch/" + encodeURI(currentSettings.url);
             }
-            //请求body的内容是接口文档中
-            var body =[
-                {
-                    "name": "Metrics",
-                    "localName": "",
-                    "properties": [
-                        {
-                            "name": "moPath",
-                            "localName": "moPath",
-                            "originClass": "Metrics",
-                            "overridingProperty": null,
-                            "key": true,
-                            "propagated": true,
-                            "type": {
-                                "type": 8,
-                                "refClassName": null
-                            },
-                            "value": {
-                                "value":"Line.domain=\"defaultEngine\",uuid=\"00200295\""
-                            }
-                        },
-                        {
-                            "name": "name",
-                            "localName": "name",
-                            "originClass": "Metrics",
-                            "overridingProperty": null,
-                            "key": true,
-                            "propagated": true,
-                            "type": {
-                                "type": 8,
-                                "refClassName": null
-                            },
-                            "value": {
-                                "value": "ifOctets"
-                            }
-                        },
-                        {
-                            "name": "definition",
-                            "localName": "definition",
-                            "originClass": "Metrics",
-                            "overridingProperty": null,
-                            "key": false,
-                            "propagated": true,
-                            "type": {
-                                "type": 8,
-                                "refClassName": null
-                            },
-                            "value": {
-                                "value": "MetricsDefinition.mo=\"Line\",name=\"ifOctets\""
-                            }
-                        }
-                    ],
-                    "children": [],
-                    "className": "Metrics",
-                    "alias": "",
-                    "cimid": null
-                }
-            ];
             $.ajax({
-                url: requestURL,
-                dataType: "JSON",
-                type: "post" ,
-                contentType:"application/json",
-                data:JSON.stringify(body) ,
+                url: "http://localhost:8080/Demo/use/scenario.do",
+                dataType: "json",
+                type: "get" ,
                 success: function (data) {
                     lockErrorStage = true;
+                   // data=JSON.stringify(data);
+                    console.log("请求成功");
                     console.log(data);
                     updateCallback(data);//回调函数
                 },
@@ -748,7 +960,7 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON2",
+        type_name: "JSON3",
         settings: [
             {
                 name: "url",
@@ -830,9 +1042,10 @@
         // * ** newInstanceCallback **：当插件的新实例准备就绪时您将调用的回调函数。此函数需要一个参数，它是插件对象的新实例。
         // * ** updateCallback **：一个回调函数，如果您的数据源具有重新计算的干舷更新，您将调用该函数。此函数需要单个参数，该参数是具有新的更新数据的javascript对象。你应该坚持这个参考，并在需要时调用它。
         newInstance: function (settings, newInstanceCallback, updateCallback) {
-            newInstanceCallback(new json2Datasource(settings, updateCallback));
+            newInstanceCallback(new json3Datasource(settings, updateCallback));
         }
     });
+
     // Open Weather Map Api格式的数据源
     var openWeatherMapDatasource = function (settings, updateCallback) {
         var self = this;
@@ -1165,7 +1378,6 @@
             newInstanceCallback(new clockDatasource(settings, updateCallback));
         }
     });
-
     //这个是样例没有删应该
     freeboard.loadDatasourcePlugin({
         // **type_name** (required) : A unique name for this plugin. This name should be as unique as possible to avoid collisions with other plugins, and should follow naming conventions for javascript variable and function declarations.
@@ -1247,8 +1459,6 @@
             newInstanceCallback(new meshbluSource(settings, updateCallback));
         }
     });
-
-
     // ### Datasource Implementation
     //
     // -------------------
@@ -1256,58 +1466,38 @@
     var meshbluSource = function (settings, updateCallback) {
         // Always a good idea...
         var self = this;
-
         // Good idea to create a variable to hold on to our settings, because they might change in the future. See below.
         var currentSettings = settings;
-
-
         /* This is some function where I'll get my data from somewhere */
-
-
         function getData() {
-
-
             var conn = skynet.createConnection({
                 "uuid": currentSettings.uuid,
                 "token": currentSettings.token,
                 "server": currentSettings.server,
                 "port": currentSettings.port
             });
-
             conn.on('ready', function (data) {
-
                 conn.on('message', function (message) {
-
                     var newData = message;
                     updateCallback(newData);
-
                 });
-
             });
         }
-
-
         // **onSettingsChanged(newSettings)** (required) : A public function we must implement that will be called when a user makes a change to the settings.
         self.onSettingsChanged = function (newSettings) {
             // Here we update our current settings with the variable that is passed in.
             currentSettings = newSettings;
         }
-
         // **updateNow()** (required) : A public function we must implement that will be called when the user wants to manually refresh the datasource
         self.updateNow = function () {
             // Most likely I'll just call getData() here.
             getData();
         }
-
         // **onDispose()** (required) : A public function we must implement that will be called when this instance of this plugin is no longer needed. Do anything you need to cleanup after yourself here.
         self.onDispose = function () {
-
             //conn.close();
         }
-
         // Here we call createRefreshTimer with our current settings, to kick things off, initially. Notice how we make use of one of the user defined settings that we setup earlier.
         //	createRefreshTimer(currentSettings.refresh_time);
     }
-
-
 }());

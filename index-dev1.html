@@ -14,6 +14,8 @@
     <link href="lib/css/freeboard/styles.css" rel="stylesheet"/>
     <script src="./js/echarts.min.js"></script>
     <script src="lib/js/thirdparty/head.js"></script>
+    <script src="lib/js/freeboard/FreeboardModel1.js"></script>
+    <script src="examples/dashboard.json"></script>
     <script type="text/javascript">
         head.js("lib/js/thirdparty/knockout.js",
             "lib/js/thirdparty/jquery.js",
@@ -23,7 +25,7 @@
             "lib/js/thirdparty/jquery.caret.js",
             "lib/js/thirdparty/codemirror.js",
             "lib/js/thirdparty/jquery.xdomainrequest.js",
-            "lib/js/freeboard/FreeboardModel.js",
+            "lib/js/freeboard/FreeboardModel1.js",
             "lib/js/freeboard/DatasourceModel.js",
             "lib/js/freeboard/PaneModel.js",
             "lib/js/freeboard/WidgetModel.js",
@@ -43,16 +45,38 @@
                 $(function () { //DOM Ready
                     freeboard.setAssetRoot("/freeboard-ui/");
                     freeboard.initialize(true);
+                    var dashboardData1="1";
+                    //examples/dashboard(23).json 这个json文件的地址应该是后台请求的地址 后台返回一个json文件
+                    //$.ajaxSettings.async = false;
+                    $.getJSON("http://localhost:8080/Demo/use/takeDate.do", function (data){
+                        dashboardData1=data;
+                        console.log(dashboardData1);
+                        freeboard.loadDashboard(dashboardData1);
+                        $.ajax({
+                            //async:false,
+                            url:'http://localhost:8080/Demo/use/refresh.do',
+                            type:'GET',
+                            success:function(){
+                                location.reload();
+                            },
+                            error:function(XMLHttpRequest, textStatus, errorThrown){
+                                 location.reload();
+                            }
+                        });
+                    });
+                    console.log("可以到这里");
                     var today = formatDate((new Date()), 'yyyy年MM月dd日，星期ww|hh点mm分ss秒');
                     $('#jsToday').text(today.split('|')[0]);
                     $('#jsTime').text(today.split('|')[1]);
-
                     setInterval(function () {
                         $('#jsTime').text(formatDate((new Date()), 'hh点mm分ss秒'));
-                    }, 1000)
-
+                        //location.reload();
+                    }, 1000);
                 });
             });
+    </script>
+    <script>
+
     </script>
 </head>
 <body>
@@ -72,6 +96,9 @@
         </ul>
     </div>
 </div>
+
+
+<!--
 <header id="main-header" data-bind="if:allow_edit">
     <div id="admin-bar">
         <div id="admin-menu">
@@ -88,15 +115,13 @@
                             <i id="full-screen-icon" class="icon-folder-open icon-white"></i>
                             <label id="full-screen">加载</label>
                         </li>
-                        <li><i class="icon-download-alt icon-white"></i>
+                        <li>
+                            <i class="icon-download-alt icon-white"></i>
                             <label data-bind="click: saveDashboardClicked">保存</label>
                             <label style="display: none;" data-bind="click: saveDashboard" data-pretty="true">[非格式压缩]</label>
                             <label style="display: none;" data-bind="click: saveDashboard" data-pretty="false">[格式压缩]</label>
                         </li>
-                        <li id="add-pane" data-bind="click: createPane">
-                            <i class="icon-plus icon-white"></i>
-                            <label>添加面板</label>
-                        </li>
+                        <li id="add-pane" data-bind="click: createPane"><i class="icon-plus icon-white"></i><label>添加面板</label></li>
                     </ul>
                 </div>
             </div>
@@ -162,6 +187,7 @@
         <i id="toggle-header-icon" class="icon-wrench icon-white"></i>
     </div>
 </header>
+-->
 
 <div style="display:hidden;">
     <ul data-bind="template: { name: 'pane-template', foreach: panes}">
@@ -170,28 +196,34 @@
 
 <script type="text/html" id="pane-template">
     <li data-bind="pane: true">
+
         <header>
             <div class="background">
                 <div class="c1"></div>
                 <div class="c2"></div>
                 <div class="c3"></div>
             </div>
-            <h1 data-bind="text: title"></h1>
-            <ul class="board-toolbar pane-tools">
-                <li data-bind="pluginEditor: {operation: 'add', type: 'widget'}">
-                    <i class="icon-plus icon-white"></i>
-                </li>
-                <li data-bind="pluginEditor: {operation: 'edit', type: 'pane'}">
-                    <i class="icon-wrench icon-white"></i>
-                </li>
-                <li data-bind="pluginEditor: {operation: 'delete', type: 'pane'}">
-                    <i class="icon-trash icon-white"></i>
-                </li>
-            </ul>
+
+          <!--
+          <h1 data-bind="text: title"></h1>
+          <ul class="board-toolbar pane-tools">
+              <li data-bind="pluginEditor: {operation: 'add', type: 'widget'}">
+                  <i class="icon-plus icon-white"></i>
+              </li>
+              <li data-bind="pluginEditor: {operation: 'edit', type: 'pane'}">
+                  <i class="icon-wrench icon-white"></i>
+              </li>
+              <li data-bind="pluginEditor: {operation: 'delete', type: 'pane'}">
+                  <i class="icon-trash icon-white"></i>
+              </li>
+          </ul>
+           -->
+
         </header>
         <div class="gs_w-section_border gs_w-section_border-l"></div>
         <div class="gs_w-section_border gs_w-section_border-r"></div>
-        <section data-bind="foreach: widgets" style="margin : 0 1px 0 1px; height:100%;">
+
+        <section data-bind="foreach: widgets" style="margin : 0 1px 0 1px">
             <div class="sub-section" data-bind="css: 'sub-section-height-' + height()">
                 <div class="widget" data-bind="widget: true, css:{fillsize:fillSize}"></div>
                 <div class="sub-section-tools">
@@ -217,7 +249,7 @@
             <div class="c2"></div>
             <div class="c3"></div>
         </div>
-    </li>
+    </li>-
 </script>
 <script>
 </script>

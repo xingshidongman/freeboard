@@ -1,6 +1,6 @@
 {
-  "wd": "57",
-  "high": "182",
+  "html1": "<table style=\"width:100% ; align:center ;border:0 ; text-align:center; \"><caption height=\"50px\">横向合并单元格</caption><tr height=\"30px\"><td>设备</td><td>设备型号</td><td>MAC</td><td>创建时间</td><td>设备安装地址</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td><td>18/9/9</td><td>设备安装地址</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td><td>18/9/9</td><td>设备安装地址</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td><td>18/9/9</td><td>设备安装地址</td></tr></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td><td>18/9/9</td><td>设备安装地址</td></tr></table>",
+  "html2": "<table style=\"width:100% ; align:center ;border:0 ; text-align:center; \"><caption height=\"50px\">骨干线路的实时运行情况</caption><tr height=\"30px\"><td>名称</td><td>总流量</td><td>带宽占用比</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td></tr></table>",
   "low": "21",
   "fx": "南风",
   "fl": "微风",
@@ -13,36 +13,44 @@
   "wr": "中",
   "sd": "80",
   "AQI": "30",
-  "wl": [
-    {
-      "name": "星期一",
-      "value": 56
+  "bar": {
+    "yAxis": {
+      "name": "占用比",
+      "max": 100
     },
-    {
-      "name": "星期二",
-      "value": 66
-    },
-    {
-      "name": "星期三",
-      "value": 58
-    },
-    {
-      "name": "星期四",
-      "value": 28
-    },
-    {
-      "name": "星期五",
-      "value": 47
-    },
-    {
-      "name": "星期六",
-      "value": 48
-    },
-    {
-      "name": "星期日",
-      "value": 10
-    }
-  ],
+    "xAxisName": "流量",
+    "title": "骨干线路带宽占用比TOP",
+    "seriesValue": [
+      {
+        "name": "星期一",
+        "value": 9
+      },
+      {
+        "name": "星期二",
+        "value": 8
+      },
+      {
+        "name": "星期三",
+        "value": 50
+      },
+      {
+        "name": "星期四",
+        "value": 20
+      },
+      {
+        "name": "星期五",
+        "value": 4
+      },
+      {
+        "name": "星期六",
+        "value": 48
+      },
+      {
+        "name": "星期日",
+        "value": 10
+      }
+    ]
+  },
   "gauge": [
     {
       "name": "使用率",
@@ -110,7 +118,12 @@
       "bigCircle": [
         {
           "value": 80,
-          "name": "警报"
+          "name": "警报",
+          "itemStyle": {
+            "normal": {
+              "color": "white"
+            }
+          }
         },
         {
           "value": 234,
@@ -127,9 +140,9 @@
     },
     {
       "barValue": [
-        23,
+        4,
         69,
-        4
+        23
       ]
     }
   ],
@@ -172,30 +185,31 @@
       ]
     }
   ],
-  "lineMore": [
-    {
-      "lValue": [
-        "专线1",
-        "专线2",
-        "专线3",
-        "专线4",
-        "专线5",
-        "专线6",
-        "专线7"
-      ]
+  "lineMore": {
+    "yAxis": {
+      "name": "占用比",
+      "max": 100
     },
-    {
-      "xValue": [
-        "1M",
-        "2M",
-        "3M",
-        "4M",
-        "5M",
-        "6M"
-      ]
-    },
-    {
-      "value": {
+    "xAxisName": "流量",
+    "title": "骨干线路带宽占用比TOP",
+    "lValue": [
+      "专线1",
+      "专线2",
+      "专线3",
+      "专线4",
+      "专线5",
+      "专线6"
+    ],
+    "xValue": [
+      "1M",
+      "2M",
+      "3M",
+      "4M",
+      "5M",
+      "6M"
+    ],
+    "yValue": [
+      {
         "name": "专线1",
         "type": "line",
         "data": [
@@ -204,13 +218,10 @@
           40,
           34,
           50,
-          70,
-          81
+          70
         ]
-      }
-    },
-    {
-      "value": {
+      },
+      {
         "name": "专线2",
         "type": "line",
         "data": [
@@ -219,13 +230,10 @@
           11,
           14,
           60,
-          30,
-          21
+          30
         ]
-      }
-    },
-    {
-      "value": {
+      },
+      {
         "name": "专线3",
         "type": "line",
         "data": [
@@ -234,13 +242,10 @@
           11,
           4,
           0,
-          30,
-          20
+          30
         ]
-      }
-    },
-    {
-      "value": {
+      },
+      {
         "name": "专线4",
         "type": "line",
         "data": [
@@ -249,13 +254,10 @@
           10,
           14,
           60,
-          60,
-          20
+          60
         ]
-      }
-    },
-    {
-      "value": {
+      },
+      {
         "name": "专线5",
         "type": "line",
         "data": [
@@ -264,13 +266,10 @@
           11,
           13,
           90,
-          20,
-          10
+          20
         ]
-      }
-    },
-    {
-      "value": {
+      },
+      {
         "name": "专线6",
         "type": "line",
         "data": [
@@ -279,13 +278,10 @@
           11,
           13,
           70,
-          30,
-          10
+          30
         ]
-      }
-    },
-    {
-      "value": {
+      },
+      {
         "name": "专线7",
         "type": "line",
         "data": [
@@ -294,12 +290,11 @@
           41,
           23,
           70,
-          80,
-          40
+          80
         ]
       }
-    }
-  ],
+    ]
+  },
   "barTwo": [
     {
       "lValue": [
@@ -318,56 +313,34 @@
       ]
     },
     {
-      "value": {
-        "name": "线路一",
-        "type": "bar",
-        "data": [
-          2.0,
-          4.9,
-          7.0,
-          23.2,
-          25.6,
-          76.7
-        ]
-      }
-    },
-    {
-      "value": {
-        "name": "线路二",
-        "type": "bar",
-        "data": [
-          2.6,
-          5.9,
-          9.0,
-          26.4,
-          28.7,
-          70.7
-        ]
-      }
-    }
-  ],
-  "gCount": [
-    {
-      "snmp": 48,
-      "vm": 44,
-      "vtlStorage": 2,
-      "host": 72,
-      "VMHost": 5,
-      "middleware": 14,
-      "StorageLine": 2,
-      "cabinet": 2,
-      "daStorage": 26,
-      "line": 27,
-      "citrix": 11,
-      "VMVirtaulMachine": 19,
-      "bsmBusiness": 3,
-      "machineroom": 5,
-      "network": 236,
-      "database": 20,
-      "service": 14,
-      "fcsStorage": 2,
-      "ping": 1,
-      "rac": 1
+      "yValue": [
+        {
+          "name": "线路一",
+          "type": "bar",
+          "barWidth": 30,
+          "data": [
+            20.0,
+            40.9,
+            7.0,
+            50.2,
+            70.6,
+            76.7
+          ]
+        },
+        {
+          "name": "线路二",
+          "type": "bar",
+          "barWidth": 30,
+          "data": [
+            2.6,
+            5.9,
+            9.0,
+            26.4,
+            28.7,
+            70.7
+          ]
+        }
+      ]
     }
   ]
 }

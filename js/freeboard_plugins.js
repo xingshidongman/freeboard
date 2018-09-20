@@ -1177,7 +1177,6 @@ JSEditor = function () {
 
 function PaneModel(theFreeboardModel, widgetPlugins) {
 	var self = this;
-
 	this.title = ko.observable();
 	this.width = ko.observable(1);
 	this.row = {};
@@ -1193,11 +1192,11 @@ function PaneModel(theFreeboardModel, widgetPlugins) {
 
 	this.addWidget = function (widget) {
 		this.widgets.push(widget);
-	}
+	};
 
 	this.widgetCanMoveUp = function (widget) {
 		return (self.widgets.indexOf(widget) >= 1);
-	}
+	};
 
 	this.widgetCanMoveDown = function (widget) {
 		var i = self.widgets.indexOf(widget);
@@ -2841,7 +2840,7 @@ var freeboard = (function()
 
 	// PUBLIC FUNCTIONS
 	return {
-		initialize          : function(allowEdit, finishedCallback)
+		initialize: function(allowEdit, finishedCallback)
 		{
 			ko.applyBindings(theFreeboardModel);
 
@@ -2851,11 +2850,10 @@ var freeboard = (function()
 			if(freeboardLocation != "")
 			{
 				$.ajax({
-					url    : freeboardLocation,
+					url: freeboardLocation,
 					success: function(data)
 					{
 						theFreeboardModel.loadDashboard(data);
-
 						if(_.isFunction(finishedCallback))
 						{
 							finishedCallback();
@@ -2998,7 +2996,6 @@ var freeboard = (function()
                 console.log("Datasource not found");
                 return;
             }
-
             var combinedSettings = _.defaults(settings, datasource.settings());
             datasource.settings(combinedSettings);
         },
