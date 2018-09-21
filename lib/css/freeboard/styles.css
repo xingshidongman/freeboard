@@ -798,6 +798,9 @@ header h1 {
 }
 
 #board-content {
+    background : url(../../../img/background.png);
+
+    opacity:0.8;
     overflow: visible;
     position: relative;
     padding-top: 10px;
