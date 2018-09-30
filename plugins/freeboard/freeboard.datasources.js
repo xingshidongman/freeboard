@@ -78,6 +78,7 @@
                 },
                 success: function (data) {
                     lockErrorStage = true;
+
                     updateCallback(data);//回调函数
                 },
                 error: function (xhr, status, error) {
@@ -262,24 +263,46 @@
                         if (key == "host") {
                             MOCount.push({
                                 "name" : "主机",
-                                "value" : gCount[0][key]
+                                "value" : gCount[0][key],
+                                "itemStyle": {
+                                    "normal": {
+                                        "color": "#00fefc"
+                                    }
+                                }
                             })
                         } else if (key == "database") {
                             MOCount.push({
                                 "name" : "数据库",
-                                "value" : gCount[0][key]
+                                "value" : gCount[0][key],
+                                "itemStyle": {
+                                    "normal": {
+                                        "color": "#48bec8"
+                                    }
+                                }
                             })
                         } else if (key == "network") {
                             MOCount.push({
                                 "name" : "网络",
-                                "value" : gCount[0][key]
+                                "value" : gCount[0][key],
+                                "itemStyle": {
+                                    "normal": {
+                                        "color": "#1b5f71"
+                                    }
+                                }
+
                             })
                         } else if (key == "service") {
                             MOCount.push({
                                 "name" : "标准应用",
-                                "value" : gCount[0][key]
+                                "value" : gCount[0][key],
+                                "itemStyle": {
+                                    "normal": {
+                                        "color": "#ffffff"
+                                    }
+                                }
                             })
                         }
+
                     }
                     updateCallback(MOCount);//回调函数
                 },
@@ -894,8 +917,9 @@
             newInstanceCallback(new json21Datasource(settings, updateCallback));
         }
     });
-    //json连接自己后台的测试
+    //json连接自己后台的测试(问题部分)
     var json3Datasource = function (settings, updateCallback) {
+
         var self = this;
         var updateTimer = null;
         var currentSettings = settings;
@@ -922,18 +946,44 @@
             if (errorStage == 2 && currentSettings.use_thingproxy) {
                 requestURL = (location.protocol == "https:" ? "https:" : "http:") + "//thingproxy.freeboard.io/fetch/" + encodeURI(currentSettings.url);
             }
+            //获取所有allcookies
+            var allcookies = document.cookie;
+            var arr=new Array();
+            var access_token="";
+            arr=allcookies.split(";");
+            for(var i=0;i<arr.length;i++){
+                //获取access_token 用于发送ajax请求头
+                if(arr[i].indexOf("access_token"+"=")!=-1){
+                    console.log("access_token的值为："+arr[i].replace("access_token=",""));
+                    access_token=arr[i].replace("access_token=","");
+                }
+            }
             $.ajax({
-                url: "http://localhost:8080/Demo/use/scenario.do",
-                dataType: "json",
+                async:false,
+                url: "http://localhost:8181/camel/rest/bar/singleBar",
+                dataType: "text",
                 type: "get" ,
+                //headers: {'access_token' : access_token },
+                beforeSend: function(request) {
+                    request.setRequestHeader('access_token', access_token);
+                    //request.setRequestHeader("access_token", access_token);
+                },
+                //xhrFields: {
+                //    withCredentials: true
+                //},
+                //crossDomain: true,
                 success: function (data) {
+                    console.log("请求成功");
+                    var data1 = eval('(' + data + ')');
+                    var obj=JSON.parse(data1);
+                    console.log(obj);
                     lockErrorStage = true;
                    // data=JSON.stringify(data);
-                    console.log("请求成功");
-                    console.log(data);
-                    updateCallback(data);//回调函数
+                    //console.log(data);
+                    updateCallback(obj);//回调函数
                 },
                 error: function (xhr, status, error) {
+                    console.log("请求失败");
                     if (!lockErrorStage) {
                         // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
                         errorStage++;
@@ -1043,6 +1093,185 @@
         // * ** updateCallback **：一个回调函数，如果您的数据源具有重新计算的干舷更新，您将调用该函数。此函数需要单个参数，该参数是具有新的更新数据的javascript对象。你应该坚持这个参考，并在需要时调用它。
         newInstance: function (settings, newInstanceCallback, updateCallback) {
             newInstanceCallback(new json3Datasource(settings, updateCallback));
+        }
+    });
+
+
+    //json连接Table后台的测试
+    var json4Datasource = function (settings, updateCallback) {
+
+        var self = this;
+        var updateTimer = null;
+        var currentSettings = settings;
+        var errorStage = 0; 	// 0 =尝试标准请求
+        // 1 =尝试JSONP
+        // 2 =尝试thingproxy.freeboard.io
+        var lockErrorStage = false;
+        function updateRefresh(refreshTime) {
+            if (updateTimer) {
+                clearInterval(updateTimer);
+            }
+            updateTimer = setInterval(function () {
+                self.updateNow();
+            }, refreshTime);
+        }
+        updateRefresh(currentSettings.refresh * 1000);
+        this.updateNow = function () {
+            if ((errorStage > 1 && !currentSettings.use_thingproxy) || errorStage > 2) // We've tried everything, let's quit
+            {
+                return; // TODO: Report an error
+            }
+            var requestURL = currentSettings.url;
+
+            if (errorStage == 2 && currentSettings.use_thingproxy) {
+                requestURL = (location.protocol == "https:" ? "https:" : "http:") + "//thingproxy.freeboard.io/fetch/" + encodeURI(currentSettings.url);
+            }
+            //获取所有allcookies
+            var allcookies = document.cookie;
+            var arr=new Array();
+            var access_token="";
+            arr=allcookies.split(";");
+            for(var i=0;i<arr.length;i++){
+                //获取access_token 用于发送ajax请求头
+                if(arr[i].indexOf("access_token"+"=")!=-1){
+                    console.log("access_token的值为："+arr[i].replace("access_token=",""));
+                    access_token=arr[i].replace("access_token=","");
+                }
+            }
+            $.ajax({
+                async:false,
+                url: "http://localhost:8181/camel/rest/table/table1",
+                dataType: "text",
+                type: "get" ,
+                //headers: {'access_token' : access_token },
+                beforeSend: function(request) {
+                    request.setRequestHeader('access_token', access_token);
+                    //request.setRequestHeader("access_token", access_token);
+                },
+                //xhrFields: {
+                //    withCredentials: true
+                //},
+                //crossDomain: true,
+                success: function (data) {
+                    console.log("请求成功");
+                    var data1 = eval('(' + data + ')');
+                    var obj=JSON.parse(data1);
+                    lockErrorStage = true;
+                    // data=JSON.stringify(data);
+                    //console.log(data);
+                    updateCallback(obj);//回调函数
+                },
+                error: function (xhr, status, error) {
+                    console.log("请求失败");
+                    if (!lockErrorStage) {
+                        // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
+                        errorStage++;
+                        self.updateNow();
+                    }
+                }
+            });
+        }
+
+        this.onDispose = function () {
+            clearInterval(updateTimer);
+            updateTimer = null;
+        }
+
+        this.onSettingsChanged = function (newSettings) {
+            lockErrorStage = false;
+            errorStage = 0;
+
+            currentSettings = newSettings;
+            updateRefresh(currentSettings.refresh * 1000);
+            self.updateNow();
+        }
+    };
+    //加载数据源插件
+    freeboard.loadDatasourcePlugin({
+        // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
+        type_name: "JSON4",
+        settings: [
+            {
+                name: "url",
+                display_name: "URL",
+                // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
+                type: "text"
+            },
+            {
+                // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
+                name: "use_thingproxy",
+                // ** display_name **：调整此设置时将向用户显示的漂亮名称。
+                display_name: "Try thingproxy",
+                // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
+                description: 'A direct JSON connection will be tried first, if that fails, a JSONP connection will be tried. If that fails, you can use thingproxy, which can solve many connection problems to APIs. <a href="https://github.com/Freeboard/thingproxy" target="_blank">More information</a>.',
+                // ** type **（必需）：此设置的预期输入类型
+                type: "boolean",
+                // ** default_value **：此设置的默认值。
+                default_value: true
+            },
+            {
+                name: "refresh",
+                display_name: "Refresh Every",
+                type: "number",
+                // ** suffix **：后缀。
+                suffix: "seconds",
+                default_value: 5
+            },
+            {
+                name: "method",
+                display_name: "Method",
+                // ** type **（必需）：option代表这是一个下拉选
+                type: "option",
+                options: [
+                    {
+                        name: "GET",
+                        value: "GET"
+                    },
+                    {
+                        name: "POST",
+                        value: "POST"
+                    },
+                    {
+                        name: "PUT",
+                        value: "PUT"
+                    },
+                    {
+                        name: "DELETE",
+                        value: "DELETE"
+                    }
+                ]
+            },
+            {
+                name: "body",
+                display_name: "Body",
+                type: "text",
+                description: "The body of the request. Normally only used if method is POST"
+            },
+            {
+                name: "headers",
+                display_name: "Headers",
+                // ** type **（必需）：array代表这是一个数组
+                type: "array",
+                settings: [
+                    {
+                        name: "name",
+                        display_name: "Name",
+                        type: "text"
+                    },
+                    {
+                        name: "value",
+                        display_name: "Value",
+                        type: "text"
+                    }
+                ]
+            }
+        ],
+        // ** newInstance（settings，newInstanceCallback，updateCallback）**（必需）：在请求此插件的新实例时将调用的函数。
+        // * ** settings **：具有用户设置的初始设置的javascript对象。对象中属性的名称将对应于上面定义的设置名称。
+        // * ** newInstanceCallback **：当插件的新实例准备就绪时您将调用的回调函数。此函数需要一个参数，它是插件对象的新实例。
+        // * ** updateCallback **：一个回调函数，如果您的数据源具有重新计算的干舷更新，您将调用该函数。此函数需要单个参数，该参数是具有新的更新数据的javascript对象。你应该坚持这个参考，并在需要时调用它。
+        newInstance: function (settings, newInstanceCallback, updateCallback) {
+            newInstanceCallback(new json4Datasource(settings, updateCallback));
         }
     });
 

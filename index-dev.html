@@ -40,13 +40,49 @@
             "lib/js/util.js",
             // *** Load more plugins here ***
             function () {
+                var id;
+                var access_token;
+                var user_token;
+                var user_name;
+                var loginname;
                 $(function () { //DOM Ready
+                    /*
+                    var reqData={
+                        "username":"admin",
+                        "password":"123"
+                    };
+                    $.ajax({
+                        async:false,
+                        withCredentials: true,
+                        crossDomain: true,
+                        url: "http://localhost:8181/login.jsp",
+                        dataType: "json",
+                        data:reqData,
+                        type: "POST" ,
+                        success: function (data) {
+                            access_token= data.access_token;
+                            id=data.user.id;
+                            user_token=data.user.token;
+                            user_name=data.user.name;
+                            //loginname= loginUsername;
+                        },
+                        error: function (xhr, status, error) {
+
+                        }
+                    });
+                    //console.log(user_token);
+                    //console.log(access_token);
+                    //sessionStorage.setItem('access_token',access_token);
+                    //console.log("cookie:"+document.cookie);
+                    //document.cookie="access_token="+access_token;
+                    //document.cookie="JSESSIONID="+user_token;
+                    console.log("cookie:"+document.cookie);
+                    */
                     freeboard.setAssetRoot("/freeboard-ui/");
                     freeboard.initialize(true);
                     var today = formatDate((new Date()), 'yyyy年MM月dd日，星期ww|hh点mm分ss秒');
                     $('#jsToday').text(today.split('|')[0]);
                     $('#jsTime').text(today.split('|')[1]);
-
                     setInterval(function () {
                         $('#jsTime').text(formatDate((new Date()), 'hh点mm分ss秒'));
                     }, 1000)
@@ -55,7 +91,7 @@
             });
     </script>
 </head>
-<body>
+<body >
 <div id="board-content">
     <div class="gs_title">
         <div class="gs_title-area">
@@ -67,8 +103,9 @@
             <div class="gs_title-aside fr" id="jsTime"></div>
         </div>
     </div>
-    <div class="gridster responsive-column-width" style="background:url(./img/background.png); ">
-        <ul data-bind="grid: true">
+    <!--添加背景图-->
+    <div id="back_ground" class="gridster responsive-column-width" style="height: 810px;">
+        <ul data-bind="grid: true" >
         </ul>
     </div>
 </div>
@@ -167,10 +204,10 @@
     <ul data-bind="template: { name: 'pane-template', foreach: panes}">
     </ul>
 </div>
-
+<!--设置透明图-->
 <script type="text/html" id="pane-template">
-    <li data-bind="pane: true">
-        <header>
+    <li data-bind="pane: true"  id="tou">
+         <header >
             <div class="background">
                 <div class="c1"></div>
                 <div class="c2"></div>
@@ -191,7 +228,9 @@
         </header>
         <div class="gs_w-section_border gs_w-section_border-l"></div>
         <div class="gs_w-section_border gs_w-section_border-r"></div>
-        <section data-bind="foreach: widgets" style="margin : 0 1px 0 1px; height:100%;">
+        <!--设置边框-->
+        <section data-bind="foreach: widgets" style="margin : -30px 1px 0 1px; height:100%;">
+            <div></div>
             <div class="sub-section" data-bind="css: 'sub-section-height-' + height()">
                 <div class="widget" data-bind="widget: true, css:{fillsize:fillSize}"></div>
                 <div class="sub-section-tools">

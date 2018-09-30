@@ -127,7 +127,12 @@
         },
         {
           "value": 234,
-          "name": "设备数"
+          "name": "设备数",
+          "itemStyle": {
+            "normal": {
+              "color": "#1b414e"
+            }
+          }
         }
       ]
     },
@@ -144,6 +149,10 @@
         69,
         23
       ]
+    },
+    {
+      "title1": "警告信息",
+      "title2": "报警率\n23%"
     }
   ],
   "reder": [
@@ -342,5 +351,9 @@
         }
       ]
     }
-  ]
+  ],
+  "img":"./img/lou3.png",
+  "NightingaleRoseDiagram":{
+
+  }
 }

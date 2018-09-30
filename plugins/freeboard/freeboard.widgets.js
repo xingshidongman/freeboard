@@ -603,6 +603,7 @@
         }
     });
 
+    //插入图片 需要传来一个图片的地址
     var pictureWidget = function (settings) {
         var self = this;
         var widgetElement;
@@ -625,11 +626,13 @@
                 });
             }
         }
-
+        //设置图片的宽高
         this.render = function (element) {
             $(element).css({
-                width: "100%",
-                height: "100%",
+                width: "90%",
+                height: "200px",
+                margin:"auto",
+                "margin-top": "20px",
                 "background-size": "cover",
                 "background-position": "center"
             });
@@ -640,9 +643,9 @@
         this.onSettingsChanged = function (newSettings) {
             stopTimer();
 
-            if (newSettings.refresh && newSettings.refresh > 0) {
-                timer = setInterval(updateImage, Number(newSettings.refresh) * 1000);
-            }
+            //if (newSettings.refresh && newSettings.refresh > 0) {
+                //timer = setInterval(updateImage, Number(newSettings.refresh) * 1000);
+            //}
         }
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
@@ -658,7 +661,7 @@
         }
 
         this.getHeight = function () {
-            return 4;
+            return 3.5;
         }
 
         this.onSettingsChanged(settings);
@@ -956,11 +959,11 @@
         }
     });
     freeboard.addStyle('.html-widget', "white-space:normal;width:100%;height:100%");
-
+    //freeboard.addStyle('.html-widget', "white-space:normal;width:100%;height:100%;background-image:url(./img/chang.png);background-size: 620px 250px;background-position: 0 -100px;");
     //第一张图的表格
     var htmlWidget = function (settings) {
         var self = this;
-        var htmlElement = $('<div class="html-widget"></div>');
+        var htmlElement = $('<div class="html-widget" style="height: 200px;padding-top:20px"></div>');
         var currentSettings = settings;
 
         this.render = function (element) {
@@ -973,6 +976,7 @@
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
             if (settingName == "html") {
+                //console.log(newValue);
                 htmlElement.html(newValue);
             }
         }
@@ -1013,7 +1017,7 @@
     //第二张图右边的表格
     var html2Widget = function (settings) {
         var self = this;
-        var htmlElement = $('<div class="html-widget"></div>');
+        var htmlElement = $('<div class="html-widget" style="height: 200px;padding-top:20px"></div>');
         var currentSettings = settings;
 
         this.render = function (element) {
@@ -1064,7 +1068,8 @@
         }
     });
     // 自定义组件
-    freeboard.addStyle('.custom-widget', "background-color:#ffffff;");
+    //freeboard.addStyle('.custom-widget', "background-color:#ffffff;");
+    freeboard.addStyle('.custom-widget');
     freeboard.addStyle('.custom-wrapper', "height:500px;");
     // 自定义组件 Line（自带的）
     var eChartsLineWidget = function (settings) {
@@ -1072,7 +1077,6 @@
         var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
         var currentSettings = settings;
         var option = {
-            backgroundColor: '#000000',//背景色
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
@@ -1175,18 +1179,19 @@
     var eChartsLineMoreWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
         var htmlElement = $('<div class="custom-widget">' +
-            '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:200px"></div>' +
+            '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:250px"></div>' +
             '</div>');
         var currentSettings = settings;
         var option = {
             //ackgroundColor:'rgba(0,0,0,0)',
-            backgroundColor: '#000000',//背景色
             grid: {
                 width: '70%',
                 left: 'center',
-                bottom: '25%'
+                y:'35%',
+                bottom: '20%'
             },
             title: {
+                top:10,
                 textStyle:{
                     fontSize:15,
                     //文字颜色
@@ -1206,7 +1211,7 @@
 
                 },
                 left: 'center',
-                y: 20
+                y: 35
             },
             xAxis: {
                 splitLine:{//设置网格不显示
@@ -1336,17 +1341,18 @@
     var eChartsBarWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
         var htmlElement = $('<div class="custom-widget">' +
-            '<div class="custom-wrapper" id="' + thisGaugeID + '"style="height:200px"></div>' +
+            '<div class="custom-wrapper" id="' + thisGaugeID + '"style="height:250px"></div>' +
             '</div>');
         var currentSettings = settings;
         var option = {
-            backgroundColor: '#000000',//背景色
+           // backgroundColor: '#000000',//背景色
             grid: {
                 width: '70%',
                 left: 'center',
                 bottom: '25%'
             },
             title: {
+                y:15,
                 textStyle:{
                     fontSize:15,
                     //文字颜色
@@ -1364,9 +1370,13 @@
             },
             calculable: true,
             xAxis: {
+                //设置坐标轴名称的文本类型
                 nameTextStyle:{
                     color:'#00f6ff'
                 },
+                //坐标轴的名称 距离轴线的距离
+                nameGap:2,
+                //设置类目轴
                 type: 'category',
                 splitLine:{//设置网格不显示
                     show:false
@@ -1378,32 +1388,42 @@
                  * 定义 X 轴标签字样式
                  */
                 axisLabel: {
+                    //可以设置成 0 强制显示所有标签。 如果设置为 1，表示『隔一个标签显示一个标签』，如果值为 2，表示隔两个标签显示一个标签，以此类推。
                     interval: 0,
-                    //rotate:40,
-                    formatter:function(value)
-                    {
-                        return value.split("").join("\n");
-                    },
+                    //字体倾斜
+                    rotate:40,
+                    //设置字体竖起来显示
+                    //formatter:function(value)
+                    //{
+                     //   return value.split("").join("\n");
+                    //},
                     color: '#00f6ff',
                     fontSize: 12,
                     fontFamily: 'Microsoft YaHei'
                 },
             },
             yAxis: {
+                //坐标轴的名称 距离轴线的距离
                 nameGap:10,
+                //设置y轴坐标名称旋转
                 nameRotate:40,
                 offset:10,
                 nameTextStyle:{
                     color:'#00f6ff'
                 },
                 splitLine:{//设置网格不显示
-                    show:false
+                    show:true,
+                    lineStyle: {
+                        // 使用深浅的间隔色
+                        color: ['#00f6ff', '#ddd'],
+                        //type:'dotted'
+                    }
                 },
                 axisLine: {//设置坐标轴不显示
                     show:false
                 },
                 /**
-                 * 定义 X 轴标签字样式
+                 * 定义 y 轴标签字样式
                  */
                 axisLabel: {
                     color: '#00f6ff',
@@ -1508,6 +1528,281 @@
             newInstanceCallback(new eChartsBarWidget(settings));
         }
     });
+
+    // 自定义组件 Bar动图(自写)
+    var eChartsBarActiveWidget = function (settings) {
+        var thisGaugeID = "gauge-" + gaugeID++;
+        var htmlElement = $('<div class="custom-widget">' +
+            '<div class="custom-wrapper" id="' + thisGaugeID + '"style="height:250px"></div>' +
+            '</div>');
+        var currentSettings = settings;
+        var option = {
+            baseOption:{
+                timeline: {
+                    left:0,
+                    // y: 0,
+                    axisType: 'category',
+                    // realtime: false,
+                    // loop: false,
+                    autoPlay: true,
+                    // currentIndex: 2,
+                    playInterval: 1000,
+                    // controlStyle: {
+                    //     position: 'left'
+                    // },
+                    data: [
+                        '1','2','3','4'
+                    ],
+                },
+                // backgroundColor: '#000000',//背景色
+                grid: {
+                    width: '70%',
+                    left: 'center',
+                    bottom: '35%'
+                },
+                title: {
+                    y:15,
+                    textStyle:{
+                        fontSize:15,
+                        //文字颜色
+                        color:'#00f6ff',
+                        fontFamily:'Microsoft YaHei'
+                    },
+                    left: 'center',
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    //设置坐标轴名称的文本类型
+                    nameTextStyle:{
+                        color:'#00f6ff'
+                    },
+                    //坐标轴的名称 距离轴线的距离
+                    //nameGap:2,
+                    //设置类目轴
+                    type: 'category',
+                    splitLine:{//设置网格不显示
+                        show:false
+                    },
+                    axisLine: {//设置坐标轴不显示
+                        show:false
+                    },
+                    /**
+                     * 定义 X 轴标签字样式
+                     */
+                    axisLabel: {
+                        //可以设置成 0 强制显示所有标签。 如果设置为 1，表示『隔一个标签显示一个标签』，如果值为 2，表示隔两个标签显示一个标签，以此类推。
+                        interval: 0,
+                        //字体倾斜
+                        //rotate:-40,
+                        //设置字体竖起来显示
+                        //formatter:function(value)
+                        //{
+                        //   return value.split("").join("\n");
+                        //},
+                        color: '#00f6ff',
+                        fontSize: 12,
+                        fontFamily: 'Microsoft YaHei'
+                    },
+                },
+                yAxis: {
+                    //坐标轴的名称 距离轴线的距离
+                    nameGap:10,
+                    //设置y轴坐标名称旋转
+                    nameRotate:40,
+                    offset:10,
+                    nameTextStyle:{
+                        color:'#00f6ff'
+                    },
+                    splitLine:{//设置网格不显示
+                        show:true,
+                        lineStyle: {
+                            // 使用深浅的间隔色
+                            color: ['#00f6ff', '#ddd'],
+                            //type:'dotted'
+                        }
+                    },
+                    axisLine: {//设置坐标轴不显示
+                        show:false
+                    },
+                    /**
+                     * 定义 y 轴标签字样式
+                     */
+                    axisLabel: {
+                        color: '#00f6ff',
+                        fontSize: 12,
+                        fontFamily: 'Microsoft YaHei'
+                    },
+                    nameLocation: 'start',
+                    type: 'value',
+                },
+                series:  [
+                    {
+                        name: 'GDP',
+                        type: 'bar',
+                        itemStyle: {
+                            normal: {
+                                color: '#00f6ff'
+                            }
+                        },
+                        barCateGoryGap:20,
+                        barWidth : 10,
+                    },
+                ]
+            },
+            options: [
+                {
+                    title: {
+                        text: '2002线路带宽占用比'
+                    },
+                    series: []
+                },
+                {
+                    title : {
+                        text: '2003线路带宽占用比'
+                    },
+                    series : []
+                },
+                {
+                    title : {
+                        text: '2004线路带宽占用比'
+                    },
+                    series : []
+                },
+                {
+                    title : {
+                        text: '2005线路带宽占用比'
+                    },
+                    series : []
+                },
+            ]
+        };
+        var dom = null;
+        var myChart = null;
+        this.render = function (element) {
+            $(element).append(htmlElement);
+            setTimeout(function () {
+                console.log('myChart htmlElement === ');
+                dom = document.getElementById(thisGaugeID);
+                myChart = echarts.init(dom);
+                myChart.setOption(option, true);
+            }, 1000);
+        };
+        this.onCalculatedValueChanged = function (settingName, newValue) {
+            var result = newValue;
+
+            var dataMap = {};
+            function dataFormatter(obj) {
+                var pList = ['线1','线2','线3','线4','线5','线6','线7'];
+                var temp;
+                for (var year = 0; year <= 3; year++) {
+                    temp = obj[year];
+                    for (var i = 0, l = temp.length; i < l; i++) {
+                        obj[year][i] = {
+                            name : pList[i],
+                            value : temp[i]
+                        }
+                    }
+                }
+                console.log(obj);
+                return obj;
+            }
+            dataMap.dataGDP = dataFormatter({
+                0:[45,39,10,42,39,80,36],
+                1:[60,31,84,35,30,66,31],
+                2:[50,25,69,28,23,60,26],
+                3:[45,21,61,14,57,24,36]
+            });
+            for(var i=0;i<option.options.length;i++){
+                option.options[i].series.push({
+                    data:dataMap.dataGDP[i],
+                })
+            }
+            option.baseOption.xAxis.data=[
+                '线1','\n线2','线3','\n线4','线5','\n线6','线7'
+            ];
+            //var yAxisName;
+           // var yAxisMax;
+            //var xAxisName;
+            //var title;
+           // var value;
+           // for ( var key in result) {
+             //   if (key == "yAxis") {
+              //      yAxisName=result[key].name;
+             //       yAxisMax=result[key].max;
+             //   } else if (key == "xAxisName") {
+             //       xAxisName=result[key];
+              //  } else if (key == "title") {
+              //      title=result[key];
+              //  } else if (key == "seriesValue") {
+              //      value=result[key];
+              //  }
+           // }
+            //console.log('value:', value);
+           // if (value && value.length > 0) {
+           //     value = eval(value);
+            //    var xAxisData = [];
+            //    var seriesData = [];
+             //   option.series = [];
+             //   $.each(value, function (i, item) {
+             //       xAxisData.push(item.name);
+             //       seriesData.push(item.value);
+             //   });
+
+                option.baseOption.yAxis.name ="占用比" ;
+            //    option.title.text = title ;
+            option.baseOption.yAxis.max=100;
+             //   option.yAxis.max =  yAxisMax;
+            option.baseOption.xAxis.name =  "线路";
+             //   option.xAxis.data = xAxisData;
+             //   option.series = {
+               //     name: 'bar',
+               //     type: 'bar',
+              //      itemStyle: {
+               //         normal: {
+                //            color: '#00f6ff'
+                 //       }
+                 //   },
+                 //   barCateGoryGap:20,
+                 //   barWidth : 10,
+                  //  data: seriesData,
+                  //  animationDelay: function (idx) {
+                 //       return idx * 10;
+                 //   }
+              //  };
+                // console.log("setOption");
+                myChart.setOption(option, true);
+           // }
+        };
+
+        this.onSettingsChanged = function (newSettings) {
+            currentSettings = newSettings;
+        };
+
+        this.getHeight = function () {
+            return Number(3.5)
+        };
+
+        this.onSettingsChanged(settings);
+
+    }
+    freeboard.loadWidgetPlugin({
+        "type_name": "e_charts_BarActive",
+        "display_name": "EChartsBarActive",
+        "fill_size": true,
+        "settings": [
+            {
+                "name": "value",
+                "display_name": "value",
+                "type": "calculated",
+                "description": "可以是文本HTML，也可以是输出HTML的javascript。"
+            }
+        ],
+        newInstance: function (settings, newInstanceCallback) {
+            newInstanceCallback(new eChartsBarActiveWidget(settings));
+        }
+    });
     // 自定义组件 BarTwo（双柱图自己写的）
     var eChartsBarTwoWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
@@ -1515,7 +1810,7 @@
         var htmlElement =
             $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
         var option = {
-            backgroundColor: '#000000',//背景色
+           // backgroundColor: '#000000',//背景色
             title: {
                 textStyle:{
                     fontSize:15,
@@ -1646,7 +1941,7 @@
         var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
         var currentSettings = settings;
         var option = {
-            backgroundColor: '#000000',//背景色
+            //backgroundColor: '#000000',//背景色
             series: []
         };
         this.render = function (element) {
@@ -1696,21 +1991,24 @@
     var eChartsAnnulusWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
         var htmlElement = $('<div class="custom-widget">' +
-            '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:200px;"></div>' +
-            '<div style="position:absolute;left:260px;top:220px">' + '<p>总管理对象209</p></div>' +
+            '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:250px;"></div>' +
+            //'<div style="position:absolute;left:260px;top:220px">' + '<p>总管理对象209</p></div>' +
             '</div>');
         var currentSettings = settings;
         var option = {
-            backgroundColor: '#000000',//背景色
+           // backgroundColor: '#000000',//背景色
+
             title:
             [
                 {
+
                     textStyle:{
                         fontSize:15,
                         //文字颜色
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
+                    y:10,
                     x:0,
                     text: '智能统计图',
                     left: 'center'
@@ -1743,7 +2041,7 @@
             option.series.push({
                 data: value,
                 type: 'pie',
-                radius: ['50%', '70%'],
+                radius: ['50%', '65%'],
                 center : ['50%', '55%'],
             })
         }
@@ -1774,30 +2072,30 @@
             newInstanceCallback(new eChartsAnnulusWidget(settings));
         }
     });
-    //  自定义组件AnnulusRing1（嵌套环形图自己写的）
+    //  自定义组件AnnulusRing1（嵌套环形图+bar图自己写的 目前用的）
     var eChartsAnnulusRing1Widget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
         var thisGaugeID1 = "circle";
         var htmlElement = $('<div class="custom-widget" >' +
            // '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:500px ;top:20px;"></div>' +
            // '<div  id="' + thisGaugeID1 + '" style="position:absolute;left:10px;top:45%;width:500px;height:300px"></div>' +
-            '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:200%; top:10px;"></div>' +
-            '<div  id="' + thisGaugeID1 + '" style="position:absolute; width:85%; top:60%; left:0;  height: 50%"></div>' +
+            '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:250px; top:10px;"></div>' +
+            '<div  id="' + thisGaugeID1 + '" style="position:absolute; width:85%; top:65%; left:0; height: 35%"></div>' +
            // '<div style="position:absolute;left:42%;top:25%"><p>被管理对象类型</p></div>' +
             '</div>');
         var currentSettings = settings;
         var option = {
-            backgroundColor: '#000000',//背景色
+            //backgroundColor: '#000000',//背景色
             title: [
                 {
-                    y: 0,
+                    y: 10,
                     textStyle:{
                         fontSize:15,
                         //文字颜色
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: '警告信息',
+
                     left: 'center',
                 },
                 {
@@ -1807,16 +2105,16 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: '报警率',
+
                     x: 'center',
-                    y:'30%',
+                    y:'32%',
                 },
             ],
             series: []
         };
         var option1 = {
             grid: {
-                top: 10,
+                top: 5,
                 width: '100%',
                 bottom: 0,
                 containLabel: true
@@ -1865,10 +2163,13 @@
             var value = newValue;
             if (value && value.length > 0) {
                 value = eval(value);
+
                 var sCircle = value[0].smallCircle;
                 var bCircle = value[1].bigCircle;
                 option1.yAxis.data = value[2].barName;
                 var bValue = value[3].barValue;
+                option.title[0].text = value[4].title1;
+                option.title[1].text = value[4].title2 ;
                 option.series.push({
                     itemStyle: {
                         normal: {
@@ -1880,21 +2181,21 @@
                     label: {
                         normal: {
                             formatter: ' {b|{b}}\n{hr|}\n{c}',
-                            backgroundColor: '#333',
+                            //backgroundColor: '#333',
                             rich: {
                                 hr: {
-                                    borderColor: '#aaa',
+                                    borderColor: '#00f6ff',
                                     width: '100%',
                                     borderWidth: 0.5,
                                     height: 0
                                 },
                                 b: {
-                                    color: '#999',
+                                    color: '#00f6ff',
                                     lineHeight: 22,
                                     align: 'center'
                                 },
                                 c: {
-                                    color: '#999',
+                                    color: '#00f6ff',
                                     lineHeight: 22,
                                     align: 'center'
                                 },
@@ -1904,7 +2205,7 @@
                     labelLine: {
                         length2:0.1,
                     },
-                    center: ['50%', '38%'],
+                    center: ['50%', '40%'],
                     data: sCircle
                 });
                 option.series.push({
@@ -1913,21 +2214,21 @@
                     label: {
                         normal: {
                             formatter: ' {b|{b}}\n{hr|}\n  {c}    ',
-                            backgroundColor: '#333',
+                            //backgroundColor: '#333',
                             rich: {
                                 hr: {
-                                    borderColor: '#aaa',
+                                    borderColor: '#00f6ff',
                                     width: '100%',
                                     borderWidth: 0.5,
                                     height: 0
                                 },
                                 b: {
-                                    color: '#999',
+                                    color: '#00f6ff',
                                     lineHeight: 22,
                                     align: 'center'
                                 },
                                 c: {
-                                    color: '#999',
+                                    color: '#00f6ff',
                                     lineHeight: 22,
                                     align: 'center'
                                 },
@@ -1937,7 +2238,7 @@
                     labelLine: {
                         length2:20000,
                     },
-                    center: ['50%', '38%'],
+                    center: ['50%', '40%'],
                     data: bCircle
                 });
                 option1.series.push({
@@ -1968,11 +2269,12 @@
                     silent: true,
                     itemStyle: {
                         normal: {
-                            color:'rgb(0,128,70)',
+                            color:'rgb(27,65,78)',
                         }
                     },
                     data: b
                 },);
+
             }
         }
         this.onSettingsChanged = function (newSettings) {
@@ -2007,7 +2309,7 @@
         var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div><div style="position:absolute;left:260px;top:220px"><p>被管理对象类型</p></div></div>');
         var currentSettings = settings;
         var option = {
-            backgroundColor: '#000000',//背景色
+            //backgroundColor: '#000000',//背景色
             title: {
                 textStyle:{
                     //文字颜色
@@ -2150,7 +2452,7 @@
         var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
         var currentSettings = settings;
         var option = {
-            backgroundColor: '#000000',//背景色
+            //backgroundColor: '#000000',//背景色
             tooltip: {
                 trigger: 'axis'
             },
@@ -2285,7 +2587,7 @@
                     y:'60%',
                 }
             ],
-            backgroundColor: '#000000',//背景色
+            //backgroundColor: '#000000',//背景色
             radar: [
                 {
                     splitNumber:'3',
@@ -2363,7 +2665,7 @@
                     y:'60%',
                 }
             ],
-            backgroundColor: '#000000',//背景色
+            //backgroundColor: '#000000',//背景色
             radar: [
                 {
                     splitNumber:'3',
@@ -2440,7 +2742,7 @@
                     y:'60%',
                 }
             ],
-            backgroundColor: '#000000',//背景色
+           // backgroundColor: '#000000',//背景色
 
             radar: [
                 {
@@ -2518,7 +2820,7 @@
                     y:'60%',
                 }
             ],
-            backgroundColor: '#000000',//背景色
+            //backgroundColor: '#000000',//背景色
             radar: [
                 {
                     splitNumber:'3',
@@ -2668,7 +2970,7 @@
         }
     });
 
-    // 自定义组件 Radar1（四个雷达图）
+    // 自定义组件 Radar1（一个框里画的四个雷达图，文字单独div）
     var eChartsRadar1Widget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
         var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div>' +
@@ -2819,7 +3121,7 @@
         var thisGaugeID = "gauge-" + gaugeID++;
         var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
         var option = {
-            backgroundColor: '#000000',//背景色
+            //backgroundColor: '#000000',//背景色
             series: [{
                 type: 'gauge',
                 detail: {formatter: '{value}%'},
@@ -2871,24 +3173,34 @@
     var eChartsNightingaleRoseDiagramWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
         var htmlElement = $('<div class="custom-widget">' +
-            '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:200px;"></div>' +
+            '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:250px;"></div>' +
             '</div>');
         var currentSettings = settings;
         var option = {
-            title:
+            title:[
                 {
-                    x: 'center',
-                    y: '50%',
+                    backgroundColor:"#1b414e",
+                    y: 15,
                     textStyle:{
                         fontSize:15,
+                        //文字颜色
+                        color:'#ffffff',
+                        fontFamily:'Microsoft YaHei'
+                    },
+                    left: 'center',
+                },
+                {
+                    x: '39%',
+                    y: '50%',
+                    textStyle:{
+                        fontSize:12,
                         //文字颜色
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: '管理对象类型',
-                    left: 'center'
-                },
-            backgroundColor: '#000000',//背景色
+                    //left: 'center'
+                }],
+           // backgroundColor: '#000000',//背景色
             series: []
         };
         this.render = function (element) {
@@ -2902,6 +3214,8 @@
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var value = newValue;
+            option.title[0].text='被管理对象总量        1313131';
+            option.title[1].text='管理对象类型';
             option.series.push({
                 name: '面积模式',
                 type: 'pie',
@@ -2913,8 +3227,8 @@
                 labelLine: {
                     length2:0.01,
                 },
-                radius: [45, 75],
-                center : ['50%', '55%'],
+                radius: [40, 65],
+                center : ['52%', '55%'],
                 roseType: 'area',
                 data: value,
             })

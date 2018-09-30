@@ -798,8 +798,6 @@ header h1 {
 }
 
 #board-content {
-    background : url(../../../img/background.png);
-
     opacity:0.8;
     overflow: visible;
     position: relative;
@@ -838,6 +836,7 @@ header h1 {
 }
 
 .widget {
+
     padding: 5px 10px 5px 10px;
     height: 100%;
     width: 100%;
@@ -2250,7 +2249,7 @@ input:-moz-placeholder, textarea:-moz-placeholder {
     height: 0px;
     width: 4px;
     background: transparent;
-    padding-right: 10;
+    padding-right: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -2404,7 +2403,7 @@ input:-moz-placeholder, textarea:-moz-placeholder {
  */
 .gridster .gs_w {background-color: transparent;}
 .gridster header {position: relative;background-color: transparent;}
-.gridster header .background {position: absolute;height: 20px;top:0;left: 0;width: 100%;display: flex;pointer-events: none;}
+.gridster header .background {position: absolute;height: 20px;top:0;left: 0;width: 100%;display: flex;pointer-events: none; margin: 0;padding: 0}
 .gridster header .background .c1 {width: 17px;background: url("../../../img/header-1.png") 0 0 no-repeat;}
 .gridster header .background .c2 {flex:1;background: url("../../../img/header-2.png") 0 0 repeat-x;}
 .gridster header .background .c3 {width: 55px;background: url("../../../img/header-3.png") 0 0 no-repeat;}
@@ -2422,3 +2421,12 @@ input:-moz-placeholder, textarea:-moz-placeholder {
 .gs_title .gs_title-mn{color: #39c2d6;font-size: 14px;margin: 0 47px;flex: 1;text-align: center;line-height: 18px;}
 .gs_title .gs_title-aside.fl{background-image: url("../../../img/title-bg-l.png");padding-left: 24px;}
 .gs_title .gs_title-aside.fr{background-image: url("../../../img/title-bg-r.png");padding-left: 71px;}
+#back_ground{
+    background-image: url("../../../img/background.png");
+    background-size:1284px 810px;
+}
+#tou{
+   background-image: url("../../../img/tou1.png");
+    background-size: cover;
+
+}
