@@ -1337,6 +1337,257 @@
             newInstanceCallback(new eChartsLineMoreWidget(settings));
         }
     });
+
+    // 自定义组件 LineMore动图(自写)
+    var eChartsLineMoreActiveWidget = function (settings) {
+        var thisGaugeID = "gauge-" + gaugeID++;
+        var htmlElement = $('<div class="custom-widget">' +
+            '<div class="custom-wrapper" id="' + thisGaugeID + '"style="height:250px"></div>' +
+            '</div>');
+        var currentSettings = settings;
+        var option = {
+            baseOption:{
+                timeline: {
+                    left:0,
+                    // y: 0,
+                    axisType: 'category',
+                    // realtime: false,
+                    // loop: false,
+                    autoPlay: true,
+                    // currentIndex: 2,
+                    playInterval: 1000,
+                    // controlStyle: {
+                    //     position: 'left'
+                    // },
+                    data: [
+                        '1','2','3','4','5'
+                    ],
+                },
+                // backgroundColor: '#000000',//背景色
+                grid: {
+                    width: '70%',
+                    left: 'center',
+                    bottom: '30%'
+                },
+                legend: {
+                   data:[],
+                    textStyle:{
+                        //文字颜色
+                        color:'#00f6ff',
+                        fontSize:10,
+                    },
+                    left: 'center',
+                    y: 35
+                },
+                title: {
+                    y:15,
+                    textStyle:{
+                        fontSize:15,
+                        //文字颜色
+                        color:'#00f6ff',
+                        fontFamily:'Microsoft YaHei'
+                    },
+                    left: 'center',
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    //设置坐标轴名称的文本类型
+                    nameTextStyle:{
+                        color:'#00f6ff'
+                    },
+                    //坐标轴的名称 距离轴线的距离
+                    //nameGap:2,
+                    //设置类目轴
+                    type: 'category',
+                    splitLine:{//设置网格不显示
+                        show:false
+                    },
+                    axisLine: {//设置坐标轴不显示
+                        show:false
+                    },
+                    /**
+                     * 定义 X 轴标签字样式
+                     */
+                    axisLabel: {
+                        //可以设置成 0 强制显示所有标签。 如果设置为 1，表示『隔一个标签显示一个标签』，如果值为 2，表示隔两个标签显示一个标签，以此类推。
+                        interval: 0,
+                        //字体倾斜
+                        //rotate:-40,
+                        //设置字体竖起来显示
+                        //formatter:function(value)
+                        //{
+                        //   return value.split("").join("\n");
+                        //},
+                        color: '#00f6ff',
+                        fontSize: 12,
+                        fontFamily: 'Microsoft YaHei'
+                    },
+                },
+                yAxis: {
+                    //坐标轴的名称 距离轴线的距离
+                    nameGap:10,
+                    //设置y轴坐标名称旋转
+                    nameRotate:40,
+                    offset:10,
+                    nameTextStyle:{
+                        color:'#00f6ff'
+                    },
+                    splitLine:{//设置网格不显示
+                        show:true,
+                        lineStyle: {
+                            // 使用深浅的间隔色
+                            color: ['#00f6ff', '#ddd'],
+                            //type:'dotted'
+                        }
+                    },
+                    axisLine: {//设置坐标轴不显示
+                        show:false
+                    },
+                    /**
+                     * 定义 y 轴标签字样式
+                     */
+                    axisLabel: {
+                        color: '#00f6ff',
+                        fontSize: 12,
+                        fontFamily: 'Microsoft YaHei'
+                    },
+                    nameLocation: 'start',
+                    type: 'value',
+                },
+                series:  [
+                    {
+                        type: 'line',
+                        itemStyle: {
+                            normal: {
+                                color: '#00f6ff'
+                            }
+                        },
+                        barCateGoryGap:20,
+                        barWidth : 10,
+                    },
+                ]
+            },
+            options: [
+                {
+                    title: {},
+                    series: []
+                },
+            ]
+        };
+        var dom = null;
+        var myChart = null;
+        this.render = function (element) {
+            $(element).append(htmlElement);
+            setTimeout(function () {
+                dom = document.getElementById(thisGaugeID);
+                myChart = echarts.init(dom);
+                myChart.setOption(option, true);
+            }, 1000);
+        };
+        this.onCalculatedValueChanged = function (settingName, newValue) {
+            var result = newValue;
+
+            var pList;
+            var dataList;
+            var dataList2;
+            var xAxisData ;
+            var yAxisName;
+            var yAxisMax;
+            var xAxisName;
+            var titleData;
+            var  lValue;
+
+            for ( var key in result) {
+                if (key == "yAxis") {
+                    yAxisName=result[key].name;
+                    yAxisMax=result[key].max;
+                } else if (key == "xAxisName") {
+                    xAxisName=result[key];
+                } else if (key == "pList") {
+                    pList=result[key];
+                } else if (key == "dataList") {
+                    dataList=result[key];
+                }else if (key == "dataList2") {
+                    dataList2=result[key];
+                }else if (key == "xAxisData") {
+                    xAxisData=result[key];
+                }else if (key == "titleData") {
+                    titleData=result[key];
+                }else if (key == "lValue") {
+                    lValue=result[key];
+                }
+            }
+            //console.log(dataList);
+            var dataMap = {};
+            function dataFormatter(obj) {
+                var temp;
+                for (var year = 0; year <= 4; year++) {
+                    temp = obj[year];
+                    for (var i = 0; i < temp.length;  i++) {
+                        obj[year][i] = {
+                            name : pList[i],
+                            value : temp[i]
+                        }
+                    }
+                }
+                //console.log(obj);
+                return obj;
+            }
+            dataMap.dataGDP = dataFormatter(dataList);
+            dataMap.dataQ=dataFormatter(dataList2);
+            for(var i=0;i<titleData.length;i++){
+                option.options[i]={series:[],  title: {}};
+                option.options[i].series.push({
+                    name: lValue[0],
+                    data:dataMap.dataGDP[i],
+                    type:"line"
+                });
+                option.options[i].series.push({
+                    name: lValue[1],
+                    data:dataMap.dataQ[i],
+                    type:"line"
+                });
+                option.options[i].title.text =titleData[i];
+            }
+            option.baseOption.legend.data=lValue,
+            option.baseOption.xAxis.data=xAxisData;
+            option.baseOption.yAxis.name =yAxisName;
+            option.baseOption.yAxis.max=yAxisMax;
+            option.baseOption.xAxis.name = xAxisName;
+            //console.log(option);
+            myChart.setOption(option, true);
+        };
+
+        this.onSettingsChanged = function (newSettings) {
+            currentSettings = newSettings;
+        };
+
+        this.getHeight = function () {
+            return Number(3.5)
+        };
+
+        this.onSettingsChanged(settings);
+
+    }
+    freeboard.loadWidgetPlugin({
+        "type_name": "e_charts_LineMoreActive",
+        "display_name": "EChartsLineMoreActive",
+        "fill_size": true,
+        "settings": [
+            {
+                "name": "value",
+                "display_name": "value",
+                "type": "calculated",
+                "description": "可以是文本HTML，也可以是输出HTML的javascript。"
+            }
+        ],
+        newInstance: function (settings, newInstanceCallback) {
+            newInstanceCallback(new eChartsLineMoreActiveWidget(settings));
+        }
+    });
+
     // 自定义组件 Bar(柱图自带的)
     var eChartsBarWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
@@ -1551,7 +1802,7 @@
                     //     position: 'left'
                     // },
                     data: [
-                        '1','2','3','4'
+                        '2010','2011','2012','2013','2014'
                     ],
                 },
                 // backgroundColor: '#000000',//背景色
@@ -1639,7 +1890,6 @@
                 },
                 series:  [
                     {
-                        name: 'GDP',
                         type: 'bar',
                         itemStyle: {
                             normal: {
@@ -1653,27 +1903,19 @@
             },
             options: [
                 {
-                    title: {
-                        text: '2002线路带宽占用比'
-                    },
+                    title: {},
                     series: []
                 },
                 {
-                    title : {
-                        text: '2003线路带宽占用比'
-                    },
+                    title : {},
                     series : []
                 },
                 {
-                    title : {
-                        text: '2004线路带宽占用比'
-                    },
+                    title : {},
                     series : []
                 },
                 {
-                    title : {
-                        text: '2005线路带宽占用比'
-                    },
+                    title : {},
                     series : []
                 },
             ]
@@ -1683,7 +1925,6 @@
         this.render = function (element) {
             $(element).append(htmlElement);
             setTimeout(function () {
-                console.log('myChart htmlElement === ');
                 dom = document.getElementById(thisGaugeID);
                 myChart = echarts.init(dom);
                 myChart.setOption(option, true);
@@ -1692,88 +1933,61 @@
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var result = newValue;
 
+            var pList;
+            var dataList;
+            var xAxisData ;
+            var yAxisName;
+            var yAxisMax;
+            var xAxisName;
+            var titleData;
+
+            for ( var key in result) {
+                if (key == "yAxis") {
+                    yAxisName=result[key].name;
+                    yAxisMax=result[key].max;
+                } else if (key == "xAxisName") {
+                    xAxisName=result[key];
+                } else if (key == "pList") {
+                    pList=result[key];
+                } else if (key == "dataList") {
+                    dataList=result[key];
+                }else if (key == "xAxisData") {
+                    xAxisData=result[key];
+                }else if (key == "titleData") {
+                    titleData=result[key];
+                }
+            }
+            //console.log(dataList);
             var dataMap = {};
             function dataFormatter(obj) {
-                var pList = ['线1','线2','线3','线4','线5','线6','线7'];
                 var temp;
-                for (var year = 0; year <= 3; year++) {
+                for (var year = 0; year <= 4; year++) {
                     temp = obj[year];
-                    for (var i = 0, l = temp.length; i < l; i++) {
+                    for (var i = 0; i < temp.length;  i++) {
                         obj[year][i] = {
                             name : pList[i],
                             value : temp[i]
                         }
                     }
                 }
-                console.log(obj);
+                //console.log(obj);
                 return obj;
             }
-            dataMap.dataGDP = dataFormatter({
-                0:[45,39,10,42,39,80,36],
-                1:[60,31,84,35,30,66,31],
-                2:[50,25,69,28,23,60,26],
-                3:[45,21,61,14,57,24,36]
-            });
-            for(var i=0;i<option.options.length;i++){
-                option.options[i].series.push({
-                    data:dataMap.dataGDP[i],
-                })
-            }
-            option.baseOption.xAxis.data=[
-                '线1','\n线2','线3','\n线4','线5','\n线6','线7'
-            ];
-            //var yAxisName;
-           // var yAxisMax;
-            //var xAxisName;
-            //var title;
-           // var value;
-           // for ( var key in result) {
-             //   if (key == "yAxis") {
-              //      yAxisName=result[key].name;
-             //       yAxisMax=result[key].max;
-             //   } else if (key == "xAxisName") {
-             //       xAxisName=result[key];
-              //  } else if (key == "title") {
-              //      title=result[key];
-              //  } else if (key == "seriesValue") {
-              //      value=result[key];
-              //  }
-           // }
-            //console.log('value:', value);
-           // if (value && value.length > 0) {
-           //     value = eval(value);
-            //    var xAxisData = [];
-            //    var seriesData = [];
-             //   option.series = [];
-             //   $.each(value, function (i, item) {
-             //       xAxisData.push(item.name);
-             //       seriesData.push(item.value);
-             //   });
+            dataMap = dataFormatter(dataList);
 
-                option.baseOption.yAxis.name ="占用比" ;
-            //    option.title.text = title ;
-            option.baseOption.yAxis.max=100;
-             //   option.yAxis.max =  yAxisMax;
-            option.baseOption.xAxis.name =  "线路";
-             //   option.xAxis.data = xAxisData;
-             //   option.series = {
-               //     name: 'bar',
-               //     type: 'bar',
-              //      itemStyle: {
-               //         normal: {
-                //            color: '#00f6ff'
-                 //       }
-                 //   },
-                 //   barCateGoryGap:20,
-                 //   barWidth : 10,
-                  //  data: seriesData,
-                  //  animationDelay: function (idx) {
-                 //       return idx * 10;
-                 //   }
-              //  };
-                // console.log("setOption");
-                myChart.setOption(option, true);
-           // }
+            for(var i=0;i<titleData.length;i++){
+                option.options[i]={series:[],  title: {}};
+                option.options[i].series.push({
+                    data:dataMap[i],
+                });
+                option.options[i].title.text =titleData[i];
+            }
+            option.baseOption.xAxis.data=xAxisData;
+            option.baseOption.yAxis.name =yAxisName;
+            option.baseOption.yAxis.max=yAxisMax;
+            option.baseOption.xAxis.name = xAxisName;
+            //console.log(option);
+            myChart.setOption(option, true);
         };
 
         this.onSettingsChanged = function (newSettings) {
@@ -2526,7 +2740,7 @@
         }
     });
 
-    // 自定义组件 Radar4（4单个雷达图）
+    // 自定义组件 Radar4（4单个雷达图 目前使用的图）
     var eChartsRadar4Widget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
         var thisGaugeID1="radar2";
@@ -2550,7 +2764,7 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: '设备名',
+
                     x: '20%',
                 },
                 {
@@ -2560,7 +2774,7 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: 'CPU使用率：93%',
+
                     x: '60%',
                     y:'20%',
                 },
@@ -2571,7 +2785,7 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: '内存使用率：68%',
+
                     x: '60%',
                     y:'40%',
                 },
@@ -2582,7 +2796,7 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: '持续运营时间：\n4小时',
+
                     x: '60%',
                     y:'60%',
                 }
@@ -2628,7 +2842,7 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: '设备名',
+
                     x: '20%',
                 },
                 {
@@ -2638,7 +2852,7 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: 'CPU使用率：93%',
+
                     x: '60%',
                     y:'20%',
                 },
@@ -2649,7 +2863,7 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: '内存使用率：68%',
+
                     x: '60%',
                     y:'40%',
                 },
@@ -2660,7 +2874,7 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: '持续运营时间：\n4小时',
+
                     x: '60%',
                     y:'60%',
                 }
@@ -2705,7 +2919,7 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: '设备名',
+
                     x: '20%',
                 },
                 {
@@ -2715,7 +2929,7 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: 'CPU使用率：93%',
+
                     x: '60%',
                     y:'20%',
                 },
@@ -2726,7 +2940,7 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: '内存使用率：68%',
+
                     x: '60%',
                     y:'40%',
                 },
@@ -2737,7 +2951,7 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: '持续运营时间：\n4小时',
+
                     x: '60%',
                     y:'60%',
                 }
@@ -2783,7 +2997,7 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: '设备名',
+
                     x: '20%',
                 },
                 {
@@ -2793,7 +3007,7 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: 'CPU使用率：93%',
+
                     x: '60%',
                     y:'20%',
                 },
@@ -2804,7 +3018,7 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: '内存使用率：68%',
+
                     x: '60%',
                     y:'40%',
                 },
@@ -2815,7 +3029,7 @@
                         color:'#00f6ff',
                         fontFamily:'Microsoft YaHei'
                     },
-                    text: '持续运营时间：\n4小时',
+
                     x: '60%',
                     y:'60%',
                 }
@@ -2877,6 +3091,11 @@
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var value = newValue;
+            option1.title[0].text= '设备名';
+            option1.title[1].text= 'CPU使用率：93%';
+            option1.title[2].text= '内存使用率：68%';
+            option1.title[3].text= '持续运营时间：\n4小时';
+
             option1.series.push(
                 {
                     type: 'radar',
@@ -2893,6 +3112,11 @@
                     data: value
                 },
             );
+            option2.title[0].text= '设备名';
+            option2.title[1].text= 'CPU使用率：93%';
+            option2.title[2].text= '内存使用率：68%';
+            option2.title[3].text= '持续运营时间：\n4小时';
+
             option2.series.push(
                 {
                     type: 'radar',
@@ -2909,6 +3133,10 @@
                     data: value
                 },
             );
+            option3.title[0].text= '设备名';
+            option3.title[1].text= 'CPU使用率：93%';
+            option3.title[2].text= '内存使用率：68%';
+            option3.title[3].text= '持续运营时间：\n4小时';
             option3.series.push(
                 {
                     type: 'radar',
@@ -2924,7 +3152,11 @@
                     },
                     data: value
                 },
-            )
+            );
+            option4.title[0].text= '设备名';
+            option4.title[1].text= 'CPU使用率：93%';
+            option4.title[2].text= '内存使用率：68%';
+            option4.title[3].text= '持续运营时间：\n4小时';
             option4.series.push(
                 {
                     type: 'radar',
@@ -2941,7 +3173,7 @@
                     data: value
                 },
             )
-        }
+        };
 
         this.onSettingsChanged = function (newSettings) {
             currentSettings = newSettings;
@@ -2970,7 +3202,7 @@
         }
     });
 
-    // 自定义组件 Radar1（一个框里画的四个雷达图，文字单独div）
+    // 自定义组件 Radar1（一个框里画的四个雷达图，文字单独div的 没有完善）
     var eChartsRadar1Widget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
         var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div>' +
@@ -3169,7 +3401,7 @@
             newInstanceCallback(new eChartsGaugeWidget(settings));
         }
     });
-    //自定义组件 NightingaleRoseDiagram
+    //自定义组件 NightingaleRoseDiagram（面积图）
     var eChartsNightingaleRoseDiagramWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
         var htmlElement = $('<div class="custom-widget">' +

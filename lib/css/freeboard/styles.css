@@ -78,6 +78,10 @@ html {
  */
 
 body {
+    background-image: url("../../../img/background.png");
+    background-size:1920px 969px;
+    padding-bottom: 0;
+
     margin: 0;
 }
 
@@ -2422,8 +2426,7 @@ input:-moz-placeholder, textarea:-moz-placeholder {
 .gs_title .gs_title-aside.fl{background-image: url("../../../img/title-bg-l.png");padding-left: 24px;}
 .gs_title .gs_title-aside.fr{background-image: url("../../../img/title-bg-r.png");padding-left: 71px;}
 #back_ground{
-    background-image: url("../../../img/background.png");
-    background-size:1284px 810px;
+
 }
 #tou{
    background-image: url("../../../img/tou1.png");
