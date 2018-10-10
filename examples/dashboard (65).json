@@ -7,28 +7,6 @@
 			"width": 1,
 			"row": {
 				"3": 1,
-				"4": 10,
-				"5": 1
-			},
-			"col": {
-				"3": 1,
-				"4": 1,
-				"5": 1
-			},
-			"col_width": 1,
-			"widgets": [
-				{
-					"type": "e_charts_lineMore",
-					"settings": {
-						"value": "datasources[\"s\"][\"lineMore\"]"
-					}
-				}
-			]
-		},
-		{
-			"width": 1,
-			"row": {
-				"3": 1,
 				"4": 1,
 				"5": 1
 			},
@@ -104,7 +82,7 @@
 		{
 			"width": 1,
 			"row": {
-				"4": 1
+				"4": 10
 			},
 			"col": {
 				"4": 1
@@ -112,10 +90,27 @@
 			"col_width": 1,
 			"widgets": [
 				{
-					"type": "picture",
+					"type": "e_charts_LineMoreActive",
 					"settings": {
-						"src": "datasources[\"s\"][\"img\"]",
-						"refresh": 11
+						"value": "datasources[\"s\"][\"lineActive\"]"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"4": 19
+			},
+			"col": {
+				"4": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "e_charts_BarActive",
+					"settings": {
+						"value": "datasources[\"s\"][\"barActive\"]"
 					}
 				}
 			]
@@ -142,17 +137,20 @@
 		{
 			"width": 1,
 			"row": {
-				"4": 19
+				"4": 1,
+				"5": 28
 			},
 			"col": {
-				"4": 1
+				"4": 1,
+				"5": 1
 			},
 			"col_width": 1,
 			"widgets": [
 				{
-					"type": "e_charts_BarActive",
+					"type": "picture",
 					"settings": {
-						"value": "datasources[\""
+						"src": "datasources[\"s\"][\"img\"]",
+						"refresh": 11
 					}
 				}
 			]
