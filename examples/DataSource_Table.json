@@ -1,0 +1,441 @@
+{
+  "html1": "<table style=\"width:100% ; align:center ;border:0 ; text-align:center; \"><caption height=\"50px\">当前警告信息</caption><tr height=\"30px\"><td>设备</td><td>设备型号</td><td>MAC</td><td>创建时间</td><td>设备安装地址</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td><td>18/9/9</td><td>设备安装地址</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td><td>18/9/9</td><td>设备安装地址</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td><td>18/9/9</td><td>设备安装地址</td></tr></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td><td>18/9/9</td><td>设备安装地址</td></tr></table>",
+  "html2": "<table style=\"width:100% ; align:center ;border:0 ; text-align:center; \"><caption height=\"50px\">骨干线路的实时运行情况</caption><tr height=\"30px\"><td>名称</td><td>总流量</td><td>带宽占用比</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td></tr></table>",
+  "low": "21",
+  "fx": "南风",
+  "fl": "微风",
+  "type": "晴",
+  "zwx": "很强",
+  "jf": "1",
+  "xt": "易波动",
+  "cy": "炎热",
+  "xc": "较适宜",
+  "wr": "中",
+  "sd": "80",
+  "AQI": "30",
+  "bar": {
+    "yAxis": {
+      "name": "占用比",
+      "max": 100
+    },
+    "xAxisName": "流量",
+    "title": "骨干线路带宽占用比TOP",
+    "seriesValue": [
+      {
+        "name": "星期一",
+        "value": 9
+      },
+      {
+        "name": "星期二",
+        "value": 8
+      },
+      {
+        "name": "星期三",
+        "value": 50
+      },
+      {
+        "name": "星期四",
+        "value": 20
+      },
+      {
+        "name": "星期五",
+        "value": 4
+      },
+      {
+        "name": "星期六",
+        "value": 48
+      },
+      {
+        "name": "星期日",
+        "value": 10
+      }
+    ]
+  },
+  "gauge": [
+    {
+      "name": "使用率",
+      "value": 65.5
+    }
+  ],
+  "annulus": [
+    {
+      "name": "1",
+      "value": 3
+    },
+    {
+      "name": "2",
+      "value": 5
+    },
+    {
+      "name": "3",
+      "value": 8
+    },
+    {
+      "name": "4",
+      "value": 1
+    },
+    {
+      "name": "5",
+      "value": 10
+    },
+    {
+      "name": "6",
+      "value": 3
+    },
+    {
+      "name": "7",
+      "value": 5
+    }
+  ],
+  "AnnulusRing": [
+    {
+      "smallCircle": [
+        {
+          "value": 69,
+          "name": "已处理数"
+        },
+        {
+          "value": 288,
+          "label": {
+            "normal": {
+              "show": false
+            }
+          },
+          "labelLine": {
+            "normal": {
+              "show": false
+            }
+          },
+          "itemStyle": {
+            "normal": {
+              "color": "rgba(0,0,0,0)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "bigCircle": [
+        {
+          "value": 80,
+          "name": "警报",
+          "itemStyle": {
+            "normal": {
+              "color": "white"
+            }
+          }
+        },
+        {
+          "value": 234,
+          "name": "设备数",
+          "itemStyle": {
+            "normal": {
+              "color": "#1b414e"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "barName": [
+        "未处理数",
+        "已处理数",
+        "设备警报占比"
+      ]
+    },
+    {
+      "barValue": [
+        4,
+        69,
+        23
+      ]
+    },
+    {
+      "title1": "警告信息",
+      "title2": "报警率\n23%"
+    }
+  ],
+  "reder": [
+    {
+      "value": [
+        97,
+        52,
+        3.25
+      ]
+    }
+  ],
+  "reder1": [
+    {
+      "value": [
+        97,
+        52,
+        3.25
+      ]
+    },
+    {
+      "value": [
+        97,
+        52,
+        8
+      ]
+    },
+    {
+      "value": [
+        97,
+        52,
+        1
+      ]
+    },
+    {
+      "value": [
+        97,
+        52,
+        6
+      ]
+    }
+  ],
+  "lineMore": {
+    "yAxis": {
+      "name": "占用比",
+      "max": 100
+    },
+    "xAxisName": "流量",
+    "title": "骨干线路带宽占用比TOP",
+    "lValue": [
+      "专线1",
+      "专线2",
+      "专线3",
+      "专线4",
+      "专线5",
+      "专线6"
+    ],
+    "xValue": [
+      "1M",
+      "2M",
+      "3M",
+      "4M",
+      "5M",
+      "6M"
+    ],
+    "yValue": [
+      {
+        "name": "专线1",
+        "type": "line",
+        "data": [
+          20,
+          32,
+          40,
+          34,
+          50,
+          70
+        ]
+      },
+      {
+        "name": "专线2",
+        "type": "line",
+        "data": [
+          20,
+          32,
+          11,
+          14,
+          60,
+          30
+        ]
+      },
+      {
+        "name": "专线3",
+        "type": "line",
+        "data": [
+          10,
+          12,
+          11,
+          4,
+          0,
+          30
+        ]
+      },
+      {
+        "name": "专线4",
+        "type": "line",
+        "data": [
+          10,
+          32,
+          10,
+          14,
+          60,
+          60
+        ]
+      },
+      {
+        "name": "专线5",
+        "type": "line",
+        "data": [
+          20,
+          32,
+          11,
+          13,
+          90,
+          20
+        ]
+      },
+      {
+        "name": "专线6",
+        "type": "line",
+        "data": [
+          10,
+          32,
+          11,
+          13,
+          70,
+          30
+        ]
+      },
+      {
+        "name": "专线7",
+        "type": "line",
+        "data": [
+          50,
+          40,
+          41,
+          23,
+          70,
+          80
+        ]
+      }
+    ]
+  },
+  "barTwo": [
+    {
+      "lValue": [
+        "线路一",
+        "线路二"
+      ]
+    },
+    {
+      "xValue": [
+        "1M",
+        "2M",
+        "3M",
+        "4M",
+        "5M",
+        "6M"
+      ]
+    },
+    {
+      "yValue": [
+        {
+          "name": "线路一",
+          "type": "bar",
+          "barWidth": 30,
+          "data": [
+            20.0,
+            40.9,
+            7.0,
+            50.2,
+            70.6,
+            76.7
+          ]
+        },
+        {
+          "name": "线路二",
+          "type": "bar",
+          "barWidth": 30,
+          "data": [
+            2.6,
+            5.9,
+            9.0,
+            26.4,
+            28.7,
+            70.7
+          ]
+        }
+      ]
+    }
+  ],
+  "img": "./img/lou3.png",
+  "NightingaleRoseDiagram": {
+  },
+  "tableData1": {
+    "title": "当前警告信息",
+    "thead": [
+      {
+        "name": "设备",
+        "width": "150px"
+      },
+      {
+        "name": "设备型号",
+        "width": "150px"
+      },
+      {
+        "name": "MAC",
+        "width": "150px"
+      },
+      {
+        "name": "创建时间",
+        "width": "150px"
+      },
+      {
+        "name": "设备安装地址",
+        "width": "150px"
+      }
+    ],
+    "data": [
+      {
+        "name": "服务器-1",
+        "version": "413",
+        "mac": "7868",
+        "createDate": "18/9/9",
+        "location": "设备安装地址"
+      },
+      {
+        "name": "服务器-2",
+        "version": "413",
+        "mac": "7824",
+        "createDate": "18/9/9",
+        "location": "设备安装地址"
+      },
+      {
+        "name": "服务器-31",
+        "version": "413",
+        "mac": "7824",
+        "createDate": "18/9/9",
+        "location": "设备安装地址"
+      },
+      {
+        "name": "服务器-44",
+        "version": "413",
+        "mac": "7824",
+        "createDate": "18/9/9",
+        "location": "设备安装地址"
+      },
+      {
+        "name": "服务器-15",
+        "version": "413",
+        "mac": "7824",
+        "createDate": "18/9/9",
+        "location": "设备安装地址"
+      },
+      {
+        "name": "服务器-16",
+        "version": "413",
+        "mac": "7824",
+        "createDate": "18/9/9",
+        "location": "设备安装地址"
+      },
+      {
+        "name": "服务器-7",
+        "version": "413",
+        "mac": "7824",
+        "createDate": "18/9/9",
+        "location": "设备安装地址"
+      },
+      {
+        "name": "服务器-8",
+        "version": "413",
+        "mac": "7824",
+        "createDate": "18/9/9",
+        "location": "设备安装地址"
+      }
+    ]
+  }
+}

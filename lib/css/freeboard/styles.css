@@ -2430,3 +2430,32 @@ input:-moz-placeholder, textarea:-moz-placeholder {
     background-size: cover;
 
 }
+
+/* 自定义表格样式 */
+.custom-table {
+}
+
+.custom-table .caption {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.custom-table .table-area {
+    height: 240px;
+    overflow: hidden;
+    border-top: 1px solid #18b6b5;
+    border-bottom: 1px solid #18b6b5;
+}
+
+.custom-table .table-th,
+.custom-table .table-tr {
+    width: 100%;
+    border: 0;
+    text-align: center;
+}
+
+.custom-table .table-th td,
+.custom-table .table-tr td {
+    height: 30px;
+}

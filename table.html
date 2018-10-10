@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Table</title>
+  <link href="lib/css/thirdparty/jquery.gridster.min.css" rel="stylesheet"/>
+  <link href="lib/css/thirdparty/codemirror.css" rel="stylesheet"/>
+  <link href="lib/css/thirdparty/codemirror-ambiance.css" rel="stylesheet"/>
+  <link href="lib/css/freeboard/styles.css" rel="stylesheet"/>
+  <script src="lib/js/thirdparty/jquery.js"></script>
+  <style>
+
+    .custom-table {
+    }
+
+    .custom-table .caption {
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+    }
+
+    .custom-table .table-area {
+      height: 240px;
+      overflow: hidden;
+      border-top: 1px solid #ffffff;
+      border-bottom: 1px solid #ffffff;
+    }
+
+    .custom-table .table-th,
+    .custom-table .table-tr {
+      width: 100%;
+      border: 0;
+      text-align: center;
+    }
+
+    .custom-table .table-th td,
+    .custom-table .table-tr td {
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+<div class="custom-table">
+  <div class="caption">当前警告信息</div>
+  <table class="table-th" cellpadding="0" cellspacing="0">
+    <colgroup>
+      <col style="width:150px"/>
+      <col style="width:150px"/>
+      <col style="width:150px"/>
+      <col style="width:150px"/>
+    </colgroup>
+    <tr>
+      <td>设备</td>
+      <td>设备型号</td>
+      <td>MAC</td>
+      <td>创建时间</td>
+      <td>设备安装地址</td>
+    </tr>
+  </table>
+  <div class="table-area">
+    <table class="table-tr" cellpadding="0" cellspacing="0" id="trCells">
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+<div>
+  <button id="btnAdd">UPDATE</button>
+</div>
+<script>
+  var trObjs = [
+    {
+      "name": "服务器1",
+      "version": "413",
+      "mac": "7868",
+      "createDate": "18/9/9",
+      "location": "设备安装地址"
+    },
+    {
+      "name": "服务器2",
+      "version": "413",
+      "mac": "7824",
+      "createDate": "18/9/9",
+      "location": "设备安装地址"
+    },
+    {
+      "name": "服务器3",
+      "version": "413",
+      "mac": "7824",
+      "createDate": "18/9/9",
+      "location": "设备安装地址"
+    },
+    {
+      "name": "服务器4",
+      "version": "413",
+      "mac": "7824",
+      "createDate": "18/9/9",
+      "location": "设备安装地址"
+    },
+    {
+      "name": "服务器5",
+      "version": "413",
+      "mac": "7824",
+      "createDate": "18/9/9",
+      "location": "设备安装地址"
+    },
+    {
+      "name": "服务器6",
+      "version": "413",
+      "mac": "7824",
+      "createDate": "18/9/9",
+      "location": "设备安装地址"
+    },
+    {
+      "name": "服务器7",
+      "version": "413",
+      "mac": "7824",
+      "createDate": "18/9/9",
+      "location": "设备安装地址"
+    },
+    {
+      "name": "服务器8",
+      "version": "413",
+      "mac": "7824",
+      "createDate": "18/9/9",
+      "location": "设备安装地址"
+    }
+  ];
+  var trs = [
+    '<tr><td>服务器a1</td><td>413</td><td>7868</td><td>18/9/9</td><td>设备安装地址</td></tr>',
+    '<tr><td>服务器2</td><td>413</td><td>7868</td><td>18/9/9</td><td>设备安装地址</td></tr>',
+    '<tr><td>服务器3</td><td>413</td><td>7824</td><td>18/9/9</td><td>设备安装地址</td></tr>',
+    '<tr><td>服务器4</td><td>413</td><td>7824</td><td>18/9/9</td><td>设备安装地址</td></tr>',
+    '<tr><td>服务器5</td><td>413</td><td>7824</td><td>18/9/9</td><td>设备安装地址</td></tr>',
+    '<tr><td>服务器6</td><td>413</td><td>7824</td><td>18/9/9</td><td>设备安装地址</td></tr>',
+    '<tr><td>服务器7</td><td>413</td><td>7824</td><td>18/9/9</td><td>设备安装地址</td></tr>',
+    '<tr><td>服务器8</td><td>413</td><td>7824</td><td>18/9/9</td><td>设备安装地址</td></tr>'
+  ]
+  var $trCells = $('#trCells');
+  var $tbody = $('#trCells tbody');
+  // var $trs = $tbody.find('tr');
+  var len = trs.length, step = 30;
+  var maxTop = (len * step) * 10;
+  var trHtmlStr = trs.join('');
+  $tbody.html(trHtmlStr + trHtmlStr);
+  var begin = 10;
+  var mt = null;
+  runTr();
+
+  function runTr() {
+    mt = setInterval(function () {
+      begin = begin + 3
+      if (begin > maxTop) {
+        clearInterval(mt);
+        begin = 10;
+        $trCells.css({'margin-top': '0px'});
+        runTr();
+      } else {
+        $trCells.css({'margin-top': -(begin / 10) + 'px'});
+      }
+    }, 20);
+  }
+
+  $('#btnAdd').click(function () {
+    trs = [
+      '<tr><td>服务器10</td><td>413</td><td>78680</td><td>18/9/9</td><td>设备安装地址</td></tr>',
+      '<tr><td>服务器20</td><td>413</td><td>78680</td><td>18/9/9</td><td>设备安装地址</td></tr>',
+      '<tr><td>服务器30</td><td>413</td><td>78240</td><td>18/9/9</td><td>设备安装地址</td></tr>',
+      '<tr><td>服务器40</td><td>413</td><td>78240</td><td>18/9/9</td><td>设备安装地址</td></tr>',
+      '<tr><td>服务器50</td><td>413</td><td>78240</td><td>18/9/9</td><td>设备安装地址</td></tr>',
+      '<tr><td>服务器60</td><td>413</td><td>78240</td><td>18/9/9</td><td>设备安装地址</td></tr>',
+      '<tr><td>服务器70</td><td>413</td><td>78240</td><td>18/9/9</td><td>设备安装地址</td></tr>',
+      '<tr><td>服务器80</td><td>413</td><td>78240</td><td>18/9/9</td><td>设备安装地址</td></tr>'
+    ]
+    trHtmlStr = trs.join('');
+    $tbody.html(trHtmlStr + trHtmlStr);
+  });
+  // runTr();
+  // function runTr() {
+  //   var $tbody = $('#trCells tbody');
+  //   var $trs = $tbody.find('tr');
+  //   var len = $trs.length, step = 30;
+  //   var maxTop = -(len * step);
+  //   var trHtmlStr = $tbody.html()
+  //   $tbody.html(trHtmlStr + trHtmlStr);
+  //   $trCells.animate({'margin-top': (maxTop) + 'px'}, (1000 * step), 'linear', function () {
+  //     $trCells.stop().css({'margin-top': '0px'});
+  //     runTr();
+  //   });
+  // }
+
+</script>
+</body>
+</html>
