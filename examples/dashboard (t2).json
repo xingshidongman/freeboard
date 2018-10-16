@@ -1,0 +1,94 @@
+{
+	"version": 1,
+	"allow_edit": true,
+	"plugins": [],
+	"panes": [
+		{
+			"width": 1,
+			"row": {
+				"3": 1,
+				"4": 1
+			},
+			"col": {
+				"3": 1,
+				"4": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "e_charts_radar4",
+					"settings": {
+						"value": "datasources[\"reder\"][\"reder4\"]"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 1,
+				"4": 1
+			},
+			"col": {
+				"3": 3,
+				"4": 4
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "loop-table2",
+					"settings": {
+						"Title": "11",
+						"tableData": "datasources[\"reder\"][\"tableData2\"]",
+						"Height": 5
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 1,
+				"4": 1
+			},
+			"col": {
+				"3": -17,
+				"4": 2
+			},
+			"col_width": 2,
+			"widgets": [
+				{
+					"type": "loop-table2",
+					"settings": {
+						"tableData": "datasources[\"reder\"][\"tableData2\"]",
+						"Height": 5
+					}
+				}
+			]
+		}
+	],
+	"datasources": [
+		{
+			"name": "reder",
+			"type": "JSON",
+			"settings": {
+				"url": "http://localhost:3100/DataSource.json",
+				"use_thingproxy": true,
+				"refresh": 5,
+				"method": "GET",
+				"name": "reder"
+			}
+		},
+		{
+			"name": "table",
+			"type": "JSON",
+			"settings": {
+				"url": "http://localhost:3100/DataSource.json",
+				"use_thingproxy": true,
+				"refresh": 5,
+				"method": "GET"
+			}
+		}
+	],
+	"columns": 4
+}

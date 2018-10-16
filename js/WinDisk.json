@@ -1,0 +1,646 @@
+{
+  "name": "AlarmEvent",
+  "localName": "",
+  "qualifiers": [],
+  "properties": [
+    {
+      "name": "eventId",
+      "localName": "eventId",
+      "qualifiers": [
+        {
+          "name": "Key",
+          "localName": "Key",
+          "value": {
+            "value": true
+          }
+        }
+      ],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": true,
+      "propagated": true,
+      "type": {
+        "type": 8,
+        "refClassName": null
+      },
+      "value": {
+        "value": "80240e74-7adc-48a5-a5ab-d64b238bc1cf"
+      }
+    },
+    {
+      "name": "level",
+      "localName": "level",
+      "qualifiers": [
+        {
+          "name": "Required",
+          "localName": "Required",
+          "value": {
+            "value": true
+          }
+        },
+        {
+          "name": "Values",
+          "localName": "Values",
+          "value": {
+            "value": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          }
+        }
+      ],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 5,
+        "refClassName": null
+      },
+      "value": {
+        "value": 1
+      }
+    },
+    {
+      "name": "alarmStatus",
+      "localName": "alarmStatus",
+      "qualifiers": [
+        {
+          "name": "Required",
+          "localName": "Required",
+          "value": {
+            "value": true
+          }
+        },
+        {
+          "name": "Values",
+          "localName": "Values",
+          "value": {
+            "value": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        }
+      ],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 5,
+        "refClassName": null
+      },
+      "value": {
+        "value": 2
+      }
+    },
+    {
+      "name": "confirmStatus",
+      "localName": "confirmStatus",
+      "qualifiers": [
+        {
+          "name": "Required",
+          "localName": "Required",
+          "value": {
+            "value": true
+          }
+        },
+        {
+          "name": "Values",
+          "localName": "Values",
+          "value": {
+            "value": [
+              1,
+              2
+            ]
+          }
+        }
+      ],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 5,
+        "refClassName": null
+      },
+      "value": {
+        "value": 2
+      }
+    },
+    {
+      "name": "rulePath",
+      "localName": "rulePath",
+      "qualifiers": [
+        {
+          "name": "Required",
+          "localName": "Required",
+          "value": {
+            "value": true
+          }
+        },
+        {
+          "name": "IndexProperty",
+          "localName": "IndexProperty",
+          "value": {
+            "value": null
+          }
+        }
+      ],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 8,
+        "refClassName": null
+      },
+      "value": {
+        "value": "AlarmRule.key=\"GJ20110003\""
+      }
+    },
+    {
+      "name": "moType",
+      "localName": "moType",
+      "qualifiers": [
+        {
+          "name": "Required",
+          "localName": "Required",
+          "value": {
+            "value": true
+          }
+        }
+      ],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 8,
+        "refClassName": null
+      },
+      "value": {
+        "value": "NetworkDevice"
+      }
+    },
+    {
+      "name": "moPath",
+      "localName": "moPath",
+      "qualifiers": [
+        {
+          "name": "Required",
+          "localName": "Required",
+          "value": {
+            "value": true
+          }
+        },
+        {
+          "name": "IndexProperty",
+          "localName": "IndexProperty",
+          "value": {
+            "value": null
+          }
+        },
+        {
+          "name": "MaxLen",
+          "localName": "MaxLen",
+          "value": {
+            "value": 2000
+          }
+        }
+      ],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 8,
+        "refClassName": null
+      },
+      "value": {
+        "value": "NetworkDevice.domain=\"defaultEngine\",uuid=\"0010010c\""
+      }
+    },
+    {
+      "name": "metricType",
+      "localName": "metricType",
+      "qualifiers": [],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 8,
+        "refClassName": null
+      },
+      "value": {
+        "value": "network"
+      }
+    },
+    {
+      "name": "metricName",
+      "localName": "metricName",
+      "qualifiers": [],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 8,
+        "refClassName": null
+      },
+      "value": {
+        "value": "SNMPStatus"
+      }
+    },
+    {
+      "name": "alarmDelay",
+      "localName": "alarmDelay",
+      "qualifiers": [],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 5,
+        "refClassName": null
+      },
+      "value": {
+        "value": 4
+      }
+    },
+    {
+      "name": "recoveryDelay",
+      "localName": "recoveryDelay",
+      "qualifiers": [],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 5,
+        "refClassName": null
+      },
+      "value": {
+        "value": 0
+      }
+    },
+    {
+      "name": "cause",
+      "localName": "cause",
+      "qualifiers": [
+        {
+          "name": "Values",
+          "localName": "Values",
+          "value": {
+            "value": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
+            ]
+          }
+        }
+      ],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 5,
+        "refClassName": null
+      },
+      "value": {
+        "value": 0
+      }
+    },
+    {
+      "name": "alarmTime",
+      "localName": "alarmTime",
+      "qualifiers": [
+        {
+          "name": "Required",
+          "localName": "Required",
+          "value": {
+            "value": true
+          }
+        },
+        {
+          "name": "IndexProperty",
+          "localName": "IndexProperty",
+          "value": {
+            "value": null
+          }
+        }
+      ],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 12,
+        "refClassName": null
+      },
+      "value": {
+        "value": {
+          "dateString": "20180909111202.103000+480",
+          "interval": false
+        }
+      }
+    },
+    {
+      "name": "recoveryTime",
+      "localName": "recoveryTime",
+      "qualifiers": [],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 12,
+        "refClassName": null
+      },
+      "value": {
+        "value": null
+      }
+    },
+    {
+      "name": "confirmTime",
+      "localName": "confirmTime",
+      "qualifiers": [],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 12,
+        "refClassName": null
+      },
+      "value": {
+        "value": null
+      }
+    },
+    {
+      "name": "confirmUser",
+      "localName": "confirmUser",
+      "qualifiers": [],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 8,
+        "refClassName": null
+      },
+      "value": {
+        "value": null
+      }
+    },
+    {
+      "name": "recoveryUser",
+      "localName": "recoveryUser",
+      "qualifiers": [],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 8,
+        "refClassName": null
+      },
+      "value": {
+        "value": null
+      }
+    },
+    {
+      "name": "alarmValue",
+      "localName": "alarmValue",
+      "qualifiers": [],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 8,
+        "refClassName": null
+      },
+      "value": {
+        "value": "NO"
+      }
+    },
+    {
+      "name": "recoveryValue",
+      "localName": "recoveryValue",
+      "qualifiers": [],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 8,
+        "refClassName": null
+      },
+      "value": {
+        "value": null
+      }
+    },
+    {
+      "name": "notifications",
+      "localName": "notifications",
+      "qualifiers": [],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 8,
+        "refClassName": null
+      },
+      "value": {
+        "value": "[\"2\"]"
+      }
+    },
+    {
+      "name": "topMoCategory",
+      "localName": "topMoCategory",
+      "qualifiers": [],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 8,
+        "refClassName": null
+      },
+      "value": {
+        "value": "network"
+      }
+    },
+    {
+      "name": "topMoType",
+      "localName": "topMoType",
+      "qualifiers": [],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 8,
+        "refClassName": null
+      },
+      "value": {
+        "value": "NetworkDevice"
+      }
+    },
+    {
+      "name": "topMoPath",
+      "localName": "topMoPath",
+      "qualifiers": [
+        {
+          "name": "MaxLen",
+          "localName": "MaxLen",
+          "value": {
+            "value": 2000
+          }
+        }
+      ],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 8,
+        "refClassName": null
+      },
+      "value": {
+        "value": "NetworkDevice.domain=\"defaultEngine\",uuid=\"0010010c\""
+      }
+    },
+    {
+      "name": "alarmContext",
+      "localName": "alarmContext",
+      "qualifiers": [
+        {
+          "name": "MaxLen",
+          "localName": "MaxLen",
+          "value": {
+            "value": 255
+          }
+        }
+      ],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 8,
+        "refClassName": null
+      },
+      "value": {
+        "value": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO。"
+      }
+    },
+    {
+      "name": "recoveryContext",
+      "localName": "recoveryContext",
+      "qualifiers": [
+        {
+          "name": "MaxLen",
+          "localName": "MaxLen",
+          "value": {
+            "value": 255
+          }
+        }
+      ],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 8,
+        "refClassName": null
+      },
+      "value": {
+        "value": null
+      }
+    },
+    {
+      "name": "isShow",
+      "localName": "isShow",
+      "qualifiers": [
+        {
+          "name": "Default",
+          "localName": "Default",
+          "value": {
+            "value": "true"
+          }
+        }
+      ],
+      "originClass": "AlarmEvent",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 9,
+        "refClassName": null
+      },
+      "value": {
+        "value": true
+      }
+    },
+    {
+      "name": "createTime",
+      "localName": "createTime",
+      "qualifiers": [],
+      "originClass": "",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 12,
+        "refClassName": null
+      },
+      "value": {
+        "value": {
+          "dateString": "20180909111202.307000+480",
+          "interval": false
+        }
+      }
+    },
+    {
+      "name": "updateTime",
+      "localName": "updateTime",
+      "qualifiers": [],
+      "originClass": "",
+      "overridingProperty": null,
+      "key": false,
+      "propagated": true,
+      "type": {
+        "type": 12,
+        "refClassName": null
+      },
+      "value": {
+        "value": {
+          "dateString": "20180909111202.307000+480",
+          "interval": false
+        }
+      }
+    }
+  ],
+  "children": [],
+  "className": "AlarmEvent",
+  "alias": "",
+  "cimid": "e6dee519-a1cf-4be9-8b4a-3a82772c1aac"
+}
