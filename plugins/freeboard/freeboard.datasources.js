@@ -1360,7 +1360,7 @@
 
 
 
-    //json折线图连接对方接口的测试
+    //json折线图连接对方接口的测试(000000000000000000000000000000000000)
     var json51Datasource = function (settings, updateCallback) {
         var self = this;
         var updateTimer = null;
@@ -1458,6 +1458,7 @@
             function req(values) {
                 $.ajax({
                     async:false,
+                    // http://121.43.229.26:8082/metrics/Metrics.moPath="Line.domain="defaultEngine",uuid="00100259"",name="ifPercent"?fresh=1860
                     url: "http://localhost:8181/camel/rest/ksh/columnrecord",
                     dataType: "JSON",
                     type: "GET",
@@ -1929,7 +1930,7 @@
 
 
 
-    //json柱状图连接对方接口的测试
+    //json柱状图连接对方接口的测试(00000000000000000000000000000000000000)
     var json61Datasource = function (settings, updateCallback) {
         var self = this;
         var updateTimer = null;
@@ -1971,6 +1972,7 @@
             }
             $.ajax({
                 async:false,
+                // http://121.43.229.26:8082/metrics/Metrics.moPath="Line.domain="defaultEngine",uuid="00100259"",name="ifPercent"?fresh=1860
                 url: "http://localhost:8181/camel/rest/ksh/histogramtitle",
                 dataType: "JSON",
                 type: "GET" ,
@@ -2237,7 +2239,10 @@
                     request.setRequestHeader('access_token', access_token);
                 },
                 success: function (data) {
+                    console.log(data)
+                    // var count = Object.keys(data).length;
                     console.log("请求成功");
+                    console.log(count);
                     lockErrorStage = true;
                     //console.log(data);
                     var body= [];
@@ -2457,7 +2462,7 @@
 
 
 
-    //json  pie+bar连接对方接口的测试（右上一）
+    //json  pie+bar连接对方接口的测试（右上一00000000000000000000000000000000000000000）
     var json71Datasource = function (settings, updateCallback) {
         var self = this;
         var updateTimer = null;
@@ -2499,14 +2504,20 @@
             }
             $.ajax({
                 async:false,
-                url: "http://localhost:8181/camel/rest/ksh/warninginfrecord",
-                dataType: "JSON",
+                //http://121.43.229.26:8082/query/mo/AlarmEvent?where=(alarmStatus=2 or alarmStatus=3)&order=alarmTime desc 统计数量
+                // http://121.43.229.26:8082/query/mo/AlarmEvent?where=(alarmStatus=4)&order=alarmTime desc  统计数量
+
+                url: "http://121.43.229.26:8082/query/mo/AlarmEvent?where=(alarmStatus=2 or alarmStatus=3)&order=alarmTime desc",
+                dataType: "jsonp",
+                data:'',
                 type: "GET" ,
+                jsonp:'callback',
                 //headers: {'access_token' : access_token },
                 beforeSend: function(request) {
                     request.setRequestHeader('access_token', access_token);
                 },
                 success: function (data) {
+                    console.log(data);
                     console.log("请求成功");
                     lockErrorStage = true;
                     //console.log(data);
@@ -2607,7 +2618,7 @@
                             "title1": "警告信息",
                             "title2": "处理率\n"+num+"%"
                         });
-                    console.log(body);
+                    // console.log(body);
                     updateCallback(body);//回调函数
                 },
                 error: function (xhr, status, error) {
