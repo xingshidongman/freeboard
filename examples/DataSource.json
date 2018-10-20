@@ -1,6 +1,6 @@
 {
-  "html1": "<table style=\"width:100% ; align:center ;border:0 ; text-align:center; \"><caption height=\"50px\">当前警告信息</caption><tr height=\"30px\"><td>设备</td><td>设备型号</td><td>MAC</td><td>创建时间</td><td>设备安装地址</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td><td>18/9/9</td><td>设备安装地址</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td><td>18/9/9</td><td>设备安装地址</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td><td>18/9/9</td><td>设备安装地址</td></tr></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td><td>18/9/9</td><td>设备安装地址</td></tr></table>",
-  "html2": "<table style=\"width:100% ; align:center ;border:0 ; text-align:center; \"><caption height=\"50px\">骨干线路的实时运行情况</caption><tr height=\"30px\"><td>名称</td><td>总流量</td><td>带宽占用比</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td></tr></table>",
+  "html1": "<table style=\"width:100% ; align:center ;border:0 ; text-align:center; \"><caption height=\"50px\">当前警告信息</caption><tr height=\"30px\"><td>设备名称</td><td>设备类型</td><td>告警描述</td></tr><tr height=\"30px\"><td>服务器1</td><td>NetworkDevice</td><td>09月09日11时12分02秒  \"\n\"检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO</td></tr></table>",
+  "html2": "<table style=\"width:100% ; align:center ;border:0 ; text-align:center; \"><tr >骨干线路的实时运行情况</tr><tr height=\"40px\"><td>名称</td><td>总流量</td><td>带宽占用比</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7868</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td></tr><tr height=\"30px\"><td>服务器1</td><td>413</td><td>7824</td></tr></table>",
   "low": "21",
   "fx": "南风",
   "fl": "微风",
@@ -87,15 +87,15 @@
       "value": 5
     }
   ],
-  "AnnulusRing": [
+  "AnnulusRing2": [
     {
       "smallCircle": [
         {
-          "value": 69,
-          "name": "已处理数"
+          "value": 800,
+          "name": "未处理数"
         },
         {
-          "value": 288,
+          "value": 2345,
           "label": {
             "normal": {
               "show": false
@@ -117,17 +117,26 @@
     {
       "bigCircle": [
         {
-          "value": 80,
-          "name": "警报",
+          "value": 800,
           "itemStyle": {
             "normal": {
               "color": "white"
             }
+          },
+          "label": {
+            "normal": {
+              "show": false
+            }
+          },
+          "labelLine": {
+            "normal": {
+              "show": false
+            }
           }
         },
         {
-          "value": 234,
-          "name": "设备数",
+          "value": 2345,
+          "name": "已处理数",
           "itemStyle": {
             "normal": {
               "color": "#1b414e"
@@ -145,8 +154,8 @@
     },
     {
       "barValue": [
-        4,
-        69,
+        800,
+        2345,
         23
       ]
     },
@@ -164,33 +173,77 @@
       ]
     }
   ],
-  "reder1": [
+  "reder4": [
     {
+      "titie":
+      {
+        "name":"服务器1",
+        "CPULoad":"CPU使用率：19%",
+        "OUsedRatio":"内存使用率：18%",
+        "Uptime":"持续运营时间：\n4小时"
+      },
       "value": [
-        97,
-        52,
-        3.25
+        {
+          "value": [
+            19,
+            18,
+            4
+          ]
+        }
       ]
     },
     {
+      "titie":
+      {
+        "name":"服务器2",
+        "CPULoad":"CPU使用率：93%",
+        "OUsedRatio":"内存使用率：68%",
+        "Uptime":"持续运营时间：\n7小时"
+      },
       "value": [
-        97,
-        52,
-        8
+        {
+          "value": [
+            93,
+            68,
+            7
+          ]
+        }
       ]
     },
     {
+      "titie":
+      {
+        "name":"服务器3",
+        "CPULoad":"CPU使用率：53%",
+        "OUsedRatio":"内存使用率：54%",
+        "Uptime":"持续运营时间：\n7小时"
+      },
       "value": [
-        97,
-        52,
-        1
+        {
+          "value": [
+            53,
+            54,
+            7
+          ]
+        }
       ]
     },
     {
+      "titie":
+      {
+        "name":"服务器4",
+        "CPULoad":"CPU使用率：33%",
+        "OUsedRatio":"内存使用率：78%",
+        "Uptime":"持续运营时间：\n1小时"
+      },
       "value": [
-        97,
-        52,
-        6
+        {
+          "value": [
+            97,
+            52,
+            3.25
+          ]
+        }
       ]
     }
   ],
@@ -352,7 +405,7 @@
       ]
     }
   ],
-  "img":"./img/lou3.png",
+  "img":"项目名称:网络基础设施状况监测系统,项目占地面积:100平方米,地址:吉林省财经大学",
   "NightingaleRoseDiagram":{
 
   },
@@ -397,5 +450,164 @@
     "lValue": ["专线1","专线2"],
     "xAxisName":"线路",
     "titleData":["线路带宽占用比","线路带宽占用比","线路带宽占用比","线路带宽占用比","线路带宽占用比"]
+  },
+  "tableData1": {
+    "title": "当前警告信息",
+    "thead": [
+      {
+        "name": "设备名称",
+        "width": "100px"
+      },
+      {
+        "name": "设备类型",
+        "width": "100px"
+      },
+      {
+        "name": "告警描述",
+        "width": "400px"
+      }
+    ],
+    "data": [
+      {
+        "name": "服务器-1",
+        "version": "413",
+        "location": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO"
+      },
+      {
+        "name": "服务器-2",
+        "version": "413",
+        "location": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO"
+      },
+      {
+        "name": "服务器-31",
+        "version": "413",
+        "location": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO"
+      },
+      {
+        "name": "服务器-44",
+        "version": "413",
+        "location": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO"
+      },
+      {
+        "name": "服务器-15",
+        "version": "413",
+        "location": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO"
+      },
+      {
+        "name": "服务器-16",
+        "version": "413",
+        "location": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO"
+      },
+      {
+        "name": "服务器-7",
+        "version": "413",
+        "location": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO"
+      },
+      {
+        "name": "服务器-8",
+        "version": "413",
+        "location": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO"
+      },
+      {
+        "name": "服务器-8",
+        "version": "413",
+        "location": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO"
+      },
+      {
+        "name": "服务器-8",
+        "version": "413",
+        "location": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO"
+      },
+      {
+        "name": "服务器-8",
+        "version": "413",
+        "location": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO"
+      },
+      {
+        "name": "服务器-8",
+        "version": "413",
+        "location": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO"
+      },
+      {
+        "name": "服务器-8",
+        "version": "413",
+        "location": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO"
+      },
+      {
+        "name": "服务器-8",
+        "version": "413",
+        "location": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO"
+      },
+      {
+        "name": "服务器-8",
+        "version": "413",
+        "location": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO"
+      },
+      {
+        "name": "服务器-8",
+        "version": "413",
+        "location": "09月09日11时12分02秒 检测到10.50.1.12[dormitory_1_middle_e152_2]  SNMP访问状态 触发告警， 当前SNMP访问状态 是 NO"
+      }
+    ]
+  },
+  "tableData2": {
+    "title": "骨干线路的实时运行情况",
+    "thead": [
+      {
+        "name": "设备名称",
+        "width": "100px"
+      },
+      {
+        "name": "总流量",
+        "width": "100px"
+      },
+      {
+        "name": "带宽占用比",
+        "width": "100px"
+      }
+    ],
+    "data": [
+      {
+        "name": "服务器-1",
+        "version": "413",
+        "location": "88"
+      },
+      {
+        "name": "服务器-2",
+        "version": "413",
+        "location": "88"
+      },
+      {
+        "name": "服务器-31",
+        "version": "413",
+        "location": "88"
+      },
+      {
+        "name": "服务器-44",
+        "version": "413",
+        "location": "88"
+      },
+      {
+        "name": "服务器-15",
+        "version": "413",
+        "location": "88"
+      },
+      {
+        "name": "服务器-16",
+        "version": "413",
+        "location": "88"
+      },
+      {
+        "name": "服务器-7",
+        "version": "413",
+        "location": "88"
+      },
+      {
+        "name": "服务器-8",
+        "version": "413",
+        "location": "88"
+      }
+
+    ]
   }
 }

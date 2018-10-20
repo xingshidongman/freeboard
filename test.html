@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/js/thirdparty/jquery.js"></script>
+</head>
+<body>
+<script>
+
+    var access_token= window.sessionStorage.getItem('access_token');
+
+    getData();
+
+    setInterval(function(){
+        getData();
+    },3000);
+
+    function getData(){
+        $.ajax({
+            url: "http://localhost:8181/camel/rest/ksh/warninginfrecord",
+            dataType: "JSON",
+            type: "GET" ,
+            // headers: {'access_token' : access_token },
+            beforeSend: function(request) {
+                request.setRequestHeader('access_token', access_token);
+            },
+            success: function (data) {
+                console.log(data)
+                var obj = JSON.parse(data);
+                console.log("请求成功");
+                console.log(obj)
+            },
+            error: function (xhr, status, error) {
+                console.log("请求失败");
+            }
+        });
+    }
+</script>
+</body>
+</html>

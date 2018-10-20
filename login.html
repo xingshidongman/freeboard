@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/js/thirdparty/jquery.js"></script>
+
+</head>
+<body>
+
+    <script>
+        $.ajax({
+            url:'http://localhost:8181/logout',
+            type:'POST',
+            success:function (data) {
+                console.log('logout success========================')
+                $.ajax({
+                    url: "http://localhost:8181/login.jsp",
+                    type: "POST",
+                    data:{
+                        username:'admin',
+                        password:'123'
+                    },
+                    success:function (data) {
+                        console.log('data:',data);
+                        if(data.success){
+                            window.sessionStorage.setItem('access_token',data.access_token);
+                            window.location.href= './index-dev.html';
+                            // window.location.href= './test.html';
+                        }else{
+                            alert('Error');
+                        }
+                    },
+                    error:function (err) {
+                        console.log('err:',err)
+                    }
+                });
+            }
+        })
+
+    </script>
+</body>
+</html>
