@@ -1095,16 +1095,7 @@
             //获取所有allcookies
             var allcookies = document.cookie;
             var arr=new Array();
-            var access_token="";
-            arr=allcookies.split(";");
-            for(var i=0;i<arr.length;i++){
-                //获取access_token 用于发送ajax请求头
-                if(arr[i].indexOf("access_token"+"=")!=-1){
-                    console.log("access_token的值为："+arr[i].replace("access_token=",""));
-                    access_token=arr[i].replace("access_token=","");
-                }
-            }
-            var resdata;
+            var access_token= window.sessionStorage.getItem('access_token');
             $.ajax({
                 async:false,
                 url: "http://localhost:8181/camel/rest/ksh/linecharttitle",
