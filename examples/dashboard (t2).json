@@ -18,7 +18,7 @@
 				{
 					"type": "e_charts_radar4",
 					"settings": {
-						"value": "datasources[\"reder\"][\"reder4\"]"
+						"value": "datasources[\"12\"]"
 					}
 				}
 			]
@@ -38,8 +38,8 @@
 				{
 					"type": "loop-table2",
 					"settings": {
-						"Title": "11",
-						"tableData": "datasources[\"reder\"][\"tableData2\"]",
+						"Title": "12",
+						"tableData": "datasources[\"13\"]",
 						"Height": 5
 					}
 				}
@@ -69,23 +69,22 @@
 	],
 	"datasources": [
 		{
-			"name": "reder",
-			"type": "JSON",
+			"name": "12",
+			"type": "JSON10",
 			"settings": {
-				"url": "http://localhost:3100/DataSource.json",
+				"url": "12",
 				"use_thingproxy": true,
-				"refresh": 5,
-				"method": "GET",
-				"name": "reder"
+				"refresh": 30,
+				"method": "GET"
 			}
 		},
 		{
-			"name": "table",
-			"type": "JSON",
+			"name": "13",
+			"type": "JSON9",
 			"settings": {
-				"url": "http://localhost:3100/DataSource.json",
+				"url": "13",
 				"use_thingproxy": true,
-				"refresh": 5,
+				"refresh": 30,
 				"method": "GET"
 			}
 		}

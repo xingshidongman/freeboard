@@ -3441,12 +3441,13 @@
             return Number(12)
         }
 
-        this.onSettingsChanged(settings);
+
         this.onDispose = function () {
             console.log('[Test] onDispose');
             $tableTr.stop();
             // clearInterval(mt);
         }
+        this.onSettingsChanged(settings);
     };
     freeboard.loadWidgetPlugin({
         "type_name": "loop-table2",

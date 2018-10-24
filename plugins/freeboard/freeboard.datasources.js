@@ -2561,7 +2561,8 @@
 
 
 
-    //未完
+    //骨干路线实时运行情况
+
     var json9Datasource = function (settings, updateCallback) {
         var self = this;
         var updateTimer = null;
@@ -2592,18 +2593,10 @@
             //获取所有allcookies
             var allcookies = document.cookie;
             var arr=new Array();
-            var access_token="";
-            arr=allcookies.split(";");
-            for(var i=0;i<arr.length;i++){
-                //获取access_token 用于发送ajax请求头
-                if(arr[i].indexOf("access_token"+"=")!=-1){
-                    console.log("access_token的值为："+arr[i].replace("access_token=",""));
-                    access_token=arr[i].replace("access_token=","");
-                }
-            }
+            var access_token= window.sessionStorage.getItem('access_token');
             $.ajax({
                 async:false,
-                url: "http://localhost:8181/camel/rest/ksh/managementobjectrecord",
+                url: "http://localhost:8181/camel/rest/ksh/runsits/test",
                 dataType: "JSON",
                 type: "GET" ,
                 //headers: {'access_token' : access_token },
@@ -2612,105 +2605,10 @@
                 },
                 success: function (data) {
                     console.log("请求成功");
-                    lockErrorStage = true;
-                    //console.log(data);
-                    var body= [];
-                    var warningnum;
-                    var handlenum;
-                    var unhandlenum;
-                    for(var key in data){
-                        if(key=="data"){
-                            var values=data[key][0];
-                            for(var value in values){
-                                if(value=="warningnum") {
-                                    warningnum=values[value];
-                                }else if(value=="handlenum"){
-                                    handlenum=values[value];
-                                    unhandlenum=warningnum-handlenum;
-                                }
-                            }
-                        }
-                    }
-
-                    var num=((handlenum/warningnum).toPrecision(2))*100;
-                    body.push(
-                        {
-                            "smallCircle": [
-                                {
-                                    "value": unhandlenum,
-                                    "name": "未处理数"
-                                },
-                                {
-                                    "value": handlenum,
-                                    "label": {
-                                        "normal": {
-                                            "show": false
-                                        }
-                                    },
-                                    "labelLine": {
-                                        "normal": {
-                                            "show": false
-                                        }
-                                    },
-                                    "itemStyle": {
-                                        "normal": {
-                                            "color": "rgba(0,0,0,0)"
-                                        }
-                                    }
-                                }
-                            ]
-                        },
-                        {
-                            "bigCircle": [
-                                {
-                                    "value": unhandlenum,
-                                    "itemStyle": {
-                                        "normal": {
-                                            "color": "white"
-                                        }
-                                    },
-                                    "label": {
-                                        "normal": {
-                                            "show": false
-                                        }
-                                    },
-                                    "labelLine": {
-                                        "normal": {
-                                            "show": false
-                                        }
-                                    }
-                                },
-                                {
-                                    "value": handlenum,
-                                    "name": "已处理数",
-                                    "itemStyle": {
-                                        "normal": {
-                                            "color": "#1b414e"
-                                        }
-                                    }
-                                }
-                            ]
-                        },
-                        {
-                            "barName": [
-                                "未处理数",
-                                "已处理数",
-                                "设备警报占比"
-                            ]
-                        },
-                        {
-                            "barValue": [
-                                unhandlenum,
-                                handlenum,
-                                num
-                            ]
-                        },
-                        {
-                            "title1": "警告信息",
-                            "title2": "处理率\n"+num+"%"
-                        });
-                    console.log(body);
-                    updateCallback(body);//回调函数
+                    var obj = JSON.parse(data);
+                    console.log("请求成功");
+                    console.log(obj)
+                    updateCallback(obj);//回调函数
                 },
                 error: function (xhr, status, error) {
                     console.log("请求失败");
@@ -2831,7 +2729,168 @@
 
 
 
+   // 雷达
+    var json10Datasource = function (settings, updateCallback) {
+        var self = this;
+        var updateTimer = null;
+        var currentSettings = settings;
+        var errorStage = 0; 	// 0 =尝试标准请求
+        // 1 =尝试JSONP
+        // 2 =尝试thingproxy.freeboard.io
+        var lockErrorStage = false;
+        function updateRefresh(refreshTime) {
+            if (updateTimer) {
+                clearInterval(updateTimer);
+            }
+            updateTimer = setInterval(function () {
+                self.updateNow();
+            }, refreshTime);
+        }
+        updateRefresh(currentSettings.refresh * 1000);
+        this.updateNow = function () {
+            if ((errorStage > 1 && !currentSettings.use_thingproxy) || errorStage > 2) // We've tried everything, let's quit
+            {
+                return; // TODO: Report an error
+            }
+            var requestURL = currentSettings.url;
 
+            if (errorStage == 2 && currentSettings.use_thingproxy) {
+                requestURL = (location.protocol == "https:" ? "https:" : "http:") + "//thingproxy.freeboard.io/fetch/" + encodeURI(currentSettings.url);
+            }
+            //获取所有allcookies
+            var allcookies = document.cookie;
+            var arr=new Array();
+            var access_token= window.sessionStorage.getItem('access_token');
+            $.ajax({
+                async:false,
+                url: "http://localhost:8181/camel/rest/ksh/realtime/test",
+                dataType: "JSON",
+                type: "GET" ,
+                //headers: {'access_token' : access_token },
+                beforeSend: function(request) {
+                    request.setRequestHeader('access_token', access_token);
+                },
+                success: function (data) {
+                    console.log("请求成功");
+                    console.log(data);
+                    var obj = JSON.parse(data);
+                    console.log("请求成功");
+                    console.log(obj)
+                    updateCallback(obj);//回调函数
+                },
+                error: function (xhr, status, error) {
+                    console.log("请求失败");
+                    if (!lockErrorStage) {
+                        // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
+                        errorStage++;
+                        self.updateNow();
+                    }
+                }
+            });
+        }
+
+        this.onDispose = function () {
+            clearInterval(updateTimer);
+            updateTimer = null;
+        }
+
+        this.onSettingsChanged = function (newSettings) {
+            lockErrorStage = false;
+            errorStage = 0;
+
+            currentSettings = newSettings;
+            updateRefresh(currentSettings.refresh * 1000);
+            self.updateNow();
+        }
+    };
+    //加载数据源插件
+    freeboard.loadDatasourcePlugin({
+        // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
+        type_name: "JSON10",
+        settings: [
+            {
+                name: "url",
+                display_name: "URL",
+                // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
+                type: "text"
+            },
+            {
+                // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
+                name: "use_thingproxy",
+                // ** display_name **：调整此设置时将向用户显示的漂亮名称。
+                display_name: "Try thingproxy",
+                // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
+                description: 'A direct JSON connection will be tried first, if that fails, a JSONP connection will be tried. If that fails, you can use thingproxy, which can solve many connection problems to APIs. <a href="https://github.com/Freeboard/thingproxy" target="_blank">More information</a>.',
+                // ** type **（必需）：此设置的预期输入类型
+                type: "boolean",
+                // ** default_value **：此设置的默认值。
+                default_value: true
+            },
+            {
+                name: "refresh",
+                display_name: "Refresh Every",
+                type: "number",
+                // ** suffix **：后缀。
+                suffix: "seconds",
+                default_value: 5
+            },
+            {
+                name: "method",
+                display_name: "Method",
+                // ** type **（必需）：option代表这是一个下拉选
+                type: "option",
+                options: [
+                    {
+                        name: "GET",
+                        value: "GET"
+                    },
+                    {
+                        name: "POST",
+                        value: "POST"
+                    },
+                    {
+                        name: "PUT",
+                        value: "PUT"
+                    },
+                    {
+                        name: "DELETE",
+                        value: "DELETE"
+                    }
+                ]
+            },
+            {
+                name: "body",
+                display_name: "Body",
+                type: "text",
+                description: "The body of the request. Normally only used if method is POST"
+            },
+            {
+                name: "headers",
+                display_name: "Headers",
+                // ** type **（必需）：array代表这是一个数组
+                type: "array",
+                settings: [
+                    {
+                        name: "name",
+                        display_name: "Name",
+                        type: "text"
+                    },
+                    {
+                        name: "value",
+                        display_name: "Value",
+                        type: "text"
+                    }
+                ]
+            }
+        ],
+        // ** newInstance（settings，newInstanceCallback，updateCallback）**（必需）：在请求此插件的新实例时将调用的函数。
+        // * ** settings **：具有用户设置的初始设置的javascript对象。对象中属性的名称将对应于上面定义的设置名称。
+        // * ** newInstanceCallback **：当插件的新实例准备就绪时您将调用的回调函数。此函数需要一个参数，它是插件对象的新实例。
+        // * ** updateCallback **：一个回调函数，如果您的数据源具有重新计算的干舷更新，您将调用该函数。此函数需要单个参数，该参数是具有新的更新数据的javascript对象。你应该坚持这个参考，并在需要时调用它。
+        newInstance: function (settings, newInstanceCallback, updateCallback) {
+            newInstanceCallback(new json10Datasource(settings, updateCallback));
+        }
+    });
 
 
 
