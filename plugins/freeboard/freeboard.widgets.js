@@ -162,21 +162,18 @@
         var self = this;
 
         var currentSettings = settings;
-        var displayElement = $('<div class="tw-display"></div>');
-        var titleElement = $('<h2 class="section-title tw-title tw-td"></h2>');
-        var valueElement = $('<div class="tw-value"></div>');
-        var unitsElement = $('<div class="tw-unit"></div>');
-        var sparklineElement = $('<div class="tw-sparkline tw-td"></div>');
+        var displayElement =
 
-        function updateValueSizing() {
-            if (!_.isUndefined(currentSettings.units) && currentSettings.units != "") // If we're displaying our units
-            {
-                valueElement.css("max-width", (displayElement.innerWidth() - unitsElement.outerWidth(true)) + "px");
+
+            function updateValueSizing() {
+                if (!_.isUndefined(currentSettings.units) && currentSettings.units != "") // If we're displaying our units
+                {
+                    valueElement.css("max-width", (displayElement.innerWidth() - unitsElement.outerWidth(true)) + "px");
+                }
+                else {
+                    valueElement.css("max-width", "100%");
+                }
             }
-            else {
-                valueElement.css("max-width", "100%");
-            }
-        }
 
         this.render = function (element) {
             $(element).empty();
@@ -846,8 +843,6 @@
     freeboard.addStyle('.gm-style-cc a', "text-shadow:none;");
 
 
-
-
     var googleMapWidget = function (settings) {
         var self = this;
         var currentSettings = settings;
@@ -1033,12 +1028,10 @@
     //freeboard.addStyle('.html-widget', "white-space:normal;width:100%;height:100%;background-image:url(./img/chang.png);background-size: 620px 250px;background-position: 0 -100px;");
 
 
-
-
     //第一张图的表格(已废弃)
     var htmlWidget = function (settings) {
         var self = this;
-        var htmlElement = $('<div class="html-widget" style="height: 200px;padding-top:20px"></div>');
+        var htmlElement = $('<div class="html-widget" style="height: 200px;padding-top:20px">123</div>');
         var currentSettings = settings;
 
         this.render = function (element) {
@@ -1145,14 +1138,6 @@
             newInstanceCallback(new html2Widget(settings));
         }
     });
-
-
-
-
-
-
-
-
 
 
     // 自定义组件
@@ -1264,20 +1249,6 @@
             newInstanceCallback(new eChartsLineWidget(settings));
         }
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     // 自定义组件 LineMore动图(折线图自写)
@@ -1533,13 +1504,6 @@
     });
 
 
-
-
-
-
-
-
-
     // 自定义组件 Bar动图(柱图自写)
     var eChartsBarActiveWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
@@ -1782,10 +1746,6 @@
     });
 
 
-
-
-
-
     // 自定义组件 annulus（圆环图自己写的  智能统计图   右下）
     var eChartsAnnulusWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
@@ -1871,11 +1831,6 @@
             newInstanceCallback(new eChartsAnnulusWidget(settings));
         }
     });
-
-
-
-
-
 
 
 //  自定义组件AnnulusRing2（嵌套环形图+bar图自己写的 目前用的   右上）
@@ -2126,10 +2081,6 @@
             newInstanceCallback(new eChartsAnnulusRing2Widget(settings));
         }
     });
-
-
-
-
 
 
     // 自定义组件 Radar4（4单个雷达图 目前使用的图）
@@ -2659,11 +2610,6 @@
     });
 
 
-
-
-
-
-
     /*
 
 
@@ -2872,10 +2818,6 @@
       */
 
 
-
-
-
-
     //自定义组件 NightingaleRoseDiagram（面积图   右中）
     var eChartsNightingaleRoseDiagramWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
@@ -2967,9 +2909,6 @@
             newInstanceCallback(new eChartsNightingaleRoseDiagramWidget(settings));
         }
     });
-
-
-
 
 
     /*
@@ -3103,9 +3042,6 @@
        */
 
 
-
-
-
     //第一张图的表格（带滚动效果）
     var LoopTableWidget = function (settings) {
         console.log('[Test] LoopTableWidget', settings);
@@ -3152,9 +3088,10 @@
                 //数据总的长度   在外面定义了
                 //var len = 16;
                 //走完一个格子的时间
-                var ti =100;
+                var ti = 100;
                 var maxTop = $tableTr.height() / 2;
                 runTr();
+
                 function runTr() {
                     $tableTr.animate({'margin-top': -(maxTop) + 'px'}, (step * len * ti), 'linear', function () {
                         $tableTr.stop().css({'margin-top': '0px'});
@@ -3163,6 +3100,7 @@
                 }
             }
         }
+
         this.onCalculatedValueChanged = function (settingName, newValue) {
             console.log('[Test] onCalculatedValueChanged:', settingName);
             var value = newValue;
@@ -3295,8 +3233,6 @@
     });
 
 
-
-
     //第二张图的表格（带滚动效果）
     var LoopTableWidget2 = function (settings) {
         console.log('[Test] LoopTableWidget', settings);
@@ -3345,7 +3281,7 @@
                 var ti = 80;
                 var maxTop = $tableTr.height() / 2;
 
-                console.log("run中的len:"+len);
+                console.log("run中的len:" + len);
                 runTr();
 
                 function runTr() {
@@ -3383,7 +3319,7 @@
                     _trs.push('<tr>' + _tds.join('') + '</tr>');
                 });
                 //我在这个地方 把len设置为_trs的长度不直达对不对
-                len=_trs.length;
+                len = _trs.length;
                 console.log(len);
 
                 if ($tableTr) {
@@ -3483,7 +3419,86 @@
     });
 
 
+    var FloorWidget = function (settings) {
+        var self = this;
+        var htmlElement = $('<div class="html-widget">' +
+            '<button id="add" class="add">添加</button>' +
+            '<button id="save" class="add">保存</button>' +
+            '<div id="diagramContainer">' +
+            '<div id="item_a" class="item1 my-item jtk-endpoint-anchor jtk-connected jtk-draggable"><img src="tongxin.png"><div>通信中心</div></div>' +
+            '</div>' +
+            '<div id="div1"></div>'+
+            '</div>');
 
+
+        var currentSettings = settings;
+
+        this.render = function (element) {
+            console.log('render')
+            htmlElement.css({height: (currentSettings.Height * 64) + 'px'});
+            $(element).append(htmlElement);
+            $('#diagramContainer').html(currentSettings.HTML)
+            floorReady();
+        }
+
+        this.onSettingsChanged = function (newSettings) {
+            console.log('onSettingsChanged')
+            currentSettings = newSettings;
+            console.log('currentSettings', currentSettings)
+            // setTimeout(function () {
+            //     $('#diagramContainer').html(currentSettings.HTML)
+            // },500);
+        }
+
+        this.onCalculatedValueChanged = function (settingName, newValue) {
+            if (settingName == "html") {
+                //console.log(newValue);
+                // htmlElement.html(newValue);
+            }
+        }
+
+        this.onDispose = function () {
+        }
+
+        this.getHeight = function () {
+            return Number(currentSettings.Height);
+            // return Number(3.5);
+        }
+
+        this.onSettingsChanged(settings);
+    };
+    freeboard.loadWidgetPlugin({
+        "type_name": "floor-widget",
+        "display_name": "FloorWidget",
+        "fill_size": true,
+        "settings": [
+            {
+                name: "Title",
+                display_name: "标题",
+                "type": "text"
+            },
+            {
+                "name": "HTML",
+                "display_name": "表格数据",
+                "type": "calculated",
+                "description": "可以是文本HTML，也可以是输出HTML的javascript。"
+            },
+            {
+                name: "Height",
+                display_name: "高度",
+                type: "text",
+                default_value: 10
+            },
+            {
+                name: "include_legend",
+                display_name: "Include Legend",
+                type: "boolean"
+            }
+        ],
+        newInstance: function (settings, newInstanceCallback) {
+            newInstanceCallback(new FloorWidget(settings));
+        }
+    });
 
 
 }());

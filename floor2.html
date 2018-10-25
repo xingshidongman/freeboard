@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        #diagramContainer {
+            padding: 20px;
+            width: 620px;
+            height: 762px;
+            border: 1px solid gray;
+            position: relative;
+            background-color: black;
+        }
+        .item1{
+            /*background: url('tongxin.png') no-repeat;*/
+            background-size: 100% 100%;
+            position: absolute;
+            top: 80%;
+            left: 45%;
+            height: 65px;
+            width: 65px;
+            color: #fff;
+        }
+        .item2{
+            /*background: url('lou.png') no-repeat;*/
+            background-size: 100% 100%;
+            position: absolute;
+            color: #fff;
+            height: 75px;
+            width: 70px;
+        }
+        .add{
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<div contenteditable="true">aaaaa</div>
+<div id="diagramContainer">
+    <div id="item_a" class="item1 my-item jtk-endpoint-anchor jtk-connected jtk-draggable" style="left: 257px; top: 502px;"><img
+            src="tongxin.png">
+        <div>通信中心</div>
+    </div>
+    <button id="add" class="add">添加</button>
+    <div class="item2 my-item jtk-endpoint-anchor jtk-connected jtk-draggable" id="item_0" style="left: 100px; top: 0px;"><img
+            src="lou.png">
+        <div>教学楼0</div>
+    </div>
+    <div class="jtk-endpoint jtk-endpoint-anchor jtk-draggable jtk-droppable"
+         style="position: absolute; height: 2.2px; width: 2.2px; left: 268.9px; top: 500.9px;">
+        <svg style="position:absolute;left:0px;top:0px" width="2.2" height="2.2" pointer-events="all"
+             position="absolute" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="1.1" cy="1.1" r="0.1" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="transparent"
+                    stroke="#15B3B3" style="" stroke-width="1"></circle>
+        </svg>
+    </div>
+    <div class="jtk-endpoint jtk-endpoint-anchor jtk-draggable jtk-droppable"
+         style="position: absolute; height: 2.2px; width: 2.2px; left: 133.9px; top: 73.9px;">
+        <svg style="position:absolute;left:0px;top:0px" width="2.2" height="2.2" pointer-events="all"
+             position="absolute" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="1.1" cy="1.1" r="0.1" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="transparent"
+                    stroke="#15B3B3" style="" stroke-width="1"></circle>
+        </svg>
+    </div>
+    <div class="item2 my-item jtk-endpoint-anchor jtk-connected jtk-draggable" id="item_1" style="left: 200px; top: 0px;"><img
+            src="lou.png">
+        <div>教学楼1</div>
+    </div>
+    <svg style="position:absolute;left:127px;top:67.5px" width="151" height="442.5" pointer-events="none"
+         position="absolute" version="1.1" xmlns="http://www.w3.org/2000/svg" class="jtk-connector">
+        <path d="M 135 427.5 L 135 396.5 M 135 397.5 L 135 213 M 135.5 213.5 L -0.5 213.5 M 0 214 L 0 29.5 M 0 30 L 0 0 "
+              transform="translate(8,7.5)" pointer-events="visibleStroke" version="1.1"
+              xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#15B3B3" style="" stroke-width="5"></path>
+    </svg>
+    <div class="jtk-endpoint jtk-endpoint-anchor jtk-draggable jtk-droppable"
+         style="position: absolute; height: 2.2px; width: 2.2px; left: 281.9px; top: 500.9px;">
+        <svg style="position:absolute;left:0px;top:0px" width="2.2" height="2.2" pointer-events="all"
+             position="absolute" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="1.1" cy="1.1" r="0.1" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="transparent"
+                    stroke="#15B3B3" style="" stroke-width="1"></circle>
+        </svg>
+    </div>
+    <div class="jtk-endpoint jtk-endpoint-anchor jtk-draggable jtk-droppable"
+         style="position: absolute; height: 2.2px; width: 2.2px; left: 233.9px; top: 73.9px;">
+        <svg style="position:absolute;left:0px;top:0px" width="2.2" height="2.2" pointer-events="all"
+             position="absolute" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="1.1" cy="1.1" r="0.1" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="transparent"
+                    stroke="#15B3B3" style="" stroke-width="1"></circle>
+        </svg>
+    </div>
+    <div class="item2 my-item jtk-endpoint-anchor jtk-connected jtk-draggable" id="item_2" style="left: 300px; top: 0px;"><img
+            src="lou.png">
+        <div>教学楼2</div>
+    </div>
+    <svg style="position:absolute;left:227px;top:67.5px" width="64" height="442.5" pointer-events="none"
+         position="absolute" version="1.1" xmlns="http://www.w3.org/2000/svg" class="jtk-connector">
+        <path d="M 48 427.5 L 48 396.5 M 48 397.5 L 48 213 M 48.5 213.5 L -0.5 213.5 M 0 214 L 0 29.5 M 0 30 L 0 0 "
+              transform="translate(8,7.5)" pointer-events="visibleStroke" version="1.1"
+              xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#15B3B3" style="" stroke-width="5"></path>
+    </svg>
+    <div class="jtk-endpoint jtk-endpoint-anchor jtk-draggable jtk-droppable"
+         style="position: absolute; height: 2.2px; width: 2.2px; left: 294.9px; top: 500.9px;">
+        <svg style="position:absolute;left:0px;top:0px" width="2.2" height="2.2" pointer-events="all"
+             position="absolute" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="1.1" cy="1.1" r="0.1" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="transparent"
+                    stroke="#15B3B3" style="" stroke-width="1"></circle>
+        </svg>
+    </div>
+    <div class="jtk-endpoint jtk-endpoint-anchor jtk-draggable jtk-droppable"
+         style="position: absolute; height: 2.2px; width: 2.2px; left: 333.9px; top: 73.9px;">
+        <svg style="position:absolute;left:0px;top:0px" width="2.2" height="2.2" pointer-events="all"
+             position="absolute" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="1.1" cy="1.1" r="0.1" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="transparent"
+                    stroke="#15B3B3" style="" stroke-width="1"></circle>
+        </svg>
+    </div>
+    <div class="item2 my-item jtk-endpoint-anchor jtk-connected jtk-draggable" id="item_3" style="left: 400px; top: 0px;"><img
+            src="lou.png">
+        <div>教学楼3</div>
+    </div>
+    <svg style="position:absolute;left:288px;top:67.5px" width="55" height="442.5" pointer-events="none"
+         position="absolute" version="1.1" xmlns="http://www.w3.org/2000/svg" class="jtk-connector">
+        <path d="M 0 427.5 L 0 396.5 M 0 397.5 L 0 213 M -0.5 213.5 L 39.5 213.5 M 39 214 L 39 29.5 M 39 30 L 39 0 "
+              transform="translate(8,7.5)" pointer-events="visibleStroke" version="1.1"
+              xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#15B3B3" style="" stroke-width="5"></path>
+    </svg>
+    <div class="jtk-endpoint jtk-endpoint-anchor jtk-draggable jtk-droppable"
+         style="position: absolute; height: 2.2px; width: 2.2px; left: 307.9px; top: 500.9px;">
+        <svg style="position:absolute;left:0px;top:0px" width="2.2" height="2.2" pointer-events="all"
+             position="absolute" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="1.1" cy="1.1" r="0.1" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="transparent"
+                    stroke="#15B3B3" style="" stroke-width="1"></circle>
+        </svg>
+    </div>
+    <div class="jtk-endpoint jtk-endpoint-anchor jtk-draggable jtk-droppable"
+         style="position: absolute; height: 2.2px; width: 2.2px; left: 433.9px; top: 73.9px;">
+        <svg style="position:absolute;left:0px;top:0px" width="2.2" height="2.2" pointer-events="all"
+             position="absolute" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="1.1" cy="1.1" r="0.1" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="transparent"
+                    stroke="#15B3B3" style="" stroke-width="1"></circle>
+        </svg>
+    </div>
+    <svg style="position:absolute;left:301px;top:67.5px" width="142" height="442.5" pointer-events="none"
+         position="absolute" version="1.1" xmlns="http://www.w3.org/2000/svg" class="jtk-connector">
+        <path d="M 0 427.5 L 0 396.5 M 0 397.5 L 0 213 M -0.5 213.5 L 126.5 213.5 M 126 214 L 126 29.5 M 126 30 L 126 0 "
+              transform="translate(8,7.5)" pointer-events="visibleStroke" version="1.1"
+              xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#15B3B3" style="" stroke-width="5"></path>
+    </svg>
+</div>
+
+<div id="div1"></div>
+</body>
+</html>
