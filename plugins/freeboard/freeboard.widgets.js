@@ -3421,11 +3421,15 @@
 
     var FloorWidget = function (settings) {
         var self = this;
-        var htmlElement = $('<div class="html-widget">' +
+        var htmlElement = $('<div class="html-widget" id="htmlWidget">' +
             '<button id="add" class="add">添加</button>' +
             '<button id="save" class="add">保存</button>' +
             '<div id="diagramContainer">' +
-            '<div id="item_a" class="item1 my-item jtk-endpoint-anchor jtk-connected jtk-draggable"><img src="tongxin.png"><div>通信中心</div></div>' +
+            '<div id="item_a" class="item1 my-item"><img src="tongxin.png"><div class="editdiv" contenteditable="true">通信中心</div></div>'+
+            '<div id="item_b" class="abcd my-item" style="left: 100px;"><img src="tongxin.png"><div contenteditable="true">电信1</div></div>'+
+            '<div id="item_c" class="abcd my-item" style="left: 200px;"><img src="tongxin.png"><div contenteditable="true">电信2</div></div>'+
+            '<div id="item_d" class="abcd my-item" style="left: 360px;"><img src="tongxin.png"><div contenteditable="true">联通1</div></div>'+
+            '<div id="item_e" class="abcd my-item" style="left: 460px;"><img src="tongxin.png"><div contenteditable="true">联通2</div></div>'+
             '</div>' +
             '<div id="div1"></div>'+
             '</div>');
@@ -3439,6 +3443,9 @@
             $(element).append(htmlElement);
             $('#diagramContainer').html(currentSettings.HTML)
             floorReady();
+            $('#htmlWidget').on("click", "div[contenteditable='true']",function(){
+                $(this).focus();
+            });
         }
 
         this.onSettingsChanged = function (newSettings) {

@@ -107,8 +107,8 @@
             /*background: url('tongxin.png') no-repeat;*/
             background-size: 100% 100%;
             position: absolute;
-            top: 80%;
-            left: 45%;
+            top: 480px;
+            left: 280px;
             height: 65px;
             width: 65px;
             color: #fff;
@@ -121,16 +121,32 @@
             color: #fff;
             height: 75px;
             width: 70px;
+            text-align: center;
         }
 
-        /*.add {*/
-        /*position: absolute;*/
-        /*bottom: 0;*/
-        /*}*/
+        .add {
+            border: 1px solid #15B3B3;
+            background-color: #000;
+            color: #15B3B3;
+            user-select:none;
+            opacity: 0.3;
+        }
+        .add:hover{
+            opacity: 1;
+        }
+
         #div1{
             display: none;
             position: absolute;
             z-index: -1;
+        }
+        .abcd{
+            position: absolute;
+            top: 580px;
+            height: 65px;
+            width: 65px;
+            color: #fff;
+            text-align: center
         }
     </style>
 </head>
@@ -313,45 +329,48 @@
                 jsPlumb.connect({
                     // anchor:[ "Perimeter", { sh ape:"Square", anchorCount:150 } ],
                     // anchor: ['Top','Right'],
-                    anchor: ["Continuous", {faces: ["top", "left", "right", "bottom"]}],
+                    // anchor:["Continuous",{faces:["top","left","right","bottom"]}],
+                    anchor: ['Top', 'Bottom'],
                     source: i,
                     target: j,
                     connector: ['Flowchart'],
+                    // connector: ['Bezier'],
                     connectionsDetachable: false,
-                    endpointStyle: {
-                        fill: 'transparent', stroke: '#15B3B3', radius: 0.1,
-                        strokeWidth: 1
-                    },
-                    paintStyle: {stroke: '#15B3B3', strokeWidth: 5},
-                    endpointHoverStyle: {
-                        fill: '#1565C0', stroke: '#1565C0', radius: 1,
-                        strokeWidth: 1
-                    },
-                    endpoint: "Dot"
+                    endpointStyle: {fill: 'transparent', stroke: '#15B3B3', radius: 0.1,
+                        strokeWidth: 1},
+                    paintStyle: { stroke: '#15B3B3', strokeWidth: 3 },
+                    endpointHoverStyle: {fill: '#1565C0', stroke: '#1565C0', radius: 1,
+                        strokeWidth: 1},
+                    endpoint:"Dot",
 
                 })
-                jsPlumb.draggable(i)
-                jsPlumb.draggable(j)
+                jsPlumb.draggable(i,{containment: 'parent',grid: [20, 20]})
+                jsPlumb.draggable(j,{containment: 'parent',grid: [20, 20]})
             }
-
-            Connect('item_a', 'item_0');
-            Connect('item_a', 'item_1');
-            Connect('item_a', 'item_2');
+            var num = $('.item2').length
+            for (let a=0;a<=num;a++){
+                var id = 'item_'+ a
+                Connect(item_a,id)
+            }
+            console.log(num)
+            Connect(item_b,item_a);
+            Connect(item_c,item_a);
+            Connect(item_d,item_a);
+            Connect(item_e,item_a);
             var btn = document.getElementById('add');
-            var num = 0;
             btn.onclick = function () {
 
                 var div = document.createElement('div');
-                div.innerHTML = '<img src="lou.png"><div>' + '教学楼' + num + '</div>';
+                div.innerHTML = '<img src="lou.png"><div contenteditable = "true">' + '教学楼' + num + '</div>';
                 if (parseInt(num / 5) > 0) {
-                    div.style.left = num % 5 * 100 + 100 + 'px';
+                    div.style.left = num % 5 * 100 + 80 + 'px';
                     div.style.top = parseInt(num / 5) * 100 + 'px'
                 } else {
-                    div.style.left = num * 100 + 100 + 'px';
+                    div.style.left = num * 100 + 80 + 'px';
                     div.style.top = 0
                 }
                 // console.log()
-                div.className = 'item2';
+                div.className = 'item2 my-item';
                 div.id = 'item_' + num;
                 var back = document.getElementById("diagramContainer");
                 back.insertBefore(div, back.lastChild);
