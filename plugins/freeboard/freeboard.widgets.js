@@ -1255,7 +1255,7 @@
     var eChartsLineMoreActiveWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
         var htmlElement = $('<div class="custom-widget">' +
-            '<div class="custom-wrapper" id="' + thisGaugeID + '"style="height:250px"></div>' +
+            '<div class="custom-wrapper" id="' + thisGaugeID + '"style="height:300px"></div>' +
             '</div>');
         var currentSettings = settings;
         var option = {
@@ -1279,8 +1279,9 @@
                 // backgroundColor: '#000000',//背景色
                 grid: {
                     width: '70%',
+                    height: '40%',
                     left: 'center',
-                    bottom: '30%'
+                    bottom: '25%'
                 },
                 legend: {
                     data: [],
@@ -1290,7 +1291,7 @@
                         fontSize: 10,
                     },
                     left: 'center',
-                    y: 35
+                    y: 40
                 },
                 title: {
                     y: 15,
@@ -1305,6 +1306,7 @@
                 tooltip: {
                     trigger: 'axis'
                 },
+                // color:'#ff1323',
                 xAxis: {
                     //设置坐标轴名称的文本类型
                     nameTextStyle: {
@@ -1339,6 +1341,8 @@
                     },
                 },
                 yAxis: {
+                    min:0,
+                    max:50,
                     //坐标轴的名称 距离轴线的距离
                     nameGap: 10,
                     //设置y轴坐标名称旋转
@@ -1367,7 +1371,7 @@
                         fontFamily: 'Microsoft YaHei'
                     },
                     nameLocation: 'start',
-                    type: 'value',
+                    type: 'value',// Y轴的定义
                 },
                 series: [
                     {
@@ -1401,39 +1405,33 @@
         };
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var result = newValue;
-
-            var pList;
-            var dataList;
-            var dataList2;
-            var xAxisData;
-            var yAxisName;
-            var yAxisMax;
-            var xAxisName;
-            var titleData;
-            var lValue;
-
-            for (var key in result) {
-                if (key == "yAxis") {
-                    yAxisName = result[key].name;
-                    yAxisMax = result[key].max;
-                } else if (key == "xAxisName") {
-                    xAxisName = result[key];
-                } else if (key == "pList") {
-                    pList = result[key];
-                } else if (key == "dataList") {
-                    dataList = result[key];
-                } else if (key == "dataList2") {
-                    dataList2 = result[key];
-                } else if (key == "xAxisData") {
-                    xAxisData = result[key];
-                } else if (key == "titleData") {
-                    titleData = result[key];
-                } else if (key == "lValue") {
-                    lValue = result[key];
-                }
-            }
-            //console.log(dataList);
+            var yAxisName = result["yAxis"].name;
+            var yAxisMax = result["yAxis"].max;
+            var xAxisName = result["xAxisName"];
+            var pList = result["pList"];
+            var xAxisData = result["xAxisData"];
+            var titleData = result["titleData"];
+            var lValue = result["lValue"];
             var dataMap = {};
+
+            for(let i=1;i<=result.lValue.length;i++){
+                var DL = "dataList"+i;
+                var dataList = result[DL]
+                dataMap[i-1] = dataFormatter(dataList);
+            }
+            for(var j=0; j < titleData.length; j++){
+                option.options[j] = {series: [], title: {}};
+                for(var z=0;z<=result.lValue.length-1;z++){
+                    option.options[j].series.push({
+                        name: lValue[z],
+                        data: dataMap[z][j],
+                        type: "line"
+                    });
+                }
+                option.options[j].title.text = titleData[j];
+            }
+
+
 
             function dataFormatter(obj) {
                 var temp;
@@ -1450,24 +1448,8 @@
                 return obj;
             }
 
-            dataMap.dataGDP = dataFormatter(dataList);
-            dataMap.dataQ = dataFormatter(dataList2);
-            for (var i = 0; i < titleData.length; i++) {
-                option.options[i] = {series: [], title: {}};
-                option.options[i].series.push({
-                    name: lValue[0],
-                    data: dataMap.dataGDP[i],
-                    type: "line"
-                });
-                option.options[i].series.push({
-                    name: lValue[1],
-                    data: dataMap.dataQ[i],
-                    type: "line"
-                });
-                option.options[i].title.text = titleData[i];
-            }
             option.baseOption.legend.data = lValue,
-                option.baseOption.xAxis.data = xAxisData;
+            option.baseOption.xAxis.data = xAxisData;
             option.baseOption.yAxis.name = yAxisName;
             option.baseOption.yAxis.max = yAxisMax;
             option.baseOption.xAxis.name = xAxisName;
@@ -1480,7 +1462,7 @@
         };
 
         this.getHeight = function () {
-            return Number(3.5)
+            return Number(4.5)
         };
 
         this.onSettingsChanged(settings);
@@ -1502,6 +1484,9 @@
             newInstanceCallback(new eChartsLineMoreActiveWidget(settings));
         }
     });
+
+
+
 
 
     // 自定义组件 Bar动图(柱图自写)
@@ -1533,7 +1518,7 @@
                 grid: {
                     width: '70%',
                     left: 'center',
-                    bottom: '35%'
+                    bottom: '30%'
                 },
                 title: {
                     y: 15,
@@ -1657,30 +1642,31 @@
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var result = newValue;
 
-            var pList;
-            var dataList;
-            var xAxisData;
-            var yAxisName;
-            var yAxisMax;
-            var xAxisName;
-            var titleData;
+            var pList = result['pList'];
+            var dataList  = result['dataList'];
+            var xAxisData = result['xAxisData'];
+            var yAxisName= result['yAxis'].name;
+            var yAxisMax = result['yAxis'].max;
+            var xAxisName =  result['xAxisName'];
+            var titleData =  result['titleData'];
 
-            for (var key in result) {
-                if (key == "yAxis") {
-                    yAxisName = result[key].name;
-                    yAxisMax = result[key].max;
-                } else if (key == "xAxisName") {
-                    xAxisName = result[key];
-                } else if (key == "pList") {
-                    pList = result[key];
-                } else if (key == "dataList") {
-                    dataList = result[key];
-                } else if (key == "xAxisData") {
-                    xAxisData = result[key];
-                } else if (key == "titleData") {
-                    titleData = result[key];
-                }
-            }
+            // for (var key in result) {
+            //     if (key == "yAxis") {
+            //         yAxisName = result[key].name;
+            //         yAxisMax = result[key].max;
+            //     } else if (key == "xAxisName") {
+            //         xAxisName = result[key];
+            //     } else if (key == "pList") {
+            //         pList = result[key];
+            //
+            //     } else if (key == "dataList") {
+            //         dataList = result[key];
+            //     } else if (key == "xAxisData") {
+            //         xAxisData = result[key];
+            //     } else if (key == "titleData") {
+            //         titleData = result[key];
+            //     }
+            // }
             //console.log(dataList);
             var dataMap = {};
 
@@ -3436,7 +3422,7 @@
 
 
         var currentSettings = settings;
-
+        console.log('currentSettings', currentSettings)
         this.render = function (element) {
             console.log('render')
             htmlElement.css({height: (currentSettings.Height * 64) + 'px'});
@@ -3452,15 +3438,15 @@
             console.log('onSettingsChanged')
             currentSettings = newSettings;
             console.log('currentSettings', currentSettings)
-            // setTimeout(function () {
-            //     $('#diagramContainer').html(currentSettings.HTML)
-            // },500);
+            setTimeout(function () {
+                $('#diagramContainer').html(currentSettings.HTML)
+            },500);
         }
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
             if (settingName == "html") {
                 //console.log(newValue);
-                // htmlElement.html(newValue);
+                htmlElement.html(newValue);
             }
         }
 

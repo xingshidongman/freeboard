@@ -389,16 +389,16 @@
             $div1.children().appendTo('#diagramContainer');
 
             console.log('floorHtml', floorHtml)
-            // $.ajax({
-            //     url: "",
-            //     method: 'POST',
-            //     data: {
-            //         html: floorHtml
-            //     },
-            //     success: function () {
-            //
-            //     }
-            // })
+            $.ajax({
+                url: "http://localhost:8181/camel/rest/ksh/building",
+                method: 'POST',
+                data: {
+                    html: floorHtml
+                },
+                success: function () {
+                    console.log(666)
+                }
+            })
         })
     }
 </script>
