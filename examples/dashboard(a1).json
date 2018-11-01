@@ -49,7 +49,7 @@
 			"width": 1,
 			"row": {
 				"3": 1,
-				"4": 19
+				"4": 21
 			},
 			"col": {
 				"3": 1,
@@ -107,7 +107,7 @@
 			"width": 1,
 			"row": {
 				"3": 19,
-				"4": 1
+				"4": 21
 			},
 			"col": {
 				"3": 1,
@@ -118,7 +118,7 @@
 				{
 					"type": "e_charts_BarActive",
 					"settings": {
-						"value": "datasources[\"s\"][\"barActive\"]"
+						"value": "datasources[\"66\"]"
 					}
 				}
 			]
@@ -127,7 +127,7 @@
 			"width": 1,
 			"row": {
 				"3": 19,
-				"4": 19
+				"4": 21
 			},
 			"col": {
 				"3": 2,
@@ -138,8 +138,8 @@
 				{
 					"type": "loop-table",
 					"settings": {
-						"Title": "df",
-						"tableData": "datasources[\"sd\"][\"tableData1\"]",
+						"Title": "12",
+						"tableData": "datasources[\"1212\"]",
 						"Height": 5
 					}
 				}
@@ -149,7 +149,7 @@
 			"width": 1,
 			"row": {
 				"3": 28,
-				"4": 21,
+				"4": 1,
 				"5": 28
 			},
 			"col": {
@@ -184,35 +184,6 @@
 		{
 			"name": "11",
 			"type": "JSON11",
-			"settings": {
-				"url": "http://localhost:3100/DataSource1.json",
-				"use_thingproxy": true,
-				"refresh": 5,
-				"method": "GET"
-			}
-		},
-		{
-			"name": "bar",
-			"type": "JSON3",
-			"settings": {
-				"use_thingproxy": true,
-				"refresh": 5,
-				"method": "GET"
-			}
-		},
-		{
-			"name": "sd",
-			"type": "JSON",
-			"settings": {
-				"url": "http://localhost:3100/DataSource_Table.json",
-				"use_thingproxy": true,
-				"refresh": 5,
-				"method": "GET"
-			}
-		},
-		{
-			"name": "123",
-			"type": "JSON81",
 			"settings": {
 				"url": "http://localhost:3100/DataSource1.json",
 				"use_thingproxy": true,
@@ -267,6 +238,26 @@
 				"url": "55",
 				"use_thingproxy": true,
 				"refresh": 30,
+				"method": "GET"
+			}
+		},
+		{
+			"name": "66",
+			"type": "JSON6",
+			"settings": {
+				"url": "66",
+				"use_thingproxy": true,
+				"refresh": 31,
+				"method": "GET"
+			}
+		},
+		{
+			"name": "1212",
+			"type": "JSON12",
+			"settings": {
+				"url": "1212",
+				"use_thingproxy": true,
+				"refresh": 21,
 				"method": "GET"
 			}
 		}

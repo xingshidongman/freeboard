@@ -1098,49 +1098,24 @@
             var access_token= window.sessionStorage.getItem('access_token');
             $.ajax({
                 async:false,
-                url: "http://localhost:8181/camel/rest/ksh/linecharttitle",
+                url: "http://localhost:8181/camel/rest/ksh/linechartrequest/test",
                 dataType: "JSON",
-                type: "GET" ,
-                //headers: {'access_token' : access_token },
+                type: "GET",
+                // data: body,
                 beforeSend: function(request) {
                     request.setRequestHeader('access_token', access_token);
                     //request.setRequestHeader("access_token", access_token);
                     //console.log(data);
                 },
-                //xhrFields: {
-                //    withCredentials: true
-                //},
-                //crossDomain: true,
-                //console.log();
-                success: function (data) {
-                    console.log("第一次请求请求成功");
-                    console.log(data);
-                    lockErrorStage = true;
-                    var  values=[];
-                    var title;
-                    var axisname;
-                    for(var key in data){
-                        if(key=="data"){
-                            var data1=data[key];
-                            var data2=data1[0];
-                            for(var value in data2){
-                                if(value =="title"){
-                                    console.log(data2[value]);
-                                    title=data2[value];
-                                }else if(value =="axisname"){
-                                    console.log(data2[value]);
-                                    axisname=data2[value];
-                                }
-                            }
-                        }
-                    }
-                    values.push(title);
-                    values.push(axisname);
-                    //updateCallback(data);
-                    req(values);
+                success: function (data2) {
+                    console.log("第二次请求成功");
+                    console.log(data2);
+                    var obj = JSON.parse(data2);
+                    console.log(obj);
+
+                    updateCallback(obj);
                 },
                 error: function (xhr, status, error) {
-                    console.log("请求失败");
                     if (!lockErrorStage) {
                         // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
                         errorStage++;
@@ -1148,36 +1123,7 @@
                     }
                 }
             });
-            //定义第二次发送的ajax请求
-            function req(values) {
-                $.ajax({
-                    async:false,
-                    url: "http://localhost:8181/camel/rest/ksh/linechartrequest/test",
-                    dataType: "JSON",
-                    type: "GET",
-                    // data: body,
-                    beforeSend: function(request) {
-                        request.setRequestHeader('access_token', access_token);
-                        //request.setRequestHeader("access_token", access_token);
-                        //console.log(data);
-                    },
-                    success: function (data2) {
-                        console.log("第二次请求成功");
-                        console.log(data2);
-                        var obj = JSON.parse(data2);
-                        console.log(obj);
 
-                        updateCallback(obj);
-                    },
-                    error: function (xhr, status, error) {
-                        if (!lockErrorStage) {
-                            // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
-                            errorStage++;
-                            self.updateNow();
-                        }
-                    }
-                });
-            }
         }
 
         this.onDispose = function () {
@@ -1290,294 +1236,6 @@
 
 
 
-    //json折线图连接对方接口的测试(000000000000000000000000000000000000)
-    var json51Datasource = function (settings, updateCallback) {
-        var self = this;
-        var updateTimer = null;
-        var currentSettings = settings;
-        var errorStage = 0; 	// 0 =尝试标准请求
-        // 1 =尝试JSONP
-        // 2 =尝试thingproxy.freeboard.io
-        var lockErrorStage = false;
-        function updateRefresh(refreshTime) {
-            if (updateTimer) {
-                clearInterval(updateTimer);
-            }
-            updateTimer = setInterval(function () {
-                self.updateNow();
-            }, refreshTime);
-        }
-        updateRefresh(currentSettings.refresh * 1000);
-        this.updateNow = function () {
-            if ((errorStage > 1 && !currentSettings.use_thingproxy) || errorStage > 2) // We've tried everything, let's quit
-            {
-                return; // TODO: Report an error
-            }
-            var requestURL = currentSettings.url;
-
-            if (errorStage == 2 && currentSettings.use_thingproxy) {
-                requestURL = (location.protocol == "https:" ? "https:" : "http:") + "//thingproxy.freeboard.io/fetch/" + encodeURI(currentSettings.url);
-            }
-            //获取所有allcookies
-            var allcookies = document.cookie;
-            var arr=new Array();
-            var access_token="";
-            arr=allcookies.split(";");
-            for(var i=0;i<arr.length;i++){
-                //获取access_token 用于发送ajax请求头
-                if(arr[i].indexOf("access_token"+"=")!=-1){
-                    console.log("access_token的值为："+arr[i].replace("access_token=",""));
-                    access_token=arr[i].replace("access_token=","");
-                }
-            }
-            var resdata;
-            $.ajax({
-                async:false,
-                url: "http://localhost:8181/camel/rest/ksh/linecharttitle",
-                dataType: "JSON",
-                type: "GET" ,
-                //headers: {'access_token' : access_token },
-                beforeSend: function(request) {
-                    request.setRequestHeader('access_token', access_token);
-                    //request.setRequestHeader("access_token", access_token);
-                    //console.log(data);
-                },
-
-                //xhrFields: {
-                //    withCredentials: true
-                //},
-                //crossDomain: true,
-                //console.log();
-                success: function (data) {
-                    console.log("第一次请求请求成功");
-                    console.log(data);
-                    lockErrorStage = true;
-                    var  values=[];
-                    var title;
-                    var axisname;
-                    for(var key in data){
-                        if(key=="data"){
-                            var data1=data[key];
-                            var data2=data1[0];
-                            for(var value in data2){
-                                if(value =="title"){
-                                    console.log(data2[value]);
-                                    title=data2[value];
-                                }else if(value === "axisname"){
-                                    console.log(data2[value]);
-                                    axisname=data2[value];
-                                }
-                            }
-                        }
-                    }
-                    values.push(title);
-                    values.push(axisname);
-                    //updateCallback(data);
-                    req(values);
-                },
-                error: function (xhr, status, error) {
-                    console.log("请求失败");
-                    if (!lockErrorStage) {
-                        // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
-                        errorStage++;
-                        self.updateNow();
-                    }
-                }
-            });
-            //定义第二次发送的ajax请求
-            function req(values) {
-                $.ajax({
-                    async:false,
-                    // http://121.43.229.26:8082/metrics/Metrics.moPath="Line.domain="defaultEngine",uuid="00100259"",name="ifPercent"?fresh=1860
-                    url: "http://localhost:8181/camel/rest/ksh/columnrecord",
-                    dataType: "JSON",
-                    type: "GET",
-                    // data: body,
-                    beforeSend: function(request) {
-                        request.setRequestHeader('access_token', access_token);
-                        //request.setRequestHeader("access_token", access_token);
-                        //console.log(data);
-                    },
-                    success: function (data2) {
-                        console.log("第二次请求成功");
-                        console.log(data2);
-                        /*
-                        var dataList={};
-                        for(var key in data2){
-                            if(key=="data"){
-                                var data1=data[key];
-                                for(var i=0;i<data1.length;i++){
-                                    var values=data1[i];
-                                    for(var key in values){
-                                        if(key==value){
-
-                                        }
-                                    }
-                                    dataList={
-                                        "0":[45,39,10,42,39,80,36],
-                                        "1":[60,31,84,35,30,66,31],
-                                        "2":[50,25,69,28,23,60,26],
-                                        "3":[45,21,61,14,57,24,36],
-                                        "4":[90,10,70,70,57,24,36]
-                                    }
-                                }
-                            }
-                        }
-                        */
-                        lockErrorStage = true;
-                        data2={
-                            "pList":["线1","线2","线3","线4","线5"],
-                            "dataList":{
-                                "0":[45],
-                                "1":[45,31],
-                                "2":[45,31,69],
-                                "3":[45,31,69,14],
-                                "4":[45,31,69,14,57]
-                            },
-                            "dataList2":{
-                                "0":[12],
-                                "1":[12,12],
-                                "2":[12,12,22],
-                                "3":[12,12,22,12],
-                                "4":[12,12,22,12,12]
-                            },
-                            "xAxisData": [ "1","2","3","4","5"],
-                            "yAxis": {
-                                "name": "占用比",
-                                "max": 100
-                            },
-                            "lValue": ["专线1","专线2"],
-                            "xAxisName":"线路",
-                            "titleData":["线路带宽占用比","线路带宽占用比","线路带宽占用比","线路带宽占用比","线路带宽占用比"]
-                        }
-                        var titleData=[values[0],values[0],values[0],values[0],values[0]];
-                        data2.titleData=titleData;
-                        data2.yAxis={"name":values[1]};
-                        console.log(data2);
-                        //在此处应该对两次请求返回的数据进行处理 因还不清楚返回的数据都有什么 所以还未做处理
-                        //updateCallback(resdata);
-                        //resdata=data2;
-
-                        updateCallback(data2);
-                    },
-                    error: function (xhr, status, error) {
-                        if (!lockErrorStage) {
-                            // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
-                            errorStage++;
-                            self.updateNow();
-                        }
-                    }
-                });
-            }
-        }
-
-        this.onDispose = function () {
-            clearInterval(updateTimer);
-            updateTimer = null;
-        }
-
-        this.onSettingsChanged = function (newSettings) {
-            lockErrorStage = false;
-            errorStage = 0;
-
-            currentSettings = newSettings;
-            updateRefresh(currentSettings.refresh * 1000);
-            self.updateNow();
-        }
-    };
-    //加载数据源插件
-    freeboard.loadDatasourcePlugin({
-        // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON51",
-        settings: [
-            {
-                name: "url",
-                display_name: "URL",
-                // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
-                type: "text"
-            },
-            {
-                // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
-                name: "use_thingproxy",
-                // ** display_name **：调整此设置时将向用户显示的漂亮名称。
-                display_name: "Try thingproxy",
-                // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
-                description: 'A direct JSON connection will be tried first, if that fails, a JSONP connection will be tried. If that fails, you can use thingproxy, which can solve many connection problems to APIs. <a href="https://github.com/Freeboard/thingproxy" target="_blank">More information</a>.',
-                // ** type **（必需）：此设置的预期输入类型
-                type: "boolean",
-                // ** default_value **：此设置的默认值。
-                default_value: true
-            },
-            {
-                name: "refresh",
-                display_name: "Refresh Every",
-                type: "number",
-                // ** suffix **：后缀。
-                suffix: "seconds",
-                default_value: 5
-            },
-            {
-                name: "method",
-                display_name: "Method",
-                // ** type **（必需）：option代表这是一个下拉选
-                type: "option",
-                options: [
-                    {
-                        name: "GET",
-                        value: "GET"
-                    },
-                    {
-                        name: "POST",
-                        value: "POST"
-                    },
-                    {
-                        name: "PUT",
-                        value: "PUT"
-                    },
-                    {
-                        name: "DELETE",
-                        value: "DELETE"
-                    }
-                ]
-            },
-            {
-                name: "body",
-                display_name: "Body",
-                type: "text",
-                description: "The body of the request. Normally only used if method is POST"
-            },
-            {
-                name: "headers",
-                display_name: "Headers",
-                // ** type **（必需）：array代表这是一个数组
-                type: "array",
-                settings: [
-                    {
-                        name: "name",
-                        display_name: "Name",
-                        type: "text"
-                    },
-                    {
-                        name: "value",
-                        display_name: "Value",
-                        type: "text"
-                    }
-                ]
-            }
-        ],
-        // ** newInstance（settings，newInstanceCallback，updateCallback）**（必需）：在请求此插件的新实例时将调用的函数。
-        // * ** settings **：具有用户设置的初始设置的javascript对象。对象中属性的名称将对应于上面定义的设置名称。
-        // * ** newInstanceCallback **：当插件的新实例准备就绪时您将调用的回调函数。此函数需要一个参数，它是插件对象的新实例。
-        // * ** updateCallback **：一个回调函数，如果您的数据源具有重新计算的干舷更新，您将调用该函数。此函数需要单个参数，该参数是具有新的更新数据的javascript对象。你应该坚持这个参考，并在需要时调用它。
-        newInstance: function (settings, newInstanceCallback, updateCallback) {
-            newInstanceCallback(new json51Datasource(settings, updateCallback));
-        }
-    });
-
-
-
-
-
 
 
     //json柱状图连接后台的测试
@@ -1611,135 +1269,24 @@
             //获取所有allcookies
             var allcookies = document.cookie;
             var arr=new Array();
-            var access_token="";
-            arr=allcookies.split(";");
-            for(var i=0;i<arr.length;i++){
-                //获取access_token 用于发送ajax请求头
-                if(arr[i].indexOf("access_token"+"=")!=-1){
-                    console.log("access_token的值为："+arr[i].replace("access_token=",""));
-                    access_token=arr[i].replace("access_token=","");
-                }
-            }
-            $.ajax({
-                async:false,
-                url: "http://localhost:8181/camel/rest/ksh/histogramtitle",
-                dataType: "JSON",
-                type: "GET" ,
-                //headers: {'access_token' : access_token },
-                beforeSend: function(request) {
-                    request.setRequestHeader('access_token', access_token);
-                    //request.setRequestHeader("access_token", access_token);
-                    //console.log(data);
-                },
-
-                //xhrFields: {
-                //    withCredentials: true
-                //},
-                //crossDomain: true,
-                //console.log();
-                success: function (data) {
-                    console.log("第一次请求请求成功");
-                    console.log(data);
-                    lockErrorStage = true;
-                    var  values=[];
-                    var title;
-                    var axisname;
-                    for(var key in data){
-                        if(key=="data"){
-                            var data1=data[key];
-                            var data2=data1[0];
-                            for(var value in data2){
-                                if(value =="title"){
-                                    console.log(data2[value]);
-                                    title=data2[value];
-                                }else if(value =="axisname"){
-                                    console.log(data2[value]);
-                                    axisname=data2[value];
-                                }
-                            }
-                        }
-                    }
-                    values.push(title);
-                    values.push(axisname);
-                    //updateCallback(data);
-                    req(values);
-                    //updateCallback(data);//回调函数
-                },
-                error: function (xhr, status, error) {
-                    console.log("第一次请求失败");
-                    if (!lockErrorStage) {
-                        // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
-                        errorStage++;
-                        self.updateNow();
-                    }
-                }
-            });
-            //定义第二次发送的ajax请求
-            function req(ajax1) {
+            var access_token= window.sessionStorage.getItem('access_token');
                 $.ajax({
                     async:false,
-                    url: "http://localhost:8181/camel/rest/ksh/columnrecord",
+                    url: "http://localhost:8181/camel/rest/ksh/linechartrequest/getColumnValue",
                     dataType: "JSON",
                     type: "GET",
                     // data: body,
                     beforeSend: function(request) {
-                        request.setRequestHeader('access_token', access_token1);
+                        request.setRequestHeader('access_token', access_token);
                         //request.setRequestHeader("access_token", access_token);
                         //console.log(data);
                     },
                     success: function (data) {
-                        lockErrorStage = true;
-                        console.log("第二次请求成功");
-                        console.log(data.data);
-                        var pList=[];
-                        var xAxisData=[];
-                        var dataList={
-                            "0":[],
-                            "1":[],
-                            "2":[],
-                            "3":[],
-                            "4":[]
-                        };
-                        for(var i=0;i<data.data.length;i++){
-                            var values=data.data[i];
-                            for(var key in values){
-                                if(key=="name"){
-                                    pList.push(values[key]);
-                                    if(i%2==1){
-                                        xAxisData.push(values[key]);
-                                    }else{
-                                        xAxisData.push("\n"+values[key]);
-                                    }
-                                }else if(key=="data"){
-                                    var value=values[key];
-                                    for(var j=0;j<value.length;j++){
-                                        dataList[j].push(value[j].value);
-                                        //dataList.j.push(value[j].value);
-                                        console.log("线路"+i+"的第"+j+"的值为");
-                                        console.log(value[j].value);
-                                        console.log(value[j].creationDate);
-                                    }
-                                }
-                            }
-                        }
-                        console.log("datalist的值为");
-                        console.log(dataList);
+                        console.log(data)
+                        // lockErrorStage = true;
+                        var obj = JSON.parse(data);
 
-                        var body={
-                            "pList":pList,
-                            "dataList":dataList,
-                            "xAxisData": xAxisData,
-                            "xAxisName":"线路",
-                        }
-                        var titleData=[ajax1[0],ajax1[0],ajax1[0],ajax1[0],ajax1[0]];
-                        body.titleData=titleData;
-                        body.yAxis={"name":ajax1[1]};
-                        console.log(body);
-                        //在此处应该对两次请求返回的数据进行处理 因还不清楚返回的数据都有什么 所以还未做处理
-                        //updateCallback(resdata);
-                        //resdata=data2;
-
-                        updateCallback(body);
+                        updateCallback(obj);
                     },
                     error: function (xhr, status, error) {
                         console.log("第二次请求失败");
@@ -1750,7 +1297,6 @@
                         }
                     }
                 });
-            }
         }
 
         this.onDispose = function () {
@@ -1859,262 +1405,6 @@
 
 
 
-
-    //json柱状图连接对方接口的测试(00000000000000000000000000000000000000)
-    var json61Datasource = function (settings, updateCallback) {
-        var self = this;
-        var updateTimer = null;
-        var currentSettings = settings;
-        var errorStage = 0; 	// 0 =尝试标准请求
-        // 1 =尝试JSONP
-        // 2 =尝试thingproxy.freeboard.io
-        var lockErrorStage = false;
-        function updateRefresh(refreshTime) {
-            if (updateTimer) {
-                clearInterval(updateTimer);
-            }
-            updateTimer = setInterval(function () {
-                self.updateNow();
-            }, refreshTime);
-        }
-        updateRefresh(currentSettings.refresh * 1000);
-        this.updateNow = function () {
-            if ((errorStage > 1 && !currentSettings.use_thingproxy) || errorStage > 2) // We've tried everything, let's quit
-            {
-                return; // TODO: Report an error
-            }
-            var requestURL = currentSettings.url;
-
-            if (errorStage == 2 && currentSettings.use_thingproxy) {
-                requestURL = (location.protocol == "https:" ? "https:" : "http:") + "//thingproxy.freeboard.io/fetch/" + encodeURI(currentSettings.url);
-            }
-            //获取所有allcookies
-            var allcookies = document.cookie;
-            var arr=new Array();
-            var access_token="";
-            arr=allcookies.split(";");
-            for(var i=0;i<arr.length;i++){
-                //获取access_token 用于发送ajax请求头
-                if(arr[i].indexOf("access_token"+"=")!=-1){
-                    console.log("access_token的值为："+arr[i].replace("access_token=",""));
-                    access_token=arr[i].replace("access_token=","");
-                }
-            }
-            $.ajax({
-                async:false,
-                // http://121.43.229.26:8082/metrics/Metrics.moPath="Line.domain="defaultEngine",uuid="00100259"",name="ifPercent"?fresh=1860
-                url: "http://localhost:8181/camel/rest/ksh/histogramtitle",
-                dataType: "JSON",
-                type: "GET" ,
-                //headers: {'access_token' : access_token },
-                beforeSend: function(request) {
-                    request.setRequestHeader('access_token', access_token);
-                    //request.setRequestHeader("access_token", access_token);
-                    //console.log(data);
-                },
-
-                //xhrFields: {
-                //    withCredentials: true
-                //},
-                //crossDomain: true,
-                //console.log();
-                success: function (data) {
-                    console.log("第一次请求请求成功");
-                    console.log(data);
-                    lockErrorStage = true;
-                    var  values=[];
-                    var title;
-                    var axisname;
-                    for(var key in data){
-                        if(key=="data"){
-                            var data1=data[key];
-                            var data2=data1[0];
-                            for(var value in data2){
-                                if(value =="title"){
-                                    console.log(data2[value]);
-                                    title=data2[value];
-                                }else if(value =="axisname"){
-                                    console.log(data2[value]);
-                                    axisname=data2[value];
-                                }
-                            }
-                        }
-                    }
-                    values.push(title);
-                    values.push(axisname);
-                    //updateCallback(data);
-                    req(values);
-                    //updateCallback(data);//回调函数
-                },
-                error: function (xhr, status, error) {
-                    console.log("第一次请求失败");
-                    if (!lockErrorStage) {
-                        // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
-                        errorStage++;
-                        self.updateNow();
-                    }
-                }
-            });
-            //定义第二次发送的ajax请求
-            function req(ajax1) {
-                $.ajax({
-                    async:false,
-                    url: "http://localhost:8181/camel/rest/ksh/histogramrequest",
-                    dataType: "JSON",
-                    type: "GET",
-                    // data: body,
-                    beforeSend: function(request) {
-                        request.setRequestHeader('access_token', access_token);
-                    },
-                    success: function (data) {
-                        lockErrorStage = true;
-                        console.log("第二次请求成功");
-                        console.log(data);
-                        var datas=data.data;
-                        for(var i=0;i<datas.length;i++){
-                            var uuid= datas[i].uuid;
-                            var field=datas[i].field;
-                            console.log(uuid);
-                            console.log(field);
-                            $.ajax({
-                                async:false,
-                                url:  "http://121.43.229.26:8082/metrics/Metrics.moPath=Line.domain=defaultEngine,uuid="+uuid+",name="+field+"?fresh=1860",
-                                dataType: "JSON",
-                                type: "GET",
-                                // data: body,
-                                success: function (data) {
-                                    lockErrorStage = true;
-                                    console.log("请求接口数据成功");
-                                    console.log(data);
-                                },
-                                error: function (xhr, status, error) {
-                                    console.log("请求接口失败");
-                                    if (!lockErrorStage) {
-                                        // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
-                                        errorStage++;
-                                        self.updateNow();
-                                    }
-                                }
-                            });
-
-                        }
-
-                        updateCallback();
-                    },
-                    error: function (xhr, status, error) {
-                        console.log("第二次请求失败");
-                        if (!lockErrorStage) {
-                            // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
-                            errorStage++;
-                            self.updateNow();
-                        }
-                    }
-                });
-            }
-        }
-
-        this.onDispose = function () {
-            clearInterval(updateTimer);
-            updateTimer = null;
-        }
-
-        this.onSettingsChanged = function (newSettings) {
-            lockErrorStage = false;
-            errorStage = 0;
-
-            currentSettings = newSettings;
-            updateRefresh(currentSettings.refresh * 1000);
-            self.updateNow();
-        }
-    };
-    //加载数据源插件
-    freeboard.loadDatasourcePlugin({
-        // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON61",
-        settings: [
-            {
-                name: "url",
-                display_name: "URL",
-                // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
-                type: "text"
-            },
-            {
-                // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
-                name: "use_thingproxy",
-                // ** display_name **：调整此设置时将向用户显示的漂亮名称。
-                display_name: "Try thingproxy",
-                // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
-                description: 'A direct JSON connection will be tried first, if that fails, a JSONP connection will be tried. If that fails, you can use thingproxy, which can solve many connection problems to APIs. <a href="https://github.com/Freeboard/thingproxy" target="_blank">More information</a>.',
-                // ** type **（必需）：此设置的预期输入类型
-                type: "boolean",
-                // ** default_value **：此设置的默认值。
-                default_value: true
-            },
-            {
-                name: "refresh",
-                display_name: "Refresh Every",
-                type: "number",
-                // ** suffix **：后缀。
-                suffix: "seconds",
-                default_value: 5
-            },
-            {
-                name: "method",
-                display_name: "Method",
-                // ** type **（必需）：option代表这是一个下拉选
-                type: "option",
-                options: [
-                    {
-                        name: "GET",
-                        value: "GET"
-                    },
-                    {
-                        name: "POST",
-                        value: "POST"
-                    },
-                    {
-                        name: "PUT",
-                        value: "PUT"
-                    },
-                    {
-                        name: "DELETE",
-                        value: "DELETE"
-                    }
-                ]
-            },
-            {
-                name: "body",
-                display_name: "Body",
-                type: "text",
-                description: "The body of the request. Normally only used if method is POST"
-            },
-            {
-                name: "headers",
-                display_name: "Headers",
-                // ** type **（必需）：array代表这是一个数组
-                type: "array",
-                settings: [
-                    {
-                        name: "name",
-                        display_name: "Name",
-                        type: "text"
-                    },
-                    {
-                        name: "value",
-                        display_name: "Value",
-                        type: "text"
-                    }
-                ]
-            }
-        ],
-        // ** newInstance（settings，newInstanceCallback，updateCallback）**（必需）：在请求此插件的新实例时将调用的函数。
-        // * ** settings **：具有用户设置的初始设置的javascript对象。对象中属性的名称将对应于上面定义的设置名称。
-        // * ** newInstanceCallback **：当插件的新实例准备就绪时您将调用的回调函数。此函数需要一个参数，它是插件对象的新实例。
-        // * ** updateCallback **：一个回调函数，如果您的数据源具有重新计算的干舷更新，您将调用该函数。此函数需要单个参数，该参数是具有新的更新数据的javascript对象。你应该坚持这个参考，并在需要时调用它。
-        newInstance: function (settings, newInstanceCallback, updateCallback) {
-            newInstanceCallback(new json61Datasource(settings, updateCallback));
-        }
-    });
 
 
 
@@ -2675,6 +1965,7 @@
 
 
 
+
    // 雷达
     var json10Datasource = function (settings, updateCallback) {
         var self = this;
@@ -3006,6 +2297,175 @@
 
 
 
+
+
+
+
+    //告警信息列表
+    var json12Datasource = function (settings, updateCallback) {
+        var self = this;
+        var updateTimer = null;
+        var currentSettings = settings;
+        var errorStage = 0; 	// 0 =尝试标准请求
+        // 1 =尝试JSONP
+        // 2 =尝试thingproxy.freeboard.io
+        var lockErrorStage = false;
+        function updateRefresh(refreshTime) {
+            if (updateTimer) {
+                clearInterval(updateTimer);
+            }
+            updateTimer = setInterval(function () {
+                self.updateNow();
+            }, refreshTime);
+        }
+        updateRefresh(currentSettings.refresh * 1000);
+        this.updateNow = function () {
+            if ((errorStage > 1 && !currentSettings.use_thingproxy) || errorStage > 2) // We've tried everything, let's quit
+            {
+                return; // TODO: Report an error
+            }
+            var requestURL = currentSettings.url;
+
+            if (errorStage == 2 && currentSettings.use_thingproxy) {
+                requestURL = (location.protocol == "https:" ? "https:" : "http:") + "//thingproxy.freeboard.io/fetch/" + encodeURI(currentSettings.url);
+            }
+            //获取所有allcookies
+            var allcookies = document.cookie;
+            var arr=new Array();
+            var access_token= window.sessionStorage.getItem('access_token');
+
+                $.ajax({
+                    async:false,
+                    url: "http://localhost:8181/camel/rest/ksh/warninglistrecord/test",
+                    dataType: "JSON",
+                    type: "GET",
+                    // data: body,
+                    beforeSend: function(request) {
+                        request.setRequestHeader('access_token', access_token);
+                        //request.setRequestHeader("access_token", access_token);
+                        //console.log(data);
+                    },
+                    success: function (data2) {
+                        console.log("第二次请求成功");
+                        console.log(data2);
+                        var obj = JSON.parse(data2);
+                        console.log(obj);
+
+                        updateCallback(obj);
+                    },
+                    error: function (xhr, status, error) {
+                        if (!lockErrorStage) {
+                            // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
+                            errorStage++;
+                            self.updateNow();
+                        }
+                    }
+                });
+
+        }
+
+        this.onDispose = function () {
+            clearInterval(updateTimer);
+            updateTimer = null;
+        }
+
+        this.onSettingsChanged = function (newSettings) {
+            lockErrorStage = false;
+            errorStage = 0;
+
+            currentSettings = newSettings;
+            updateRefresh(currentSettings.refresh * 1000);
+            self.updateNow();
+        }
+    };
+    //加载数据源插件
+    freeboard.loadDatasourcePlugin({
+        // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
+        type_name: "JSON12",
+        settings: [
+            {
+                name: "url",
+                display_name: "URL",
+                // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
+                type: "text"
+            },
+            {
+                // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
+                name: "use_thingproxy",
+                // ** display_name **：调整此设置时将向用户显示的漂亮名称。
+                display_name: "Try thingproxy",
+                // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
+                description: 'A direct JSON connection will be tried first, if that fails, a JSONP connection will be tried. If that fails, you can use thingproxy, which can solve many connection problems to APIs. <a href="https://github.com/Freeboard/thingproxy" target="_blank">More information</a>.',
+                // ** type **（必需）：此设置的预期输入类型
+                type: "boolean",
+                // ** default_value **：此设置的默认值。
+                default_value: true
+            },
+            {
+                name: "refresh",
+                display_name: "Refresh Every",
+                type: "number",
+                // ** suffix **：后缀。
+                suffix: "seconds",
+                default_value: 5
+            },
+            {
+                name: "method",
+                display_name: "Method",
+                // ** type **（必需）：option代表这是一个下拉选
+                type: "option",
+                options: [
+                    {
+                        name: "GET",
+                        value: "GET"
+                    },
+                    {
+                        name: "POST",
+                        value: "POST"
+                    },
+                    {
+                        name: "PUT",
+                        value: "PUT"
+                    },
+                    {
+                        name: "DELETE",
+                        value: "DELETE"
+                    }
+                ]
+            },
+            {
+                name: "body",
+                display_name: "Body",
+                type: "text",
+                description: "The body of the request. Normally only used if method is POST"
+            },
+            {
+                name: "headers",
+                display_name: "Headers",
+                // ** type **（必需）：array代表这是一个数组
+                type: "array",
+                settings: [
+                    {
+                        name: "name",
+                        display_name: "Name",
+                        type: "text"
+                    },
+                    {
+                        name: "value",
+                        display_name: "Value",
+                        type: "text"
+                    }
+                ]
+            }
+        ],
+        // ** newInstance（settings，newInstanceCallback，updateCallback）**（必需）：在请求此插件的新实例时将调用的函数。
+        // * ** settings **：具有用户设置的初始设置的javascript对象。对象中属性的名称将对应于上面定义的设置名称。
+        // * ** newInstanceCallback **：当插件的新实例准备就绪时您将调用的回调函数。此函数需要一个参数，它是插件对象的新实例。
+        // * ** updateCallback **：一个回调函数，如果您的数据源具有重新计算的干舷更新，您将调用该函数。此函数需要单个参数，该参数是具有新的更新数据的javascript对象。你应该坚持这个参考，并在需要时调用它。
+        newInstance: function (settings, newInstanceCallback, updateCallback) {
+            newInstanceCallback(new json12Datasource(settings, updateCallback));
+        }
+    });
 
 
 

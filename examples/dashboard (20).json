@@ -7,20 +7,18 @@
 			"width": 1,
 			"row": {
 				"3": 1,
-				"5": 37,
-				"6": 19
+				"4": 1
 			},
 			"col": {
-				"3": 3,
-				"5": 4,
-				"6": 4
+				"3": 2,
+				"4": 2
 			},
 			"col_width": 2,
 			"widgets": [
 				{
-					"type": "e_charts_lineMore",
+					"type": "floor-widget",
 					"settings": {
-						"value": "datasources[\"db\"][\"lineMore\"]"
+						"Height": "12"
 					}
 				}
 			]
@@ -28,130 +26,30 @@
 		{
 			"width": 1,
 			"row": {
-				"4": 1,
-				"5": 1,
-				"7": 1
+				"3": 5,
+				"4": 1
 			},
 			"col": {
-				"4": 4,
-				"5": 2,
-				"7": 4
+				"3": 1,
+				"4": 4
 			},
-			"col_width": 2,
-			"widgets": [
-				{
-					"type": "e_charts_barTwo",
-					"settings": {
-						"value": "datasources[\"db\"][\"barTwo\"]"
-					}
-				}
-			]
+			"col_width": 1,
+			"widgets": []
 		},
 		{
 			"width": 1,
 			"row": {
-				"5": 19,
-				"6": 1
+				"3": 1,
+				"4": 1
 			},
 			"col": {
-				"5": 4,
-				"6": 4
+				"3": 1,
+				"4": 1
 			},
-			"col_width": 2,
-			"widgets": [
-				{
-					"type": "e_charts_annulusRing1",
-					"settings": {
-						"value": "datasources[\"db\"][\"AnnulusRing\"]"
-					}
-				}
-			]
-		},
-		{
-			"width": 1,
-			"row": {
-				"5": 19,
-				"6": 19,
-				"7": 19
-			},
-			"col": {
-				"5": 2,
-				"6": 2,
-				"7": 2
-			},
-			"col_width": 2,
-			"widgets": [
-				{
-					"type": "e_charts_annulus",
-					"settings": {
-						"value": "datasources[\"db\"][\"annulus\"]"
-					}
-				}
-			]
-		},
-		{
-			"width": 1,
-			"row": {
-				"5": 37,
-				"7": 37,
-				"8": 37
-			},
-			"col": {
-				"5": 2,
-				"7": -17,
-				"8": -17
-			},
-			"col_width": 2,
-			"widgets": [
-				{
-					"type": "e_charts_radar1",
-					"settings": {
-						"value": "datasources[\"db\"][\"reder1\"]"
-					}
-				}
-			]
-		},
-		{
-			"width": 1,
-			"row": {
-				"5": 1
-			},
-			"col": {
-				"5": 4
-			},
-			"col_width": 2,
-			"widgets": [
-				{
-					"type": "e_charts_NightingaleRoseDiagram",
-					"settings": {
-						"value": "datasources[\"test1\"]"
-					}
-				}
-			]
+			"col_width": 1,
+			"widgets": []
 		}
 	],
-	"datasources": [
-		{
-			"name": "db",
-			"type": "JSON",
-			"settings": {
-				"url": "http://localhost:3100/DataSource.json",
-				"use_thingproxy": true,
-				"refresh": 5,
-				"method": "GET",
-				"name": "db"
-			}
-		},
-		{
-			"name": "test1",
-			"type": "JSON11",
-			"settings": {
-				"url": "http://localhost:3100/DataSource1.json",
-				"use_thingproxy": true,
-				"refresh": 5,
-				"method": "GET"
-			}
-		}
-	],
-	"columns": 5
+	"datasources": [],
+	"columns": 4
 }

@@ -1027,119 +1027,6 @@
     freeboard.addStyle('.html-widget', "white-space:normal;width:100%;height:100%");
     //freeboard.addStyle('.html-widget', "white-space:normal;width:100%;height:100%;background-image:url(./img/chang.png);background-size: 620px 250px;background-position: 0 -100px;");
 
-
-    //第一张图的表格(已废弃)
-    var htmlWidget = function (settings) {
-        var self = this;
-        var htmlElement = $('<div class="html-widget" style="height: 200px;padding-top:20px">123</div>');
-        var currentSettings = settings;
-
-        this.render = function (element) {
-            $(element).append(htmlElement);
-        }
-
-        this.onSettingsChanged = function (newSettings) {
-            currentSettings = newSettings;
-        }
-
-        this.onCalculatedValueChanged = function (settingName, newValue) {
-            if (settingName == "html") {
-                //console.log(newValue);
-                htmlElement.html(newValue);
-            }
-        }
-
-        this.onDispose = function () {
-        }
-
-        this.getHeight = function () {
-            //return Number(currentSettings.height);
-            return Number(3.5);
-        }
-
-        this.onSettingsChanged(settings);
-    };
-    freeboard.loadWidgetPlugin({
-
-        "type_name": "html",
-        "display_name": "HTML",
-        "fill_size": true,
-        "settings": [
-            {
-                "name": "html",
-                "display_name": "HTML",
-                "type": "calculated",
-                "description": "Can be literal HTML, or javascript that outputs HTML."
-            },
-            {
-                "name": "height",
-                "display_name": "Height Blocks",
-                "type": "number",
-                "default_value": 4,
-                "description": "A height block is around 60 pixels"
-            }
-        ],
-        newInstance: function (settings, newInstanceCallback) {
-            newInstanceCallback(new htmlWidget(settings));
-        }
-    });
-
-    //第二张图右边的表格(已废弃)
-    var html2Widget = function (settings) {
-        var self = this;
-        var htmlElement = $('<div class="html-widget" style="height: 760px;padding-top:20px"></div>');
-        var currentSettings = settings;
-
-        this.render = function (element) {
-            $(element).append(htmlElement);
-        }
-
-        this.onSettingsChanged = function (newSettings) {
-            currentSettings = newSettings;
-        }
-
-        this.onCalculatedValueChanged = function (settingName, newValue) {
-            if (settingName == "html2") {
-                htmlElement.html(newValue);
-                console.log(newValue);
-            }
-        }
-
-        this.onDispose = function () {
-        }
-
-        this.getHeight = function () {
-            //return Number(currentSettings.height);
-            return Number(12);
-        }
-
-        this.onSettingsChanged(settings);
-    };
-    freeboard.loadWidgetPlugin({
-        "type_name": "html2",
-        "display_name": "HTML2",
-        "fill_size": true,
-        "settings": [
-            {
-                "name": "html2",
-                "display_name": "HTML2",
-                "type": "calculated",
-                "description": "Can be literal HTML, or javascript that outputs HTML."
-            },
-            {
-                "name": "height",
-                "display_name": "Height Blocks",
-                "type": "number",
-                "default_value": 4,
-                "description": "A height block is around 60 pixels"
-            }
-        ],
-        newInstance: function (settings, newInstanceCallback) {
-            newInstanceCallback(new html2Widget(settings));
-        }
-    });
-
-
     // 自定义组件
     //freeboard.addStyle('.custom-widget', "background-color:#ffffff;");
     freeboard.addStyle('.custom-widget');
@@ -1228,7 +1115,7 @@
         }
 
         this.getHeight = function () {
-            return Number(8)
+            return Number(9)
         }
 
         this.onSettingsChanged(settings);
@@ -1347,7 +1234,7 @@
                     nameGap: 10,
                     //设置y轴坐标名称旋转
                     nameRotate: 40,
-                    offset: 10,
+                    offset: 3,
                     nameTextStyle: {
                         color: '#00f6ff'
                     },
@@ -1571,7 +1458,7 @@
                     nameGap: 10,
                     //设置y轴坐标名称旋转
                     nameRotate: 40,
-                    offset: 10,
+                    offset: 3,
                     nameTextStyle: {
                         color: '#00f6ff'
                     },
@@ -1602,7 +1489,7 @@
                         type: 'bar',
                         itemStyle: {
                             normal: {
-                                color: '#00f6ff'
+                                color: '#C23531'
                             }
                         },
                         barCateGoryGap: 20,
@@ -1826,8 +1713,8 @@
         var htmlElement = $('<div class="custom-widget" >' +
             // '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:500px ;top:20px;"></div>' +
             // '<div  id="' + thisGaugeID1 + '" style="position:absolute;left:10px;top:45%;width:500px;height:300px"></div>' +
-            '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:250px; top:10px;"></div>' +
-            '<div  id="' + thisGaugeID1 + '" style="  position:absolute; width:90%; top:65%; left:0; height: 35%"></div>' +
+            '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:300px; top:10px;"></div>' +
+            '<div  id="' + thisGaugeID1 + '" style="  position:absolute; width:85%; top:75%; left:0; height: 30%"></div>' +
             // '<div style="position:absolute;left:42%;top:25%"><p>被管理对象类型</p></div>' +
             '</div>');
         var currentSettings = settings;
@@ -2046,7 +1933,7 @@
         }
 
         this.getHeight = function () {
-            return Number(3.5)
+            return Number(4.5)
         }
 
         this.onSettingsChanged(settings);
@@ -2596,212 +2483,6 @@
     });
 
 
-    /*
-
-
-      // 自定义组件 Radar1（一个框里画的四个雷达图，文字单独div的 没有完善）
-      var eChartsRadar1Widget = function (settings) {
-          var thisGaugeID = "gauge-" + gaugeID++;
-          var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div>' +
-              '<div style="position:absolute;left:360px;top:10px"><p>cpu使用率：95</p><p>内存使用率：95</p><p>持续运营时间：8小时20分</p></div>' +
-              '<div style="position:absolute;left:130px;top:110px"><p>设备名</p></div>' +
-              '<div style="position:absolute;left:360px;top:130px"><p>cpu使用率：95</p><p>内存使用率：95</p><p>持续运营时间：8小时20分</p></div>' +
-              '<div style="position:absolute;left:130px;top:230px"><p>设备名</p></div>' +
-              '<div style="position:absolute;left:360px;top:250px"><p>cpu使用率：95</p><p>内存使用率：95</p><p>持续运营时间：8小时20分</p></div>' +
-              '<div style="position:absolute;left:130px;top:360px"><p>设备名</p></div>' +
-              '<div style="position:absolute;left:360px;top:370px"><p>cpu使用率：95</p><p>内存使用率：95</p><p>持续运营时间：8小时20分</p></div>' +
-              '<div style="position:absolute;left:130px;top:410px"><p>设备名</p></div>' +
-              '</div>');
-          var currentSettings = settings;
-          var option = {
-              backgroundColor: '#000000',//背景色
-              tooltip: {
-                  trigger: 'axis'
-              },
-              radar: [
-                  {
-                      indicator: [
-                          {max: 100},
-                          {max: 100},
-                          {max: 10}
-                      ],
-                      shape: 'circle',
-                      center: ['25%', '15%'],
-                      radius: 40,
-                  },
-                  {
-                      indicator: [
-                          {max: 100},
-                          {max: 100},
-                          {max: 10}
-                      ],
-
-                      shape: 'circle',
-                      center: ['25%', '40%'],
-                      radius: 40,
-                  },
-                  {
-                      indicator: [
-                          {max: 100},
-                          {max: 100},
-                          {max: 10}
-                      ],
-                      shape: 'circle',
-                      center: ['25%', '65%'],
-                      radius: 40,
-                  },
-                  {
-                      indicator: [
-                          {max: 100},
-                          {max: 100},
-                          {max: 10}
-                      ],
-                      shape: 'circle',
-                      center: ['25%', '90%'],
-                      radius: 40,
-                  }
-              ],
-              series: []
-          };
-          this.render = function (element) {
-              $(element).append(htmlElement);
-              setTimeout(function () {
-                  var dom = document.getElementById(thisGaugeID);
-                  var myChart = echarts.init(dom);
-                  myChart.setOption(option, true);
-              }, 1000);
-          };
-
-          this.onCalculatedValueChanged = function (settingName, newValue) {
-              var value = newValue;
-              var value1 = value[0];
-              var value2 = value[1];
-              var value3 = value[2];
-              var value4 = value[3];
-              option.series.push(
-                  {
-                      type: 'radar',
-                      tooltip: {
-                          trigger: 'item'
-                      },
-                      itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                      data: [value1]
-                  },
-                  {
-                      type: 'radar',
-                      tooltip: {
-                          trigger: 'item'
-                      },
-                      itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                      radarIndex: 1,
-                      data: [value2]
-                  },
-                  {
-                      type: 'radar',
-                      radarIndex: 2,
-                      tooltip: {
-                          trigger: 'item'
-                      },
-
-                      itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                      data: [value3]
-                  },
-                  {
-                      type: 'radar',
-                      radarIndex: 3,
-                      tooltip: {
-                          trigger: 'item'
-                      },
-
-                      itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                      data: [value4]
-                  }
-              )
-          }
-
-          this.onSettingsChanged = function (newSettings) {
-              currentSettings = newSettings;
-          }
-
-          this.getHeight = function () {
-              return Number(12)
-          }
-
-          this.onSettingsChanged(settings);
-      };
-      freeboard.loadWidgetPlugin({
-          "type_name": "e_charts_radar1",
-          "display_name": "EChartsRadar1",
-          "fill_size": true,
-          "settings": [
-              {
-                  "name": "value",
-                  "display_name": "value",
-                  "type": "calculated",
-                  "description": "可以是文本HTML，也可以是输出HTML的javascript。"
-              }
-          ],
-          newInstance: function (settings, newInstanceCallback) {
-              newInstanceCallback(new eChartsRadar1Widget(settings));
-          }
-      });
-
-
-      // 自定义组件 gauge（··自带的）
-      var eChartsGaugeWidget = function (settings) {
-          var thisGaugeID = "gauge-" + gaugeID++;
-          var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
-          var option = {
-              //backgroundColor: '#000000',//背景色
-              series: [{
-                  type: 'gauge',
-                  detail: {formatter: '{value}%'},
-                  data: []
-              }]
-          };
-          var currentSettings = settings;
-
-          this.render = function (element) {
-              $(element).append(htmlElement);
-              setTimeout(function () {
-                  var dom = document.getElementById(thisGaugeID);
-                  var myChart = echarts.init(dom);
-                  myChart.setOption(option, true);
-              }, 1000);
-          };
-
-          this.onCalculatedValueChanged = function (settingName, newValue) {
-              var value = newValue;
-              option.series[0].data = value
-          }
-
-          this.onSettingsChanged = function (newSettings) {
-              currentSettings = newSettings;
-          }
-          this.getHeight = function () {
-              return Number(8)
-          }
-
-          this.onSettingsChanged(settings);
-      }
-      freeboard.loadWidgetPlugin({
-          "type_name": "e_charts_gauge",
-          "display_name": "EChartsGauge",
-          "fill_size": true,
-          "settings": [
-              {
-                  "name": "value",
-                  "display_name": "value",
-                  "type": "calculated",
-                  "description": "可以是文本HTML，也可以是输出HTML的javascript。"
-              }
-          ],
-          newInstance: function (settings, newInstanceCallback) {
-              newInstanceCallback(new eChartsGaugeWidget(settings));
-          }
-      });
-
-      */
 
 
     //自定义组件 NightingaleRoseDiagram（面积图   右中）
@@ -2867,6 +2548,9 @@
                 roseType: 'area',
                 data: value,
             })
+            // option.series.data[1].push({
+            //     selected:'true'
+            // })
         }
 
         this.onSettingsChanged = function (newSettings) {
@@ -3028,6 +2712,9 @@
        */
 
 
+
+
+
     //第一张图的表格（带滚动效果）
     var LoopTableWidget = function (settings) {
         console.log('[Test] LoopTableWidget', settings);
@@ -3038,7 +2725,8 @@
         var tableArea = thisGaugeID + '-tableArea';
         var tableTrId = thisGaugeID + '-tableTr';
         var htmlElement = $(
-            '<div class="custom-widget" >' +
+            '<div class="custom-widget" style="color: #00f6ff">' +
+            '<div id="lwj"></div>' +
             '<div class="custom-wrapper custom-table" id="' + thisGaugeID + '" style="height:250px;">' +
             '<div class="caption" id="' + captionId + '"></div>' +
             '<table class="table-th" cellpadding="0" cellspacing="0" id="' + tableThId + '"></table>' +
@@ -3090,6 +2778,10 @@
         this.onCalculatedValueChanged = function (settingName, newValue) {
             console.log('[Test] onCalculatedValueChanged:', settingName);
             var value = newValue;
+            // var lwj = document.getElementById('lwj')
+            // lwj.innerHTML('123');
+            // console.log('0000000000000000000000000000',lwj);
+
             if ($caption) {
                 $caption.html(value.title);
             }
@@ -3108,20 +2800,38 @@
                 $.each(value.data, function (i, e) {
                     var _tds = []
                     for (var k in e) {
-                        //console.log( "e[k]的长度"+e[k].length)
-                        if (e[k].length > 40) {
-                            var str1 = e[k].substring(0, 29);
-                            var str2 = e[k].substring(66, 71);
-                            //var str1=e[k].substring(0,29);
-                            //var str2=e[k].substring(56, e[k].length);
-                            //console.log(str1+'\n'+str2);
-                            // _tds.push('<td align="left">' + str1+'<br>'+str2 + '</td>');
-                            _tds.push('<td >' + str1 + str2 + "……" + '</td>');
+                        if(k==='name'){
+                            _tds[0]= '<td>' + e[k] + '</td>';
+                        } else if(k==='version'){
+                            _tds[1]= '<td>' + e[k] + '</td>';
+                        } else if(k==='level'){
+                            _tds[2]= '<td>' + e[k] + '</td>';
                         } else {
-                            _tds.push('<td>' + e[k] + '</td>');
+                            if (e[k].length > 40) {
+                                var str1 = e[k].substring(0, 29);
+                                var str2 = e[k].substring(66, 69);
+                                //var str1=e[k].substring(0,29);
+                                //var str2=e[k].substring(56, e[k].length);
+                                //console.log(str1+'\n'+str2);
+                                // _tds.push('<td align="left">' + str1+'<br>'+str2 + '</td>');
+                                _tds[3]= '<td >' + str1 + str2 + "..." + '</td>';
+                            }
                         }
+                        //console.log( "e[k]的长度"+e[k].length)
+                        // if (e[k].length > 40) {
+                        //     var str1 = e[k].substring(0, 29);
+                        //     var str2 = e[k].substring(66, 71);
+                        //     //var str1=e[k].substring(0,29);
+                        //     //var str2=e[k].substring(56, e[k].length);
+                        //     //console.log(str1+'\n'+str2);
+                        //     // _tds.push('<td align="left">' + str1+'<br>'+str2 + '</td>');
+                        //     _tds.push('<td >' + str1 + str2 + "……" + '</td>');
+                        // } else {
+                        //     _tds.push('<td>' + e[k] + '</td>');
+                        // }
                     }
                     _trs.push('<tr>' + _tds.join('') + '</tr>');
+                    console.log('111111111111111111111111111111',_trs)
                 });
                 if ($tableTr) {
                     $tableTr.html(colgroup + _trs.join('') + _trs.join(''));
@@ -3154,9 +2864,25 @@
             //     var _trs = []
             //     $.each(value, function (i, e) {
             //       var _tds = []
-            //       for (var k in e) {
-            //         _tds.push('<td>' + e[k] + '</td>');
-            //       }
+            //         _tds[0] = '<td>' + e['name'] + '</td>';
+            //         _tds[1] = '<td>' + e['version'] + '</td>';
+            //         _tds[2] = '<td>' + e['level'] + '</td>';
+            //         _tds[3] = '<td>' + e['location'] + '</td>';
+            //         console.log('22222222222222222222222222222222222',_trs)
+            //         // _tds.push('<td>' + e['version'] + '</td>');
+            //         // _tds.push('<td>' + e['level'] + '</td>');
+            //         // _tds.push('<td>' + e['location'] + '</td>');
+            //       // for (var k in e) {
+            //       //     if(k==='name'){
+            //       //         _tds.push('<td>' + e[k] + '</td>');
+            //       //     } else if(k==='version'){
+            //       //         _tds.push('<td>' + e[k] + '</td>');
+            //       //     } else if(k==='level'){
+            //       //         _tds.push('<td>' + e[k] + '</td>');
+            //       //     } else{
+            //       //         _tds.push('<td>' + e[k] + '</td>');
+            //       //     }
+            //       // }
             //       _trs.push('<tr>' + _tds.join('') + '</tr>');
             //     });
             //     if ($tableTr) {
@@ -3229,12 +2955,12 @@
         var tableArea = thisGaugeID + '-tableArea';
         var tableTrId = thisGaugeID + '-tableTr';
         var htmlElement = $(
-            '<div class="custom-widget">' +
+            '<div class="custom-widget" style="color: #00f6ff">' +
             '<div class="custom-wrapper custom-table" id="' + thisGaugeID + '" style="height:700px;">' +
-            '<div class="caption2" id="' + captionId + '"></div>' +
-            '<table class="table-th2" cellpadding="0" cellspacing="0" id="' + tableThId + '"></table>' +
-            '<div class="table-area2">' +
-            '<table class="table-tr" cellpadding="0" cellspacing="0" id="' + tableTrId + '"><tbody></tbody></table>' +
+            '<div class="caption" id="' + captionId + '"></div>' +
+            '<table class="table-th" cellpadding="0" cellspacing="0" id="' + tableThId + '"></table>' +
+            '<div class="table-area" style="height: 700px">' +
+            '<table class="table-tr" cellpadding="0" cellspacing="0" id="' + tableTrId + '" style="height: 600px"><tbody></tbody></table>' +
             '</div>' +
             '</div>' +
             '</div>');
@@ -3246,7 +2972,7 @@
         var $tableArea = null;
         var $tableTr = null;
 
-        var flagLoad = 0;
+        var flagLoad = 1;
         this.render = function (element) {
             console.log('[Test] render');
             $(element).append(htmlElement);
@@ -3257,7 +2983,7 @@
         };
 
         function goRun() {
-            if (flagLoad === 1) {
+            if (flagLoad === 2) {
                 console.log('[Test] GoRun');
                 //一个格子 30px
                 var step = 30;
@@ -3302,7 +3028,7 @@
                     for (var k in e) {
                         _tds.push('<td>' + e[k] + '</td>');
                     }
-                    _trs.push('<tr>' + _tds.join('') + '</tr>');
+                    _trs.push('<tr height="60px">' + _tds.join('') + '</tr>');
                 });
                 //我在这个地方 把len设置为_trs的长度不直达对不对
                 len = _trs.length;
