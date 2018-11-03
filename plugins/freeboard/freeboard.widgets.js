@@ -1229,7 +1229,7 @@
                 },
                 yAxis: {
                     min:0,
-                    max:50,
+                    // max:50,
                     //坐标轴的名称 距离轴线的距离
                     nameGap: 10,
                     //设置y轴坐标名称旋转
@@ -1293,7 +1293,7 @@
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var result = newValue;
             var yAxisName = result["yAxis"].name;
-            var yAxisMax = result["yAxis"].max;
+            // var yAxisMax = result["yAxis"].max;
             var xAxisName = result["xAxisName"];
             var pList = result["pList"];
             var xAxisData = result["xAxisData"];
@@ -1338,7 +1338,7 @@
             option.baseOption.legend.data = lValue,
             option.baseOption.xAxis.data = xAxisData;
             option.baseOption.yAxis.name = yAxisName;
-            option.baseOption.yAxis.max = yAxisMax;
+            // option.baseOption.yAxis.max = yAxisMax;
             option.baseOption.xAxis.name = xAxisName;
             //console.log(option);
             myChart.setOption(option, true);
@@ -1489,7 +1489,7 @@
                         type: 'bar',
                         itemStyle: {
                             normal: {
-                                color: '#C23531'
+                                color: '#9C2C2A'
                             }
                         },
                         barCateGoryGap: 20,
@@ -1533,7 +1533,7 @@
             var dataList  = result['dataList'];
             var xAxisData = result['xAxisData'];
             var yAxisName= result['yAxis'].name;
-            var yAxisMax = result['yAxis'].max;
+            // var yAxisMax = result['yAxis'].max;
             var xAxisName =  result['xAxisName'];
             var titleData =  result['titleData'];
 
@@ -1722,10 +1722,10 @@
             //backgroundColor: '#000000',//背景色
             title: [
                 {
+                    //标题
                     y: 10,
                     textStyle: {
                         fontSize: 15,
-                        //文字颜色
                         color: '#00f6ff',
                         fontFamily: 'Microsoft YaHei'
                     },
@@ -1733,10 +1733,10 @@
                     left: 'center',
                 },
                 {
+                    //处理率
                     textStyle: {
                         fontSize: 15,
-                        //文字颜色
-                        color: '#00f6ff',
+                        color: 'red',
                         fontFamily: 'Microsoft YaHei'
                     },
 
@@ -1773,6 +1773,7 @@
                 axisLine: {//设置坐标轴不显示
                     show: false
                 },
+                // 下面三条数据
                 axisLabel: {
                     color: '#00f6ff',
                     fontSize: 12,
@@ -1804,11 +1805,12 @@
                 var bCircle = value[1].bigCircle;
                 option1.yAxis.data = value[2].barName;
                 var bValue = value[3].barValue;
+                console.log('00000000000000000000000++++++++',bValue);
                 option.title[0].text = value[4].title1;
                 option.title[1].text = value[4].title2;
                 option.series = [];
                 option1.series = [];
-
+                //内圈数据
                 option.series.push({
                     itemStyle: {
                         normal: {
@@ -1817,30 +1819,32 @@
                     },
                     type: 'pie',
                     radius: ['25%', '30%'],
-                    label: {
-                        normal: {
-                            formatter: ' {b|{b}}\n{hr|}\n{c}',
-                            //backgroundColor: '#333',
-                            rich: {
-                                hr: {
-                                    borderColor: '#00f6ff',
-                                    width: '100%',
-                                    borderWidth: 0.5,
-                                    height: 0
-                                },
-                                b: {
-                                    color: '#00f6ff',
-                                    lineHeight: 22,
-                                    align: 'center'
-                                },
-                                c: {
-                                    color: '#00f6ff',
-                                    lineHeight: 22,
-                                    align: 'center'
-                                },
-                            }
-                        }
-                    },
+                    // label: {
+                    //     normal: {
+                    //         formatter: ' {b|{b}}\n{hr|}\n{c}',
+                    //         //backgroundColor: '#333',
+                    //         rich: {
+                    //             // 未处理下横线
+                    //             hr: {
+                    //                 borderColor: '#00f6ff',
+                    //                 width: '100%',
+                    //                 borderWidth: 0.5,
+                    //                 height: 0
+                    //             },
+                    //             b: {
+                    //                 //未处理字体颜色
+                    //                 color: '#00f6ff',
+                    //                 lineHeight: 22,
+                    //                 align: 'center'
+                    //             },
+                    //             c: {
+                    //                 color: '#00f6ff',
+                    //                 lineHeight: 22,
+                    //                 align: 'center'
+                    //             },
+                    //         }
+                    //     }
+                    // },
                     labelLine: {
                         length2: 0.1,
                     },
@@ -1856,12 +1860,14 @@
                             //backgroundColor: '#333',
                             rich: {
                                 hr: {
+                                    //已处理数字体
                                     borderColor: '#00f6ff',
                                     width: '100%',
                                     borderWidth: 0.5,
                                     height: 0
                                 },
                                 b: {
+                                    //已处理数下横线
                                     color: '#00f6ff',
                                     lineHeight: 22,
                                     align: 'center'
@@ -1887,6 +1893,7 @@
                     z: 3,
                     itemStyle: {
                         normal: {
+                            // 下面三条数据图形颜色
                             color: '#00f6ff'
                         }
                     },
@@ -1903,9 +1910,7 @@
                 var b = [];
 
                 var max = parseInt(bValue[0]) + parseInt(bValue[1]);
-                console.log(parseInt(bValue[0]));
-                console.log(bValue[1]);
-                console.log("警报数：" + max);
+                var max = parseInt(bValue[0]) + parseInt(bValue[1]);
                 option1.xAxis.max = max;
                 for (var i = 0; i < bValue.length; i++) {
                     b.push(max - bValue[i]);
@@ -1981,7 +1986,7 @@
                         fontFamily: 'Microsoft YaHei'
                     },
 
-                    x: '20%',
+                    x: '40%',
                 },
                 {
                     textStyle: {
@@ -1991,7 +1996,7 @@
                         fontFamily: 'Microsoft YaHei'
                     },
 
-                    x: '60%',
+                    x: '50%',
                     y: '20%',
                 },
                 {
@@ -2002,7 +2007,7 @@
                         fontFamily: 'Microsoft YaHei'
                     },
 
-                    x: '60%',
+                    x: '50%',
                     y: '40%',
                 },
                 {
@@ -2013,18 +2018,18 @@
                         fontFamily: 'Microsoft YaHei'
                     },
 
-                    x: '60%',
+                    x: '50%',
                     y: '60%',
                 }
             ],
             //backgroundColor: '#000000',//背景色
             radar: [
                 {
-                    splitNumber: '3',
+                    splitNumber: '4',
                     indicator: [
                         {max: 100},
                         {max: 100},
-                        {max: 10}
+                        {max: 100}
                     ],
                     center: ['30%', '50%'],
                     radius: 50,
@@ -2058,7 +2063,7 @@
                         fontFamily: 'Microsoft YaHei'
                     },
 
-                    x: '20%',
+                    x: '40%',
                 },
                 {
                     textStyle: {
@@ -2068,7 +2073,7 @@
                         fontFamily: 'Microsoft YaHei'
                     },
 
-                    x: '60%',
+                    x: '50%',
                     y: '20%',
                 },
                 {
@@ -2079,7 +2084,7 @@
                         fontFamily: 'Microsoft YaHei'
                     },
 
-                    x: '60%',
+                    x: '50%',
                     y: '40%',
                 },
                 {
@@ -2090,18 +2095,18 @@
                         fontFamily: 'Microsoft YaHei'
                     },
 
-                    x: '60%',
+                    x: '50%',
                     y: '60%',
                 }
             ],
             //backgroundColor: '#000000',//背景色
             radar: [
                 {
-                    splitNumber: '3',
+                    splitNumber: '4',
                     indicator: [
                         {max: 100},
                         {max: 100},
-                        {max: 10}
+                        {max: 100}
                     ],
                     center: ['30%', '50%'],
                     radius: 50,
@@ -2135,7 +2140,7 @@
                         fontFamily: 'Microsoft YaHei'
                     },
 
-                    x: '20%',
+                    x: '40%',
                 },
                 {
                     textStyle: {
@@ -2145,7 +2150,7 @@
                         fontFamily: 'Microsoft YaHei'
                     },
 
-                    x: '60%',
+                    x: '50%',
                     y: '20%',
                 },
                 {
@@ -2156,7 +2161,7 @@
                         fontFamily: 'Microsoft YaHei'
                     },
 
-                    x: '60%',
+                    x: '50%',
                     y: '40%',
                 },
                 {
@@ -2167,7 +2172,7 @@
                         fontFamily: 'Microsoft YaHei'
                     },
 
-                    x: '60%',
+                    x: '50%',
                     y: '60%',
                 }
             ],
@@ -2175,11 +2180,11 @@
 
             radar: [
                 {
-                    splitNumber: '3',
+                    splitNumber: '4',
                     indicator: [
                         {max: 100},
                         {max: 100},
-                        {max: 10}
+                        {max: 100}
                     ],
                     center: ['30%', '50%'],
                     radius: 50,
@@ -2213,7 +2218,7 @@
                         fontFamily: 'Microsoft YaHei'
                     },
 
-                    x: '20%',
+                    x: '40%',
                 },
                 {
                     textStyle: {
@@ -2223,7 +2228,7 @@
                         fontFamily: 'Microsoft YaHei'
                     },
 
-                    x: '60%',
+                    x: '50%',
                     y: '20%',
                 },
                 {
@@ -2234,7 +2239,7 @@
                         fontFamily: 'Microsoft YaHei'
                     },
 
-                    x: '60%',
+                    x: '50%',
                     y: '40%',
                 },
                 {
@@ -2245,18 +2250,18 @@
                         fontFamily: 'Microsoft YaHei'
                     },
 
-                    x: '60%',
+                    x: '50%',
                     y: '60%',
                 }
             ],
             //backgroundColor: '#000000',//背景色
             radar: [
                 {
-                    splitNumber: '3',
+                    splitNumber: '4',
                     indicator: [
                         {max: 100},
                         {max: 100},
-                        {max: 10}
+                        {max: 100}
                     ],
                     center: ['30%', '50%'],
                     radius: 50,
@@ -2324,9 +2329,10 @@
                     op = option4;
                     op.series = [];
                 }
-
+                console.log('999999999999999999999999')
                 for (var key in value) {
-                    if (key == "titie") {
+                    console.log('8888888888888888888888888888888888888',key)
+                    if (key == "title") {
                         var titles = value[key];
                         for (var title in titles) {
                             if (title == "name") {
@@ -2495,12 +2501,12 @@
         var option = {
             title: [
                 {
-                    backgroundColor: "#1b414e",
+                    // backgroundColor: "#1b414e",
                     y: 28,
                     textStyle: {
                         fontSize: 15,
                         //文字颜色
-                        color: '#ffffff',
+                        color: '#00f6ff',
                         fontFamily: 'Microsoft YaHei'
                     },
                     left: 'center',
@@ -2530,16 +2536,12 @@
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var value = newValue;
+            console.log('3333333333333333333333333333333333333333333',value)
             option.title[0].text = '被管理对象';
             option.title[1].text = '管理对象类型';
             option.series.push({
                 name: '面积模式',
                 type: 'pie',
-                label: {
-                    normal: {
-                        formatter: '{b}：{c} ',
-                    }
-                },
                 labelLine: {
                     length2: 0.01,
                 },
@@ -2581,137 +2583,6 @@
     });
 
 
-    /*
-
-       var eChartsTableWidget = function (settings) {
-           var thisGaugeID = "gauge-" + gaugeID++;
-           var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
-           var currentSettings = settings;
-
-           this.render = function (element) {
-               $(element).append(htmlElement);
-               setTimeout(function () {
-                   var dom = document.getElementById(thisGaugeID);
-                   var myChart = echarts.init(dom);
-                   myChart.setOption(option, true);
-               }, 1000);
-           };
-
-           this.onCalculatedValueChanged = function (settingName, newValue) {
-               var value = newValue;
-
-           }
-
-           this.onSettingsChanged = function (newSettings) {
-               currentSettings = newSettings;
-           }
-
-           this.getHeight = function () {
-               return Number(8)
-           }
-
-           this.onSettingsChanged(settings);
-       };
-       freeboard.loadWidgetPlugin({
-           "type_name": "e_charts_Table",
-           "display_name": "EChartsTable",
-           "fill_size": true,
-           "settings": [
-               {
-                   "name": "value",
-                   "display_name": "value",
-                   "type": "calculated",
-                   "description": "可以是文本HTML，也可以是输出HTML的javascript。"
-               }
-           ],
-           newInstance: function (settings, newInstanceCallback) {
-               newInstanceCallback(new eChartsTableWidget(settings));
-           }
-       });
-
-       //测试
-       /!**
-        * 原来的位置错了
-        * @param settings
-        *!/
-       var eChartsCineWidget = function (settings) {
-           var thisGaugeID = "gauge-" + gaugeID++;
-           var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
-           var currentSettings = settings;
-           var option = {
-               xAxis: {
-                   type: 'category',
-                   boundaryGap: false
-               },
-               yAxis: {
-                   type: 'value'
-               },
-               series: []
-           };
-
-           this.render = function (element) {
-               $(element).append(htmlElement);
-               setTimeout(function () {
-                   var dom = document.getElementById(thisGaugeID);
-                   var myChart = echarts.init(dom);
-                   myChart.setOption(option, true);
-               }, 1000);
-           };
-
-           this.onCalculatedValueChanged = function (settingName, newValue) {
-               var value = newValue;
-               if (value && value.length > 0) {
-                   value = eval(value)
-                   var xAxisData = [];
-                   var seriesData = [];
-                   $.each(value, function (i, item) {
-                       xAxisData.push(item.name)
-                       seriesData.push(item.value)
-                   });
-                   option.xAxis.data = xAxisData
-                   option.series.push({
-                       data: seriesData,
-                       type: 'line',
-                       smooth: true
-                   })
-               }
-           }
-
-           this.onSettingsChanged = function (newSettings) {
-               currentSettings = newSettings;
-           }
-
-           this.getHeight = function () {
-               return Number(8)
-           }
-
-           this.onSettingsChanged(settings);
-       };
-       freeboard.loadWidgetPlugin({
-           "type_name": "e_charts_Cine",
-           "display_name": "EChartsCine",
-           "fill_size": true,
-           "settings": [
-               {
-                   "name": "value",
-                   "display_name": "value",
-                   "type": "calculated",
-                   "description": "可以是文本HTML，也可以是输出HTML的javascript。"
-               }
-           ],
-           newInstance: function (settings, newInstanceCallback) {
-               newInstanceCallback(new eChartsCineWidget(settings));
-           }
-       });
-       /!**
-        * LoopTableWidget
-        * @param settings
-        * @constructor
-        *!/
-
-       */
-
-
 
 
 
@@ -2728,7 +2599,7 @@
             '<div class="custom-widget" style="color: #00f6ff">' +
             '<div id="lwj"></div>' +
             '<div class="custom-wrapper custom-table" id="' + thisGaugeID + '" style="height:250px;">' +
-            '<div class="caption" id="' + captionId + '"></div>' +
+            '<div class="caption" id="' + captionId + '" style="font-size: 15px;font-weight: 600" ></div>' +
             '<table class="table-th" cellpadding="0" cellspacing="0" id="' + tableThId + '"></table>' +
             '<div class="table-area">' +
             '<table class="table-tr" cellpadding="0" cellspacing="0" id="' + tableTrId + '"><tbody></tbody></table>' +
@@ -2745,7 +2616,6 @@
 
         var flagLoad = 0;
         this.render = function (element) {
-            console.log('[Test] render');
             $(element).append(htmlElement);
             $caption = $('#' + captionId);
             $tableTh = $('#' + tableThId);
@@ -2755,7 +2625,6 @@
 
         function goRun() {
             if (flagLoad === 1) {
-                console.log('[Test] GoRun');
 
                 //一个格子 30px
                 var step = 30;
@@ -2776,11 +2645,7 @@
         }
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
-            console.log('[Test] onCalculatedValueChanged:', settingName);
             var value = newValue;
-            // var lwj = document.getElementById('lwj')
-            // lwj.innerHTML('123');
-            // console.log('0000000000000000000000000000',lwj);
 
             if ($caption) {
                 $caption.html(value.title);
@@ -2810,28 +2675,12 @@
                             if (e[k].length > 40) {
                                 var str1 = e[k].substring(0, 29);
                                 var str2 = e[k].substring(66, 69);
-                                //var str1=e[k].substring(0,29);
-                                //var str2=e[k].substring(56, e[k].length);
-                                //console.log(str1+'\n'+str2);
-                                // _tds.push('<td align="left">' + str1+'<br>'+str2 + '</td>');
+
                                 _tds[3]= '<td >' + str1 + str2 + "..." + '</td>';
                             }
                         }
-                        //console.log( "e[k]的长度"+e[k].length)
-                        // if (e[k].length > 40) {
-                        //     var str1 = e[k].substring(0, 29);
-                        //     var str2 = e[k].substring(66, 71);
-                        //     //var str1=e[k].substring(0,29);
-                        //     //var str2=e[k].substring(56, e[k].length);
-                        //     //console.log(str1+'\n'+str2);
-                        //     // _tds.push('<td align="left">' + str1+'<br>'+str2 + '</td>');
-                        //     _tds.push('<td >' + str1 + str2 + "……" + '</td>');
-                        // } else {
-                        //     _tds.push('<td>' + e[k] + '</td>');
-                        // }
                     }
                     _trs.push('<tr>' + _tds.join('') + '</tr>');
-                    console.log('111111111111111111111111111111',_trs)
                 });
                 if ($tableTr) {
                     $tableTr.html(colgroup + _trs.join('') + _trs.join(''));
@@ -2839,63 +2688,9 @@
             }
             flagLoad += 1;
             goRun();
-            // switch (settingName) {
-            //   case 'Title':
-            //     // console.log('Title', value)
-            //     if ($caption) {
-            //       flag_Title += 1
-            //       $caption.html(value);
-            //     }
-            //     break
-            //   case 'thead':
-            //     var tds = [];
-            //     var cols = [];
-            //     $.each(value, function (i, e) {
-            //       tds.push('<td>' + e.name + '</td>');
-            //       cols.push('<col style="width:' + e.width + '"/>');
-            //     });
-            //     colgroup = '<colgroup>' + cols.join('') + '</colgroup>';
-            //     if ($tableTh) {
-            //       flag_thead += 1
-            //       $tableTh.html(colgroup + '<tr>' + tds.join('') + '</tr>');
-            //     }
-            //     break
-            //   case 'tableData':
-            //     var _trs = []
-            //     $.each(value, function (i, e) {
-            //       var _tds = []
-            //         _tds[0] = '<td>' + e['name'] + '</td>';
-            //         _tds[1] = '<td>' + e['version'] + '</td>';
-            //         _tds[2] = '<td>' + e['level'] + '</td>';
-            //         _tds[3] = '<td>' + e['location'] + '</td>';
-            //         console.log('22222222222222222222222222222222222',_trs)
-            //         // _tds.push('<td>' + e['version'] + '</td>');
-            //         // _tds.push('<td>' + e['level'] + '</td>');
-            //         // _tds.push('<td>' + e['location'] + '</td>');
-            //       // for (var k in e) {
-            //       //     if(k==='name'){
-            //       //         _tds.push('<td>' + e[k] + '</td>');
-            //       //     } else if(k==='version'){
-            //       //         _tds.push('<td>' + e[k] + '</td>');
-            //       //     } else if(k==='level'){
-            //       //         _tds.push('<td>' + e[k] + '</td>');
-            //       //     } else{
-            //       //         _tds.push('<td>' + e[k] + '</td>');
-            //       //     }
-            //       // }
-            //       _trs.push('<tr>' + _tds.join('') + '</tr>');
-            //     });
-            //     if ($tableTr) {
-            //       flag_tableData += 1
-            //       $tableTr.html(colgroup + _trs.join('') + _trs.join(''));
-            //     }
-            //     break
-            // }
-            // goRun();
         }
 
         this.onSettingsChanged = function (newSettings) {
-            console.log('[Test] onSettingsChanged');
             currentSettings = newSettings;
             height = currentSettings.Height;
         }
@@ -2906,7 +2701,6 @@
 
         this.onSettingsChanged(settings);
         this.onDispose = function () {
-            console.log('[Test] onDispose');
             $tableTr.stop();
             // clearInterval(mt);
         }
@@ -3130,19 +2924,23 @@
         }
     });
 
-
+    // lou
     var FloorWidget = function (settings) {
         var self = this;
         var htmlElement = $('<div class="html-widget" id="htmlWidget">' +
-            '<button id="add" class="add">添加</button>' +
-            '<button id="save" class="add">保存</button>' +
-            '<div id="diagramContainer">' +
-            '<div id="item_a" class="item1 my-item"><img src="tongxin.png"><div class="editdiv" contenteditable="true">通信中心</div></div>'+
-            '<div id="item_b" class="abcd my-item" style="left: 100px;"><img src="tongxin.png"><div contenteditable="true">电信1</div></div>'+
-            '<div id="item_c" class="abcd my-item" style="left: 200px;"><img src="tongxin.png"><div contenteditable="true">电信2</div></div>'+
-            '<div id="item_d" class="abcd my-item" style="left: 360px;"><img src="tongxin.png"><div contenteditable="true">联通1</div></div>'+
-            '<div id="item_e" class="abcd my-item" style="left: 460px;"><img src="tongxin.png"><div contenteditable="true">联通2</div></div>'+
-            '</div>' +
+            '<div class="btnbox"><button id="add" class="add">添加楼宇</button><button id="save" class="save">保存更改</button></div>'+
+            '<div id="bling" class="bling">'+
+            '<div class="bl-left">实验楼</div>'+
+            '<div class="bl-right"><p>楼宇名称：实验楼</p><p>当前设备量：107</p><p>警告数：0</p></div>'+
+            '</div>'+
+            '<div id="diagramContainer">'+
+            '<div id="item_a" class="item1 my-item"><img src="tongxin.png"><div contenteditable="true">通信中心</div></div>'+
+            '<div id="item_f" class="item3 my-item" style="top: 150px;left: 215px;"><img src="tongxin.png"><div contenteditable = "true">网络中心</div></div>'+
+            '<div id="item_b" class="abcd my-item" style="left: 85px;top: 590px"><img src="tongxin.png"><div>电信1</div></div>'+
+            '<div id="item_c" class="abcd my-item" style="left: 140px;top: 590px"><img src="tongxin.png"><div>电信2</div></div>'+
+            '<div id="item_d" class="abcd my-item" style="left: 315px;top: 590px"><img src="tongxin.png"><div>联通1</div></div>'+
+            '<div id="item_e" class="abcd my-item" style="left: 370px;top: 590px"><img src="tongxin.png"><div>联通2</div></div>'+
+            '</div>'+
             '<div id="div1"></div>'+
             '</div>');
 
@@ -3163,15 +2961,22 @@
         this.onSettingsChanged = function (newSettings) {
             console.log('onSettingsChanged')
             currentSettings = newSettings;
-            console.log('currentSettings', currentSettings)
+            console.log('currentSettings00000000000000000000000000', currentSettings)
             setTimeout(function () {
                 $('#diagramContainer').html(currentSettings.HTML)
+                // floorReady();
+                // $('#htmlWidget').on("click", "div[contenteditable='true']",function(){
+                //     $(this).focus();
+                // });
             },500);
         }
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
+            var value = newValue
+            console.log('value111111111111111111111111111111111111', value)
+            console.log(value.data[0].html)
             if (settingName == "html") {
-                //console.log(newValue);
+                // console.log(newValue);
                 htmlElement.html(newValue);
             }
         }
@@ -3219,6 +3024,71 @@
         }
     });
 
+    // BMS
+    var BMSWidget = function (settings) {
+        var self = this;
+        var htmlElement = $('<div class="html-widget" id="htmlWidget">' +
+            '<div id="theback" style="text-align: center;padding-bottom: 20px"><iframe style="margin-top: 24px;border: 0" width="600px" height="540px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe></div>'+
+            '</div>');
 
+
+        var currentSettings = settings;
+        console.log('currentSettings', currentSettings)
+        this.render = function (element) {
+            console.log('render')
+            $(element).append(htmlElement);
+            $('#theback').html(currentSettings.HTML)
+        }
+
+        this.onSettingsChanged = function (newSettings) {
+            console.log('onSettingsChanged')
+            currentSettings = newSettings;
+            console.log('currentSettings00000000000000000000000000', currentSettings)
+        }
+
+        this.onCalculatedValueChanged = function (settingName, newValue) {
+        }
+
+        this.onDispose = function () {
+        }
+
+        this.getHeight = function () {
+            return Number(9);
+        }
+
+        this.onSettingsChanged(settings);
+    };
+    freeboard.loadWidgetPlugin({
+        "type_name": "bms-widget",
+        "display_name": "BMSWidget",
+        "fill_size": true,
+        "settings": [
+            {
+                name: "Title",
+                display_name: "标题",
+                "type": "text"
+            },
+            {
+                "name": "HTML",
+                "display_name": "表格数据",
+                "type": "calculated",
+                "description": "可以是文本HTML，也可以是输出HTML的javascript。"
+            },
+            {
+                name: "Height",
+                display_name: "高度",
+                type: "text",
+                default_value: 9
+            },
+            {
+                name: "include_legend",
+                display_name: "Include Legend",
+                type: "boolean"
+            }
+        ],
+        newInstance: function (settings, newInstanceCallback) {
+            newInstanceCallback(new BMSWidget(settings));
+        }
+    });
 }());
 

@@ -573,7 +573,6 @@
                     data: body,
                     success: function (data) {
                         lockErrorStage = true;
-                        console.log(data);
                         //此处对第二次请求的结果进行处理
 
                         //resdata=data2;
@@ -1449,15 +1448,11 @@
                 //     request.setRequestHeader('access_token', access_token);
                 // },
                 success: function (data) {
-                    console.log(data)
                     var obj = JSON.parse(data);
                     // var count = Object.keys(data).length;
-                    console.log("请求成功");
-                    console.log(obj)
                     updateCallback(obj);//回调函数
                 },
                 error: function (xhr, status, error) {
-                    console.log("请求失败");
                     if (!lockErrorStage) {
                         // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
                         errorStage++;
@@ -1626,7 +1621,6 @@
                 beforeSend: function(request) {
                     request.setRequestHeader('access_token', access_token);
                     //request.setRequestHeader("access_token", access_token);
-                    //console.log(data);
                 },
                 success: function (data) {
                     var obj = JSON.parse(data);
@@ -1639,7 +1633,7 @@
                                 "value" : gCount[0][key],
                                 "itemStyle": {
                                     "normal": {
-                                        "color": "#00fefc"
+                                        "color": "#61A0A8"
                                     }
                                 }
                             })
@@ -1650,7 +1644,7 @@
                                 "value" : gCount[0][key],
                                 "itemStyle": {
                                     "normal": {
-                                        "color": "#48bec8"
+                                        "color": "#C23531"
                                     }
                                 }
                             })
@@ -1660,7 +1654,7 @@
                                 "value" : gCount[0][key],
                                 "itemStyle": {
                                     "normal": {
-                                        "color": "#1b5f71"
+                                        "color": "#D48265"
                                     }
                                 }
 
@@ -1671,7 +1665,7 @@
                                 "value" : gCount[0][key],
                                 "itemStyle": {
                                     "normal": {
-                                        "color": "#ffffff"
+                                        "color": "#CA8622"
                                     }
                                 }
                             })
@@ -1840,14 +1834,10 @@
                     request.setRequestHeader('access_token', access_token);
                 },
                 success: function (data) {
-                    console.log("请求成功");
                     var obj = JSON.parse(data);
-                    console.log("请求成功");
-                    console.log(obj)
                     updateCallback(obj);//回调函数
                 },
                 error: function (xhr, status, error) {
-                    console.log("请求失败");
                     if (!lockErrorStage) {
                         // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
                         errorStage++;
@@ -2008,11 +1998,7 @@
                     request.setRequestHeader('access_token', access_token);
                 },
                 success: function (data) {
-                    console.log("请求成功");
-                    console.log(data);
                     var obj = JSON.parse(data);
-                    console.log("请求成功");
-                    console.log(obj)
                     updateCallback(obj);//回调函数
                 },
                 error: function (xhr, status, error) {
@@ -2173,13 +2159,10 @@
                     request.setRequestHeader('access_token', access_token);
                 },
                 success: function (data) {
-                    console.log("请求成功");
-                    console.log(data);
                     var obj = data.data[0].html;
                     // var obj = JSON.parse(data);
-                    // console.log("请求成功");
-                     console.log(obj)
                      updateCallback(obj);//回调函数
+
                 },
                 error: function (xhr, status, error) {
                     console.log("请求失败");
@@ -2346,10 +2329,8 @@
                         //console.log(data);
                     },
                     success: function (data2) {
-                        console.log("第二次请求成功");
-                        console.log(data2);
+                        // console.log("第二次请求成功");
                         var obj = JSON.parse(data2);
-                        console.log(obj);
 
                         updateCallback(obj);
                     },

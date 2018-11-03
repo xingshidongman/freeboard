@@ -96,22 +96,82 @@
     <style>
         #diagramContainer {
             /*padding: 20px;*/
-            width: 100%;
-            height: 100%;
+            width: 520px;
+            height: 800px;
             /*border: 1px solid gray;*/
             position: relative;
-            background-color: black;
+            left: 90px;
+            top: 5%;
+            background-color: transparent;
+            animation:rot 1s infinite;
+            -webkit-animation:rot 1s infinite;
+            animation-iteration-count:1;
+            -webkit-animation-iteration-count:1; /*Safari and Chrome*/
+            animation-fill-mode:forwards;
+            -webkit-animation-fill-mode:forwards; /* Safari 和 Chrome */
+
+            /*transform: rotate(40deg) ;*/
+            /*-webkit-transform: rotate(40deg) rotateY(30deg) ;*/
+            font-size: 12px;
+        }
+        @keyframes rot
+        {
+            from {transform: rotate(0deg) ;
+                -webkit-transform: rotate(0deg)  rotatey(0deg);}
+            to {transform: rotate(45deg) rotatey(10deg) ;
+                -webkit-transform: rotate(45deg)  rotatey(10deg);}
         }
 
+        @-webkit-keyframes rot /*Safari and Chrome*/
+        {
+            from {transform: rotate(0deg) ;
+                -webkit-transform: rotate(0deg)  rotatey(0deg);}
+            to {transform: rotate(45deg) rotatey(10deg) ;
+                -webkit-transform: rotate(45deg)  rotatey(10deg);}
+        }
         .item1 {
             /*background: url('tongxin.png') no-repeat;*/
-            background-size: 100% 100%;
+            background-size: 150% 150%;
             position: absolute;
-            top: 480px;
-            left: 280px;
-            height: 65px;
-            width: 65px;
+            top: 460px;
+            left: 215px;
+            height: 70px;
+            width: 60px;
             color: #fff;
+            text-align: center;
+        }
+        .item3 {
+            /*background: url('tongxin.png') no-repeat;*/
+            background-size: 150% 150%;
+            position: absolute;
+            top: 190px;
+            left: 270px;
+            height: 60px;
+            width: 60px;
+            color: #fff;
+            text-align: center;
+        }
+        .item1 img {
+            width: 60px;
+            height: 45px;
+            transform: rotate(-40deg) rotateX(0deg);
+            -webkit-transform: rotate(-40deg) rotateX(0deg);
+        }
+        .item2 img {
+            width: 50px;
+            height: 40px;
+            transform: rotate(-40deg) rotateX(0deg);
+            -webkit-transform: rotate(-40deg) rotateX(0deg);
+        }
+        .abcd img ,.item3 img{
+            width: 40px;
+            height: 30px;
+            transform: rotate(-40deg) rotateX(0deg);
+            -webkit-transform: rotate(-40deg) rotateX(0deg);
+        }
+        .item3 img{
+            transform: rotate(-40deg) rotateX(0deg);
+            -webkit-transform: rotate(-40deg) rotateX(0deg);
         }
 
         .item2 {
@@ -119,34 +179,101 @@
             background-size: 100% 100%;
             position: absolute;
             color: #fff;
-            height: 75px;
-            width: 70px;
+            height: 60px;
+            width: 50px;
             text-align: center;
+            padding-bottom: 5px;
         }
 
-        .add {
-            border: 1px solid #15B3B3;
-            background-color: #000;
-            color: #15B3B3;
-            user-select:none;
-            opacity: 0.3;
-        }
-        .add:hover{
-            opacity: 1;
-        }
 
-        #div1{
-            display: none;
-            position: absolute;
-            z-index: -1;
-        }
         .abcd{
             position: absolute;
-            top: 580px;
-            height: 65px;
-            width: 65px;
+            bottom: 0;
+            height: 45px;
+            width: 35px;
             color: #fff;
             text-align: center
+        }
+        .btnbox{
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            background: url("fourborder.png");
+            background-size: 100% 100%;
+            width: 135px;
+            height: 100px;
+        }
+        .add{
+            width: 135px;
+            height: 40px;
+            border: none;
+            color: #15B3B3;
+            background-color: transparent;
+            margin-top: 5px;
+            font-size: 18px;
+            outline:none;
+            user-select:none;
+        }
+        .save{
+            width: 135px;
+            height: 40px;
+            border: none;
+            color: #15B3B3;
+            margin-top: 5px;
+            font-size: 18px;
+            background-color: transparent;
+            outline:none;
+            user-select:none;
+        }
+        .bling{
+            width: 180px;
+            height: 80px;
+            position: absolute;
+            right: 50px;
+            top: 600px;
+            background: url("fourborder.png");
+            background-size: 100% 100%;
+            color: #fff;
+            padding: 10px;
+            animation:fade 1.5s infinite;
+            -webkit-animation:fade 1.5s infinite;
+            animation-direction:alternate;
+            -webkit-animation-direction:alternate;
+        }
+        .bl-left{
+            float: left;
+            margin-left: 15px;
+            margin-top: 15px;
+            background: url("yuanborder.png") no-repeat;
+            background-size: 100% 100%;
+            width: 50px;
+            height: 50px;
+            font-size: 12px;
+            line-height: 50px;
+            text-align: center;
+            color: #15B3B3;
+        }
+        .bl-right{
+            width: 100px;
+            height: 50px;
+            color: #15B3B3;
+            margin-left: 80px;
+            font-size: 12px;
+        }
+        .bl-right p{
+            height: 15px;
+            line-height: 15px;
+        }
+        @keyframes fade
+        {
+            from {opacity: 0}
+            to {opacity: 1}
+        }
+
+        @-webkit-keyframes fade /*Safari and Chrome*/
+        {
+            from {opacity: 0}
+            to {opacity: 1}
         }
     </style>
 </head>
@@ -156,8 +283,8 @@
         <div class="gs_title-area">
             <div class="gs_title-aside fl" id="jsToday"></div>
             <div class="gs_title-mn">
-                <div>吉林省财经大学</div>
-                <div>智慧化大数据监控平台</div>
+                <div style="color:#00F6FF ">吉林省财经大学</div>
+                <div style="color:#00F6FF ">智慧化大数据监控平台</div>
             </div>
             <div class="gs_title-aside fr" id="jsTime"></div>
         </div>
@@ -327,10 +454,10 @@
         jsPlumb.ready(function () {
             function Connect(i, j) {
                 jsPlumb.connect({
-                    // anchor:[ "Perimeter", { sh ape:"Square", anchorCount:150 } ],
+                    // anchor:[ "Perimeter", { shape:"Square", anchorCount:150 } ],
                     // anchor: ['Top','Right'],
-                    // anchor:["Continuous",{faces:["top","left","right","bottom"]}],
-                    anchor: ['Top', 'Bottom'],
+                    anchor:["Continuous",{faces:["top","bottom"]}],
+                    // anchor: ['Top', 'Bottom','Left','Right'],
                     source: i,
                     target: j,
                     connector: ['Flowchart'],
@@ -338,43 +465,44 @@
                     connectionsDetachable: false,
                     endpointStyle: {fill: 'transparent', stroke: '#15B3B3', radius: 0.1,
                         strokeWidth: 1},
-                    paintStyle: { stroke: '#15B3B3', strokeWidth: 3 },
+                    paintStyle: { stroke: '#15B3B3', strokeWidth: 2 },
                     endpointHoverStyle: {fill: '#1565C0', stroke: '#1565C0', radius: 1,
                         strokeWidth: 1},
                     endpoint:"Dot",
 
                 })
-                jsPlumb.draggable(i,{containment: 'parent',grid: [20, 20]})
-                jsPlumb.draggable(j,{containment: 'parent',grid: [20, 20]})
+                jsPlumb.draggable(i,{containment: 'parent',grid: [5, 5]})
+                jsPlumb.draggable(j,{containment: 'parent',grid: [5, 5]})
             }
             var num = $('.item2').length
             for (let a=0;a<=num;a++){
                 var id = 'item_'+ a
-                Connect(item_a,id)
+                Connect(item_f,id)
             }
             console.log(num)
             Connect(item_b,item_a);
             Connect(item_c,item_a);
             Connect(item_d,item_a);
             Connect(item_e,item_a);
+            Connect(item_a,item_f);
             var btn = document.getElementById('add');
             btn.onclick = function () {
 
                 var div = document.createElement('div');
                 div.innerHTML = '<img src="lou.png"><div contenteditable = "true">' + '教学楼' + num + '</div>';
                 if (parseInt(num / 5) > 0) {
-                    div.style.left = num % 5 * 100 + 80 + 'px';
-                    div.style.top = parseInt(num / 5) * 100 + 'px'
+                    div.style.left = num % 5 * 85 + 50 + 'px';
+                    div.style.top = 20+'px'
                 } else {
-                    div.style.left = num * 100 + 80 + 'px';
-                    div.style.top = 0
+                    div.style.left = num * 85 + 50 + 'px';
+                    div.style.top = 20+'px'
                 }
                 // console.log()
                 div.className = 'item2 my-item';
                 div.id = 'item_' + num;
                 var back = document.getElementById("diagramContainer");
                 back.insertBefore(div, back.lastChild);
-                Connect(item_a, div.id);
+                Connect(item_f, div.id);
                 num++;
             }
         });
@@ -389,14 +517,21 @@
             $div1.children().appendTo('#diagramContainer');
 
             console.log('floorHtml', floorHtml)
+            var allcookies = document.cookie;
+            var arr=new Array();
+            var access_token= window.sessionStorage.getItem('access_token');
             $.ajax({
-                url: "http://localhost:8181/camel/rest/ksh/building",
-                method: 'POST',
+                url: "http://localhost:8181/camel/rest/ksh/building/getBuilding",
+                // methods: 'PUT',
+                type:"GET",
                 data: {
-                    html: floorHtml
+                    "html":floorHtml
                 },
-                success: function () {
-                    console.log(666)
+                beforeSend: function(request) {
+                    request.setRequestHeader('access_token', access_token);
+                },
+                success: function (data) {
+                    console.log(data)
                 }
             })
         })
