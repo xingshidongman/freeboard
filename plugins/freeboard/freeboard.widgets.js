@@ -619,7 +619,7 @@
         var timer;
         var imageURL;
         var passage;
-        var valueElement = $('<div class="text-value"></div>');
+        var valueElement = $('<div class="text-value" ></div>');
 
         function stopTimer() {
             if (timer) {
@@ -644,7 +644,7 @@
             $(element).css({
                 width: "100%",
                 height: "200px",
-                "margin-top": "15px",
+                "margin-top": "20px",
                 "background-position": "right"
             });
 
@@ -702,11 +702,12 @@
 
                         var txt = document.createElement("p");
                         txt.innerHTML = passage;
-                        $(txt).css({
-                            "width": "100%",
-                            "font-size": "12px",
-                            "color": "#00f6ff"
-                        });
+                        //  整体字体大小
+                        // $(txt).css({
+                        //     "width": "100%",
+                        //     "font-size": "12px",
+                        //     "color": "#00f6ff"
+                        // });
                         valueElement.append(txt);
                     }
 
@@ -1735,8 +1736,8 @@
                 {
                     //处理率
                     textStyle: {
-                        fontSize: 15,
-                        color: 'red',
+                        fontSize: 12,
+                        color: '#00f6ff',
                         fontFamily: 'Microsoft YaHei'
                     },
 
@@ -1798,11 +1799,14 @@
         this.onCalculatedValueChanged = function (settingName, newValue) {
 
             var value = newValue;
+            console.log('1597563951357951357951357',value)
             if (value && value.length > 0) {
                 value = eval(value);
 
                 var sCircle = value[0].smallCircle;
+                console.log('9999999999999999999999999999999999999',sCircle)
                 var bCircle = value[1].bigCircle;
+                console.log('9999999999999999999999999999999999999',bCircle)
                 option1.yAxis.data = value[2].barName;
                 var bValue = value[3].barValue;
                 console.log('00000000000000000000000++++++++',bValue);
@@ -1854,32 +1858,32 @@
                 option.series.push({
                     type: 'pie',
                     radius: ['35%', '45%'],
-                    label: {
-                        normal: {
-                            formatter: ' {b|{b}}\n{hr|}\n  {c}    ',
-                            //backgroundColor: '#333',
-                            rich: {
-                                hr: {
-                                    //已处理数字体
-                                    borderColor: '#00f6ff',
-                                    width: '100%',
-                                    borderWidth: 0.5,
-                                    height: 0
-                                },
-                                b: {
-                                    //已处理数下横线
-                                    color: '#00f6ff',
-                                    lineHeight: 22,
-                                    align: 'center'
-                                },
-                                c: {
-                                    color: '#00f6ff',
-                                    lineHeight: 22,
-                                    align: 'center'
-                                },
-                            }
-                        }
-                    },
+                    // label: {
+                    //     normal: {
+                    //         formatter: ' {b|{b}}\n{hr|}\n  {c}    ',
+                    //         //backgroundColor: '#333',
+                    //         rich: {
+                    //             hr: {
+                    //                 //已处理数字体
+                    //                 borderColor: '#00f6ff',
+                    //                 width: '100%',
+                    //                 borderWidth: 0.5,
+                    //                 height: 0
+                    //             },
+                    //             b: {
+                    //                 //已处理数下横线
+                    //                 color: '#00f6ff',
+                    //                 lineHeight: 22,
+                    //                 align: 'center'
+                    //             },
+                    //             c: {
+                    //                 color: '#00f6ff',
+                    //                 lineHeight: 22,
+                    //                 align: 'center'
+                    //             },
+                    //         }
+                    //     }
+                    // },
                     labelLine: {
                         length2: 20000,
                     },
@@ -1916,7 +1920,7 @@
                     b.push(max - bValue[i]);
                 }
                 ;
-                //console.log(b);
+                console.log(b);
                 option1.series.push({
                     type: 'bar',
                     stack: 'chart',
@@ -1930,7 +1934,7 @@
                     },
                     data: b
                 },);
-                //console.log(option1);
+                console.log(option1);
             }
         }
         this.onSettingsChanged = function (newSettings) {
