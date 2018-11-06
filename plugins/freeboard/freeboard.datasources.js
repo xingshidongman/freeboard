@@ -112,7 +112,7 @@
         settings: [
             {
                 name: "url",
-                display_name: "URL",
+                display_name: "路径",
                 // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
                 type: "text"
             },
@@ -120,9 +120,9 @@
                 // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
                 name: "use_thingproxy",
                 // ** display_name **：调整此设置时将向用户显示的漂亮名称。
-                display_name: "Try thingproxy",
+                display_name: "尝试代理",
                 // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
-                description: 'A direct JSON connection will be tried first, if that fails, a JSONP connection will be tried. If that fails, you can use thingproxy, which can solve many connection problems to APIs. <a href="https://github.com/Freeboard/thingproxy" target="_blank">More information</a>.',
+                description: '首先将尝试直接JSON连接，如果失败，将尝试JSONP连接。如果失败，您可以使用thigPosiver，它可以解决API的许多连接问题。 <a href="https://github.com/Freeboard/thingproxy" target="_blank">更多信息</a>.',
                 // ** type **（必需）：此设置的预期输入类型
                 type: "boolean",
                 // ** default_value **：此设置的默认值。
@@ -130,7 +130,7 @@
             },
             {
                 name: "refresh",
-                display_name: "Refresh Every",
+                display_name: "刷新时间",
                 type: "number",
                 // ** suffix **：后缀。
                 suffix: "seconds",
@@ -138,7 +138,7 @@
             },
             {
                 name: "method",
-                display_name: "Method",
+                display_name: "请求方式",
                 // ** type **（必需）：option代表这是一个下拉选
                 type: "option",
                 options: [
@@ -162,13 +162,13 @@
             },
             {
                 name: "body",
-                display_name: "Body",
+                display_name: "请求主体",
                 type: "text",
-                description: "The body of the request. Normally only used if method is POST"
+                description: "请求的主体，通常只使用 POST"
             },
             {
                 name: "headers",
-                display_name: "Headers",
+                display_name: "请求首部",
                 // ** type **（必需）：array代表这是一个数组
                 type: "array",
                 settings: [
@@ -196,6 +196,7 @@
 
 
 
+/*
 
     //json格式的数据源 （自定的  用于发送两次ajax请求  请求数据和返回数据都为json格式）
     var json2Datasource = function (settings, updateCallback) {
@@ -877,6 +878,7 @@
         }
     });
 
+*/
 
 
 
@@ -971,11 +973,11 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON4",
+        type_name: "实验楼数据",
         settings: [
             {
                 name: "url",
-                display_name: "URL",
+                display_name: "路径",
                 // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
                 type: "text"
             },
@@ -983,9 +985,9 @@
                 // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
                 name: "use_thingproxy",
                 // ** display_name **：调整此设置时将向用户显示的漂亮名称。
-                display_name: "Try thingproxy",
+                display_name: "尝试代理",
                 // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
-                description: 'A direct JSON connection will be tried first, if that fails, a JSONP connection will be tried. If that fails, you can use thingproxy, which can solve many connection problems to APIs. <a href="https://github.com/Freeboard/thingproxy" target="_blank">More information</a>.',
+                description: '首先将尝试直接JSON连接，如果失败，将尝试JSONP连接。如果失败，您可以使用thigPosiver，它可以解决API的许多连接问题。 <a href="https://github.com/Freeboard/thingproxy" target="_blank">更多信息</a>.',
                 // ** type **（必需）：此设置的预期输入类型
                 type: "boolean",
                 // ** default_value **：此设置的默认值。
@@ -993,7 +995,7 @@
             },
             {
                 name: "refresh",
-                display_name: "Refresh Every",
+                display_name: "刷新时间",
                 type: "number",
                 // ** suffix **：后缀。
                 suffix: "seconds",
@@ -1001,7 +1003,7 @@
             },
             {
                 name: "method",
-                display_name: "Method",
+                display_name: "请求方式",
                 // ** type **（必需）：option代表这是一个下拉选
                 type: "option",
                 options: [
@@ -1025,13 +1027,13 @@
             },
             {
                 name: "body",
-                display_name: "Body",
+                display_name: "请求主体",
                 type: "text",
-                description: "The body of the request. Normally only used if method is POST"
+                description: "请求的主体，通常只使用 POST"
             },
             {
                 name: "headers",
-                display_name: "Headers",
+                display_name: "请求首部",
                 // ** type **（必需）：array代表这是一个数组
                 type: "array",
                 settings: [
@@ -1142,11 +1144,11 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON5",
+        type_name: "宽带流量占用比折线图",
         settings: [
             {
                 name: "url",
-                display_name: "URL",
+                display_name: "路径",
                 // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
                 type: "text"
             },
@@ -1154,9 +1156,9 @@
                 // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
                 name: "use_thingproxy",
                 // ** display_name **：调整此设置时将向用户显示的漂亮名称。
-                display_name: "Try thingproxy",
+                display_name: "尝试代理",
                 // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
-                description: 'A direct JSON connection will be tried first, if that fails, a JSONP connection will be tried. If that fails, you can use thingproxy, which can solve many connection problems to APIs. <a href="https://github.com/Freeboard/thingproxy" target="_blank">More information</a>.',
+                description: '首先将尝试直接JSON连接，如果失败，将尝试JSONP连接。如果失败，您可以使用thigPosiver，它可以解决API的许多连接问题。 <a href="https://github.com/Freeboard/thingproxy" target="_blank">更多信息</a>.',
                 // ** type **（必需）：此设置的预期输入类型
                 type: "boolean",
                 // ** default_value **：此设置的默认值。
@@ -1164,7 +1166,7 @@
             },
             {
                 name: "refresh",
-                display_name: "Refresh Every",
+                display_name: "刷新时间",
                 type: "number",
                 // ** suffix **：后缀。
                 suffix: "seconds",
@@ -1172,7 +1174,7 @@
             },
             {
                 name: "method",
-                display_name: "Method",
+                display_name: "请求方式",
                 // ** type **（必需）：option代表这是一个下拉选
                 type: "option",
                 options: [
@@ -1196,13 +1198,13 @@
             },
             {
                 name: "body",
-                display_name: "Body",
+                display_name: "请求主体",
                 type: "text",
-                description: "The body of the request. Normally only used if method is POST"
+                description: "请求的主体，通常只使用 POST"
             },
             {
                 name: "headers",
-                display_name: "Headers",
+                display_name: "请求首部",
                 // ** type **（必需）：array代表这是一个数组
                 type: "array",
                 settings: [
@@ -1315,11 +1317,11 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON6",
+        type_name: "线路流量占用比柱状图",
         settings: [
             {
                 name: "url",
-                display_name: "URL",
+                display_name: "路径",
                 // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
                 type: "text"
             },
@@ -1327,9 +1329,9 @@
                 // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
                 name: "use_thingproxy",
                 // ** display_name **：调整此设置时将向用户显示的漂亮名称。
-                display_name: "Try thingproxy",
+                display_name: "尝试代理",
                 // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
-                description: 'A direct JSON connection will be tried first, if that fails, a JSONP connection will be tried. If that fails, you can use thingproxy, which can solve many connection problems to APIs. <a href="https://github.com/Freeboard/thingproxy" target="_blank">More information</a>.',
+                description: '首先将尝试直接JSON连接，如果失败，将尝试JSONP连接。如果失败，您可以使用thigPosiver，它可以解决API的许多连接问题。 <a href="https://github.com/Freeboard/thingproxy" target="_blank">更多信息</a>.',
                 // ** type **（必需）：此设置的预期输入类型
                 type: "boolean",
                 // ** default_value **：此设置的默认值。
@@ -1337,7 +1339,7 @@
             },
             {
                 name: "refresh",
-                display_name: "Refresh Every",
+                display_name: "刷新时间",
                 type: "number",
                 // ** suffix **：后缀。
                 suffix: "seconds",
@@ -1345,7 +1347,7 @@
             },
             {
                 name: "method",
-                display_name: "Method",
+                display_name: "请求方式",
                 // ** type **（必需）：option代表这是一个下拉选
                 type: "option",
                 options: [
@@ -1369,13 +1371,13 @@
             },
             {
                 name: "body",
-                display_name: "Body",
+                display_name: "请求主体",
                 type: "text",
-                description: "The body of the request. Normally only used if method is POST"
+                description: "请求的主体，通常只使用 POST"
             },
             {
                 name: "headers",
-                display_name: "Headers",
+                display_name: "请求首部",
                 // ** type **（必需）：array代表这是一个数组
                 type: "array",
                 settings: [
@@ -1479,11 +1481,11 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON7",
+        type_name: "告警信息扇形图",
         settings: [
             {
                 name: "url",
-                display_name: "URL",
+                display_name: "路径",
                 // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
                 type: "text"
             },
@@ -1491,9 +1493,9 @@
                 // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
                 name: "use_thingproxy",
                 // ** display_name **：调整此设置时将向用户显示的漂亮名称。
-                display_name: "Try thingproxy",
+                display_name: "尝试代理",
                 // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
-                description: 'A direct JSON connection will be tried first, if that fails, a JSONP connection will be tried. If that fails, you can use thingproxy, which can solve many connection problems to APIs. <a href="https://github.com/Freeboard/thingproxy" target="_blank">More information</a>.',
+                description: '首先将尝试直接JSON连接，如果失败，将尝试JSONP连接。如果失败，您可以使用thigPosiver，它可以解决API的许多连接问题。 <a href="https://github.com/Freeboard/thingproxy" target="_blank">更多信息</a>.',
                 // ** type **（必需）：此设置的预期输入类型
                 type: "boolean",
                 // ** default_value **：此设置的默认值。
@@ -1501,7 +1503,7 @@
             },
             {
                 name: "refresh",
-                display_name: "Refresh Every",
+                display_name: "刷新时间",
                 type: "number",
                 // ** suffix **：后缀。
                 suffix: "seconds",
@@ -1509,7 +1511,7 @@
             },
             {
                 name: "method",
-                display_name: "Method",
+                display_name: "请求方式",
                 // ** type **（必需）：option代表这是一个下拉选
                 type: "option",
                 options: [
@@ -1533,13 +1535,13 @@
             },
             {
                 name: "body",
-                display_name: "Body",
+                display_name: "请求主体",
                 type: "text",
-                description: "The body of the request. Normally only used if method is POST"
+                description: "请求的主体，通常只使用 POST"
             },
             {
                 name: "headers",
-                display_name: "Headers",
+                display_name: "请求首部",
                 // ** type **（必需）：array代表这是一个数组
                 type: "array",
                 settings: [
@@ -1701,11 +1703,11 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON8",
+        type_name: "管理对象扇形图",
         settings: [
             {
                 name: "url",
-                display_name: "URL",
+                display_name: "路径",
                 // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
                 type: "text"
             },
@@ -1713,9 +1715,9 @@
                 // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
                 name: "use_thingproxy",
                 // ** display_name **：调整此设置时将向用户显示的漂亮名称。
-                display_name: "Try thingproxy",
+                display_name: "尝试代理",
                 // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
-                description: 'A direct JSON connection will be tried first, if that fails, a JSONP connection will be tried. If that fails, you can use thingproxy, which can solve many connection problems to APIs. <a href="https://github.com/Freeboard/thingproxy" target="_blank">More information</a>.',
+                description: '首先将尝试直接JSON连接，如果失败，将尝试JSONP连接。如果失败，您可以使用thigPosiver，它可以解决API的许多连接问题。 <a href="https://github.com/Freeboard/thingproxy" target="_blank">更多信息</a>.',
                 // ** type **（必需）：此设置的预期输入类型
                 type: "boolean",
                 // ** default_value **：此设置的默认值。
@@ -1723,7 +1725,7 @@
             },
             {
                 name: "refresh",
-                display_name: "Refresh Every",
+                display_name: "刷新时间",
                 type: "number",
                 // ** suffix **：后缀。
                 suffix: "seconds",
@@ -1731,7 +1733,7 @@
             },
             {
                 name: "method",
-                display_name: "Method",
+                display_name: "请求方式",
                 // ** type **（必需）：option代表这是一个下拉选
                 type: "option",
                 options: [
@@ -1755,13 +1757,13 @@
             },
             {
                 name: "body",
-                display_name: "Body",
+                display_name: "请求主体",
                 type: "text",
-                description: "The body of the request. Normally only used if method is POST"
+                description: "请求的主体，通常只使用 POST"
             },
             {
                 name: "headers",
-                display_name: "Headers",
+                display_name: "请求首部",
                 // ** type **（必需）：array代表这是一个数组
                 type: "array",
                 settings: [
@@ -1864,11 +1866,11 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON9",
+        type_name: "骨干线路实时运行情况",
         settings: [
             {
                 name: "url",
-                display_name: "URL",
+                display_name: "路径",
                 // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
                 type: "text"
             },
@@ -1876,9 +1878,9 @@
                 // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
                 name: "use_thingproxy",
                 // ** display_name **：调整此设置时将向用户显示的漂亮名称。
-                display_name: "Try thingproxy",
+                display_name: "尝试代理",
                 // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
-                description: 'A direct JSON connection will be tried first, if that fails, a JSONP connection will be tried. If that fails, you can use thingproxy, which can solve many connection problems to APIs. <a href="https://github.com/Freeboard/thingproxy" target="_blank">More information</a>.',
+                description: '首先将尝试直接JSON连接，如果失败，将尝试JSONP连接。如果失败，您可以使用thigPosiver，它可以解决API的许多连接问题。 <a href="https://github.com/Freeboard/thingproxy" target="_blank">更多信息</a>.',
                 // ** type **（必需）：此设置的预期输入类型
                 type: "boolean",
                 // ** default_value **：此设置的默认值。
@@ -1886,7 +1888,7 @@
             },
             {
                 name: "refresh",
-                display_name: "Refresh Every",
+                display_name: "刷新时间",
                 type: "number",
                 // ** suffix **：后缀。
                 suffix: "seconds",
@@ -1894,7 +1896,7 @@
             },
             {
                 name: "method",
-                display_name: "Method",
+                display_name: "请求方式",
                 // ** type **（必需）：option代表这是一个下拉选
                 type: "option",
                 options: [
@@ -1918,13 +1920,13 @@
             },
             {
                 name: "body",
-                display_name: "Body",
+                display_name: "请求主体",
                 type: "text",
-                description: "The body of the request. Normally only used if method is POST"
+                description: "请求的主体，通常只使用 POST"
             },
             {
                 name: "headers",
-                display_name: "Headers",
+                display_name: "请求首部",
                 // ** type **（必需）：array代表这是一个数组
                 type: "array",
                 settings: [
@@ -2029,11 +2031,11 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON10",
+        type_name: "雷达图",
         settings: [
             {
                 name: "url",
-                display_name: "URL",
+                display_name: "路径",
                 // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
                 type: "text"
             },
@@ -2041,9 +2043,9 @@
                 // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
                 name: "use_thingproxy",
                 // ** display_name **：调整此设置时将向用户显示的漂亮名称。
-                display_name: "Try thingproxy",
+                display_name: "尝试代理",
                 // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
-                description: 'A direct JSON connection will be tried first, if that fails, a JSONP connection will be tried. If that fails, you can use thingproxy, which can solve many connection problems to APIs. <a href="https://github.com/Freeboard/thingproxy" target="_blank">More information</a>.',
+                description: '首先将尝试直接JSON连接，如果失败，将尝试JSONP连接。如果失败，您可以使用thigPosiver，它可以解决API的许多连接问题。 <a href="https://github.com/Freeboard/thingproxy" target="_blank">更多信息</a>.',
                 // ** type **（必需）：此设置的预期输入类型
                 type: "boolean",
                 // ** default_value **：此设置的默认值。
@@ -2051,7 +2053,7 @@
             },
             {
                 name: "refresh",
-                display_name: "Refresh Every",
+                display_name: "刷新时间",
                 type: "number",
                 // ** suffix **：后缀。
                 suffix: "seconds",
@@ -2059,7 +2061,7 @@
             },
             {
                 name: "method",
-                display_name: "Method",
+                display_name: "请求方式",
                 // ** type **（必需）：option代表这是一个下拉选
                 type: "option",
                 options: [
@@ -2083,13 +2085,13 @@
             },
             {
                 name: "body",
-                display_name: "Body",
+                display_name: "请求主体",
                 type: "text",
-                description: "The body of the request. Normally only used if method is POST"
+                description: "请求的主体，通常只使用 POST"
             },
             {
                 name: "headers",
-                display_name: "Headers",
+                display_name: "请求首部",
                 // ** type **（必需）：array代表这是一个数组
                 type: "array",
                 settings: [
@@ -2192,11 +2194,11 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON11",
+        type_name: "ＴＯＰ图",
         settings: [
             {
                 name: "url",
-                display_name: "URL",
+                display_name: "路径",
                 // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
                 type: "text"
             },
@@ -2204,9 +2206,9 @@
                 // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
                 name: "use_thingproxy",
                 // ** display_name **：调整此设置时将向用户显示的漂亮名称。
-                display_name: "Try thingproxy",
+                display_name: "尝试代理",
                 // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
-                description: 'A direct JSON connection will be tried first, if that fails, a JSONP connection will be tried. If that fails, you can use thingproxy, which can solve many connection problems to APIs. <a href="https://github.com/Freeboard/thingproxy" target="_blank">More information</a>.',
+                description: '首先将尝试直接JSON连接，如果失败，将尝试JSONP连接。如果失败，您可以使用thigPosiver，它可以解决API的许多连接问题。 <a href="https://github.com/Freeboard/thingproxy" target="_blank">更多信息</a>.',
                 // ** type **（必需）：此设置的预期输入类型
                 type: "boolean",
                 // ** default_value **：此设置的默认值。
@@ -2214,7 +2216,7 @@
             },
             {
                 name: "refresh",
-                display_name: "Refresh Every",
+                display_name: "刷新时间",
                 type: "number",
                 // ** suffix **：后缀。
                 suffix: "seconds",
@@ -2222,7 +2224,7 @@
             },
             {
                 name: "method",
-                display_name: "Method",
+                display_name: "请求方式",
                 // ** type **（必需）：option代表这是一个下拉选
                 type: "option",
                 options: [
@@ -2246,13 +2248,13 @@
             },
             {
                 name: "body",
-                display_name: "Body",
+                display_name: "请求主体",
                 type: "text",
-                description: "The body of the request. Normally only used if method is POST"
+                description: "请求的主体，通常只使用 POST"
             },
             {
                 name: "headers",
-                display_name: "Headers",
+                display_name: "请求首部",
                 // ** type **（必需）：array代表这是一个数组
                 type: "array",
                 settings: [
@@ -2362,11 +2364,11 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON12",
+        type_name: "告警信息列表",
         settings: [
             {
                 name: "url",
-                display_name: "URL",
+                display_name: "路径",
                 // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
                 type: "text"
             },
@@ -2374,9 +2376,9 @@
                 // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
                 name: "use_thingproxy",
                 // ** display_name **：调整此设置时将向用户显示的漂亮名称。
-                display_name: "Try thingproxy",
+                display_name: "尝试代理",
                 // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
-                description: 'A direct JSON connection will be tried first, if that fails, a JSONP connection will be tried. If that fails, you can use thingproxy, which can solve many connection problems to APIs. <a href="https://github.com/Freeboard/thingproxy" target="_blank">More information</a>.',
+                description: '首先将尝试直接JSON连接，如果失败，将尝试JSONP连接。如果失败，您可以使用thigPosiver，它可以解决API的许多连接问题。 <a href="https://github.com/Freeboard/thingproxy" target="_blank">更多信息</a>.',
                 // ** type **（必需）：此设置的预期输入类型
                 type: "boolean",
                 // ** default_value **：此设置的默认值。
@@ -2384,7 +2386,7 @@
             },
             {
                 name: "refresh",
-                display_name: "Refresh Every",
+                display_name: "刷新时间",
                 type: "number",
                 // ** suffix **：后缀。
                 suffix: "seconds",
@@ -2392,7 +2394,7 @@
             },
             {
                 name: "method",
-                display_name: "Method",
+                display_name: "请求方式",
                 // ** type **（必需）：option代表这是一个下拉选
                 type: "option",
                 options: [
@@ -2416,13 +2418,13 @@
             },
             {
                 name: "body",
-                display_name: "Body",
+                display_name: "请求主体",
                 type: "text",
-                description: "The body of the request. Normally only used if method is POST"
+                description: "请求的主体，通常只使用 POST"
             },
             {
                 name: "headers",
-                display_name: "Headers",
+                display_name: "请求首部",
                 // ** type **（必需）：array代表这是一个数组
                 type: "array",
                 settings: [
@@ -2529,23 +2531,23 @@
     //加载数据源（这个加载的是Open Weather Map API）
     freeboard.loadDatasourcePlugin({
         type_name: "openweathermap",
-        display_name: "Open Weather Map API",
+        display_name: "加载Open Weather Map API数据源",
         settings: [
             {
                 name: "api_key",
-                display_name: "API Key",
+                display_name: "API密钥",
                 type: "text",
-                description: "Your personal API Key from Open Weather Map"
+                description: "开放天气图的个人API密钥"
             },
             {
                 name: "location",
-                display_name: "Location",
+                display_name: "位置",
                 type: "text",
-                description: "Example: London, UK"
+                description: "例如：伦敦，英国"
             },
             {
                 name: "units",
-                display_name: "Units",
+                display_name: "单位",
                 type: "option",
                 default: "imperial",
                 options: [
@@ -2561,7 +2563,7 @@
             },
             {
                 name: "refresh",
-                display_name: "Refresh Every",
+                display_name: "刷新时间",
                 type: "number",
                 suffix: "seconds",
                 default_value: 5
@@ -2611,15 +2613,15 @@
     //加载数据源（这加载的是Dweet.io）
     freeboard.loadDatasourcePlugin({
         "type_name": "dweet_io",
-        "display_name": "Dweet.io",
+        "display_name": "加载Dweet.io数据源",
         "external_scripts": [
             "http://dweet.io/client/dweet.io.min.js"
         ],
         "settings": [
             {
                 name: "thing_id",
-                display_name: "Thing Name",
-                "description": "Example: salty-dog-1",
+                display_name: "物名",
+                "description": "例：狗",
                 type: "text"
             }
         ],
@@ -2701,28 +2703,28 @@
     //加载
     freeboard.loadDatasourcePlugin({
         "type_name": "playback",
-        "display_name": "Playback",
+        "display_name": "Playback格式的数据源",
         "settings": [
             {
                 "name": "datafile",
-                "display_name": "Data File URL",
+                "display_name": "数据文件URL",
                 "type": "text",
-                "description": "A link to a JSON array of data."
+                "description": "指向JSON数据数组的链接。"
             },
             {
                 name: "is_jsonp",
-                display_name: "Is JSONP",
+                display_name: "是否JSONP",
                 type: "boolean"
             },
             {
                 "name": "loop",
-                "display_name": "Loop",
+                "display_name": "回路",
                 "type": "boolean",
-                "description": "Rewind and loop when finished"
+                "description": "完成后返回"
             },
             {
                 "name": "refresh",
-                "display_name": "Refresh Every",
+                "display_name": "刷新时间",
                 "type": "number",
                 "suffix": "seconds",
                 "default_value": 5
@@ -2779,11 +2781,11 @@
     //加载
     freeboard.loadDatasourcePlugin({
         "type_name": "clock",
-        "display_name": "Clock",
+        "display_name": "clock格式的数据源",
         "settings": [
             {
                 "name": "refresh",
-                "display_name": "Refresh Every",
+                "display_name": "刷新时间",
                 "type": "number",
                 "suffix": "seconds",
                 "default_value": 1

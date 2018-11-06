@@ -7,18 +7,20 @@
 			"width": 1,
 			"row": {
 				"3": 1,
-				"4": 1
+				"4": 1,
+				"5": 1
 			},
 			"col": {
 				"3": 1,
-				"4": 1
+				"4": 1,
+				"5": 4
 			},
 			"col_width": 1,
 			"widgets": [
 				{
 					"type": "e_charts_radar4",
 					"settings": {
-						"value": "datasources[\"12\"]"
+						"value": "datasources[\"2\"]"
 					}
 				}
 			]
@@ -27,11 +29,13 @@
 			"width": 1,
 			"row": {
 				"3": 1,
-				"4": 1
+				"4": 1,
+				"5": 1
 			},
 			"col": {
 				"3": 3,
-				"4": 4
+				"4": 4,
+				"5": 5
 			},
 			"col_width": 1,
 			"widgets": [
@@ -39,7 +43,7 @@
 					"type": "loop-table2",
 					"settings": {
 						"Title": "12",
-						"tableData": "datasources[\"13\"]",
+						"tableData": "datasources[\"1\"]",
 						"Height": 5
 					}
 				}
@@ -49,19 +53,21 @@
 			"width": 1,
 			"row": {
 				"3": 1,
-				"4": 1
+				"4": 1,
+				"5": 1
 			},
 			"col": {
 				"3": -17,
-				"4": 2
+				"4": 2,
+				"5": -10
 			},
-			"col_width": 2,
+			"col_width": 3,
 			"widgets": [
 				{
-					"type": "loop-table2",
+					"type": "floor-widget",
 					"settings": {
-						"tableData": "datasources[\"reder\"][\"tableData2\"]",
-						"Height": 5
+						"Title": "12",
+						"Height": "12"
 					}
 				}
 			]
@@ -69,25 +75,25 @@
 	],
 	"datasources": [
 		{
-			"name": "12",
-			"type": "JSON10",
+			"name": "1",
+			"type": "骨干线路实时运行情况",
 			"settings": {
-				"url": "12",
+				"url": "1",
 				"use_thingproxy": true,
 				"refresh": 1800,
 				"method": "GET"
 			}
 		},
 		{
-			"name": "13",
-			"type": "JSON9",
+			"name": "2",
+			"type": "雷达图",
 			"settings": {
-				"url": "13",
+				"url": "2",
 				"use_thingproxy": true,
 				"refresh": 1800,
 				"method": "GET"
 			}
 		}
 	],
-	"columns": 4
+	"columns": 5
 }

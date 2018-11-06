@@ -13,9 +13,9 @@
       "col": {
         "3": -25,
         "4": 2,
-        "5": 3
+        "5": -10
       },
-      "col_width": 2,
+      "col_width": 3,
       "widgets": [
         {
           "type": "bms-widget",
@@ -42,7 +42,7 @@
         {
           "type": "e_charts_annulusRing2",
           "settings": {
-            "value": "datasources[\"77\"]"
+            "value": "datasources[\"5\"]"
           }
         }
       ]
@@ -51,7 +51,7 @@
       "width": 1,
       "row": {
         "3": 1,
-        "4": 12,
+        "4": 5,
         "5": 12
       },
       "col": {
@@ -64,7 +64,7 @@
         {
           "type": "e_charts_NightingaleRoseDiagram",
           "settings": {
-            "value": "datasources[\"88\"]"
+            "value": "datasources[\"6\"]"
           }
         }
       ]
@@ -73,7 +73,7 @@
       "width": 1,
       "row": {
         "3": 1,
-        "4": 21,
+        "4": 9,
         "5": 21
       },
       "col": {
@@ -95,20 +95,20 @@
       "width": 1,
       "row": {
         "3": 10,
-        "4": 10,
+        "4": 5,
         "5": 10
       },
       "col": {
         "3": 1,
         "4": 1,
-        "5": 2
+        "5": 4
       },
       "col_width": 1,
       "widgets": [
         {
           "type": "e_charts_LineMoreActive",
           "settings": {
-            "value": "datasources[\"55\"]"
+            "value": "datasources[\"2\"]"
           }
         }
       ]
@@ -117,20 +117,20 @@
       "width": 1,
       "row": {
         "3": 10,
-        "4": 21,
+        "4": 9,
         "5": 21
       },
       "col": {
         "3": 2,
         "4": 1,
-        "5": 2
+        "5": 4
       },
       "col_width": 1,
       "widgets": [
         {
           "type": "e_charts_BarActive",
           "settings": {
-            "value": "datasources[\"66\"]"
+            "value": "datasources[\"3\"]"
           }
         }
       ]
@@ -145,15 +145,15 @@
       "col": {
         "3": 2,
         "4": 2,
-        "5": 3
+        "5": -10
       },
-      "col_width": 2,
+      "col_width": 3,
       "widgets": [
         {
           "type": "loop-table",
           "settings": {
-            "Title": "12",
-            "tableData": "datasources[\"1212\"]",
+            "Title": "4",
+            "tableData": "datasources[\"4\"]",
             "Height": 5
           }
         }
@@ -169,15 +169,15 @@
       "col": {
         "3": 1,
         "4": 1,
-        "5": 2
+        "5": 4
       },
       "col_width": 1,
       "widgets": [
         {
           "type": "picture",
           "settings": {
-            "passage": "datasources[\"44\"][\"data\"]",
-            "refresh": 10
+            "passage": "datasources[\"1\"][\"data\"]",
+            "refresh": 1
           }
         }
       ]
@@ -196,85 +196,65 @@
       }
     },
     {
-      "name": "11",
-      "type": "JSON11",
+      "name": "1",
+      "type": "实验楼数据",
       "settings": {
-        "url": "http://localhost:3100/DataSource1.json",
+        "url": "1",
         "use_thingproxy": true,
         "refresh": 1800,
         "method": "GET"
       }
     },
     {
-      "name": "ada",
-      "type": "JSON4",
+      "name": "2",
+      "type": "宽带流量占用比折线图",
       "settings": {
-        "url": "da",
+        "url": "2",
         "use_thingproxy": true,
         "refresh": 1800,
         "method": "GET"
       }
     },
     {
-      "name": "44",
-      "type": "JSON4",
+      "name": "3",
+      "type": "线路流量占用比柱状图",
       "settings": {
-        "url": "44",
+        "url": "3",
         "use_thingproxy": true,
         "refresh": 1800,
         "method": "GET"
       }
     },
     {
-      "name": "88",
-      "type": "JSON8",
+      "name": "4",
+      "type": "告警信息列表",
       "settings": {
-        "url": "88",
+        "url": "4",
         "use_thingproxy": true,
         "refresh": 1800,
         "method": "GET"
       }
     },
     {
-      "name": "77",
-      "type": "JSON7",
+      "name": "5",
+      "type": "告警信息扇形图",
       "settings": {
-        "url": "77",
+        "url": "5",
         "use_thingproxy": true,
         "refresh": 1800,
         "method": "GET"
       }
     },
     {
-      "name": "55",
-      "type": "JSON5",
+      "name": "6",
+      "type": "管理对象扇形图",
       "settings": {
-        "url": "55",
-        "use_thingproxy": true,
-        "refresh": 1800,
-        "method": "GET"
-      }
-    },
-    {
-      "name": "66",
-      "type": "JSON6",
-      "settings": {
-        "url": "66",
-        "use_thingproxy": true,
-        "refresh": 1800,
-        "method": "GET"
-      }
-    },
-    {
-      "name": "1212",
-      "type": "JSON12",
-      "settings": {
-        "url": "1212",
+        "url": "6",
         "use_thingproxy": true,
         "refresh": 1800,
         "method": "GET"
       }
     }
   ],
-  "columns": 4
+  "columns": 5
 }
