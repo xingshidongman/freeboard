@@ -11,7 +11,7 @@
 // -------------------
 //这里我们实现了实际的数据源插件。我们传入设置和updateCallback。
 (function () {
-    //json格式的数据源(原始的)
+    /*//json格式的数据源(原始的)
     var jsonDatasource = function (settings, updateCallback) {
         var self = this;
         var updateTimer = null;
@@ -879,7 +879,7 @@
 
 
 
-
+*/
 
 
 
@@ -971,7 +971,7 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON4",
+        type_name: "项目信息",
         settings: [
             {
                 name: "url",
@@ -1142,7 +1142,7 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON5",
+        type_name: "宽带流量占用比折线图",
         settings: [
             {
                 name: "url",
@@ -1315,7 +1315,7 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON6",
+        type_name: "宽带流量占用比柱形图",
         settings: [
             {
                 name: "url",
@@ -1479,7 +1479,7 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON7",
+        type_name: "告警信息扇形图",
         settings: [
             {
                 name: "url",
@@ -1701,7 +1701,7 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON8",
+        type_name: "管理对象扇形图",
         settings: [
             {
                 name: "url",
@@ -1864,7 +1864,7 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON9",
+        type_name: "骨干路线运行情况",
         settings: [
             {
                 name: "url",
@@ -2029,7 +2029,7 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON10",
+        type_name: "雷达图",
         settings: [
             {
                 name: "url",
@@ -2192,7 +2192,7 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON11",
+        type_name: "TOP图",
         settings: [
             {
                 name: "url",
@@ -2362,7 +2362,7 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "JSON12",
+        type_name: "告警信息列表",
         settings: [
             {
                 name: "url",
@@ -2454,7 +2454,7 @@
 
 
 
-
+/*
 
 
 
@@ -2480,7 +2480,7 @@
         }
 
         function toTitleCase(str) {
-            return str.replace(/\w\S*/g, function (txt) {
+            return str.replace(/\w\S*!/g, function (txt) {
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             });
         }
@@ -2529,7 +2529,7 @@
     //加载数据源（这个加载的是Open Weather Map API）
     freeboard.loadDatasourcePlugin({
         type_name: "openweathermap",
-        display_name: "Open Weather Map API",
+        display_name: "加载数据源",
         settings: [
             {
                 name: "api_key",
@@ -2885,7 +2885,7 @@
         var self = this;
         // Good idea to create a variable to hold on to our settings, because they might change in the future. See below.
         var currentSettings = settings;
-        /* This is some function where I'll get my data from somewhere */
+        /!* This is some function where I'll get my data from somewhere *!/
         function getData() {
             var conn = skynet.createConnection({
                 "uuid": currentSettings.uuid,
@@ -2917,4 +2917,8 @@
         // Here we call createRefreshTimer with our current settings, to kick things off, initially. Notice how we make use of one of the user defined settings that we setup earlier.
         //	createRefreshTimer(currentSettings.refresh_time);
     }
+    */
+
+
+
 }());

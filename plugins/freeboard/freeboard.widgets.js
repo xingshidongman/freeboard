@@ -156,7 +156,7 @@
 
     freeboard.addStyle('.tw-sparkline', 'height:20px;');
 
-    //显示一段文本
+ /*   //显示一段文本
     var textWidget = function (settings) {
 
         var self = this;
@@ -304,13 +304,13 @@
         newInstance: function (settings, newInstanceCallback) {
             newInstanceCallback(new textWidget(settings));
         }
-    });
+    });*/
 
     var gaugeID = 0;
     freeboard.addStyle('.gauge-widget-wrapper', "width: 100%;text-align: center;");
     freeboard.addStyle('.gauge-widget', "width:200px;height:160px;display:inline-block;");
 
-    var gaugeWidget = function (settings) {
+   /* var gaugeWidget = function (settings) {
         console.log(' === Gauge === : ', settings);
         var self = this;
 
@@ -414,9 +414,9 @@
             newInstanceCallback(new gaugeWidget(settings));
         }
     });
-    freeboard.addStyle('.sparkline', "width:100%;height: 75px;");
+    freeboard.addStyle('.sparkline', "width:100%;height: 75px;");*/
 
-    var sparklineWidget = function (settings) {
+   /* var sparklineWidget = function (settings) {
         var self = this;
 
         var titleElement = $('<h2 class="section-title"></h2>');
@@ -498,8 +498,8 @@
         }
     });
     freeboard.addStyle('div.pointer-value', "position:absolute;height:95px;margin: auto;top: 0px;bottom: 0px;width: 100%;text-align:center;");
-
-    var pointerWidget = function (settings) {
+*/
+   /* var pointerWidget = function (settings) {
         var self = this;
         var paper;
         var strokeWidth = 3;
@@ -609,7 +609,7 @@
         'width:150px;' +
         'overflow: hidden;' +
         'display: inline-block;' +
-        'text-overflow: ellipsis;');
+        'text-overflow: ellipsis;');*/
 
 
     //已改成 图片固定 可传入文字（想项目信息）
@@ -729,7 +729,7 @@
     };
     freeboard.loadWidgetPlugin({
         type_name: "picture",
-        display_name: "Picture",
+        display_name: "实验楼数据",
         fill_size: true,
         settings: [
             //{
@@ -758,7 +758,7 @@
     freeboard.addStyle('.indicator-light.on', "background-color:#FFC773;box-shadow: 0px 0px 15px #FF9900;border-color:#FDF1DF;");
     freeboard.addStyle('.indicator-text', "margin-top:10px;");
 
-    var indicatorWidget = function (settings) {
+    /*var indicatorWidget = function (settings) {
         var self = this;
         var titleElement = $('<h2 class="section-title"></h2>');
         var stateElement = $('<div class="indicator-text"></div>');
@@ -842,7 +842,8 @@
         }
     });
     freeboard.addStyle('.gm-style-cc a', "text-shadow:none;");
-
+*/
+/*
 
     var googleMapWidget = function (settings) {
         var self = this;
@@ -1027,116 +1028,12 @@
     });
     freeboard.addStyle('.html-widget', "white-space:normal;width:100%;height:100%");
     //freeboard.addStyle('.html-widget', "white-space:normal;width:100%;height:100%;background-image:url(./img/chang.png);background-size: 620px 250px;background-position: 0 -100px;");
+*/
 
     // 自定义组件
     //freeboard.addStyle('.custom-widget', "background-color:#ffffff;");
     freeboard.addStyle('.custom-widget');
     freeboard.addStyle('.custom-wrapper', "height:500px;");
-
-    // 自定义组件 Line（自带的中间大图）
-    var eChartsLineWidget = function (settings) {
-        var thisGaugeID = "gauge-" + gaugeID++;
-        var htmlElement = $('<div class="custom-widget"><div class="custom-wrapper" id="' + thisGaugeID + '"></div></div>');
-        var currentSettings = settings;
-        var option = {
-            xAxis: {
-                type: 'category',
-                boundaryGap: false,
-                splitLine: {//设置网格不显示
-                    show: false
-                },
-                axisLine: {//设置坐标轴不显示
-                    show: false
-                },
-                /**
-                 * 定义 X 轴标签字样式
-                 */
-                axisLabel: {
-                    color: '#00f6ff',
-                    fontSize: 12,
-                    fontFamily: 'Microsoft YaHei'
-                },
-                nameTextStyle: {
-                    color: '#00f6ff'
-                }
-            },
-            yAxis: {
-                nameTextStyle: {
-                    color: '#00f6ff'
-                },
-                splitLine: {//设置网格不显示
-                    show: false
-                },
-                axisLine: {//设置坐标轴不显示
-                    show: false
-                },
-                /**
-                 * 定义 X 轴标签字样式
-                 */
-                axisLabel: {
-                    color: '#00f6ff',
-                    fontSize: 12,
-                    fontFamily: 'Microsoft YaHei'
-                },
-                type: 'value'
-            },
-            series: []
-        };
-
-        this.render = function (element) {
-            $(element).append(htmlElement);
-            setTimeout(function () {
-                var dom = document.getElementById(thisGaugeID);
-                var myChart = echarts.init(dom);
-                myChart.setOption(option, true);
-            }, 1000);
-        };
-
-        this.onCalculatedValueChanged = function (settingName, newValue) {
-            var value = newValue;
-            if (value && value.length > 0) {
-                value = eval(value)
-                var xAxisData = [];
-                var seriesData = [];
-                $.each(value, function (i, item) {//遍历value
-                    xAxisData.push(item.name)
-                    seriesData.push(item.value)
-                });
-                option.xAxis.data = xAxisData
-                option.series.push({
-                    data: seriesData,
-                    type: 'line',
-                    smooth: true
-                })
-            }
-        }
-
-        this.onSettingsChanged = function (newSettings) {
-            currentSettings = newSettings;
-        }
-
-        this.getHeight = function () {
-            return Number(9)
-        }
-
-        this.onSettingsChanged(settings);
-    };
-    freeboard.loadWidgetPlugin({
-        "type_name": "e_charts_line",
-        "display_name": "EChartsLine",
-        "fill_size": true,
-        "settings": [
-            {
-                "name": "value",
-                "display_name": "value",
-                "type": "calculated",
-                "description": "可以是文本HTML，也可以是输出HTML的javascript。"
-            }
-        ],
-        newInstance: function (settings, newInstanceCallback) {
-            newInstanceCallback(new eChartsLineWidget(settings));
-        }
-    });
 
 
     // 自定义组件 LineMore动图(折线图自写)
@@ -1358,7 +1255,7 @@
     }
     freeboard.loadWidgetPlugin({
         "type_name": "e_charts_LineMoreActive",
-        "display_name": "EChartsLineMoreActive",
+        "display_name": "宽带流量占用比折线图",
         "fill_size": true,
         "settings": [
             {
@@ -1604,7 +1501,7 @@
     }
     freeboard.loadWidgetPlugin({
         "type_name": "e_charts_BarActive",
-        "display_name": "EChartsBarActive",
+        "display_name": "线路宽带占用比柱状图",
         "fill_size": true,
         "settings": [
             {
@@ -1691,7 +1588,7 @@
     };
     freeboard.loadWidgetPlugin({
         "type_name": "e_charts_annulus",
-        "display_name": "EChartsAnnulus",
+        "display_name": "智能统计图",
         "fill_size": true,
         "settings": [
             {
@@ -1949,7 +1846,7 @@
     };
     freeboard.loadWidgetPlugin({
         "type_name": "e_charts_annulusRing2",
-        "display_name": "EChartsAnnulusRing2",
+        "display_name": "告警信息扇形图",
         "fill_size": true,
         "settings": [
             {
@@ -2477,7 +2374,7 @@
     };
     freeboard.loadWidgetPlugin({
         "type_name": "e_charts_radar4",
-        "display_name": "EChartsRadar4",
+        "display_name": "雷达图",
         "fill_size": true,
         "settings": [
             {
@@ -2571,7 +2468,7 @@
     };
     freeboard.loadWidgetPlugin({
         "type_name": "e_charts_NightingaleRoseDiagram",
-        "display_name": "EChartsNightingaleRoseDiagram",
+        "display_name": "管理对象扇形图",
         "fill_size": true,
         "settings": [
             {
@@ -2711,7 +2608,7 @@
     };
     freeboard.loadWidgetPlugin({
         "type_name": "loop-table",
-        "display_name": "LoopTable",
+        "display_name": "告警信息列表",
         "fill_size": true,
         "settings": [
             {
@@ -2897,7 +2794,7 @@
     };
     freeboard.loadWidgetPlugin({
         "type_name": "loop-table2",
-        "display_name": "LoopTable2",
+        "display_name": "骨干路线实时运行情况",
         "fill_size": true,
         "settings": [
             {
@@ -2997,7 +2894,7 @@
     };
     freeboard.loadWidgetPlugin({
         "type_name": "floor-widget",
-        "display_name": "FloorWidget",
+        "display_name": "TOP图",
         "fill_size": true,
         "settings": [
             {
@@ -3064,7 +2961,7 @@
     };
     freeboard.loadWidgetPlugin({
         "type_name": "bms-widget",
-        "display_name": "BMSWidget",
+        "display_name": "BMS图",
         "fill_size": true,
         "settings": [
             {
