@@ -178,7 +178,7 @@
                 //var cacheBreakerURL = imageURL + (imageURL.indexOf("?") == -1 ? "?" : "&") + Date.now();
                 // $(widgetElement).appendChild("<p>项目名称： 网络基础设施状况监测系统 项目占地面积： 100平方米 地址： 吉林省财经大学</p>");
                 $(widgetElement).css({
-                    "background-image": "url(./img/lou4.png  )"
+                    "background-image": "url(./img/lou.gif  )"
                 });
             }
         }
@@ -187,10 +187,10 @@
         this.render = function (element) {
             //$(element).empty();
             $(element).css({
-                width: "100%",
-                height: "200px",
+                width: "366px",
+                height: "222px",
                 "margin-top": "20px",
-                "background-position": "right"
+                "background-size": "100% 100%"
             });
 
             widgetElement = element;
@@ -312,7 +312,7 @@
         var option = {
             baseOption: {
                 timeline: {
-                    left: 0,
+                    left: 50,
                     // y: 0,
                     axisType: 'category',
                     // realtime: false,
@@ -550,7 +550,7 @@
         var option = {
             baseOption: {
                 timeline: {
-                    left: 0,
+                    left: 50,
                     // y: 0,
                     axisType: 'category',
                     // realtime: false,
@@ -559,7 +559,7 @@
                     // currentIndex: 2,
                     playInterval: 1000,
                     // controlStyle: {
-                    //     position: 'left'
+                    //     position: 'center'
                     // },
                     data: [
                         '2小时前', '1.5小时前', '1小时前', '0.5小时前', '当前'
@@ -653,7 +653,7 @@
                         type: 'bar',
                         itemStyle: {
                             normal: {
-                                color: '#9C2C2A'
+                                color: '#FF9840'
                             }
                         },
                         barCateGoryGap: 20,
@@ -786,7 +786,7 @@
     // 自定义组件 annulus（圆环图自己写的  智能统计图   右下）
     var eChartsAnnulusWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
-        var htmlElement = $('<div class="custom-widget">' +
+        var htmlElement = $('<div class="custom-widget bling2">' +
             '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:250px;"></div>' +
             //'<div style="position:absolute;left:260px;top:220px">' + '<p>总管理对象209</p></div>' +
             '</div>');
@@ -811,7 +811,7 @@
                     },
                     {
                         textStyle: {
-                            fontSize: 15,
+                            fontSize: 12,
                             //文字颜色
                             color: '#00f6ff',
                             fontFamily: 'Microsoft YaHei'
@@ -837,7 +837,7 @@
             option.series.push({
                 data: value,
                 type: 'pie',
-                radius: ['50%', '65%'],
+                radius: ['50%', '40%'],
                 center: ['50%', '55%'],
             })
         }
@@ -874,7 +874,7 @@
     var eChartsAnnulusRing2Widget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
         var thisGaugeID1 = "circle";
-        var htmlElement = $('<div class="custom-widget" >' +
+        var htmlElement = $('<div class="custom-widget bling2" >' +
             // '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:500px ;top:20px;"></div>' +
             // '<div  id="' + thisGaugeID1 + '" style="position:absolute;left:10px;top:45%;width:500px;height:300px"></div>' +
             '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:300px; top:10px;"></div>' +
@@ -899,13 +899,14 @@
                 {
                     //处理率
                     textStyle: {
-                        fontSize: 12,
-                        color: '#00f6ff',
+                        fontSize: 14,
+                        lineHeight:30,
+                        color: '#FFC040',
                         fontFamily: 'Microsoft YaHei'
                     },
 
                     x: 'center',
-                    y: '32%',
+                    y: '35%',
                 },
             ],
             series: []
@@ -913,9 +914,10 @@
         var option1 = {
             grid: {
                 top: 5,
-                width: '80%',
-                right: '30px',
-                bottom: 0,
+                width: '100%',
+                height: '90px',
+                right: '-20px',
+                bottom: 2,
                 containLabel: true
             },
             xAxis: {
@@ -981,11 +983,11 @@
                 option.series.push({
                     itemStyle: {
                         normal: {
-                            color: '#00f6ff'
+                            color: '#FF9840'
                         }
                     },
                     type: 'pie',
-                    radius: ['25%', '30%'],
+                    radius: ['25%', '43%'],
                     // label: {
                     //     normal: {
                     //         formatter: ' {b|{b}}\n{hr|}\n{c}',
@@ -1000,12 +1002,12 @@
                     //             },
                     //             b: {
                     //                 //未处理字体颜色
-                    //                 color: '#00f6ff',
+                    //                 color: '#FFAB00',
                     //                 lineHeight: 22,
                     //                 align: 'center'
                     //             },
                     //             c: {
-                    //                 color: '#00f6ff',
+                    //                 color: '#FFAB00',
                     //                 lineHeight: 22,
                     //                 align: 'center'
                     //             },
@@ -1020,7 +1022,7 @@
                 });
                 option.series.push({
                     type: 'pie',
-                    radius: ['35%', '45%'],
+                    radius: ['43%', '35%'],
                     // label: {
                     //     normal: {
                     //         formatter: ' {b|{b}}\n{hr|}\n  {c}    ',
@@ -1061,14 +1063,16 @@
                     itemStyle: {
                         normal: {
                             // 下面三条数据图形颜色
-                            color: '#00f6ff'
+                            color: '#00f6ff',
                         }
                     },
                     label: {
                         normal: {
-                            position: 'right',
+                            position: ['50%', '-1px'],
+                            color:'#000',
+                            fontWeight:600,
                             show: true
-                        }
+                        },
                     },
                     barWidth: 10,
                     type: 'bar',
@@ -1076,7 +1080,7 @@
                 });
                 var b = [];
 
-                var max = parseInt(bValue[0]) + parseInt(bValue[1]);
+                // var max = parseInt(bValue[0]) + parseInt(bValue[1]);
                 var max = parseInt(bValue[0]) + parseInt(bValue[1]);
                 option1.xAxis.max = max;
                 for (var i = 0; i < bValue.length; i++) {
@@ -1200,19 +1204,14 @@
                     ],
                     center: ['30%', '50%'],
                     radius: 50,
-                    axisLine: {
-                        show: false
-                    },
-
                     shape: 'circle',
-                    splitLine: {
-                        lineStyle: {
-                            color: '#00f6ff'
-                        }
-                    },
                     splitArea: {
                         areaStyle: {
-                            color: ['rgba(25,25,25,1)', 'rgba(20,20,20,1)']
+                            color: ['rgba(114, 172, 209, 1)',
+                                'rgba(114, 172, 209, 0.8)', 'rgba(114, 172, 209, 0.6)',
+                                'rgba(114, 172, 209, 0.4)', 'rgba(114, 172, 209, 0.2)'],
+                            shadowColor: 'rgba(0, 0, 0, 0.3)',
+                            shadowBlur: 10
                         }
                     }
                 },
@@ -1531,7 +1530,7 @@
                                             color: 'rgba(60,60,200,0.7)' // 图表中各个图区域的边框线颜色
                                         },
                                         areaStyle: {
-                                            color: 'rgba(60,60,200,0.4)'
+                                            color: 'rgba(255,171,0,0.4)'
                                         }
                                     }
                                 },
@@ -1661,7 +1660,7 @@
     //自定义组件 NightingaleRoseDiagram（面积图   右中）
     var eChartsNightingaleRoseDiagramWidget = function (settings) {
         var thisGaugeID = "gauge-" + gaugeID++;
-        var htmlElement = $('<div class="custom-widget">' +
+        var htmlElement = $('<div class="custom-widget bling3">' +
             '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height:250px;"></div>' +
             '</div>');
         var currentSettings = settings;
@@ -1669,7 +1668,7 @@
             title: [
                 {
                     // backgroundColor: "#1b414e",
-                    y: 28,
+                    y: 10,
                     textStyle: {
                         fontSize: 15,
                         //文字颜色
@@ -1679,7 +1678,7 @@
                     left: 'center',
                 },
                 {
-                    x: '39%',
+                    x: '35%',
                     y: '50%',
                     textStyle: {
                         fontSize: 12,
@@ -1709,11 +1708,16 @@
             option.series.push({
                 name: '面积模式',
                 type: 'pie',
+                label: {
+                    normal: {
+                        formatter: '{b}：{c} ',
+                    }
+                },
                 labelLine: {
                     length2: 0.01,
                 },
                 radius: [40, 65],
-                center: ['52%', '55%'],
+                center: ['48%', '55%'],
                 roseType: 'area',
                 data: value,
             })
@@ -1767,9 +1771,9 @@
             '<div id="lwj"></div>' +
             '<div class="custom-wrapper custom-table" id="' + thisGaugeID + '" style="height:250px;">' +
             '<div class="caption" id="' + captionId + '" style="font-size: 15px;font-weight: 600" ></div>' +
-            '<table class="table-th" cellpadding="0" cellspacing="0" id="' + tableThId + '"></table>' +
+            '<table class="table-th" cellpadding="0" cellspacing="0" id="' + tableThId + '" style="font-weight: 600;" ></table>' +
             '<div class="table-area">' +
-            '<table class="table-tr" cellpadding="0" cellspacing="0" id="' + tableTrId + '"><tbody></tbody></table>' +
+            '<table class="table-tr" cellpadding="0" cellspacing="0" id="' + tableTrId + '" style="text-align: center" ><tbody></tbody></table>' +
             '</div>' +
             '</div>' +
             '</div>');
@@ -2130,7 +2134,7 @@
             currentSettings = newSettings;
             console.log('currentSettings00000000000000000000000000', currentSettings)
             setTimeout(function () {
-                $('#diagramContainer').html(currentSettings.HTML)
+                // $('#diagramContainer').html(currentSettings.HTML)
                 // floorReady();
                 // $('#htmlWidget').on("click", "div[contenteditable='true']",function(){
                 //     $(this).focus();
@@ -2160,7 +2164,7 @@
     };
     freeboard.loadWidgetPlugin({
         "type_name": "floor-widget",
-        "display_name": "ＴＯＰ图",
+        "display_name": "拓扑图",
         "fill_size": true,
         "settings": [
             {
@@ -2194,8 +2198,21 @@
     // BMS
     var BMSWidget = function (settings) {
         var self = this;
-        var htmlElement = $('<div class="html-widget" id="htmlWidget">' +
-            '<div id="theback" style="text-align: center;padding-bottom: 20px"><iframe style="margin-top: 24px;border: 0" width="600px" height="540px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe></div>'+
+        var htmlElement = $('<div class="html-widget" id="htmlWidget">'+
+                        '<div id="theback" style="text-align: center;padding-bottom: 20px">'+
+            // '<iframe style="margin-top: 24px;border: 0" width="900px" height="540px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe>'+
+            '<img src="content.png" style="width: 900px;height:540px">'+
+            '</div>'+
+            //             '<div id="theback" style="text-align: center;padding-bottom: 20px"><div class="scroll"><ul>'+
+            //             '<li><iframe style="margin-top: 24px;border: 0" width="900px" height="540px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe></li>'+
+            //             '<li><div>2</div></li>'+
+            //             '<li><div>3</div></li>'+
+            //             '<li><div>4</div></li>'+
+            //             '<li><div>5</div></li>'+
+            //             '</ul>'+
+            //             '<a href="#" class="prev"></a><a href="#" class="next"></a>'+
+            //             '</div>'+
+            //             '</div>'+
             '</div>');
 
 
@@ -2205,6 +2222,8 @@
             console.log('render')
             $(element).append(htmlElement);
             $('#theback').html(currentSettings.HTML)
+            // mmm();
+
         }
 
         this.onSettingsChanged = function (newSettings) {

@@ -59,32 +59,32 @@
   ],
   "annulus": [
     {
-      "name": "1",
-      "value": 3
+      "name": "其他新增报表\n13张",
+      "value": 13
     },
     {
-      "name": "2",
-      "value": 5
+      "name": "自动巡查\n25次",
+      "value": 25
     },
     {
-      "name": "3",
-      "value": 8
+      "name": "智能越界\n13次",
+      "value": 13
     },
     {
-      "name": "4",
-      "value": 1
+      "name": "自动智能诊断\n28次",
+      "value": 28
     },
     {
-      "name": "5",
+      "name": "新增月报表\n10张",
       "value": 10
     },
     {
-      "name": "6",
-      "value": 3
+      "name": "新增周报表\n9张",
+      "value": 9
     },
     {
-      "name": "7",
-      "value": 5
+      "name": "新增日报表\n25张",
+      "value": 25
     }
   ],
   "AnnulusRing2": [

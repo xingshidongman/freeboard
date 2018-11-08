@@ -1635,7 +1635,7 @@
                                 "value" : gCount[0][key],
                                 "itemStyle": {
                                     "normal": {
-                                        "color": "#61A0A8"
+                                        "color": "#3A6DEA"
                                     }
                                 }
                             })
@@ -1646,7 +1646,7 @@
                                 "value" : gCount[0][key],
                                 "itemStyle": {
                                     "normal": {
-                                        "color": "#C23531"
+                                        "color": "#39DEE6"
                                     }
                                 }
                             })
@@ -1656,7 +1656,7 @@
                                 "value" : gCount[0][key],
                                 "itemStyle": {
                                     "normal": {
-                                        "color": "#D48265"
+                                        "color": "#FF9840"
                                     }
                                 }
 
@@ -1667,7 +1667,7 @@
                                 "value" : gCount[0][key],
                                 "itemStyle": {
                                     "normal": {
-                                        "color": "#CA8622"
+                                        "color": "#FFC040"
                                     }
                                 }
                             })
@@ -2194,7 +2194,7 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "ＴＯＰ图",
+        type_name: "拓扑图",
         settings: [
             {
                 name: "url",
