@@ -1134,19 +1134,19 @@
 
     // 自定义组件 Radar4（4单个雷达图 目前使用的图）
     var eChartsRadar4Widget = function (settings) {
-        var thisGaugeID = "gauge-" + gaugeID++;
+        var thisGaugeID0 = "gauge-" + gaugeID++;
         var thisGaugeID1 = "radar2";
         var thisGaugeID2 = "radar3";
         var thisGaugeID3 = "radar4";
         var htmlElement = $('<div class="custom-widget" style="height: 700px">' +
-            '<div class="custom-wrapper" id="' + thisGaugeID + '" style="height: 25%"></div>' +
+            '<div class="custom-wrapper" id="' + thisGaugeID0 + '" style="height: 25%"></div>' +
             '<div  id="' + thisGaugeID1 + '"  style="position:absolute;top:25%;width:100%;height: 25%"></div>' +
             '<div  id="' + thisGaugeID2 + '"  style="position:absolute;top:50%;width:100%;height: 25%"></div>' +
             '<div  id="' + thisGaugeID3 + '"  style="position:absolute;top:75%;width:100%;height: 25%"></div>' +
             '</div>');
         var currentSettings = settings;
-
-        var option1 = {
+        var opArr = [];
+        var option = {
             title: [
                 {
                     y: 'bottom',
@@ -1218,242 +1218,243 @@
             ],
             series: []
         };
-        var option2 = {
-            title: [
-                {
-                    y: 'bottom',
-                    textStyle: {
-                        fontSize: 15,
-                        //文字颜色
-                        color: '#00f6ff',
-                        fontFamily: 'Microsoft YaHei'
-                    },
-
-                    x: '40%',
-                },
-                {
-                    textStyle: {
-                        fontSize: 12,
-                        //文字颜色
-                        color: '#00f6ff',
-                        fontFamily: 'Microsoft YaHei'
-                    },
-
-                    x: '50%',
-                    y: '20%',
-                },
-                {
-                    textStyle: {
-                        fontSize: 12,
-                        //文字颜色
-                        color: '#00f6ff',
-                        fontFamily: 'Microsoft YaHei'
-                    },
-
-                    x: '50%',
-                    y: '40%',
-                },
-                {
-                    textStyle: {
-                        fontSize: 12,
-                        //文字颜色
-                        color: '#00f6ff',
-                        fontFamily: 'Microsoft YaHei'
-                    },
-
-                    x: '50%',
-                    y: '60%',
-                }
-            ],
-            //backgroundColor: '#000000',//背景色
-            radar: [
-                {
-                    splitNumber: '4',
-                    indicator: [
-                        {max: 100},
-                        {max: 100},
-                        {max: 100}
-                    ],
-                    center: ['30%', '50%'],
-                    radius: 50,
-                    axisLine: {
-                        show: false
-                    },
-                    shape: 'circle',
-                    splitLine: {
-                        lineStyle: {
-                            color: '#00f6ff'
-                        }
-                    },
-                    splitArea: {
-                        areaStyle: {
-                            color: ['rgba(25,25,25,1)', 'rgba(20,20,20,1)']
-                        }
-
-                    }
-                },
-            ],
-            series: []
-        };
-        var option3 = {
-            title: [
-                {
-                    y: 'bottom',
-                    textStyle: {
-                        fontSize: 15,
-                        //文字颜色
-                        color: '#00f6ff',
-                        fontFamily: 'Microsoft YaHei'
-                    },
-
-                    x: '40%',
-                },
-                {
-                    textStyle: {
-                        fontSize: 12,
-                        //文字颜色
-                        color: '#00f6ff',
-                        fontFamily: 'Microsoft YaHei'
-                    },
-
-                    x: '50%',
-                    y: '20%',
-                },
-                {
-                    textStyle: {
-                        fontSize: 12,
-                        //文字颜色
-                        color: '#00f6ff',
-                        fontFamily: 'Microsoft YaHei'
-                    },
-
-                    x: '50%',
-                    y: '40%',
-                },
-                {
-                    textStyle: {
-                        fontSize: 12,
-                        //文字颜色
-                        color: '#00f6ff',
-                        fontFamily: 'Microsoft YaHei'
-                    },
-
-                    x: '50%',
-                    y: '60%',
-                }
-            ],
-            // backgroundColor: '#000000',//背景色
-
-            radar: [
-                {
-                    splitNumber: '4',
-                    indicator: [
-                        {max: 100},
-                        {max: 100},
-                        {max: 100}
-                    ],
-                    center: ['30%', '50%'],
-                    radius: 50,
-                    axisLine: {
-                        show: false
-                    },
-                    shape: 'circle',
-                    splitLine: {
-                        lineStyle: {
-                            color: '#00f6ff'
-                        }
-                    },
-                    splitArea: {
-                        areaStyle: {
-                            color: ['rgba(25,25,25,1)', 'rgba(20,20,20,1)']
-                        }
-
-                    }
-                },
-            ],
-            series: []
-        };
-        var option4 = {
-            title: [
-                {
-                    y: 'bottom',
-                    textStyle: {
-                        fontSize: 15,
-                        //文字颜色
-                        color: '#00f6ff',
-                        fontFamily: 'Microsoft YaHei'
-                    },
-
-                    x: '40%',
-                },
-                {
-                    textStyle: {
-                        fontSize: 12,
-                        //文字颜色
-                        color: '#00f6ff',
-                        fontFamily: 'Microsoft YaHei'
-                    },
-
-                    x: '50%',
-                    y: '20%',
-                },
-                {
-                    textStyle: {
-                        fontSize: 12,
-                        //文字颜色
-                        color: '#00f6ff',
-                        fontFamily: 'Microsoft YaHei'
-                    },
-
-                    x: '50%',
-                    y: '40%',
-                },
-                {
-                    textStyle: {
-                        fontSize: 12,
-                        //文字颜色
-                        color: '#00f6ff',
-                        fontFamily: 'Microsoft YaHei'
-                    },
-
-                    x: '50%',
-                    y: '60%',
-                }
-            ],
-            //backgroundColor: '#000000',//背景色
-            radar: [
-                {
-                    splitNumber: '4',
-                    indicator: [
-                        {max: 100},
-                        {max: 100},
-                        {max: 100}
-                    ],
-                    center: ['30%', '50%'],
-                    radius: 50,
-                    axisLine: {//去掉轴线（直线）
-                        show: false
-                    },
-                    shape: 'circle',
-                    splitLine: {
-                        lineStyle: {
-                            color: '#00f6ff'
-                        }
-                    },
-                    splitArea: {
-                        areaStyle: {
-                            color: ['rgba(25,25,25,1)', 'rgba(20,20,20,1)']
-                        }
-
-                    }
-                },
-            ],
-            series: []
-        };
+        var option1,option2,option3,option4
+        // var option2 = {
+        //     title: [
+        //         {
+        //             y: 'bottom',
+        //             textStyle: {
+        //                 fontSize: 15,
+        //                 //文字颜色
+        //                 color: '#00f6ff',
+        //                 fontFamily: 'Microsoft YaHei'
+        //             },
+        //
+        //             x: '40%',
+        //         },
+        //         {
+        //             textStyle: {
+        //                 fontSize: 12,
+        //                 //文字颜色
+        //                 color: '#00f6ff',
+        //                 fontFamily: 'Microsoft YaHei'
+        //             },
+        //
+        //             x: '50%',
+        //             y: '20%',
+        //         },
+        //         {
+        //             textStyle: {
+        //                 fontSize: 12,
+        //                 //文字颜色
+        //                 color: '#00f6ff',
+        //                 fontFamily: 'Microsoft YaHei'
+        //             },
+        //
+        //             x: '50%',
+        //             y: '40%',
+        //         },
+        //         {
+        //             textStyle: {
+        //                 fontSize: 12,
+        //                 //文字颜色
+        //                 color: '#00f6ff',
+        //                 fontFamily: 'Microsoft YaHei'
+        //             },
+        //
+        //             x: '50%',
+        //             y: '60%',
+        //         }
+        //     ],
+        //     //backgroundColor: '#000000',//背景色
+        //     radar: [
+        //         {
+        //             splitNumber: '4',
+        //             indicator: [
+        //                 {max: 100},
+        //                 {max: 100},
+        //                 {max: 100}
+        //             ],
+        //             center: ['30%', '50%'],
+        //             radius: 50,
+        //             axisLine: {
+        //                 show: false
+        //             },
+        //             shape: 'circle',
+        //             splitLine: {
+        //                 lineStyle: {
+        //                     color: '#00f6ff'
+        //                 }
+        //             },
+        //             splitArea: {
+        //                 areaStyle: {
+        //                     color: ['rgba(25,25,25,1)', 'rgba(20,20,20,1)']
+        //                 }
+        //
+        //             }
+        //         },
+        //     ],
+        //     series: []
+        // };
+        // var option3 = {
+        //     title: [
+        //         {
+        //             y: 'bottom',
+        //             textStyle: {
+        //                 fontSize: 15,
+        //                 //文字颜色
+        //                 color: '#00f6ff',
+        //                 fontFamily: 'Microsoft YaHei'
+        //             },
+        //
+        //             x: '40%',
+        //         },
+        //         {
+        //             textStyle: {
+        //                 fontSize: 12,
+        //                 //文字颜色
+        //                 color: '#00f6ff',
+        //                 fontFamily: 'Microsoft YaHei'
+        //             },
+        //
+        //             x: '50%',
+        //             y: '20%',
+        //         },
+        //         {
+        //             textStyle: {
+        //                 fontSize: 12,
+        //                 //文字颜色
+        //                 color: '#00f6ff',
+        //                 fontFamily: 'Microsoft YaHei'
+        //             },
+        //
+        //             x: '50%',
+        //             y: '40%',
+        //         },
+        //         {
+        //             textStyle: {
+        //                 fontSize: 12,
+        //                 //文字颜色
+        //                 color: '#00f6ff',
+        //                 fontFamily: 'Microsoft YaHei'
+        //             },
+        //
+        //             x: '50%',
+        //             y: '60%',
+        //         }
+        //     ],
+        //     // backgroundColor: '#000000',//背景色
+        //
+        //     radar: [
+        //         {
+        //             splitNumber: '4',
+        //             indicator: [
+        //                 {max: 100},
+        //                 {max: 100},
+        //                 {max: 100}
+        //             ],
+        //             center: ['30%', '50%'],
+        //             radius: 50,
+        //             axisLine: {
+        //                 show: false
+        //             },
+        //             shape: 'circle',
+        //             splitLine: {
+        //                 lineStyle: {
+        //                     color: '#00f6ff'
+        //                 }
+        //             },
+        //             splitArea: {
+        //                 areaStyle: {
+        //                     color: ['rgba(25,25,25,1)', 'rgba(20,20,20,1)']
+        //                 }
+        //
+        //             }
+        //         },
+        //     ],
+        //     series: []
+        // };
+        // var option4 = {
+        //     title: [
+        //         {
+        //             y: 'bottom',
+        //             textStyle: {
+        //                 fontSize: 15,
+        //                 //文字颜色
+        //                 color: '#00f6ff',
+        //                 fontFamily: 'Microsoft YaHei'
+        //             },
+        //
+        //             x: '40%',
+        //         },
+        //         {
+        //             textStyle: {
+        //                 fontSize: 12,
+        //                 //文字颜色
+        //                 color: '#00f6ff',
+        //                 fontFamily: 'Microsoft YaHei'
+        //             },
+        //
+        //             x: '50%',
+        //             y: '20%',
+        //         },
+        //         {
+        //             textStyle: {
+        //                 fontSize: 12,
+        //                 //文字颜色
+        //                 color: '#00f6ff',
+        //                 fontFamily: 'Microsoft YaHei'
+        //             },
+        //
+        //             x: '50%',
+        //             y: '40%',
+        //         },
+        //         {
+        //             textStyle: {
+        //                 fontSize: 12,
+        //                 //文字颜色
+        //                 color: '#00f6ff',
+        //                 fontFamily: 'Microsoft YaHei'
+        //             },
+        //
+        //             x: '50%',
+        //             y: '60%',
+        //         }
+        //     ],
+        //     //backgroundColor: '#000000',//背景色
+        //     radar: [
+        //         {
+        //             splitNumber: '4',
+        //             indicator: [
+        //                 {max: 100},
+        //                 {max: 100},
+        //                 {max: 100}
+        //             ],
+        //             center: ['30%', '50%'],
+        //             radius: 50,
+        //             axisLine: {//去掉轴线（直线）
+        //                 show: false
+        //             },
+        //             shape: 'circle',
+        //             splitLine: {
+        //                 lineStyle: {
+        //                     color: '#00f6ff'
+        //                 }
+        //             },
+        //             splitArea: {
+        //                 areaStyle: {
+        //                     color: ['rgba(25,25,25,1)', 'rgba(20,20,20,1)']
+        //                 }
+        //
+        //             }
+        //         },
+        //     ],
+        //     series: []
+        // };
         this.render = function (element) {
             $(element).append(htmlElement);
             setTimeout(function () {
-                var dom = document.getElementById(thisGaugeID);
+                var dom = document.getElementById(thisGaugeID0);
                 var myChart = echarts.init(dom);
                 console.log(dom);
                 myChart.setOption(option1, true);
@@ -1480,48 +1481,14 @@
             var op;
             for (var i = 0; i < newValue.length; i++) {
                 value = newValue[i];
-                console.log("每一个对象");
-                console.log(value);
-                if (i == 0) {
-                    op = option1;
-                    op.series = [];
-                } else if (i == 1) {
-                    op = option2;
-                    op.series = [];
-                } else if (i == 2) {
-                    op = option3;
-                    op.series = [];
-                } else {
-                    op = option4;
-                    op.series = [];
-                }
-                console.log('999999999999999999999999')
-                for (var key in value) {
-                    console.log('8888888888888888888888888888888888888',key)
-                    if (key == "title") {
-                        var titles = value[key];
-                        for (var title in titles) {
-                            if (title == "name") {
-                                console.log("第一个title的值为");
-                                console.log(titles[title]);
-                                op.title[0].text = titles[title];
-                            } else if (title == "CPULoad") {
-                                console.log("第2个title的值为");
-                                console.log(titles[title]);
-                                op.title[1].text = titles[title];
-                            } else if (title == "OUsedRatio") {
-                                console.log("第3个title的值为");
-                                console.log(titles[title]);
-                                op.title[2].text = titles[title];
-                            } else if (title == "Uptime") {
-                                console.log("第4个title的值为");
-                                console.log(titles[title]);
-                                op.title[3].text = titles[title];
-                            }
-                        }
-                    }
-                    else if (key == "value") {
-                        op.series.push(
+                console.log("每一个对象", value);
+                op = option
+                op.series = [];
+                op.title[0].text = value["title"]["name"];
+                op.title[1].text = value["title"]["CPULoad"];
+                op.title[2].text = value["title"]["OUsedRatio"];
+                op.title[3].text = value["title"]["Uptime"];
+                op.series.push(
                             {
                                 type: 'radar',
                                 itemStyle: {
@@ -1534,13 +1501,75 @@
                                         }
                                     }
                                 },
-                                data: value[key]
+                                data: value["value"]
                             },
                         );
-                    }
+                console.log(op)
+                opArr.push(op)
                 }
+                option1 = opArr[0]
+                option2 = opArr[0]
+                option3 = opArr[0]
+                option4 = opArr[0]
+                // if (i == 0) {
+                //     op = option1;
+                //     op.series = [];
+                // } else if (i == 1) {
+                //     op = option2;
+                //     op.series = [];
+                // } else if (i == 2) {
+                //     op = option3;
+                //     op.series = [];
+                // } else {
+                //     op = option4;
+                //     op.series = [];
+                // }
+                // console.log('999999999999999999999999')
+                // for (var key in value) {
+                //     console.log('8888888888888888888888888888888888888',key)
+                //     if (key == "title") {
+                //         var titles = value[key];
+                //         for (var title in titles) {
+                //             if (title == "name") {
+                //                 console.log("第一个title的值为");
+                //                 console.log(titles[title]);
+                //                 op.title[0].text = titles[title];
+                //             } else if (title == "CPULoad") {
+                //                 console.log("第2个title的值为");
+                //                 console.log(titles[title]);
+                //                 op.title[1].text = titles[title];
+                //             } else if (title == "OUsedRatio") {
+                //                 console.log("第3个title的值为");
+                //                 console.log(titles[title]);
+                //                 op.title[2].text = titles[title];
+                //             } else if (title == "Uptime") {
+                //                 console.log("第4个title的值为");
+                //                 console.log(titles[title]);
+                //                 op.title[3].text = titles[title];
+                //             }
+                //         }
+                //     }
+                //     else if (key == "value") {
+                //         op.series.push(
+                //             {
+                //                 type: 'radar',
+                //                 itemStyle: {
+                //                     normal: {
+                //                         lineStyle: {
+                //                             color: 'rgba(60,60,200,0.7)' // 图表中各个图区域的边框线颜色
+                //                         },
+                //                         areaStyle: {
+                //                             color: 'rgba(255,171,0,0.4)'
+                //                         }
+                //                     }
+                //                 },
+                //                 data: value[key]
+                //             },
+                //         );
+                //     }
+                // }
 
-            }
+
 
             /*
             option1.title[0].text= '设备名';
