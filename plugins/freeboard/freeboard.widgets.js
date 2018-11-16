@@ -1357,7 +1357,7 @@
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var value = newValue;
-            console.log('3333333333333333333333333333333333333333333',value)
+           // console.log('3333333333333333333333333333333333333333333',value)
             option.title[0].text = '被管理对象';
             option.title[1].text = '管理对象类型';
             option.series.push({

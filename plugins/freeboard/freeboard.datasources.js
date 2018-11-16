@@ -2451,7 +2451,7 @@
     });
 
 
-    //总管理对象
+    //智能统计图
     var json13Datasource = function (settings, updateCallback) {
         var self = this;
         var updateTimer = null;
@@ -2498,7 +2498,7 @@
                 success: function (data2) {
                      console.log(data2);
                     var obj = JSON.parse(data2);
-
+                    console.log('321321321321321321', obj)
                     updateCallback(obj);
                 },
                 error: function (xhr, status, error) {
@@ -2529,7 +2529,7 @@
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "总管理对象",
+        type_name: "智能统计图",
         settings: [
             {
                 name: "url",
