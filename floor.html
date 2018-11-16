@@ -45,11 +45,11 @@
 <body>
 <div style="background-color: #000000;width: 620px;">
     <div id="diagramContainer">
-        <div contenteditable="true" id="item_a" class="item1"><img src="tongxin.png"><div>通信中心</div></div>
-        <div id="item_b" class="abcd" style="left: 100px;"><img src="tongxin.png"><div>电信1</div></div>
-        <div id="item_c" class="abcd" style="left: 200px;"><img src="tongxin.png"><div>电信2</div></div>
-        <div id="item_d" class="abcd" style="left: 300px;"><img src="tongxin.png"><div>联通1</div></div>
-        <div id="item_e" class="abcd" style="left: 400px;"><img src="tongxin.png"><div>联通2</div></div>
+        <div contenteditable="true" id="item_a" class="item1"><img src="img/tongxin.png"><div>通信中心</div></div>
+        <div id="item_b" class="abcd" style="left: 100px;"><img src="img/tongxin.png"><div>电信1</div></div>
+        <div id="item_c" class="abcd" style="left: 200px;"><img src="img/tongxin.png"><div>电信2</div></div>
+        <div id="item_d" class="abcd" style="left: 300px;"><img src="img/tongxin.png"><div>联通1</div></div>
+        <div id="item_e" class="abcd" style="left: 400px;"><img src="img/tongxin.png"><div>联通2</div></div>
     </div>
     <button id="add" class="add">添加</button>
 </div>
@@ -92,7 +92,7 @@
         btn.onclick = function () {
 
             var div = document.createElement('div');
-            div.innerHTML = '<img src="lou.png"><div>' + '教学楼' + num + '</div>';
+            div.innerHTML = '<img src="img/lou.png"><div>' + '教学楼' + num + '</div>';
             if (parseInt(num / 5) > 0) {
                 div.style.left = num % 5 * 100 + 100 + 'px';
                 div.style.top = parseInt(num / 5) * 100 + 'px'
