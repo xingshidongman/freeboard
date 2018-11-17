@@ -2163,6 +2163,8 @@
                 success: function (data) {
                     var obj = data.data[0].html;
                     // var obj = JSON.parse(data);
+                    console.log('data', data)
+                    console.log('obj', obj)
                      updateCallback(obj);//回调函数
 
                 },
