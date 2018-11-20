@@ -391,7 +391,7 @@
                     },
                 },
                 yAxis: {
-                    min: 0,
+                    min:0,
                     // max:50,
                     //坐标轴的名称 距离轴线的距离
                     nameGap: 10,
@@ -464,14 +464,14 @@
             var lValue = result["lValue"];
             var dataMap = {};
 
-            for (let i = 1; i <= result.lValue.length; i++) {
-                var DL = "dataList" + i;
+            for(let i=1;i<=result.lValue.length;i++){
+                var DL = "dataList"+i;
                 var dataList = result[DL]
-                dataMap[i - 1] = dataFormatter(dataList);
+                dataMap[i-1] = dataFormatter(dataList);
             }
-            for (var j = 0; j < titleData.length; j++) {
+            for(var j=0; j < titleData.length; j++){
                 option.options[j] = {series: [], title: {}};
-                for (var z = 0; z <= result.lValue.length - 1; z++) {
+                for(var z=0;z<=result.lValue.length-1;z++){
                     option.options[j].series.push({
                         name: lValue[z],
                         data: dataMap[z][j],
@@ -480,6 +480,7 @@
                 }
                 option.options[j].title.text = titleData[j];
             }
+
 
 
             function dataFormatter(obj) {
@@ -533,6 +534,9 @@
             newInstanceCallback(new eChartsLineMoreActiveWidget(settings));
         }
     });
+
+
+
 
 
     // 自定义组件 Bar动图(柱图自写)
@@ -689,12 +693,12 @@
             var result = newValue;
 
             var pList = result['pList'];
-            var dataList = result['dataList'];
+            var dataList  = result['dataList'];
             var xAxisData = result['xAxisData'];
-            var yAxisName = result['yAxis'].name;
+            var yAxisName= result['yAxis'].name;
             // var yAxisMax = result['yAxis'].max;
-            var xAxisName = result['xAxisName'];
-            var titleData = result['titleData'];
+            var xAxisName =  result['xAxisName'];
+            var titleData =  result['titleData'];
 
             // for (var key in result) {
             //     if (key == "yAxis") {
@@ -895,7 +899,7 @@
                     //处理率
                     textStyle: {
                         fontSize: 14,
-                        lineHeight: 30,
+                        lineHeight:30,
                         color: '#FFC040',
                         fontFamily: 'Microsoft YaHei'
                     },
@@ -959,17 +963,17 @@
         this.onCalculatedValueChanged = function (settingName, newValue) {
 
             var value = newValue;
-            console.log('1597563951357951357951357', value)
+            console.log('1597563951357951357951357',value)
             if (value && value.length > 0) {
                 value = eval(value);
 
                 var sCircle = value[0].smallCircle;
-                console.log('9999999999999999999999999999999999999', sCircle)
+                console.log('9999999999999999999999999999999999999',sCircle)
                 var bCircle = value[1].bigCircle;
-                console.log('9999999999999999999999999999999999999', bCircle)
+                console.log('9999999999999999999999999999999999999',bCircle)
                 option1.yAxis.data = value[2].barName;
                 var bValue = value[3].barValue;
-                console.log('00000000000000000000000++++++++', bValue);
+                console.log('00000000000000000000000++++++++',bValue);
                 option.title[0].text = value[4].title1;
                 option.title[1].text = value[4].title2;
                 option.series = [];
@@ -1064,8 +1068,8 @@
                     label: {
                         normal: {
                             position: ['50%', '-1px'],
-                            color: '#000',
-                            fontWeight: 600,
+                            color:'#000',
+                            fontWeight:600,
                             show: true
                         },
                     },
@@ -1213,7 +1217,7 @@
             ],
             series: []
         };
-        var option1, option2, option3, option4
+        var option1,option2,option3,option4
         this.render = function (element) {
             $(element).append(htmlElement);
             setTimeout(function () {
@@ -1252,28 +1256,28 @@
                 op.title[2].text = value["title"]["OUsedRatio"];
                 op.title[3].text = value["title"]["Uptime"];
                 op.series.push(
-                    {
-                        type: 'radar',
-                        itemStyle: {
-                            normal: {
-                                lineStyle: {
-                                    color: 'rgba(60,60,200,0.7)' // 图表中各个图区域的边框线颜色
+                            {
+                                type: 'radar',
+                                itemStyle: {
+                                    normal: {
+                                        lineStyle: {
+                                            color: 'rgba(60,60,200,0.7)' // 图表中各个图区域的边框线颜色
+                                        },
+                                        areaStyle: {
+                                            color: 'rgba(255,171,0,0.4)'
+                                        }
+                                    }
                                 },
-                                areaStyle: {
-                                    color: 'rgba(255,171,0,0.4)'
-                                }
-                            }
-                        },
-                        data: value["value"]
-                    },
-                );
+                                data: value["value"]
+                            },
+                        );
                 console.log(op)
                 opArr.push(op)
-            }
-            option1 = opArr[0]
-            option2 = opArr[0]
-            option3 = opArr[0]
-            option4 = opArr[0]
+                }
+                option1 = opArr[0]
+                option2 = opArr[0]
+                option3 = opArr[0]
+                option4 = opArr[0]
 
         };
 
@@ -1303,6 +1307,8 @@
             newInstanceCallback(new eChartsRadar4Widget(settings));
         }
     });
+
+
 
 
     //自定义组件 NightingaleRoseDiagram（面积图   右中）
@@ -1350,7 +1356,7 @@
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var value = newValue;
-            console.log('3333333333333333333333333333333333333333333', value)
+            console.log('3333333333333333333333333333333333333333333',value)
             option.title[0].text = '被管理对象';
             option.title[1].text = '管理对象类型';
             option.series.push({
@@ -1400,6 +1406,9 @@
             newInstanceCallback(new eChartsNightingaleRoseDiagramWidget(settings));
         }
     });
+
+
+
 
 
     //第一张图的表格（带滚动效果）
@@ -1480,18 +1489,18 @@
                 $.each(value.data, function (i, e) {
                     var _tds = []
                     for (var k in e) {
-                        if (k === 'name') {
-                            _tds[0] = '<td>' + e[k] + '</td>';
-                        } else if (k === 'version') {
-                            _tds[1] = '<td>' + e[k] + '</td>';
-                        } else if (k === 'level') {
-                            _tds[2] = '<td>' + e[k] + '</td>';
+                        if(k==='name'){
+                            _tds[0]= '<td>' + e[k] + '</td>';
+                        } else if(k==='version'){
+                            _tds[1]= '<td>' + e[k] + '</td>';
+                        } else if(k==='level'){
+                            _tds[2]= '<td>' + e[k] + '</td>';
                         } else {
                             if (e[k].length > 40) {
                                 var str1 = e[k].substring(0, 29);
                                 var str2 = e[k].substring(66, 69);
 
-                                _tds[3] = '<td >' + str1 + str2 + "..." + '</td>';
+                                _tds[3]= '<td >' + str1 + str2 + "..." + '</td>';
                             }
                         }
                     }
@@ -1583,7 +1592,7 @@
 
         var flagLoad = 1;
         this.render = function (element) {
-            console.log('[Test] render', currentSettings);
+            console.log('[Test] render');
             $(element).append(htmlElement);
             $caption = $('#' + captionId);
             $tableTh = $('#' + tableThId);
@@ -1743,32 +1752,32 @@
     var FloorWidget = function (settings) {
         var self = this;
         var htmlElement = $('<div class="html-widget" id="htmlWidget">' +
-            '<div class="btnbox"><button id="add" class="add">添加楼宇</button><button id="save" class="save">保存更改</button></div>' +
-            '<div id="bling" class="bling">' +
-            '<div class="bl-left">实验楼</div>' +
-            '<div class="bl-right"><p>楼宇名称：实验楼</p><p>当前设备量：107</p><p>警告数：0</p></div>' +
-            '</div>' +
-            '<div id="diagramContainer">' +
-            '<div id="item_a" class="item1 my-item"><img src="./img/tongxin.png"><div contenteditable="true">通信中心</div></div>' +
-            '<div id="item_f" class="item3 my-item" style="top: 150px;left: 215px;"><img src="./img/tongxin.png"><div contenteditable = "true">网络中心</div></div>' +
-            '<div id="item_b" class="abcd my-item" style="left: 85px;top: 590px"><img src="./img/tongxin.png"><div>电信1</div></div>' +
-            '<div id="item_c" class="abcd my-item" style="left: 140px;top: 590px"><img src="./img/tongxin.png"><div>电信2</div></div>' +
-            '<div id="item_d" class="abcd my-item" style="left: 315px;top: 590px"><img src="./img/tongxin.png"><div>联通1</div></div>' +
-            '<div id="item_e" class="abcd my-item" style="left: 370px;top: 590px"><img src="./img/tongxin.png"><div>联通2</div></div>' +
-            '</div>' +
-            '<div id="div1"></div>' +
+            '<div class="btnbox"><button id="add" class="add">添加楼宇</button><button id="save" class="save">保存更改</button></div>'+
+            '<div id="bling" class="bling">'+
+            '<div class="bl-left">实验楼</div>'+
+            '<div class="bl-right"><p>楼宇名称：实验楼</p><p>当前设备量：107</p><p>警告数：0</p></div>'+
+            '</div>'+
+            '<div id="diagramContainer">'+
+            '<div id="item_a" class="item1 my-item"><img src="./img/tongxin.png"><div contenteditable="true">通信中心</div></div>'+
+            '<div id="item_f" class="item3 my-item" style="top: 150px;left: 215px;"><img src="./img/tongxin.png"><div contenteditable = "true">网络中心</div></div>'+
+            '<div id="item_b" class="abcd my-item" style="left: 85px;top: 590px"><img src="./img/tongxin.png"><div>电信1</div></div>'+
+            '<div id="item_c" class="abcd my-item" style="left: 140px;top: 590px"><img src="./img/tongxin.png"><div>电信2</div></div>'+
+            '<div id="item_d" class="abcd my-item" style="left: 315px;top: 590px"><img src="./img/tongxin.png"><div>联通1</div></div>'+
+            '<div id="item_e" class="abcd my-item" style="left: 370px;top: 590px"><img src="./img/tongxin.png"><div>联通2</div></div>'+
+            '</div>'+
+            '<div id="div1"></div>'+
             '</div>');
 
 
         var currentSettings = settings;
         console.log('currentSettings', currentSettings)
         this.render = function (element) {
-            console.log('render', currentSettings)
+            console.log('render')
             htmlElement.css({height: (currentSettings.Height * 64) + 'px'});
             $(element).append(htmlElement);
-            // $('#diagramContainer').html(currentSettings.HTML)
+            $('#diagramContainer').html(currentSettings.HTML)
             floorReady();
-            $('#htmlWidget').on("click", "div[contenteditable='true']", function () {
+            $('#htmlWidget').on("click", "div[contenteditable='true']",function(){
                 $(this).focus();
             });
         }
@@ -1783,18 +1792,16 @@
                 // $('#htmlWidget').on("click", "div[contenteditable='true']",function(){
                 //     $(this).focus();
                 // });
-            }, 500);
+            },500);
         }
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var value = newValue
             console.log('value111111111111111111111111111111111111', value)
-            console.log('value 333333', '1' + settingName + '2')
             console.log(value.data[0].html)
-            // htmlElement.html('<h1>aaaaaa</h1>');
-            $('#htmlWidget').html('<h1>aaaaaa</h1>');
-            if (settingName === 'HTML') {
-                console.log('value222222222222222222222', newValue);
+            if (settingName == "html") {
+                // console.log(newValue);
+                htmlElement.html(newValue);
             }
         }
 
@@ -1844,11 +1851,11 @@
     // BMS
     var BMSWidget = function (settings) {
         var self = this;
-        var htmlElement = $('<div class="html-widget" id="htmlWidget">' +
-            '<div id="theback" style="text-align: center;padding-bottom: 20px">' +
-            '<iframe style="margin-top: 24px;border: 0" width="900px" height="540px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe>' +
+        var htmlElement = $('<div class="html-widget" id="htmlWidget">'+
+                        '<div id="theback" style="text-align: center;padding-bottom: 20px">'+
+            '<iframe style="margin-top: 24px;border: 0" width="900px" height="540px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe>'+
             // '<img src="content.png" style="width: 900px;height:540px">'+
-            '</div>' +
+            '</div>'+
             //             '<div id="theback" style="text-align: center;padding-bottom: 20px"><div class="scroll"><ul>'+
             //             '<li><iframe style="margin-top: 24px;border: 0" width="900px" height="540px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe></li>'+
             //             '<li><div>2</div></li>'+
@@ -2569,7 +2576,6 @@
         }
 
         this.render = function (element) {
-            console.log('pointer Widget', settings)
             width = $(element).width();
             height = $(element).height();
 

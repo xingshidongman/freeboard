@@ -1471,10 +1471,8 @@
                     request.setRequestHeader('access_token', access_token);
                 },
                 success: function (data) {
-                    console.log('11111111111111', data)
                     var obj = data.data[0].html;
                     // var obj = JSON.parse(data);
-                    // obj='<h1>aaaaa</h1>'
                      updateCallback(obj);//回调函数
 
                 },
