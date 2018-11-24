@@ -1,1 +1,38 @@
-{"version":1,"allow_edit":true,"plugins":[],"panes":[{"width":1,"row":{"3":1},"col":{"3":1},"col_width":1,"widgets":[{"type":"e_charts_radar4","settings":{"value":"datasources[\"333\"]"}}]}],"datasources":[{"name":"333","type":"雷达图","settings":{"url":"333","use_thingproxy":true,"refresh":123321,"method":"GET"}}],"columns":3}
+{
+  "version": 1,
+  "allow_edit": true,
+  "plugins": [],
+  "panes": [
+    {
+      "width": 1,
+      "row": {
+        "3": 1
+      },
+      "col": {
+        "3": 1
+      },
+      "col_width": 1,
+      "widgets": [
+        {
+          "type": "e_charts_radar4",
+          "settings": {
+            "value": "datasources[\"333\"]"
+          }
+        }
+      ]
+    }
+  ],
+  "datasources": [
+    {
+      "name": "333",
+      "type": "雷达图",
+      "settings": {
+        "url": "333",
+        "use_thingproxy": true,
+        "refresh": 123321,
+        "method": "GET"
+      }
+    }
+  ],
+  "columns": 3
+}
