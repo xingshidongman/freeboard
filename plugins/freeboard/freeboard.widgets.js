@@ -1133,8 +1133,10 @@
         var thisGaugeID1 = "radar2";
         var thisGaugeID2 = "radar3";
         var thisGaugeID3 = "radar4";
-        var htmlElement = $('<div class="custom-widget" id="' + thisGaugeID0 + '" style="height: 1400px">' +
-            '<div id="myDiv01" style="margin-top: -700px;height: 1400px;">' +
+        var htmlElement = $('<div class="custom-widget" id="' + thisGaugeID0 + '" style="height: 700px">' +
+            '<div class="radarTitle">CPU内存占有率</div>' +
+            '<div class="radarCon">'+
+            '<div id="myDiv01" style="margin-top: -630px;height: 1330px;">' +
             '<div class="custom-wrapper" id="div0" style="height: 12.5%"></div>' +
             '<div  id="div1"  style="width:100%;height: 12.5%"></div>' + // position:absolute;top:25%;
             '<div  id="div2"  style="width:100%;height: 12.5%"></div>' + // position:absolute;top:50%;
@@ -1143,6 +1145,7 @@
             '<div  id="div5"  style="width:100%;height: 12.5%"></div>' + // position:absolute;top:75%;
             '<div  id="div6"  style="width:100%;height: 12.5%"></div>' + // position:absolute;top:75%;
             '<div  id="div7"  style="width:100%;height: 12.5%"></div>' + // position:absolute;top:75%;
+            '</div>' +
             '</div>' +
             '</div>');
         var currentSettings = settings;
@@ -1849,7 +1852,7 @@
     var FloorWidget = function (settings) {
         var self = this;
         var htmlElement = $('<div class="html-widget" id="htmlWidget">' +
-            '<div class="btnbox"><button id="add" class="add">添加楼宇</button><button id="save" class="save">保存更改</button></div>' +
+            '<div class="btnbox"><button id="add" class="add">添加楼宇</button><button id="save" class="save">保存更改</button><button id="reset" class="reset">重置修改</button></div>' +
             '<div id="bling" class="bling">' +
             '<div class="bl-left">实验楼</div>' +
             '<div class="bl-right"><p>楼宇名称：实验楼</p><p>当前设备量：107</p><p>警告数：0</p></div>' +
@@ -1862,7 +1865,7 @@
             // '<div id="item_d" class="abcd my-item" style="left: 315px;top: 590px"><img src="./img/tongxin.png"><div>联通1</div></div>'+
             // '<div id="item_e" class="abcd my-item" style="left: 370px;top: 590px"><img src="./img/tongxin.png"><div>联通2</div></div>'+
             '</div>' +
-            '<div id="div1"></div>' +
+            '<div id="flourcontainer"></div>' +
             '</div>');
 
 

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>吉林省财经大学智慧化大数据监控平台</title>
+    <!--<title>辽宁省公安厅智慧化大数据监控平台</title>-->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
@@ -88,6 +89,46 @@
                         $('#jsTime').text(formatDate((new Date()), 'hh点mm分ss秒'));
                     }, 1000)
 
+                    setTimeout(function () {
+                        freeboard.loadDashboard({
+                            "version": 1,
+                            "allow_edit": true,
+                            "plugins": [],
+                            "panes": [
+                                {
+                                    "width": 1,
+                                    "row": {
+                                        "3": 1
+                                    },
+                                    "col": {
+                                        "3": 1
+                                    },
+                                    "col_width": 1,
+                                    "widgets": [
+                                        {
+                                            "type": "e_charts_radar4",
+                                            "settings": {
+                                                "value": "datasources[\"333\"]"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "datasources": [
+                                {
+                                    "name": "333",
+                                    "type": "雷达图",
+                                    "settings": {
+                                        "url": "333",
+                                        "use_thingproxy": true,
+                                        "refresh": 123321,
+                                        "method": "GET"
+                                    }
+                                }
+                            ],
+                            "columns": 3
+                        })
+                    },5000)
                 });
             });
     </script>
@@ -200,8 +241,9 @@
             top: 30px;
             background: url("img/fourborder.png");
             background-size: 100% 100%;
-            width: 135px;
-            height: 100px;
+            width: 145px;
+            height: 140px;
+            text-align: center;
         }
         .add{
             width: 135px;
@@ -215,6 +257,17 @@
             user-select:none;
         }
         .save{
+            width: 135px;
+            height: 40px;
+            border: none;
+            color: #15B3B3;
+            margin-top: 5px;
+            font-size: 18px;
+            background-color: transparent;
+            outline:none;
+            user-select:none;
+        }
+        .reset{
             width: 135px;
             height: 40px;
             border: none;
@@ -306,6 +359,22 @@
         .scroll ul{list-style-type:none; padding:0; margin:0; position:absolute; top:0;left:0; width:99999px; height:210px; }
 
         .scroll li{float:left; width:630px;}
+        .radarTitle{
+            width: 100%;
+            height: 78px;
+            line-height: 78px;
+            text-align: center;
+            /*background-color: #000;*/
+            color: #fff;
+            z-index: 999;
+            position: absolute;
+            top: 0;
+        }
+        .radarCon{
+            width: 100%;
+            height: 622px;
+            margin-top: 78px;
+        }
     </style>
 </head>
 <body>
@@ -315,6 +384,7 @@
             <div class="gs_title-aside fl" id="jsToday"></div>
             <div class="gs_title-mn">
                 <div style="color:#00F6FF ">吉林省财经大学</div>
+                <!--<div style="color:#00F6FF ">辽宁省公安厅</div>-->
                 <div style="color:#00F6FF ">智慧化大数据监控平台</div>
             </div>
             <div class="gs_title-aside fr" id="jsTime"></div>
@@ -548,11 +618,10 @@
             console.log('SAVE');
             // $('#diagramContainer>:not(.my-item)').remove();
             // $('#diagramContainer>:not(.my-item)').appendTo(div1)
-            var $div1 = $('#div1');
-            $('#diagramContainer>:not(.my-item)').appendTo($div1);
+            var $flourcontainer = $('#flourcontainer');
+            $('#diagramContainer>:not(.my-item)').appendTo($flourcontainer);
             var floorHtml = $('#diagramContainer').html();
-            $div1.children().appendTo('#diagramContainer');
-
+            $flourcontainer.children().appendTo('#diagramContainer');
             console.log('floorHtml', floorHtml)
             var allcookies = document.cookie;
             var arr=new Array();
@@ -563,6 +632,31 @@
                 type:"GET",
                 data: {
                     "html":floorHtml
+                },
+                beforeSend: function(request) {
+                    request.setRequestHeader('access_token', access_token);
+                },
+                success: function (data) {
+                    console.log(data)
+                }
+            })
+        });
+        $('#reset').click( function () {
+            console.log('RESET');
+            // $('#diagramContainer>:not(.my-item)').remove();
+            // $('#diagramContainer>:not(.my-item)').appendTo(div1)
+            var reset = '<div id="item_a" class="item1 my-item"><img src="./img/tongxin.png"><div contenteditable="true">通信中心</div></div>'+
+                '<div id="item_f" class="item3 my-item" style="top: 150px;left: 215px;"><img src="./img/tongxin.png"><div contenteditable = "true">网络中心</div></div>'+ '<div id="item_b" class="abcd my-item" style="left: 85px;top: 590px"><img src="./img/tongxin.png"><div>电信1</div></div>'+ '<div id="item_c" class="abcd my-item" style="left: 140px;top: 590px"><img src="./img/tongxin.png"><div>电信2</div></div>'+ '<div id="item_d" class="abcd my-item" style="left: 315px;top: 590px"><img src="./img/tongxin.png"><div>联通1</div></div>'+ '<div id="item_e" class="abcd my-item" style="left: 370px;top: 590px"><img src="./img/tongxin.png"><div>联通2</div></div>'
+            console.log('reset', reset)
+            var allcookies = document.cookie;
+            var arr=new Array();
+            var access_token= window.sessionStorage.getItem('access_token');
+            $.ajax({
+                url: "http://localhost:8181/camel/rest/ksh/building/getBuilding",
+                // methods: 'PUT',
+                type:"GET",
+                data: {
+                    "html":reset
                 },
                 beforeSend: function(request) {
                     request.setRequestHeader('access_token', access_token);
