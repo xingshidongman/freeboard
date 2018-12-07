@@ -2272,7 +2272,9 @@ ul.datasource-input-suffix {
     display: inline-block;
     padding: 8px;
     line-height: 38px;
+    background: url("../../../img/beitalogo.jpg") no-repeat;
 }
+
 
 .title.bordered .logo-wrapper {
     float: left;

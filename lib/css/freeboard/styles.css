@@ -1918,11 +1918,13 @@ ul.datasource-input-suffix {
 }
 
 .title.bordered {
-    border: 2px solid #d3d4d4;
     display: inline-block;
-    padding: 8px;
-    line-height: 38px;
+    width: 250px;
+    height: 55px;
+    background: url("../../../img/BTSO_logo1(1).png");
+    background-size: 100% 100%;
 }
+
 
 .title.bordered .logo-wrapper {
     float: left;
@@ -2251,7 +2253,7 @@ input:-moz-placeholder, textarea:-moz-placeholder {
 
 ::-webkit-scrollbar {
     height: 0px;
-    width: 4px;
+    /*width: 4px;*/
     background: transparent;
     padding-right: 10px;
 }
