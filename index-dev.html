@@ -89,46 +89,46 @@
                         $('#jsTime').text(formatDate((new Date()), 'hh点mm分ss秒'));
                     }, 1000)
 
-                    setTimeout(function () {
-                        freeboard.loadDashboard({
-                            "version": 1,
-                            "allow_edit": true,
-                            "plugins": [],
-                            "panes": [
-                                {
-                                    "width": 1,
-                                    "row": {
-                                        "3": 1
-                                    },
-                                    "col": {
-                                        "3": 1
-                                    },
-                                    "col_width": 1,
-                                    "widgets": [
-                                        {
-                                            "type": "e_charts_radar4",
-                                            "settings": {
-                                                "value": "datasources[\"333\"]"
-                                            }
-                                        }
-                                    ]
-                                }
-                            ],
-                            "datasources": [
-                                {
-                                    "name": "333",
-                                    "type": "雷达图",
-                                    "settings": {
-                                        "url": "333",
-                                        "use_thingproxy": true,
-                                        "refresh": 123321,
-                                        "method": "GET"
-                                    }
-                                }
-                            ],
-                            "columns": 3
-                        })
-                    },5000)
+                    // setTimeout(function () {
+                    //     freeboard.loadDashboard({
+                    //         "version": 1,
+                    //         "allow_edit": true,
+                    //         "plugins": [],
+                    //         "panes": [
+                    //             {
+                    //                 "width": 1,
+                    //                 "row": {
+                    //                     "3": 1
+                    //                 },
+                    //                 "col": {
+                    //                     "3": 1
+                    //                 },
+                    //                 "col_width": 1,
+                    //                 "widgets": [
+                    //                     {
+                    //                         "type": "e_charts_radar4",
+                    //                         "settings": {
+                    //                             "value": "datasources[\"333\"]"
+                    //                         }
+                    //                     }
+                    //                 ]
+                    //             }
+                    //         ],
+                    //         "datasources": [
+                    //             {
+                    //                 "name": "333",
+                    //                 "type": "雷达图",
+                    //                 "settings": {
+                    //                     "url": "333",
+                    //                     "use_thingproxy": true,
+                    //                     "refresh": 123321,
+                    //                     "method": "GET"
+                    //                 }
+                    //             }
+                    //         ],
+                    //         "columns": 3
+                    //     })
+                    // },5000)
                 });
             });
     </script>
@@ -369,6 +369,8 @@
             z-index: 999;
             position: absolute;
             top: 0;
+            color: #00f6ff;
+            border-bottom: 1px solid #00f6ff;
         }
         .radarCon{
             width: 100%;
@@ -400,12 +402,17 @@
     <div id="admin-bar">
         <div id="admin-menu">
             <div id="board-tools">
-                <h1 id="board-logo" class="title bordered">
-                    <div class="logo-wrapper">
-                        <div class="logo"></div>
-                    </div>
-                    行氏动漫可视化平台
-                </h1>
+                <div id="board-logo" class="title bordered">
+                <!--<div id="board-logo" class="borderedaaa" style="width: 260px;-->
+    <!--height: 30px;-->
+    <!--border: 2px solid #d3d4d4;-->
+    <!--padding: 8px;-->
+    <!--line-height: 30px;color: #ffffff">-->
+                    <!--<div class="logo-wrapper">-->
+                        <!--<div class="logo"></div>-->
+                    <!--</div>-->
+                    <!--上海贝塔软件股份有限公司可视化平台-->
+                </div>
                 <div id="board-actions">
                     <ul class="board-toolbar vertical">
                         <li data-bind="click: loadDashboardFromLocalFile">
@@ -584,14 +591,14 @@
             var num = $('.item2').length
             for (let a=0;a<=num;a++){
                 var id = 'item_'+ a
-                Connect(item_f,id)
+                Connect('item_f',id)
             }
             console.log(num)
-            Connect(item_b,item_a);
-            Connect(item_c,item_a);
-            Connect(item_d,item_a);
-            Connect(item_e,item_a);
-            Connect(item_a,item_f);
+            Connect('item_b','item_a');
+            Connect('item_c','item_a');
+            Connect('item_d','item_a');
+            Connect('item_e','item_a');
+            Connect('item_a','item_f');
             var btn = document.getElementById('add');
             btn.onclick = function () {
 

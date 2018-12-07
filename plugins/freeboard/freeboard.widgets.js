@@ -1133,10 +1133,10 @@
         var thisGaugeID1 = "radar2";
         var thisGaugeID2 = "radar3";
         var thisGaugeID3 = "radar4";
-        var htmlElement = $('<div class="custom-widget" id="' + thisGaugeID0 + '" style="height: 700px">' +
-            '<div class="radarTitle">CPU内存占有率</div>' +
-            '<div class="radarCon">'+
-            '<div id="myDiv01" style="margin-top: -630px;height: 1330px;">' +
+        var htmlElement = $('<div class="custom-widget" id="' + thisGaugeID0 + '" style="height: 760px;position: relative;width: 100%">' +
+            '<div class="radarTitle" >CPU内存占用率</div>' +
+            '<div  style="position: absolute;top:78px;overflow:hidden;width: 100%">' +
+            '<div id="myDiv01" style="margin-top: 0px;height: 1400px;width: 100%">' +
             '<div class="custom-wrapper" id="div0" style="height: 12.5%"></div>' +
             '<div  id="div1"  style="width:100%;height: 12.5%"></div>' + // position:absolute;top:25%;
             '<div  id="div2"  style="width:100%;height: 12.5%"></div>' + // position:absolute;top:50%;
@@ -1265,8 +1265,8 @@
                 runTr();
 
                 function runTr() {
-                    $('#myDiv01').animate({'margin-top': '0px'}, 20000, 'linear', function () {
-                        $('#myDiv01').stop().css({'margin-top': '-700px'});
+                    $('#myDiv01').animate({'margin-top': '-778px'}, 20000, 'linear', function () {
+                        $('#myDiv01').stop().css({'margin-top': '-78px'});
                         runTr();
                     });
                 }
@@ -1858,12 +1858,12 @@
             '<div class="bl-right"><p>楼宇名称：实验楼</p><p>当前设备量：107</p><p>警告数：0</p></div>' +
             '</div>' +
             '<div id="diagramContainer">' +
-            // '<div id="item_a" class="item1 my-item"><img src="./img/tongxin.png"><div contenteditable="true">通信中心</div></div>'+
-            // '<div id="item_f" class="item3 my-item" style="top: 150px;left: 215px;"><img src="./img/tongxin.png"><div contenteditable = "true">网络中心</div></div>'+
-            // '<div id="item_b" class="abcd my-item" style="left: 85px;top: 590px"><img src="./img/tongxin.png"><div>电信1</div></div>'+
-            // '<div id="item_c" class="abcd my-item" style="left: 140px;top: 590px"><img src="./img/tongxin.png"><div>电信2</div></div>'+
-            // '<div id="item_d" class="abcd my-item" style="left: 315px;top: 590px"><img src="./img/tongxin.png"><div>联通1</div></div>'+
-            // '<div id="item_e" class="abcd my-item" style="left: 370px;top: 590px"><img src="./img/tongxin.png"><div>联通2</div></div>'+
+            '<div id="item_a" class="item1 my-item"><img src="./img/tongxin.png"><div contenteditable="true">通信中心</div></div>'+
+            '<div id="item_f" class="item3 my-item" style="top: 150px;left: 215px;"><img src="./img/tongxin.png"><div contenteditable = "true">网络中心</div></div>'+
+            '<div id="item_b" class="abcd my-item" style="left: 85px;top: 590px"><img src="./img/tongxin.png"><div>电信1</div></div>'+
+            '<div id="item_c" class="abcd my-item" style="left: 140px;top: 590px"><img src="./img/tongxin.png"><div>电信2</div></div>'+
+            '<div id="item_d" class="abcd my-item" style="left: 315px;top: 590px"><img src="./img/tongxin.png"><div>联通1</div></div>'+
+            '<div id="item_e" class="abcd my-item" style="left: 370px;top: 590px"><img src="./img/tongxin.png"><div>联通2</div></div>'+
             '</div>' +
             '<div id="flourcontainer"></div>' +
             '</div>');
@@ -1875,8 +1875,8 @@
             console.log('render arguments', arguments)
             htmlElement.css({height: (currentSettings.Height * 64) + 'px'});
             $(element).append(htmlElement);
-            // $('#diagramContainer').html(currentSettings.HTML)
-            // floorReady();
+            $('#diagramContainer').html(currentSettings.HTML)
+            floorReady();
             $('#htmlWidget').on("click", "div[contenteditable='true']", function () {
                 $(this).focus();
             });
@@ -1903,6 +1903,9 @@
                 // console.log(newValue);
                 // htmlElement.html(newValue);
                 $('#diagramContainer').html(newValue);
+                $('#htmlWidget').on("click", "div[contenteditable='true']",function(){
+                         $(this).focus();
+                     });
                 floorReady();
             }
         }
@@ -1937,7 +1940,7 @@
                 name: "Height",
                 display_name: "高度",
                 type: "text",
-                default_value: 10
+                default_value: 12
             },
             {
                 name: "include_legend",
@@ -1955,8 +1958,8 @@
         var self = this;
         var htmlElement = $('<div class="html-widget" id="htmlWidget">' +
             '<div id="theback" style="text-align: center;padding-bottom: 20px">' +
-            '<iframe style="margin-top: 24px;border: 0" width="900px" height="540px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe>' +
-            // '<img src="content.png" style="width: 900px;height:540px">'+
+            /*'<iframe style="border: 0;margin-top: 20px" width="880px" height="530px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe>' +*/
+            '<img src="content.png" style="width: 900px;height:530px;margin-top: 20px">'+
             '</div>' +
             //             '<div id="theback" style="text-align: center;padding-bottom: 20px"><div class="scroll"><ul>'+
             //             '<li><iframe style="margin-top: 24px;border: 0" width="900px" height="540px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe></li>'+
