@@ -1,1 +1,272 @@
-{"version":1,"allow_edit":true,"plugins":[],"panes":[{"width":1,"row":{"3":1,"4":1,"5":1},"col":{"3":-25,"4":2,"5":2},"col_width":3,"widgets":[{"type":"bms-widget","settings":{"Height":9}}]},{"width":1,"row":{"3":1,"4":1,"5":1},"col":{"3":3,"4":1,"5":5},"col_width":1,"widgets":[{"type":"e_charts_annulusRing2","settings":{"value":"datasources[\"5\"]"}}]},{"width":1,"row":{"3":1,"4":12,"5":12},"col":{"3":1,"4":1,"5":5},"col_width":1,"widgets":[{"type":"e_charts_NightingaleRoseDiagram","settings":{"value":"datasources[\"6\"]"}}]},{"width":1,"row":{"3":1,"4":21,"5":21},"col":{"3":2,"4":1,"5":5},"col_width":1,"widgets":[{"type":"e_charts_annulus","settings":{"value":"datasources[\"7\"]"}}]},{"width":1,"row":{"3":10,"4":21,"5":10},"col":{"3":1,"4":2,"5":1},"col_width":1,"widgets":[{"type":"e_charts_LineMoreActive","settings":{"value":"datasources[\"2\"]"}}]},{"width":1,"row":{"3":10,"4":21,"5":21},"col":{"3":2,"4":3,"5":1},"col_width":1,"widgets":[{"type":"e_charts_BarActive","settings":{"value":"datasources[\"3\"]"}}]},{"width":1,"row":{"3":19,"4":32,"5":21},"col":{"3":2,"4":1,"5":2},"col_width":3,"widgets":[{"type":"loop-table","settings":{"Title":"4","tableData":"datasources[\"4\"]","Height":5}}]},{"width":1,"row":{"3":28,"4":21,"5":1,"7":1},"col":{"3":1,"4":4,"5":1,"7":4},"col_width":1,"widgets":[{"type":"picture","settings":{"passage":"datasources[\"1\"][\"data\"]","refresh":1}}]}],"datasources":[{"name":"1","type":"实验楼数据","settings":{"url":"1","use_thingproxy":true,"refresh":1800,"method":"GET"}},{"name":"2","type":"宽带流量占用比折线图","settings":{"url":"2","use_thingproxy":true,"refresh":1800,"method":"GET"}},{"name":"3","type":"线路流量占用比柱状图","settings":{"url":"3","use_thingproxy":true,"refresh":1800,"method":"GET"}},{"name":"4","type":"告警信息列表","settings":{"url":"4","use_thingproxy":true,"refresh":1800,"method":"GET"}},{"name":"5","type":"告警信息扇形图","settings":{"url":"5","use_thingproxy":true,"refresh":1800,"method":"GET"}},{"name":"6","type":"管理对象扇形图","settings":{"url":"6","use_thingproxy":true,"refresh":1800,"method":"GET"}},{"name":"7","type":"智能统计图","settings":{"url":"7","use_thingproxy":true,"refresh":1800,"method":"GET"}}],"columns":5}
+{
+  "version": 1,
+  "allow_edit": true,
+  "plugins": [],
+  "panes": [
+    {
+      "width": 1,
+      "row": {
+        "3": 1,
+        "4": 1,
+        "5": 1
+      },
+      "col": {
+        "3": -25,
+        "4": 2,
+        "5": 2
+      },
+      "col_width": 3,
+      "widgets": [
+        {
+          "type": "bms-widget",
+          "settings": {
+            "HTML": "datasources[\"8\"]",
+            "Height": 9
+          }
+        }
+      ]
+    },
+    {
+      "width": 1,
+      "row": {
+        "3": 1,
+        "4": 1,
+        "5": 1
+      },
+      "col": {
+        "3": 3,
+        "4": 1,
+        "5": 5
+      },
+      "col_width": 1,
+      "widgets": [
+        {
+          "type": "e_charts_annulusRing2",
+          "settings": {
+            "value": "datasources[\"5\"]"
+          }
+        }
+      ]
+    },
+    {
+      "width": 1,
+      "row": {
+        "3": 1,
+        "4": 12,
+        "5": 12
+      },
+      "col": {
+        "3": 1,
+        "4": 1,
+        "5": 5
+      },
+      "col_width": 1,
+      "widgets": [
+        {
+          "type": "e_charts_NightingaleRoseDiagram",
+          "settings": {
+            "value": "datasources[\"6\"]"
+          }
+        }
+      ]
+    },
+    {
+      "width": 1,
+      "row": {
+        "3": 1,
+        "4": 21,
+        "5": 21
+      },
+      "col": {
+        "3": 2,
+        "4": 1,
+        "5": 5
+      },
+      "col_width": 1,
+      "widgets": [
+        {
+          "type": "e_charts_annulus",
+          "settings": {
+            "value": "datasources[\"7\"]"
+          }
+        }
+      ]
+    },
+    {
+      "width": 1,
+      "row": {
+        "3": 10,
+        "4": 21,
+        "5": 10
+      },
+      "col": {
+        "3": 1,
+        "4": 2,
+        "5": 1
+      },
+      "col_width": 1,
+      "widgets": [
+        {
+          "type": "e_charts_LineMoreActive",
+          "settings": {
+            "value": "datasources[\"2\"]"
+          }
+        }
+      ]
+    },
+    {
+      "width": 1,
+      "row": {
+        "3": 10,
+        "4": 21,
+        "5": 21
+      },
+      "col": {
+        "3": 2,
+        "4": 3,
+        "5": 1
+      },
+      "col_width": 1,
+      "widgets": [
+        {
+          "type": "e_charts_BarActive",
+          "settings": {
+            "value": "datasources[\"3\"]"
+          }
+        }
+      ]
+    },
+    {
+      "width": 1,
+      "row": {
+        "3": 19,
+        "4": 32,
+        "5": 21
+      },
+      "col": {
+        "3": 2,
+        "4": 1,
+        "5": 2
+      },
+      "col_width": 3,
+      "widgets": [
+        {
+          "type": "loop-table",
+          "settings": {
+            "Title": "4",
+            "tableData": "datasources[\"4\"]",
+            "Height": 5
+          }
+        }
+      ]
+    },
+    {
+      "width": 1,
+      "row": {
+        "3": 28,
+        "4": 21,
+        "5": 1,
+        "7": 1
+      },
+      "col": {
+        "3": 1,
+        "4": 4,
+        "5": 1,
+        "7": 4
+      },
+      "col_width": 1,
+      "widgets": [
+        {
+          "type": "picture",
+          "settings": {
+            "passage": "datasources[\"1\"][\"data\"]",
+            "refresh": 1
+          }
+        }
+      ]
+    }
+  ],
+  "datasources": [
+    {
+      "name": "1",
+      "type": "实验楼数据",
+      "settings": {
+        "url": "1",
+        "use_thingproxy": true,
+        "refresh": 1800,
+        "method": "GET"
+      }
+    },
+    {
+      "name": "2",
+      "type": "宽带流量占用比折线图",
+      "settings": {
+        "url": "2",
+        "use_thingproxy": true,
+        "refresh": 1800,
+        "method": "GET"
+      }
+    },
+    {
+      "name": "3",
+      "type": "线路流量占用比柱状图",
+      "settings": {
+        "url": "3",
+        "use_thingproxy": true,
+        "refresh": 1800,
+        "method": "GET"
+      }
+    },
+    {
+      "name": "4",
+      "type": "告警信息列表",
+      "settings": {
+        "url": "4",
+        "use_thingproxy": true,
+        "refresh": 1800,
+        "method": "GET"
+      }
+    },
+    {
+      "name": "5",
+      "type": "告警信息扇形图",
+      "settings": {
+        "url": "5",
+        "use_thingproxy": true,
+        "refresh": 1800,
+        "method": "GET"
+      }
+    },
+    {
+      "name": "6",
+      "type": "管理对象扇形图",
+      "settings": {
+        "url": "6",
+        "use_thingproxy": true,
+        "refresh": 1800,
+        "method": "GET"
+      }
+    },
+    {
+      "name": "7",
+      "type": "智能统计图",
+      "settings": {
+        "url": "7",
+        "use_thingproxy": true,
+        "refresh": 1800,
+        "method": "GET"
+      }
+    },
+    {
+      "name": "8",
+      "type": "BSM图",
+      "settings": {
+        "url": "8",
+        "use_thingproxy": true,
+        "refresh": 1800,
+        "method": "GET"
+      }
+    }
+  ],
+  "columns": 5
+}

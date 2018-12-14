@@ -1926,6 +1926,168 @@
     });
 
 
+    //BSM图
+    var json14Datasource = function (settings, updateCallback) {
+        var self = this;
+        var updateTimer = null;
+        var currentSettings = settings;
+        var errorStage = 0; 	// 0 =尝试标准请求
+        // 1 =尝试JSONP
+        // 2 =尝试thingproxy.freeboard.io
+        var lockErrorStage = false;
+        function updateRefresh(refreshTime) {
+            if (updateTimer) {
+                clearInterval(updateTimer);
+            }
+            updateTimer = setInterval(function () {
+                self.updateNow();
+            }, refreshTime);
+        }
+        updateRefresh(currentSettings.refresh * 1000);
+        this.updateNow = function () {
+            if ((errorStage > 1 && !currentSettings.use_thingproxy) || errorStage > 2) // We've tried everything, let's quit
+            {
+                return; // TODO: Report an error
+            }
+            var requestURL = currentSettings.url;
+
+            if (errorStage == 2 && currentSettings.use_thingproxy) {
+                requestURL = (location.protocol == "https:" ? "https:" : "http:") + "//thingproxy.freeboard.io/fetch/" + encodeURI(currentSettings.url);
+            }
+            //获取所有allcookies
+            var allcookies = document.cookie;
+            var arr=new Array();
+            var access_token= window.sessionStorage.getItem('access_token');
+
+            $.ajax({
+                async:false,
+                url: "http://localhost:8181/camel/rest/ksh/bsm/getBsmRoute",
+                dataType: "JSON",
+                type: "GET",
+                // data: body,
+                beforeSend: function(request) {
+                    request.setRequestHeader('access_token', access_token);
+                    //request.setRequestHeader("access_token", access_token);
+                    //console.log(data);
+                },
+                success: function (data2) {
+                    var obj = JSON.parse(data2);
+                    console.log('value111111111111111111111111111111111111', obj)
+                    updateCallback(obj);
+                },
+                error: function (xhr, status, error) {
+                    if (!lockErrorStage) {
+                        // TODO: Figure out a way to intercept CORS errors only. The error message for CORS errors seems to be a standard 404.
+                        errorStage++;
+                        self.updateNow();
+                    }
+                }
+            });
+
+        }
+
+        this.onDispose = function () {
+            clearInterval(updateTimer);
+            updateTimer = null;
+        }
+
+        this.onSettingsChanged = function (newSettings) {
+            lockErrorStage = false;
+            errorStage = 0;
+
+            currentSettings = newSettings;
+            updateRefresh(currentSettings.refresh * 1000);
+            self.updateNow();
+        }
+    };
+    //加载数据源插件
+    freeboard.loadDatasourcePlugin({
+        // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
+        type_name: "BSM图",
+        settings: [
+            {
+                name: "url",
+                display_name: "路径",
+                // ** type **（必需）：此设置的预期输入类型。“text”将显示单个文本框输入。本文档中将包含其他类型的示例。
+                type: "text"
+            },
+            {
+                // ** name **（必填）：设置的名称。此值将在您的代码中用于检索用户指定的值。这应该遵循javascript变量和函数声明的命名约定。
+                name: "use_thingproxy",
+                // ** display_name **：调整此设置时将向用户显示的漂亮名称。
+                display_name: "尝试代理",
+                // ** description **：将在设置下方显示的文本，为用户提供任何额外信息。
+                description: '首先将尝试直接JSON连接，如果失败，将尝试JSONP连接。如果失败，您可以使用thigPosiver，它可以解决API的许多连接问题。 <a href="https://github.com/Freeboard/thingproxy" target="_blank">更多信息</a>.',
+                // ** type **（必需）：此设置的预期输入类型
+                type: "boolean",
+                // ** default_value **：此设置的默认值。
+                default_value: true
+            },
+            {
+                name: "refresh",
+                display_name: "刷新时间",
+                type: "number",
+                // ** suffix **：后缀。
+                suffix: "seconds",
+                default_value: 5
+            },
+            {
+                name: "method",
+                display_name: "请求方式",
+                // ** type **（必需）：option代表这是一个下拉选
+                type: "option",
+                options: [
+                    {
+                        name: "GET",
+                        value: "GET"
+                    },
+                    {
+                        name: "POST",
+                        value: "POST"
+                    },
+                    {
+                        name: "PUT",
+                        value: "PUT"
+                    },
+                    {
+                        name: "DELETE",
+                        value: "DELETE"
+                    }
+                ]
+            },
+            {
+                name: "body",
+                display_name: "请求主体",
+                type: "text",
+                description: "请求的主体，通常只使用 POST"
+            },
+            {
+                name: "headers",
+                display_name: "请求首部",
+                // ** type **（必需）：array代表这是一个数组
+                type: "array",
+                settings: [
+                    {
+                        name: "name",
+                        display_name: "Name",
+                        type: "text"
+                    },
+                    {
+                        name: "value",
+                        display_name: "Value",
+                        type: "text"
+                    }
+                ]
+            }
+        ],
+        // ** newInstance（settings，newInstanceCallback，updateCallback）**（必需）：在请求此插件的新实例时将调用的函数。
+        // * ** settings **：具有用户设置的初始设置的javascript对象。对象中属性的名称将对应于上面定义的设置名称。
+        // * ** newInstanceCallback **：当插件的新实例准备就绪时您将调用的回调函数。此函数需要一个参数，它是插件对象的新实例。
+        // * ** updateCallback **：一个回调函数，如果您的数据源具有重新计算的干舷更新，您将调用该函数。此函数需要单个参数，该参数是具有新的更新数据的javascript对象。你应该坚持这个参考，并在需要时调用它。
+        newInstance: function (settings, newInstanceCallback, updateCallback) {
+            newInstanceCallback(new json14Datasource(settings, updateCallback));
+        }
+    });
 
 
 

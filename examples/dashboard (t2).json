@@ -1,1 +1,110 @@
-{"version":1,"allow_edit":true,"plugins":[],"panes":[{"width":1,"row":{"3":1,"4":1,"5":1},"col":{"3":1,"4":1,"5":1},"col_width":1,"widgets":[{"type":"e_charts_radar4","settings":{"value":"datasources[\"2\"]"}}]},{"width":1,"row":{"3":1,"4":1,"5":1},"col":{"3":3,"4":4,"5":5},"col_width":1,"widgets":[{"type":"loop-table2","settings":{"Title":"12","tableData":"datasources[\"1\"]","Height":5}}]},{"width":1,"row":{"3":1,"4":1,"5":1},"col":{"3":-17,"4":2,"5":2},"col_width":3,"widgets":[{"type":"floor-widget","settings":{"Title":"12","Height":"12"}}]}],"datasources":[{"name":"1","type":"骨干线路实时运行情况","settings":{"url":"1","use_thingproxy":true,"refresh":1800,"method":"GET"}},{"name":"2","type":"雷达图","settings":{"url":"2","use_thingproxy":true,"refresh":1800,"method":"GET"}}],"columns":5}
+{
+  "version": 1,
+  "allow_edit": true,
+  "plugins": [],
+  "panes": [
+    {
+      "width": 1,
+      "row": {
+        "3": 1,
+        "4": 1,
+        "5": 1
+      },
+      "col": {
+        "3": 1,
+        "4": 1,
+        "5": 1
+      },
+      "col_width": 1,
+      "widgets": [
+        {
+          "type": "e_charts_radar4",
+          "settings": {
+            "value": "datasources[\"2\"]"
+          }
+        }
+      ]
+    },
+    {
+      "width": 1,
+      "row": {
+        "3": 1,
+        "4": 1,
+        "5": 1
+      },
+      "col": {
+        "3": 3,
+        "4": 4,
+        "5": 5
+      },
+      "col_width": 1,
+      "widgets": [
+        {
+          "type": "loop-table2",
+          "settings": {
+            "Title": "12",
+            "tableData": "datasources[\"1\"]",
+            "Height": 5
+          }
+        }
+      ]
+    },
+    {
+      "width": 1,
+      "row": {
+        "3": 1,
+        "4": 1,
+        "5": 1
+      },
+      "col": {
+        "3": -17,
+        "4": 2,
+        "5": 2
+      },
+      "col_width": 3,
+      "widgets": [
+        {
+          "type": "floor-widget",
+          "settings": {
+            "Title": "12",
+            "HTML": "datasources[\"3\"]",
+            "Height": "12"
+          }
+        }
+      ]
+    }
+  ],
+  "datasources": [
+    {
+      "name": "1",
+      "type": "骨干线路实时运行情况",
+      "settings": {
+        "url": "1",
+        "use_thingproxy": true,
+        "refresh": 1800,
+        "method": "GET"
+      }
+    },
+    {
+      "name": "2",
+      "type": "雷达图",
+      "settings": {
+        "url": "2",
+        "use_thingproxy": true,
+        "refresh": 1800,
+        "method": "GET"
+      }
+    },
+    {
+      "name": "3",
+      "type": "拓扑图",
+      "settings": {
+        "url": "3",
+        "use_thingproxy": true,
+        "refresh": 1800,
+        "method": "GET"
+      }
+    }
+  ],
+  "columns": 5
+}

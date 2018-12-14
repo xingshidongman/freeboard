@@ -4412,7 +4412,7 @@
             var lValue = result["lValue"];
             var dataMap = {};
 
-            for (var i = 1; i <= result.lValue.length; i++) {
+            for (let i = 1; i <= result.lValue.length; i++) {
                 var DL = "dataList" + i;
                 var dataList = result[DL]
                 dataMap[i - 1] = dataFormatter(dataList);
@@ -5908,8 +5908,9 @@
         var self = this;
         var htmlElement = $('<div class="html-widget" id="htmlWidget">' +
             '<div id="theback" style="text-align: center;padding-bottom: 20px">' +
-            '<iframe style="border: 0;margin-top: 20px" width="880px" height="530px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe>' +
+            // '<iframe style="border: 0;margin-top: 20px" width="880px" height="530px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe>' +
             // '<img src="content.png" style="width: 900px;height:530px;margin-top: 20px">'+
+            '<iframe style="border: 0;margin-top: 20px" width="880px" height="530px" seamless src="http://10.0.2.6/bsm/content?app=5&view=full&mode=production"></iframe>' +
             '</div>' +
             //             '<div id="theback" style="text-align: center;padding-bottom: 20px"><div class="scroll"><ul>'+
             //             '<li><iframe style="margin-top: 24px;border: 0" width="900px" height="540px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe></li>'+

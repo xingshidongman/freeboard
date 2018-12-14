@@ -6162,7 +6162,7 @@ $.extend(freeboard, jQuery.eventEmitter);
     });
 
 
-    //总管理对象
+    //智能统计图
     var json13Datasource = function (settings, updateCallback) {
         var self = this;
         var updateTimer = null;
@@ -6240,7 +6240,7 @@ $.extend(freeboard, jQuery.eventEmitter);
     //加载数据源插件
     freeboard.loadDatasourcePlugin({
         // ** type_name **（必填）：此插件的唯一名称。此名称应尽可能唯一，以避免与其他插件发生冲突，并应遵循javascript变量和函数声明的命名约定。
-        type_name: "总管理对象",
+        type_name: "智能统计图",
         settings: [
             {
                 name: "url",
@@ -7119,7 +7119,7 @@ $.extend(freeboard, jQuery.eventEmitter);
                     //     position: 'left'
                     // },
                     data: [
-                        '1', '2', '3', '4', '5'
+                        '前50分钟', '前40分钟', '前30分钟', '前20分钟', '前10分钟'
                     ],
                 },
                 // backgroundColor: '#000000',//背景色
@@ -7187,7 +7187,7 @@ $.extend(freeboard, jQuery.eventEmitter);
                     },
                 },
                 yAxis: {
-                    min:0,
+                    min: 0,
                     // max:50,
                     //坐标轴的名称 距离轴线的距离
                     nameGap: 10,
@@ -7260,14 +7260,14 @@ $.extend(freeboard, jQuery.eventEmitter);
             var lValue = result["lValue"];
             var dataMap = {};
 
-            for(let i=1;i<=result.lValue.length;i++){
-                var DL = "dataList"+i;
+            for (let i = 1; i <= result.lValue.length; i++) {
+                var DL = "dataList" + i;
                 var dataList = result[DL]
-                dataMap[i-1] = dataFormatter(dataList);
+                dataMap[i - 1] = dataFormatter(dataList);
             }
-            for(var j=0; j < titleData.length; j++){
+            for (var j = 0; j < titleData.length; j++) {
                 option.options[j] = {series: [], title: {}};
-                for(var z=0;z<=result.lValue.length-1;z++){
+                for (var z = 0; z <= result.lValue.length - 1; z++) {
                     option.options[j].series.push({
                         name: lValue[z],
                         data: dataMap[z][j],
@@ -7276,7 +7276,6 @@ $.extend(freeboard, jQuery.eventEmitter);
                 }
                 option.options[j].title.text = titleData[j];
             }
-
 
 
             function dataFormatter(obj) {
@@ -7330,9 +7329,6 @@ $.extend(freeboard, jQuery.eventEmitter);
             newInstanceCallback(new eChartsLineMoreActiveWidget(settings));
         }
     });
-
-
-
 
 
     // 自定义组件 Bar动图(柱图自写)
@@ -7489,12 +7485,12 @@ $.extend(freeboard, jQuery.eventEmitter);
             var result = newValue;
 
             var pList = result['pList'];
-            var dataList  = result['dataList'];
+            var dataList = result['dataList'];
             var xAxisData = result['xAxisData'];
-            var yAxisName= result['yAxis'].name;
+            var yAxisName = result['yAxis'].name;
             // var yAxisMax = result['yAxis'].max;
-            var xAxisName =  result['xAxisName'];
-            var titleData =  result['titleData'];
+            var xAxisName = result['xAxisName'];
+            var titleData = result['titleData'];
 
             // for (var key in result) {
             //     if (key == "yAxis") {
@@ -7533,7 +7529,7 @@ $.extend(freeboard, jQuery.eventEmitter);
             }
 
             dataMap = dataFormatter(dataList);
-            console.log(dataMap);
+            // console.log(dataMap);
             for (var i = 0; i < titleData.length; i++) {
                 option.options[i] = {series: [], title: {}};
                 option.options[i].series.push({
@@ -7629,12 +7625,14 @@ $.extend(freeboard, jQuery.eventEmitter);
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var value = newValue;
+            console.log('00000000000000000000000000000000', value)
             option.series.push({
                 data: value,
                 type: 'pie',
                 radius: ['50%', '40%'],
                 center: ['50%', '55%'],
             })
+            option.title[1].text = '总管理对象\n' + value[0].value
         }
 
         this.onSettingsChanged = function (newSettings) {
@@ -7695,7 +7693,7 @@ $.extend(freeboard, jQuery.eventEmitter);
                     //处理率
                     textStyle: {
                         fontSize: 14,
-                        lineHeight:30,
+                        lineHeight: 30,
                         color: '#FFC040',
                         fontFamily: 'Microsoft YaHei'
                     },
@@ -7759,17 +7757,17 @@ $.extend(freeboard, jQuery.eventEmitter);
         this.onCalculatedValueChanged = function (settingName, newValue) {
 
             var value = newValue;
-            console.log('1597563951357951357951357',value)
+            console.log('1597563951357951357951357', value)
             if (value && value.length > 0) {
                 value = eval(value);
 
                 var sCircle = value[0].smallCircle;
-                console.log('9999999999999999999999999999999999999',sCircle)
+                console.log('9999999999999999999999999999999999999', sCircle)
                 var bCircle = value[1].bigCircle;
-                console.log('9999999999999999999999999999999999999',bCircle)
+                console.log('9999999999999999999999999999999999999', bCircle)
                 option1.yAxis.data = value[2].barName;
                 var bValue = value[3].barValue;
-                console.log('00000000000000000000000++++++++',bValue);
+                console.log('00000000000000000000000++++++++', bValue);
                 option.title[0].text = value[4].title1;
                 option.title[1].text = value[4].title2;
                 option.series = [];
@@ -7864,8 +7862,8 @@ $.extend(freeboard, jQuery.eventEmitter);
                     label: {
                         normal: {
                             position: ['50%', '-1px'],
-                            color:'#000',
-                            fontWeight:600,
+                            color: '#000',
+                            fontWeight: 600,
                             show: true
                         },
                     },
@@ -7933,11 +7931,20 @@ $.extend(freeboard, jQuery.eventEmitter);
         var thisGaugeID1 = "radar2";
         var thisGaugeID2 = "radar3";
         var thisGaugeID3 = "radar4";
-        var htmlElement = $('<div class="custom-widget" style="height: 700px">' +
-            '<div class="custom-wrapper" id="' + thisGaugeID0 + '" style="height: 25%"></div>' +
-            '<div  id="' + thisGaugeID1 + '"  style="position:absolute;top:25%;width:100%;height: 25%"></div>' +
-            '<div  id="' + thisGaugeID2 + '"  style="position:absolute;top:50%;width:100%;height: 25%"></div>' +
-            '<div  id="' + thisGaugeID3 + '"  style="position:absolute;top:75%;width:100%;height: 25%"></div>' +
+        var htmlElement = $('<div class="custom-widget" id="' + thisGaugeID0 + '" style="height: 760px;position: relative;width: 100%">' +
+            '<div class="radarTitle" >CPU内存占用率</div>' +
+            '<div  style="position: absolute;top:78px;overflow:hidden;width: 100%">' +
+            '<div id="myDiv01" style="margin-top: 0px;height: 1400px;width: 100%">' +
+            '<div class="custom-wrapper" id="div0" style="height: 12.5%"></div>' +
+            '<div  id="div1"  style="width:100%;height: 12.5%"></div>' + // position:absolute;top:25%;
+            '<div  id="div2"  style="width:100%;height: 12.5%"></div>' + // position:absolute;top:50%;
+            '<div  id="div3"  style="width:100%;height: 12.5%"></div>' + // position:absolute;top:75%;
+            '<div  id="div4"  style="width:100%;height: 12.5%"></div>' + // position:absolute;top:75%;
+            '<div  id="div5"  style="width:100%;height: 12.5%"></div>' + // position:absolute;top:75%;
+            '<div  id="div6"  style="width:100%;height: 12.5%"></div>' + // position:absolute;top:75%;
+            '<div  id="div7"  style="width:100%;height: 12.5%"></div>' + // position:absolute;top:75%;
+            '</div>' +
+            '</div>' +
             '</div>');
         var currentSettings = settings;
         var opArr = [];
@@ -8013,67 +8020,167 @@ $.extend(freeboard, jQuery.eventEmitter);
             ],
             series: []
         };
-        var option1,option2,option3,option4
+        var option1, option2, option3, option4
         this.render = function (element) {
             $(element).append(htmlElement);
             setTimeout(function () {
-                var dom = document.getElementById(thisGaugeID0);
-                var myChart = echarts.init(dom);
-                console.log(dom);
-                myChart.setOption(option1, true);
+                $.each(opArr, function (i, e) {
+                    console.log('e', e);
+                    console.log('i', i);
+                    var dom = document.getElementById('div' + i);
+                    var myChart = echarts.init(dom);
+                    myChart.setOption(e, true);
+                });
+                $.each(opArr, function (i, e) {
+                    console.log('e', e);
+                    console.log('i', i);
+                    var dom = document.getElementById('div' + (i * 1 + 4));
+                    var myChart = echarts.init(dom);
+                    myChart.setOption(e, true);
+                });
+                // var dom = document.getElementById(thisGaugeID0);
+                // var myChart = echarts.init(dom);
+                // console.log(dom);
+                // myChart.setOption(option1, true);
+                //
+                // var dom2 = document.getElementById(thisGaugeID1);
+                // console.log(dom2);
+                // var myChart1 = echarts.init(dom2);
+                // myChart1.setOption(option2, true);
+                //
+                // var dom3 = document.getElementById(thisGaugeID2);
+                // console.log(dom3);
+                // var myChart1 = echarts.init(dom3);
+                // myChart1.setOption(option3, true);
+                //
+                // var dom4 = document.getElementById(thisGaugeID3);
+                // console.log(dom4);
+                // var myChart1 = echarts.init(dom4);
+                // myChart1.setOption(option4, true);
+                // $('#myDiv01').animate({'margin-top': '0px'}, 20000, function () {
+                //
+                // });
+                runTr();
 
-                var dom2 = document.getElementById(thisGaugeID1);
-                console.log(dom2);
-                var myChart1 = echarts.init(dom2);
-                myChart1.setOption(option2, true);
-
-                var dom3 = document.getElementById(thisGaugeID2);
-                console.log(dom3);
-                var myChart1 = echarts.init(dom3);
-                myChart1.setOption(option3, true);
-
-                var dom4 = document.getElementById(thisGaugeID3);
-                console.log(dom4);
-                var myChart1 = echarts.init(dom4);
-                myChart1.setOption(option4, true);
+                function runTr() {
+                    $('#myDiv01').animate({'margin-top': '-778px'}, 20000, 'linear', function () {
+                        $('#myDiv01').stop().css({'margin-top': '-78px'});
+                        runTr();
+                    });
+                }
             }, 1000);
         };
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var value;
-            var op;
             for (var i = 0; i < newValue.length; i++) {
                 value = newValue[i];
                 console.log("每一个对象", value);
-                op = option
+                // var op;
+                // op = option
+                var op = {
+                    title: [
+                        {
+                            y: 'bottom',
+                            textStyle: {
+                                fontSize: 15,
+                                //文字颜色
+                                color: '#00f6ff',
+                                fontFamily: 'Microsoft YaHei'
+                            },
+
+                            x: '40%',
+                        },
+                        {
+                            textStyle: {
+                                fontSize: 12,
+                                //文字颜色
+                                color: '#00f6ff',
+                                fontFamily: 'Microsoft YaHei'
+                            },
+
+                            x: '50%',
+                            y: '20%',
+                        },
+
+                        {
+                            textStyle: {
+                                fontSize: 12,
+                                //文字颜色
+                                color: '#00f6ff',
+                                fontFamily: 'Microsoft YaHei'
+                            },
+
+                            x: '50%',
+                            y: '40%',
+                        },
+                        {
+                            textStyle: {
+                                fontSize: 12,
+                                //文字颜色
+                                color: '#00f6ff',
+                                fontFamily: 'Microsoft YaHei'
+                            },
+
+                            x: '50%',
+                            y: '60%',
+                        }
+                    ],
+                    //backgroundColor: '#000000',//背景色
+                    radar: [
+                        {
+                            splitNumber: '4',
+                            indicator: [
+                                {max: 100},
+                                {max: 100},
+                                {max: 100}
+                            ],
+                            center: ['30%', '50%'],
+                            radius: 50,
+                            shape: 'circle',
+                            splitArea: {
+                                areaStyle: {
+                                    color: ['rgba(114, 172, 209, 1)',
+                                        'rgba(114, 172, 209, 0.8)', 'rgba(114, 172, 209, 0.6)',
+                                        'rgba(114, 172, 209, 0.4)', 'rgba(114, 172, 209, 0.2)'],
+                                    shadowColor: 'rgba(0, 0, 0, 0.3)',
+                                    shadowBlur: 10
+                                }
+                            }
+                        },
+                    ],
+                    series: []
+                };
                 op.series = [];
                 op.title[0].text = value["title"]["name"];
+                console.log('dddddddddddddddddd', op.title[0].text)
                 op.title[1].text = value["title"]["CPULoad"];
                 op.title[2].text = value["title"]["OUsedRatio"];
                 op.title[3].text = value["title"]["Uptime"];
                 op.series.push(
-                            {
-                                type: 'radar',
-                                itemStyle: {
-                                    normal: {
-                                        lineStyle: {
-                                            color: 'rgba(60,60,200,0.7)' // 图表中各个图区域的边框线颜色
-                                        },
-                                        areaStyle: {
-                                            color: 'rgba(255,171,0,0.4)'
-                                        }
-                                    }
+                    {
+                        type: 'radar',
+                        itemStyle: {
+                            normal: {
+                                lineStyle: {
+                                    color: 'rgba(60,60,200,0.7)' // 图表中各个图区域的边框线颜色
                                 },
-                                data: value["value"]
-                            },
-                        );
+                                areaStyle: {
+                                    color: 'rgba(255,171,0,0.4)'
+                                }
+                            }
+                        },
+                        data: value["value"]
+                    },
+                );
                 console.log(op)
                 opArr.push(op)
-                }
-                option1 = opArr[0]
-                option2 = opArr[0]
-                option3 = opArr[0]
-                option4 = opArr[0]
+                console.log(opArr)
+            }
+            option1 = opArr[0]
+            option2 = opArr[0]
+            option3 = opArr[0]
+            option4 = opArr[0]
 
         };
 
@@ -8103,8 +8210,6 @@ $.extend(freeboard, jQuery.eventEmitter);
             newInstanceCallback(new eChartsRadar4Widget(settings));
         }
     });
-
-
 
 
     //自定义组件 NightingaleRoseDiagram（面积图   右中）
@@ -8152,7 +8257,7 @@ $.extend(freeboard, jQuery.eventEmitter);
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var value = newValue;
-            console.log('3333333333333333333333333333333333333333333',value)
+            console.log('3333333333333333333333333333333333333333333', value)
             option.title[0].text = '被管理对象';
             option.title[1].text = '管理对象类型';
             option.series.push({
@@ -8204,9 +8309,6 @@ $.extend(freeboard, jQuery.eventEmitter);
     });
 
 
-
-
-
     //第一张图的表格（带滚动效果）
     var LoopTableWidget = function (settings) {
         console.log('[Test] LoopTableWidget', settings);
@@ -8251,7 +8353,7 @@ $.extend(freeboard, jQuery.eventEmitter);
                 //数据总的长度   在外面定义了
                 //var len = 16;
                 //走完一个格子的时间
-                var ti = 100;
+                var ti = 50;
                 var maxTop = $tableTr.height() / 2;
                 runTr();
 
@@ -8285,18 +8387,18 @@ $.extend(freeboard, jQuery.eventEmitter);
                 $.each(value.data, function (i, e) {
                     var _tds = []
                     for (var k in e) {
-                        if(k==='name'){
-                            _tds[0]= '<td>' + e[k] + '</td>';
-                        } else if(k==='version'){
-                            _tds[1]= '<td>' + e[k] + '</td>';
-                        } else if(k==='level'){
-                            _tds[2]= '<td>' + e[k] + '</td>';
+                        if (k === 'name') {
+                            _tds[0] = '<td>' + e[k] + '</td>';
+                        } else if (k === 'version') {
+                            _tds[1] = '<td>' + e[k] + '</td>';
+                        } else if (k === 'level') {
+                            _tds[2] = '<td>' + e[k] + '</td>';
                         } else {
                             if (e[k].length > 40) {
                                 var str1 = e[k].substring(0, 29);
                                 var str2 = e[k].substring(66, 69);
 
-                                _tds[3]= '<td >' + str1 + str2 + "..." + '</td>';
+                                _tds[3] = '<td >' + str1 + str2 + "..." + '</td>';
                             }
                         }
                     }
@@ -8548,32 +8650,32 @@ $.extend(freeboard, jQuery.eventEmitter);
     var FloorWidget = function (settings) {
         var self = this;
         var htmlElement = $('<div class="html-widget" id="htmlWidget">' +
-            '<div class="btnbox"><button id="add" class="add">添加楼宇</button><button id="save" class="save">保存更改</button></div>'+
-            '<div id="bling" class="bling">'+
-            '<div class="bl-left">实验楼</div>'+
-            '<div class="bl-right"><p>楼宇名称：实验楼</p><p>当前设备量：107</p><p>警告数：0</p></div>'+
-            '</div>'+
-            '<div id="diagramContainer">'+
+            '<div class="btnbox"><button id="add" class="add">添加楼宇</button><button id="save" class="save">保存更改</button><button id="reset" class="reset">重置修改</button></div>' +
+            '<div id="bling" class="bling">' +
+            '<div class="bl-left">实验楼</div>' +
+            '<div class="bl-right"><p>楼宇名称：实验楼</p><p>当前设备量：107</p><p>警告数：0</p></div>' +
+            '</div>' +
+            '<div id="diagramContainer">' +
             '<div id="item_a" class="item1 my-item"><img src="./img/tongxin.png"><div contenteditable="true">通信中心</div></div>'+
             '<div id="item_f" class="item3 my-item" style="top: 150px;left: 215px;"><img src="./img/tongxin.png"><div contenteditable = "true">网络中心</div></div>'+
             '<div id="item_b" class="abcd my-item" style="left: 85px;top: 590px"><img src="./img/tongxin.png"><div>电信1</div></div>'+
             '<div id="item_c" class="abcd my-item" style="left: 140px;top: 590px"><img src="./img/tongxin.png"><div>电信2</div></div>'+
             '<div id="item_d" class="abcd my-item" style="left: 315px;top: 590px"><img src="./img/tongxin.png"><div>联通1</div></div>'+
             '<div id="item_e" class="abcd my-item" style="left: 370px;top: 590px"><img src="./img/tongxin.png"><div>联通2</div></div>'+
-            '</div>'+
-            '<div id="div1"></div>'+
+            '</div>' +
+            '<div id="flourcontainer"></div>' +
             '</div>');
 
 
         var currentSettings = settings;
         console.log('currentSettings', currentSettings)
         this.render = function (element) {
-            console.log('render')
+            console.log('render arguments', arguments)
             htmlElement.css({height: (currentSettings.Height * 64) + 'px'});
             $(element).append(htmlElement);
             $('#diagramContainer').html(currentSettings.HTML)
             floorReady();
-            $('#htmlWidget').on("click", "div[contenteditable='true']",function(){
+            $('#htmlWidget').on("click", "div[contenteditable='true']", function () {
                 $(this).focus();
             });
         }
@@ -8581,23 +8683,28 @@ $.extend(freeboard, jQuery.eventEmitter);
         this.onSettingsChanged = function (newSettings) {
             console.log('onSettingsChanged')
             currentSettings = newSettings;
-            console.log('currentSettings00000000000000000000000000', currentSettings)
+            console.log('currentSettings00000000000000000000000000', arguments)
             setTimeout(function () {
                 // $('#diagramContainer').html(currentSettings.HTML)
                 // floorReady();
                 // $('#htmlWidget').on("click", "div[contenteditable='true']",function(){
                 //     $(this).focus();
                 // });
-            },500);
+            }, 500);
         }
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var value = newValue
             console.log('value111111111111111111111111111111111111', value)
-            console.log(value.data[0].html)
-            if (settingName == "html") {
+            // console.log(value.data[0].html)
+            if (settingName == "HTML") {
                 // console.log(newValue);
-                htmlElement.html(newValue);
+                // htmlElement.html(newValue);
+                $('#diagramContainer').html(newValue);
+                $('#htmlWidget').on("click", "div[contenteditable='true']",function(){
+                         $(this).focus();
+                     });
+                floorReady();
             }
         }
 
@@ -8631,7 +8738,7 @@ $.extend(freeboard, jQuery.eventEmitter);
                 name: "Height",
                 display_name: "高度",
                 type: "text",
-                default_value: 10
+                default_value: 12
             },
             {
                 name: "include_legend",
@@ -8644,14 +8751,14 @@ $.extend(freeboard, jQuery.eventEmitter);
         }
     });
 
-    // BMS
+    // BSM
     var BMSWidget = function (settings) {
         var self = this;
-        var htmlElement = $('<div class="html-widget" id="htmlWidget">'+
-                        '<div id="theback" style="text-align: center;padding-bottom: 20px">'+
-            '<iframe style="margin-top: 24px;border: 0" width="900px" height="540px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe>'+
-            // '<img src="content.png" style="width: 900px;height:540px">'+
-            '</div>'+
+        var htmlElement = $('<div class="html-widget" id="htmlWidget">' +
+            '<div id="theback" style="text-align: center;padding-bottom: 20px">' +
+            '<iframe style="border: 0;margin-top: 20px" width="880px" height="530px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe>' +
+            // '<img src="content.png" style="width: 900px;height:530px;margin-top: 20px">'+
+            '</div>' +
             //             '<div id="theback" style="text-align: center;padding-bottom: 20px"><div class="scroll"><ul>'+
             //             '<li><iframe style="margin-top: 24px;border: 0" width="900px" height="540px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe></li>'+
             //             '<li><div>2</div></li>'+

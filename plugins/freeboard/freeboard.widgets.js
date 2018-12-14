@@ -323,7 +323,7 @@
                     //     position: 'left'
                     // },
                     data: [
-                        '1', '2', '3', '4', '5'
+                        '前50分钟', '前40分钟', '前30分钟', '前20分钟', '前10分钟'
                     ],
                 },
                 // backgroundColor: '#000000',//背景色
@@ -733,7 +733,7 @@
             }
 
             dataMap = dataFormatter(dataList);
-            console.log(dataMap);
+            // console.log(dataMap);
             for (var i = 0; i < titleData.length; i++) {
                 option.options[i] = {series: [], title: {}};
                 option.options[i].series.push({
@@ -829,12 +829,14 @@
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
             var value = newValue;
+            console.log('00000000000000000000000000000000', value)
             option.series.push({
                 data: value,
                 type: 'pie',
                 radius: ['50%', '40%'],
                 center: ['50%', '55%'],
             })
+            option.title[1].text = '总管理对象\n' + value[0].value
         }
 
         this.onSettingsChanged = function (newSettings) {
@@ -1555,7 +1557,7 @@
                 //数据总的长度   在外面定义了
                 //var len = 16;
                 //走完一个格子的时间
-                var ti = 100;
+                var ti = 50;
                 var maxTop = $tableTr.height() / 2;
                 runTr();
 
@@ -1596,11 +1598,12 @@
                         } else if (k === 'level') {
                             _tds[2] = '<td>' + e[k] + '</td>';
                         } else {
-                            if (e[k].length > 40) {
-                                var str1 = e[k].substring(0, 29);
-                                var str2 = e[k].substring(66, 69);
-
-                                _tds[3] = '<td >' + str1 + str2 + "..." + '</td>';
+                            if (e[k].length > 50) {
+                                var str1 = e[k].substring(0, 50);
+                                // var str2 = e[k].substring(66, 71);
+                                console.log('str1===========', str1)
+                                // console.log('str2===========', str2)
+                                _tds[3] = '<td >' + str1 + "..." + '</td>';
                             }
                         }
                     }
@@ -1858,12 +1861,12 @@
             '<div class="bl-right"><p>楼宇名称：实验楼</p><p>当前设备量：107</p><p>警告数：0</p></div>' +
             '</div>' +
             '<div id="diagramContainer">' +
-            '<div id="item_a" class="item1 my-item"><img src="./img/tongxin.png"><div contenteditable="true">通信中心</div></div>'+
-            '<div id="item_f" class="item3 my-item" style="top: 150px;left: 215px;"><img src="./img/tongxin.png"><div contenteditable = "true">网络中心</div></div>'+
-            '<div id="item_b" class="abcd my-item" style="left: 85px;top: 590px"><img src="./img/tongxin.png"><div>电信1</div></div>'+
-            '<div id="item_c" class="abcd my-item" style="left: 140px;top: 590px"><img src="./img/tongxin.png"><div>电信2</div></div>'+
-            '<div id="item_d" class="abcd my-item" style="left: 315px;top: 590px"><img src="./img/tongxin.png"><div>联通1</div></div>'+
-            '<div id="item_e" class="abcd my-item" style="left: 370px;top: 590px"><img src="./img/tongxin.png"><div>联通2</div></div>'+
+            '<div id="item_a" class="item1 my-item"><img src="./img/tongxin.png"><div contenteditable="true">通信中心</div></div>' +
+            '<div id="item_f" class="item3 my-item" style="top: 150px;left: 215px;"><img src="./img/tongxin.png"><div contenteditable = "true">网络中心</div></div>' +
+            '<div id="item_b" class="abcd my-item" style="left: 85px;top: 590px"><img src="./img/tongxin.png"><div>电信1</div></div>' +
+            '<div id="item_c" class="abcd my-item" style="left: 140px;top: 590px"><img src="./img/tongxin.png"><div>电信2</div></div>' +
+            '<div id="item_d" class="abcd my-item" style="left: 315px;top: 590px"><img src="./img/tongxin.png"><div>联通1</div></div>' +
+            '<div id="item_e" class="abcd my-item" style="left: 370px;top: 590px"><img src="./img/tongxin.png"><div>联通2</div></div>' +
             '</div>' +
             '<div id="flourcontainer"></div>' +
             '</div>');
@@ -1903,9 +1906,9 @@
                 // console.log(newValue);
                 // htmlElement.html(newValue);
                 $('#diagramContainer').html(newValue);
-                $('#htmlWidget').on("click", "div[contenteditable='true']",function(){
-                         $(this).focus();
-                     });
+                $('#htmlWidget').on("click", "div[contenteditable='true']", function () {
+                    $(this).focus();
+                });
                 floorReady();
             }
         }
@@ -1953,13 +1956,19 @@
         }
     });
 
-    // BMS
+    // BSM
     var BMSWidget = function (settings) {
+        var bsm = 2;
         var self = this;
+
         var htmlElement = $('<div class="html-widget" id="htmlWidget">' +
             '<div id="theback" style="text-align: center;padding-bottom: 20px">' +
-            /*'<iframe style="border: 0;margin-top: 20px" width="880px" height="530px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe>' +*/
-            '<img src="content.png" style="width: 900px;height:530px;margin-top: 20px">'+
+            // '<iframe id="thebackIframe" style="border: 0;margin-top: 20px" width="880px" height="530px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe>' +
+            '<iframe id="thebackIframe" style="border: 0;margin-top: 20px;" scrolling="no" frameborder="0" width="880px" height="530px" seamless src=""></iframe>' +
+            // '<div style="width: 880px;height: 530px;margin: 0 auto;">' +
+            // '<iframe id="thebackIframe" style="border: 0;margin-top: -292px;margin-left: -520px;transform: scale(.458)" width="1920px" height="1080px" seamless src=""></iframe>' +
+            // '<img src="content.png" style="width: 900px;height:530px;margin-top: 20px">'+
+            // '</div>' +
             '</div>' +
             //             '<div id="theback" style="text-align: center;padding-bottom: 20px"><div class="scroll"><ul>'+
             //             '<li><iframe style="margin-top: 24px;border: 0" width="900px" height="540px" seamless src="http://10.0.2.6/cas/login?username=test123&password=beta123&module=业务拓扑业务拓扑_true"></iframe></li>'+
@@ -1979,7 +1988,7 @@
         this.render = function (element) {
             console.log('render')
             $(element).append(htmlElement);
-            $('#theback').html(currentSettings.HTML)
+            // $('#theback').html(currentSettings.HTML)
             // mmm();
 
         }
@@ -1991,6 +2000,8 @@
         }
 
         this.onCalculatedValueChanged = function (settingName, newValue) {
+            bsm = newValue[0];
+            $('#thebackIframe').attr('src', bsm)
         }
 
         this.onDispose = function () {
