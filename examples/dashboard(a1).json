@@ -1,1 +1,0 @@
-{"version":1,"allow_edit":true,"plugins":[],"panes":[{"width":1,"row":{"3":1},"col":{"3":1},"col_width":3,"widgets":[{"type":"bms-widget","settings":{"HTML":"datasources[\"1\"]","Height":9}}]}],"datasources":[{"name":"1","type":"BSM图","settings":{"url":"1","use_thingproxy":true,"refresh":1263156,"method":"GET"}}],"columns":3}
