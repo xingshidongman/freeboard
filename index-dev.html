@@ -589,7 +589,7 @@
                 jsPlumb.draggable(j,{containment: 'parent',grid: [5, 5]})
             }
             var num = $('.item2').length
-            for (let a=0;a<=num;a++){
+            for (var a=0;a<=num;a++){
                 var id = 'item_'+ a
                 Connect('item_f',id)
             }

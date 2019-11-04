@@ -464,7 +464,7 @@
             var lValue = result["lValue"];
             var dataMap = {};
 
-            for (let i = 1; i <= result.lValue.length; i++) {
+            for (var i = 1; i <= result.lValue.length; i++) {
                 var DL = "dataList" + i;
                 var dataList = result[DL]
                 dataMap[i - 1] = dataFormatter(dataList);
@@ -1097,7 +1097,7 @@
                         }
                     },
                     data: b
-                },);
+                });
                 console.log(option1);
             }
         }
@@ -1375,7 +1375,7 @@
                             }
                         },
                         data: value["value"]
-                    },
+                    }
                 );
                 console.log(op)
                 opArr.push(op)
